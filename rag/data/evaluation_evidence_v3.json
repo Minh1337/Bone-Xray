@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "176311a556429af4fb3b2c2e327851b957463a1e57300fc9df973182a0a8a035",
+  "config_sha256_at_freeze": "62779b99b66aafdd0d678c8fad6d1b719f61469bb4873a20bb247589157066ad",
+  "evidence_config_sha256_at_freeze": "76c2cd12a143e9a22370fc5ece48e0a35f3f749591dbeae26ccb350f8cb74265",
+  "provenance": "Agent-authored targeted bilingual stress suite frozen before first run of the concept checker. Not blind or independent clinical validation; some facts overlap earlier gold. Do not tune against these results and call them held-out.",
+  "questions": [
+    {
+      "id": "ep01",
+      "question_vi": "Explain the difference between primary bone cancer and cancer metastatic to bone.",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0001",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are bone tumors?",
+          "text_sha256": "7daf3ab407d70109092b1bfbe39c15976215077d86ca2092fff537421ac2d5d5"
+        }
+      ],
+      "evidence_quote": "primary bone tumors"
+    },
+    {
+      "id": "ep02",
+      "question_vi": "Why obtain a tissue sample during a biopsy of a bone tumor?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0014",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "How is bone cancer diagnosed?",
+          "text_sha256": "15f4c129b229517e7e654e8c9df1e76aada71d0fad709cede9f6b4c163b4feb8"
+        }
+      ],
+      "evidence_quote": "tissue sample"
+    },
+    {
+      "id": "ep03",
+      "question_vi": "What are the symptoms described for Ewing sarcoma?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-ewing-patient:0006",
+          "source_id": "nci-ewing-patient",
+          "section": "Symptoms of Ewing sarcoma include swelling and pain near the tumor.",
+          "text_sha256": "1fc2a1574c43f73ee3accd3e747da1ab7efbd98898a1d55abbf4cc20ced2c726"
+        }
+      ],
+      "evidence_quote": "pain and/or swelling"
+    },
+    {
+      "id": "ep04",
+      "question_vi": "What tissues form chondrosarcoma tumors?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-chondrosarcoma:0001",
+          "source_id": "nci-chondrosarcoma",
+          "section": "What is chondrosarcoma?",
+          "text_sha256": "2f12b2ff2b66519b5c34c3f99db563154718e503e6fcb91332dd887d1db1d04a"
+        }
+      ],
+      "evidence_quote": "cartilage"
+    },
+    {
+      "id": "ep05",
+      "question_vi": "Where in the spine is chordoma commonly found?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "text_sha256": "2b3fc73ddcc10e786fe7c9b9f339531bdac01dbc2dbd458fada59bf6c3f02371"
+        }
+      ],
+      "evidence_quote": "tailbone"
+    },
+    {
+      "id": "ep06",
+      "question_vi": "Which scans are named in the diagnosis of adamantinoma?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-adamantinoma:0003",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma diagnosed?",
+          "text_sha256": "2d666384e4ffe61d484bec8bdb8f77f6e556b8ef14de30532dac4b95a25fec93"
+        }
+      ],
+      "evidence_quote": "X-rays, CT, MRI, and bone scans"
+    },
+    {
+      "id": "ep07",
+      "question_vi": "Can chondromyxoid fibroma invade nearby tissues despite being benign?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0001",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is chondromyxoid fibroma?",
+          "text_sha256": "ae52da9d913e2052a149796f70b0d401518a6a27f25b80c51d1f6fb72535ec31"
+        }
+      ],
+      "evidence_quote": "invade nearby tissues"
+    },
+    {
+      "id": "ep08",
+      "question_vi": "Những dấu hiệu nào được mô tả cho Ewing sarcoma?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-ewing-patient:0006",
+          "source_id": "nci-ewing-patient",
+          "section": "Symptoms of Ewing sarcoma include swelling and pain near the tumor.",
+          "text_sha256": "1fc2a1574c43f73ee3accd3e747da1ab7efbd98898a1d55abbf4cc20ced2c726"
+        }
+      ],
+      "evidence_quote": "a lump"
+    },
+    {
+      "id": "ep09",
+      "question_vi": "Các loại sinh thiết u xương có được nhắc trong tài liệu không?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0014",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "How is bone cancer diagnosed?",
+          "text_sha256": "15f4c129b229517e7e654e8c9df1e76aada71d0fad709cede9f6b4c163b4feb8"
+        }
+      ],
+      "evidence_quote": "excisional biopsy"
+    },
+    {
+      "id": "ep10",
+      "question_vi": "Ở adamantinoma, bác sĩ giải phẫu bệnh kiểm tra mẫu dưới kính hiển vi ra sao?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-adamantinoma:0003",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma diagnosed?",
+          "text_sha256": "2d666384e4ffe61d484bec8bdb8f77f6e556b8ef14de30532dac4b95a25fec93"
+        }
+      ],
+      "evidence_quote": "under the microscope"
+    },
+    {
+      "id": "en01",
+      "question_vi": "Is hyperbaric oxygen proven to cure chordoma?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en02",
+      "question_vi": "Does acupuncture prevent osteosarcoma recurrence?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en03",
+      "question_vi": "Can curcumin eradicate Ewing sarcoma without surgery?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en04",
+      "question_vi": "What does an osteosarcoma biopsy cost at a local clinic today?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en05",
+      "question_vi": "Which home DNA kit guarantees early diagnosis of chordoma?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en06",
+      "question_vi": "Can a smartphone application replace the pathologist for chondrosarcoma?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en07",
+      "question_vi": "Thảo dược nào được chứng minh chữa khỏi hoàn toàn Ewing sarcoma?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en08",
+      "question_vi": "Thiết bị đeo tay có phát hiện sớm adamantinoma chính xác không?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en09",
+      "question_vi": "Nước ép củ dền có ngăn chordoma tái phát không?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "en10",
+      "question_vi": "Bệnh viện địa phương bán gói xét nghiệm u xương hôm nay giá bao nhiêu?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    }
+  ]
+}

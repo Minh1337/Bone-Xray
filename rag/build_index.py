@@ -33,9 +33,13 @@ def main():
     r.INDEX.mkdir(parents=True, exist_ok=True)
     np.save(r.INDEX / "vectors.npy", vectors, allow_pickle=False)
     manifest = {
+        "schema_version": 2,
+        "embedding_input": "passage: {section}\n{text}",
+        "normalized": True,
         "model_id": r.MODEL_ID,
         "model_revision": r.MODEL_REVISION,
         "model_sha256": r.sha256(r.MODEL / "model.safetensors"),
+        "model_assets_sha256": r.model_asset_hashes(),
         "corpus_sha256": r.sha256(r.CORPUS),
         "source_lock_sha256": r.sha256(r.LOCK),
         "vectors_sha256": r.sha256(r.INDEX / "vectors.npy"),

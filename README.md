@@ -43,6 +43,11 @@ BONESCOPE/
 │   ├── build_index.py       # Tạo embedding và chỉ mục vector
 │   ├── retrieval.py         # Truy xuất có kiểm tra phiên bản
 │   ├── evaluate.py          # Đo recall, MRR và câu ngoài phạm vi
+│   ├── compare.py           # So sánh cấu hình và lưu báo cáo đầy đủ
+│   ├── lexical.py           # Từ khóa Việt–Anh, BM25 và kết hợp thứ hạng
+│   ├── policy.py            # Routing câu ngoài phạm vi và thiếu nguồn
+│   ├── evidence.py          # Thử nghiệm xếp hạng và độ phủ khái niệm
+│   ├── compare_evidence.py  # Đo riêng xếp hạng và lọc thử nghiệm
 │   ├── index/               # Chỉ mục vector tạo tại máy (Git bỏ qua)
 │   ├── models/              # Mô hình embedding tại máy (Git bỏ qua)
 │   └── tests/               # Kiểm thử corpus/truy xuất
@@ -137,6 +142,12 @@ python -m unittest discover -s ui_tests -v
 - [ ] **Giai đoạn 13:** Đánh giá toàn diện, bảo mật và đóng gói bàn giao.
 
 Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. Xem [hướng dẫn kho tài liệu](docs/guides/README_RAG_CORPUS_VI.md). Một số nhãn u lành tính còn thiếu nguồn chuyên biệt.
+
+Để tiếp tục phát triển, đọc [trạng thái dự án và ghi chú bàn giao](docs/PROJECT_STATUS_VI.md) trước. Trang này tổng hợp các thay đổi đã làm, bằng chứng kiểm thử và việc còn mở.
+
+Điểm tiếp tục hiện tại: [giai đoạn 11](docs/STAGE11_HANDOFF_VI.md). Corpus hiện 416 đoạn; hybrid đạt 8/10 câu regression đúng nguồn/mục và 7/8 câu V2 test đã sử dụng đúng đoạn bằng chứng, nhưng vẫn bỏ lọt câu không có nguồn. Chưa có chatbot.
+
+Rerank thử nghiệm (`--rerank-concepts`) đạt 10/10 câu cũ và 8/8 câu V2 test đã xem; cần kiểm định độc lập. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
 
 Tạo chỉ mục cục bộ: `python rag/build_index.py --download-model` (lần đầu), sau đó `python rag/build_index.py`; đo bằng `python rag/evaluate.py`. Xem [hướng dẫn truy xuất](docs/guides/README_RAG_INDEX_VI.md).
 

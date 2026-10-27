@@ -1,0 +1,72 @@
+[
+  {
+    "experiment": "regression_dense",
+    "answerable_count": 10,
+    "negative_count": 2,
+    "recall_at_k": 0.7,
+    "mrr_at_k": 0.4833333333333333,
+    "negative_abstention": 0.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8333333333333334
+  },
+  {
+    "experiment": "regression_hybrid_raw",
+    "answerable_count": 10,
+    "negative_count": 2,
+    "recall_at_k": 0.8,
+    "mrr_at_k": 0.7,
+    "negative_abstention": 0.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8333333333333334
+  },
+  {
+    "experiment": "regression_hybrid_guarded",
+    "answerable_count": 10,
+    "negative_count": 2,
+    "recall_at_k": 0.8,
+    "mrr_at_k": 0.7,
+    "negative_abstention": 1.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 1.0
+  },
+  {
+    "experiment": "v2_dev_dense",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.625,
+    "mrr_at_k": 0.5416666666666667,
+    "negative_abstention": 0.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.5714285714285714
+  },
+  {
+    "experiment": "v2_dev_hybrid_guarded",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.75,
+    "mrr_at_k": 0.625,
+    "negative_abstention": 0.6666666666666666,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8571428571428571
+  },
+  {
+    "experiment": "v2_test_dense",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.75,
+    "mrr_at_k": 0.5416666666666666,
+    "negative_abstention": 0.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.5714285714285714
+  },
+  {
+    "experiment": "v2_test_hybrid_guarded",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.875,
+    "mrr_at_k": 0.7125,
+    "negative_abstention": 0.6666666666666666,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8571428571428571
+  }
+]

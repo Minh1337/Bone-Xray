@@ -1,0 +1,822 @@
+{
+  "mode": "dense_baseline",
+  "corpus_sha256": "0c98ebf9a2867f836e911800b32850332c9f5588b8187c0ee55f6d573d28c113",
+  "questions": [
+    {
+      "id": "q01",
+      "question": "Ung thư xương nguyên phát khác ung thư di căn đến xương như thế nào?",
+      "expected_source": "nci-primary-bone-cancer",
+      "expected_section": "What are bone tumors?",
+      "hits": [
+        {
+          "chunk_id": "nci-ewing-professional:0189",
+          "source_id": "nci-ewing-professional",
+          "section": "Sarcomas with EWSR1::PATZ1 fusions",
+          "score": 0.8117406368255615
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0175",
+          "source_id": "nci-ewing-professional",
+          "section": "Treatment of undifferentiated round cell sarcomas with BCOR genetic alterations",
+          "score": 0.8107491135597229
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0040",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Molecular Features of Osteosarcoma",
+          "score": 0.810510516166687
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0003",
+          "source_id": "nci-ewing-patient",
+          "section": "Undifferentiated small round cell sarcoma may also form in the bone or soft tissue.",
+          "score": 0.8094159960746765
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0027",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8087908029556274
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0109",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Prognostic Factors for Recurrence",
+          "score": 0.8084896802902222
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0028",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8081669807434082
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0173",
+          "source_id": "nci-ewing-professional",
+          "section": "Genomic characteristics",
+          "score": 0.8066192865371704
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0056",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Extraosseous Osteosarcoma",
+          "score": 0.8066153526306152
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0058",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Undifferentiated Pleomorphic Sarcoma (UPS) of Bone",
+          "score": 0.8065934181213379
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "question": "Xét nghiệm nào giúp xác nhận chẩn đoán u xương ác tính?",
+      "expected_source": "nci-primary-bone-cancer",
+      "expected_section": "How is bone cancer diagnosed?",
+      "hits": [
+        {
+          "chunk_id": "nci-child-chordoma-professional:0003",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "score": 0.7915598154067993
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0011",
+          "source_id": "nci-ewing-professional",
+          "section": "Diagnostic Evaluation",
+          "score": 0.7900600433349609
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0046",
+          "source_id": "nci-ewing-professional",
+          "section": "Cellular Classification of Ewing Sarcoma",
+          "score": 0.78879314661026
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0005",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "Tests are used to diagnose osteosarcoma and UPS.",
+          "score": 0.7882275581359863
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0060",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Staging and Site Information for Osteosarcoma and UPS of Bone",
+          "score": 0.7879525423049927
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0013",
+          "source_id": "nci-ewing-patient",
+          "section": "Tests that examine the bone and soft tissue are used to diagnose and stage Ewing sarcoma.",
+          "score": 0.7847535610198975
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0007",
+          "source_id": "nci-ewing-patient",
+          "section": "Tests that examine the bone and soft tissue are used to diagnose and stage Ewing sarcoma.",
+          "score": 0.7835555076599121
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0057",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Undifferentiated Pleomorphic Sarcoma (UPS) of Bone",
+          "score": 0.7835389375686646
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0168",
+          "source_id": "nci-ewing-professional",
+          "section": "Other Therapies",
+          "score": 0.7825086116790771
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0052",
+          "source_id": "nci-ewing-professional",
+          "section": "Molecular Features of Ewing Sarcoma",
+          "score": 0.7822407484054565
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "question": "Osteosarcoma thường gặp ở vị trí nào của chi?",
+      "expected_source": "nci-primary-bone-cancer",
+      "expected_section": "Osteosarcoma",
+      "hits": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0004",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Osteosarcoma",
+          "score": 0.8578299283981323
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0061",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Localized Osteosarcoma",
+          "score": 0.8565319776535034
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0001",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "score": 0.8496735095977783
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0053",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Surface (Peripheral) Tumors",
+          "score": 0.8399381041526794
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0060",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Staging and Site Information for Osteosarcoma and UPS of Bone",
+          "score": 0.836442232131958
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0062",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Metastatic Osteosarcoma",
+          "score": 0.8363317251205444
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0013",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "After osteosarcoma or undifferentiated pleomorphic sarcoma (UPS) has been diagnosed, tests are done to find out if cancer cells have spread to other parts of the body.",
+          "score": 0.8335697054862976
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0039",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Molecular Features of Osteosarcoma",
+          "score": 0.8311173915863037
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0026",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8285067677497864
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0004",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Diagnostic Evaluation",
+          "score": 0.828314483165741
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "question": "Tại sao cần chuyên gia ung thư chỉnh hình đánh giá trước sinh thiết nghi osteosarcoma?",
+      "expected_source": "nci-osteosarcoma-professional",
+      "expected_section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+      "hits": [
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0025",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8464196920394897
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0058",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Undifferentiated Pleomorphic Sarcoma (UPS) of Bone",
+          "score": 0.8462626934051514
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0030",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8461267352104187
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0029",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8453441262245178
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0064",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Staging Evaluation",
+          "score": 0.8448731303215027
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0109",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Prognostic Factors for Recurrence",
+          "score": 0.8444685935974121
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0026",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8430656790733337
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0066",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+          "score": 0.8421579599380493
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0001",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "score": 0.8417438268661499
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0027",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.8402469754219055
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "question": "Ewing sarcoma di căn thường lan đến đâu?",
+      "expected_source": "nci-ewing-patient",
+      "expected_section": "Metastatic Ewing sarcoma",
+      "hits": [
+        {
+          "chunk_id": "nci-ewing-patient:0002",
+          "source_id": "nci-ewing-patient",
+          "section": "Ewing sarcoma is a type of cancer that forms from a certain kind of cell in bone or soft tissue.",
+          "score": 0.8721398115158081
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0006",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Ewing sarcoma",
+          "score": 0.8488917946815491
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0001",
+          "source_id": "nci-ewing-professional",
+          "section": "General Information About Ewing Sarcoma and Undifferentiated Small Round Cell Sarcomas of Bone and Soft Tissue",
+          "score": 0.8469139337539673
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0001",
+          "source_id": "nci-ewing-patient",
+          "section": "Key Points",
+          "score": 0.8447982668876648
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0146",
+          "source_id": "nci-ewing-professional",
+          "section": "Treatment of Recurrent Ewing Sarcoma",
+          "score": 0.8439767360687256
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0009",
+          "source_id": "nci-ewing-professional",
+          "section": "Clinical Presentation",
+          "score": 0.8402079343795776
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0015",
+          "source_id": "nci-ewing-professional",
+          "section": "Pretreatment factors",
+          "score": 0.8400433659553528
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0015",
+          "source_id": "nci-ewing-patient",
+          "section": "Key Points",
+          "score": 0.8375387191772461
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0016",
+          "source_id": "nci-ewing-patient",
+          "section": "Localized Ewing sarcoma",
+          "score": 0.8374961614608765
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0046",
+          "source_id": "nci-ewing-professional",
+          "section": "Cellular Classification of Ewing Sarcoma",
+          "score": 0.8356786966323853
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "question": "Chordoma thường xuất hiện ở vùng nào?",
+      "expected_source": "nci-chordoma",
+      "expected_section": "What is chordoma?",
+      "hits": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0007",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chordoma",
+          "score": 0.8351588845252991
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0001",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "score": 0.8303371667861938
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "score": 0.8268842697143555
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "score": 0.8245276212692261
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0003",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "score": 0.8132753968238831
+        },
+        {
+          "chunk_id": "nci-chordoma:0003",
+          "source_id": "nci-chordoma",
+          "section": "How is chordoma diagnosed?",
+          "score": 0.8083142042160034
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "score": 0.8024744987487793
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0008",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "score": 0.7982752323150635
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0007",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "score": 0.7918221950531006
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0005",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chondrosarcoma",
+          "score": 0.7896358966827393
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "question": "Chondrosarcoma bắt nguồn từ loại mô nào?",
+      "expected_source": "nci-chondrosarcoma",
+      "expected_section": "What is chondrosarcoma?",
+      "hits": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0005",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chondrosarcoma",
+          "score": 0.8567733764648438
+        },
+        {
+          "chunk_id": "nci-chondrosarcoma:0001",
+          "source_id": "nci-chondrosarcoma",
+          "section": "What is chondrosarcoma?",
+          "score": 0.856198251247406
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0051",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Cellular Classification of Osteosarcoma and UPS of Bone",
+          "score": 0.8240172863006592
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0002",
+          "source_id": "nci-ewing-patient",
+          "section": "Ewing sarcoma is a type of cancer that forms from a certain kind of cell in bone or soft tissue.",
+          "score": 0.8232331275939941
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0004",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Osteosarcoma",
+          "score": 0.8189958333969116
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0052",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Central (Medullary) Tumors",
+          "score": 0.8162363767623901
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0039",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Molecular Features of Osteosarcoma",
+          "score": 0.813814640045166
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0001",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "score": 0.81208336353302
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0002",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "Osteosarcoma and undifferentiated pleomorphic sarcoma (UPS) of bone are diseases in which cancer cells form in bone.",
+          "score": 0.8118277192115784
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0048",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Genetic predisposition to osteosarcoma",
+          "score": 0.8108372688293457
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "question": "Chondromyxoid fibroma có phải ung thư không?",
+      "expected_source": "nci-chondromyxoid-fibroma",
+      "expected_section": "What is chondromyxoid fibroma?",
+      "hits": [
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0001",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is chondromyxoid fibroma?",
+          "score": 0.8579328060150146
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0003",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How is chondromyxoid fibroma diagnosed?",
+          "score": 0.8415796756744385
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0002",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How common is chondromyxoid fibroma?",
+          "score": 0.8349513411521912
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0012",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is the prognosis for people with chondromyxoid fibroma?",
+          "score": 0.8334444761276245
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0006",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How is chondromyxoid fibroma treated?",
+          "score": 0.8221394419670105
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0011",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How does chondromyxoid fibroma form?",
+          "score": 0.8171849250793457
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0010",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "Does chondromyxoid fibroma run in families?",
+          "score": 0.8135162591934204
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0040",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Molecular Features of Osteosarcoma",
+          "score": 0.8088827729225159
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0052",
+          "source_id": "nci-ewing-professional",
+          "section": "Molecular Features of Ewing Sarcoma",
+          "score": 0.8050222992897034
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0003",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "score": 0.8032344579696655
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "question": "Adamantinoma thường bắt đầu ở xương nào của cẳng chân?",
+      "expected_source": "nci-adamantinoma",
+      "expected_section": "What is adamantinoma?",
+      "hits": [
+        {
+          "chunk_id": "nci-adamantinoma:0001",
+          "source_id": "nci-adamantinoma",
+          "section": "What is adamantinoma?",
+          "score": 0.8477875590324402
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0003",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma diagnosed?",
+          "score": 0.8208089470863342
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0004",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma treated?",
+          "score": 0.8065799474716187
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0002",
+          "source_id": "nci-adamantinoma",
+          "section": "How common is adamantinoma?",
+          "score": 0.8034458160400391
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0061",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Localized Osteosarcoma",
+          "score": 0.7996928095817566
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0006",
+          "source_id": "nci-adamantinoma",
+          "section": "How does adamantinoma form?",
+          "score": 0.7963699102401733
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0007",
+          "source_id": "nci-adamantinoma",
+          "section": "What is the prognosis for people with adamantinoma?",
+          "score": 0.7929000854492188
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0045",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Genetic predisposition to osteosarcoma",
+          "score": 0.7921774387359619
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0004",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Osteosarcoma",
+          "score": 0.7886543273925781
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0049",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Genetic predisposition to osteosarcoma",
+          "score": 0.7883629202842712
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "question": "Ở trẻ em, chordoma thường gặp gần vị trí nào?",
+      "expected_source": "nci-child-chordoma-patient",
+      "expected_section": "What is childhood chordoma?",
+      "hits": [
+        {
+          "chunk_id": "nci-child-chordoma-professional:0003",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "score": 0.8475341796875
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0001",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "score": 0.8450961709022522
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "score": 0.8388123512268066
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "score": 0.826897144317627
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0002",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Causes and risk factors for childhood chordoma",
+          "score": 0.8243988752365112
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0003",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Symptoms of childhood chordoma",
+          "score": 0.8243669271469116
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0008",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "score": 0.8215006589889526
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0016",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Treatment of Childhood Chordoma",
+          "score": 0.8207392692565918
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0004",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "score": 0.8200485110282898
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0015",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Prognostic factors for childhood chordoma",
+          "score": 0.8199578523635864
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "question": "Có thể kết luận mô bệnh học từ điểm softmax của một ảnh X-quang không?",
+      "expected_source": null,
+      "expected_section": null,
+      "hits": [
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0003",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "score": 0.8003401756286621
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0046",
+          "source_id": "nci-ewing-professional",
+          "section": "Cellular Classification of Ewing Sarcoma",
+          "score": 0.8000822067260742
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0171",
+          "source_id": "nci-ewing-professional",
+          "section": "Undifferentiated Small Round Cell (Ewing-Like) Sarcomas",
+          "score": 0.7991492748260498
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0045",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Genetic predisposition to osteosarcoma",
+          "score": 0.7979782819747925
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0030",
+          "source_id": "nci-ewing-professional",
+          "section": "Response to initial therapy factors",
+          "score": 0.7966523170471191
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0192",
+          "source_id": "nci-ewing-professional",
+          "section": "Sarcomas with EWSR1::PATZ1 fusions",
+          "score": 0.7961915731430054
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0193",
+          "source_id": "nci-ewing-professional",
+          "section": "Sarcomas with EWSR1::PATZ1 fusions",
+          "score": 0.7951587438583374
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0073",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+          "score": 0.7943013906478882
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0027",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Other possible prognostic factors",
+          "score": 0.7926887273788452
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0072",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+          "score": 0.7912827134132385
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "question": "Bệnh nhân này nên dùng thuốc hóa trị nào và liều bao nhiêu?",
+      "expected_source": null,
+      "expected_section": null,
+      "hits": [
+        {
+          "chunk_id": "nci-ewing-professional:0150",
+          "source_id": "nci-ewing-professional",
+          "section": "Chemotherapy",
+          "score": 0.8017189502716064
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0116",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Chemotherapy and targeted therapy",
+          "score": 0.7989161014556885
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0144",
+          "source_id": "nci-ewing-professional",
+          "section": "Other Therapies",
+          "score": 0.7974586486816406
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0024",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Chemotherapy",
+          "score": 0.7964323163032532
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0088",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Chemotherapy",
+          "score": 0.7928211688995361
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0119",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Chemotherapy and targeted therapy",
+          "score": 0.7926522493362427
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0143",
+          "source_id": "nci-ewing-professional",
+          "section": "Other Therapies",
+          "score": 0.7926288843154907
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0151",
+          "source_id": "nci-ewing-professional",
+          "section": "Chemotherapy",
+          "score": 0.7923293709754944
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0020",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Tyrosine Kinase Inhibitor (TKI) Therapy",
+          "score": 0.7921812534332275
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0130",
+          "source_id": "nci-ewing-professional",
+          "section": "High-Dose Chemotherapy With Autologous Stem Cell Rescue",
+          "score": 0.7920580506324768
+        }
+      ]
+    }
+  ]
+}

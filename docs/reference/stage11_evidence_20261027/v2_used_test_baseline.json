@@ -1,0 +1,728 @@
+{
+  "answerable_count": 8,
+  "negative_count": 6,
+  "recall_at_k": 0.875,
+  "mrr_at_k": 0.7125,
+  "negative_abstention": 0.6666666666666666,
+  "positive_abstention": 0.0,
+  "routing_accuracy": 0.8571428571428571,
+  "questions": [
+    {
+      "id": "p09",
+      "split": "test",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0009",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the possible causes of bone cancer?",
+          "text_sha256": "dc74c78ec02d83b36d3094e904c7dfdaaacb9935d6896d335d1349060630b085",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7856186628341675,
+          "ranking_score": 0.06374807987711213,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0008",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the possible causes of bone cancer?",
+          "text_sha256": "a039ea59be9bac809eece7704ead87b6c53042ebd95654215ac3acf9b67ac4df",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7767860293388367,
+          "ranking_score": 0.05778688524590164,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0001",
+          "source_id": "nci-ewing-professional",
+          "section": "General Information About Ewing Sarcoma and Undifferentiated Small Round Cell Sarcomas of Bone and Soft Tissue",
+          "text_sha256": "52384e603f3c69c379e368ca777ac9dfd5537f379cf2e0822aa0ae653e994a94",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7844794392585754,
+          "ranking_score": 0.05213947532977995,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0009",
+          "source_id": "nci-ewing-professional",
+          "section": "Clinical Presentation",
+          "text_sha256": "aba0f58d4b87f4333b18b39d9c07628dcbf9e0e4e451a8030030fd1cf6935416",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7749276161193848,
+          "ranking_score": 0.04918300653594771,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0041",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Staging and Site Information for Osteosarcoma and UPS of Bone",
+          "text_sha256": "c97a8a0e02282eb98280103c3c025cf3790b2f0a08bd6751241efa5e44666f3c",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7773146629333496,
+          "ranking_score": 0.048875214011058404,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p10",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0015",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "How is bone cancer diagnosed?",
+          "text_sha256": "ef24ef169f93b9d7f3c2a531a5c2235b6131390415c429732ff46745f7b09fb9",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8430403470993042,
+          "ranking_score": 0.06557377049180328,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0031",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "RECQL4 variants",
+          "text_sha256": "64dcad0d06da576b640ea0e8cc9f407206920278d4231903654fbc8ef181409f",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8105148077011108,
+          "ranking_score": 0.057291666666666664,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0010",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Special Considerations for the Treatment of Children With Cancer",
+          "text_sha256": "2d2e3378559f525d3892753bfbfc97f0bcaaaaace524cc7b25e676ea0d6bf10f",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8024396896362305,
+          "ranking_score": 0.05499902075989033,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0005",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "46d7f33f20bace2b505d2577463981a32b043345782766b817d7d94027c140af",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.7998912334442139,
+          "ranking_score": 0.05469208917136116,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0080",
+          "source_id": "nci-ewing-professional",
+          "section": "Chemotherapy",
+          "text_sha256": "d0f99a51255ca9986dd5e58dc8726f8869bbd1ce7a44e234d9ce7893dab09108",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8044524192810059,
+          "ranking_score": 0.05461764603555649,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p11",
+      "split": "test",
+      "answerable": true,
+      "rank": 5,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-ewing-patient:0002",
+          "source_id": "nci-ewing-patient",
+          "section": "Ewing sarcoma is a type of cancer that forms from a certain kind of cell in bone or soft tissue.",
+          "text_sha256": "b2b53f08c557be392ba13e55846dea170abf335f2f96e6cfd15fa57b5512239a",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8700741529464722,
+          "ranking_score": 0.06293722142479415,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0001",
+          "source_id": "nci-ewing-patient",
+          "section": "Key Points",
+          "text_sha256": "24db4d704244a4579bfddb791f8389b21c89a0807de8b0374ae1c3ca5101fd64",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.87353515625,
+          "ranking_score": 0.06242943101747967,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0001",
+          "source_id": "nci-ewing-professional",
+          "section": "General Information About Ewing Sarcoma and Undifferentiated Small Round Cell Sarcomas of Bone and Soft Tissue",
+          "text_sha256": "52384e603f3c69c379e368ca777ac9dfd5537f379cf2e0822aa0ae653e994a94",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8582093715667725,
+          "ranking_score": 0.05914373814041746,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0071",
+          "source_id": "nci-ewing-professional",
+          "section": "Extraosseous Ewing Sarcoma",
+          "text_sha256": "302aa76aec5c1ff3a90839e910ad72a131f8033c65e0a3a25197434493f45ac2",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8518707156181335,
+          "ranking_score": 0.05837009803921569,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0006",
+          "source_id": "nci-ewing-patient",
+          "section": "Symptoms of Ewing sarcoma include swelling and pain near the tumor.",
+          "text_sha256": "1fc2a1574c43f73ee3accd3e747da1ab7efbd98898a1d55abbf4cc20ced2c726",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8597156405448914,
+          "ranking_score": 0.05813947436898256,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-child-chordoma-patient:0003",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Symptoms of childhood chordoma",
+          "text_sha256": "8be38b21a752d34bbde66cdab190e28975df15e28f797f7a4a7bce8751ffafb7",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8258348703384399,
+          "ranking_score": 0.06256805303507278,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0001",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "text_sha256": "a2783e0877aeaaf236f13c97cd527f14f4d838583a4ec26b878e6925ce783170",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.819616436958313,
+          "ranking_score": 0.06113256113256113,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "text_sha256": "c23c12cd97777be0b5f07de51498a8db166d9533e9a1969957cde2dbc19deaf1",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8005414605140686,
+          "ranking_score": 0.0582321748849783,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0005",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "46d7f33f20bace2b505d2577463981a32b043345782766b817d7d94027c140af",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8144187927246094,
+          "ranking_score": 0.05804028291590481,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0003",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "65c414f92f588066f7ddd797c73e5f4c1aa5c72ee39c593ad221eccb9bc511d4",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8153072595596313,
+          "ranking_score": 0.05779094639427275,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "split": "test",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-chondrosarcoma:0001",
+          "source_id": "nci-chondrosarcoma",
+          "section": "What is chondrosarcoma?",
+          "text_sha256": "2f12b2ff2b66519b5c34c3f99db563154718e503e6fcb91332dd887d1db1d04a",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondrosarcoma",
+          "score": 0.8180601596832275,
+          "ranking_score": 0.06430053288858154,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0005",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chondrosarcoma",
+          "text_sha256": "b2972eb2a6db4084d8b317f90662ac2511a85d609efb2ff509689d41f5612164",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.816497802734375,
+          "ranking_score": 0.06426011264720942,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0006",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "Tests are used to diagnose osteosarcoma and UPS.",
+          "text_sha256": "e1e10bb1e45fe361c000c46126c271a9f1ba9bd1e0ac93f5d673f146bcc8628e",
+          "url": "https://www.cancer.gov/types/bone/patient/osteosarcoma-treatment-pdq",
+          "score": 0.8116641640663147,
+          "ranking_score": 0.06018735752674754,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0004",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Diagnostic Evaluation",
+          "text_sha256": "0fc1691ea009cfb213e700496f6c4a664897cab99d1761ccd971f488bdadd22e",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8081560134887695,
+          "ranking_score": 0.05934794372294372,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0045",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+          "text_sha256": "3dbb59f7176519dcf04ac416bbc2e8745d3d39247eb14fdc3755d746c8948b94",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8078001141548157,
+          "ranking_score": 0.054098124098124103,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p14",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0001",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is chondromyxoid fibroma?",
+          "text_sha256": "ae52da9d913e2052a149796f70b0d401518a6a27f25b80c51d1f6fb72535ec31",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8529205322265625,
+          "ranking_score": 0.06557377049180328,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0002",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How common is chondromyxoid fibroma?",
+          "text_sha256": "33a950b548153e57fc385d9d288e6e122b125e8398a719cc0ccb068b346a3bf0",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8422484397888184,
+          "ranking_score": 0.0635386119257087,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0003",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How is chondromyxoid fibroma diagnosed?",
+          "text_sha256": "34986c53678bb38a2035b837c26594e7997a887c12da2d2011e90a8d619bc0b6",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8378483653068542,
+          "ranking_score": 0.06274801587301587,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0010",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "Does chondromyxoid fibroma run in families?",
+          "text_sha256": "a706da784557fa1c295f50f5802c0ccaa20424dcd7b73b9af90d18ea91f0cb9f",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8382072448730469,
+          "ranking_score": 0.06113256113256113,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0011",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How does chondromyxoid fibroma form?",
+          "text_sha256": "bc4563d4ce1dc2bca9970aecd9b559cade7117f44630e2fea18d005e0edf8d46",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8310295343399048,
+          "ranking_score": 0.06039352804058687,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p15",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-chordoma:0003",
+          "source_id": "nci-chordoma",
+          "section": "How is chordoma diagnosed?",
+          "text_sha256": "81b7c2b9ef91ae773cf42645895c4a22c630442524269b2f059dd395beebd058",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8375810384750366,
+          "ranking_score": 0.06478053939714437,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0007",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chordoma",
+          "text_sha256": "0f8a511754093a1f442a59122dfb9c0e3b82aa62de6767ef8df79a3886f572cc",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8309348821640015,
+          "ranking_score": 0.0635164584959667,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "text_sha256": "15d84cd8b21319939b0d1769ea273dbf40581ab852921804e1a4d2d443149305",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8523745536804199,
+          "ranking_score": 0.06300042454621968,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "text_sha256": "2b3fc73ddcc10e786fe7c9b9f339531bdac01dbc2dbd458fada59bf6c3f02371",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8273759484291077,
+          "ranking_score": 0.0606266282736871,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "text_sha256": "c23c12cd97777be0b5f07de51498a8db166d9533e9a1969957cde2dbc19deaf1",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8226836919784546,
+          "ranking_score": 0.060160427807486636,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p16",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-adamantinoma:0003",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma diagnosed?",
+          "text_sha256": "2d666384e4ffe61d484bec8bdb8f77f6e556b8ef14de30532dac4b95a25fec93",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8425285816192627,
+          "ranking_score": 0.06456494325346784,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0001",
+          "source_id": "nci-adamantinoma",
+          "section": "What is adamantinoma?",
+          "text_sha256": "c5a0a2b2dfc1532de4b3330499c2f0f5a4c0d6e1078b5fbddd0e762b21e1a36c",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8122864365577698,
+          "ranking_score": 0.06403612252369524,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0007",
+          "source_id": "nci-adamantinoma",
+          "section": "What is the prognosis for people with adamantinoma?",
+          "text_sha256": "d7a0aa42fc84fcaa3a9a1c5dcd5359ba4f069a09ab62eefe8a17c8df5c0b44a3",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.7987667918205261,
+          "ranking_score": 0.05896740309185128,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0004",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma treated?",
+          "text_sha256": "d4f29303b883d0cc99b528dd3fec91846a66b4aae1ae49410d14569df152a772",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8034635186195374,
+          "ranking_score": 0.05811277330264672,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0002",
+          "source_id": "nci-adamantinoma",
+          "section": "How common is adamantinoma?",
+          "text_sha256": "181a5372a7bc0f33ada1a682ef4afc444cf6e1f306daed22aef4877d24c5cf29",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.7914226055145264,
+          "ranking_score": 0.050249687890137326,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "n07",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "out_of_scope",
+      "status": "out_of_scope",
+      "reason": "individual_treatment_or_dose",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "retrieved": []
+    },
+    {
+      "id": "n08",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "image_score_is_not_diagnostic_evidence",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "retrieved": []
+    },
+    {
+      "id": "n09",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "corpus_coverage_gap",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "retrieved": []
+    },
+    {
+      "id": "n10",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "out_of_scope",
+      "status": "out_of_scope",
+      "reason": "outside_bone_tumor_corpus",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "retrieved": []
+    },
+    {
+      "id": "n11",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": false,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-child-chordoma-professional:0005",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "46d7f33f20bace2b505d2577463981a32b043345782766b817d7d94027c140af",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8368691205978394,
+          "ranking_score": 0.06480532786885246,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0004",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Tests to diagnose childhood chordoma",
+          "text_sha256": "ec46704a6b5e8ad222aa872bd46587ead65763bcbe8a00fe1896e726d159ff7c",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8191779851913452,
+          "ranking_score": 0.06374807987711213,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chordoma:0003",
+          "source_id": "nci-chordoma",
+          "section": "How is chordoma diagnosed?",
+          "text_sha256": "81b7c2b9ef91ae773cf42645895c4a22c630442524269b2f059dd395beebd058",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8121593594551086,
+          "ranking_score": 0.06053692699490662,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "text_sha256": "15d84cd8b21319939b0d1769ea273dbf40581ab852921804e1a4d2d443149305",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8225706815719604,
+          "ranking_score": 0.059088199555219295,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "text_sha256": "2b3fc73ddcc10e786fe7c9b9f339531bdac01dbc2dbd458fada59bf6c3f02371",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8094490170478821,
+          "ranking_score": 0.05827370931537598,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "n12",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "status_match": false,
+      "hits": 5,
+      "evidence_check": null,
+      "retrieved": [
+        {
+          "chunk_id": "nci-child-chordoma-professional:0005",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "46d7f33f20bace2b505d2577463981a32b043345782766b817d7d94027c140af",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8218629956245422,
+          "ranking_score": 0.04865990111891751,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0017",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Treatment Options Under Clinical Evaluation for Childhood Chordoma",
+          "text_sha256": "efc35030d0e6a33e0f03bc8294379ae295b165fd4ef4782885f8211025d1025e",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8157205581665039,
+          "ranking_score": 0.048651507139079855,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chordoma:0007",
+          "source_id": "nci-chordoma",
+          "section": "What is the prognosis for someone with chordoma?",
+          "text_sha256": "4642533b4e324c11e7a6472575632c07147c7f8305bf3c64a204da7290f46105",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8131470084190369,
+          "ranking_score": 0.04787506400409626,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0011",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Treatment of Childhood Chordoma",
+          "text_sha256": "2353ec7f251a7c98090fb09cfde7c25f181afd5506a9f76d45a4da6764bd7b66",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8010249733924866,
+          "ranking_score": 0.043427458617332035,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chordoma:0003",
+          "source_id": "nci-chordoma",
+          "section": "How is chordoma diagnosed?",
+          "text_sha256": "81b7c2b9ef91ae773cf42645895c4a22c630442524269b2f059dd395beebd058",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.7953341603279114,
+          "ranking_score": 0.04285714285714286,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-10-27T09:43:25.744480+00:00",
+  "corpus_sha256": "176311a556429af4fb3b2c2e327851b957463a1e57300fc9df973182a0a8a035",
+  "source_lock_sha256": "ad2879f2aa2749aa9ea5454c621e274b86a9af931ad4b6b3976f2dda2d472647",
+  "dataset_sha256": "01716eebf4aea9c16b4f38b96734fc17c0c8de50d7fe7a8661bc9dd2c0635869",
+  "config_sha256": "62779b99b66aafdd0d678c8fad6d1b719f61469bb4873a20bb247589157066ad",
+  "implementation_sha256": {
+    "retrieval.py": "26cce9017a7b999e652cfb6b1d2134c1c9d7cf33f03bfb34194ba22f68df4977",
+    "lexical.py": "fd2cf6c2b4e1ed79ed4e36863ed014e21a1e7ca32335b30d8b0e7caa0997424b",
+    "policy.py": "d98aa9228fb7816aaecf5123da60922e0f52d23463d9d3176586ed9dba0e2487",
+    "evidence.py": "eddd0c83d043bcdf7e0c07650613c1a1111403b37397df15da902e10cd1bd821",
+    "evaluate.py": "defd9a3f29fbb91df69203a88d1613e04cd8e5e3db0fbf2f79d00206cd58b123",
+    "build_corpus.py": "15694bb404812969856056d474db36544b10b2563a7893c167bf0c2d66ae89a7",
+    "build_index.py": "c7470b6f961d7c935dfaa0bb87d2faf6b3ed3eaea1e5039b741b7c3b6f8522eb"
+  },
+  "model_revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+  "index_manifest_sha256": "70ef182e37a3fb97557c9aea52404007e2a8d94d0d4aab2f3425b1a991f2a18d",
+  "mode": "hybrid",
+  "apply_policy": true,
+  "split": "test",
+  "verify_evidence": false,
+  "top_k": 5,
+  "min_score": null,
+  "gold_type": "source_section_text_hash",
+  "dataset_provenance": "Agent-authored from source snapshots; dev and test separated before evaluation. Not independent expert validation. Test questions must not be reused for tuning after this run.",
+  "frozen_config_matches": true
+}

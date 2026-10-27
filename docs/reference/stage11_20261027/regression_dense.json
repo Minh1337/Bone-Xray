@@ -1,0 +1,789 @@
+{
+  "answerable_count": 10,
+  "negative_count": 2,
+  "recall_at_k": 0.7,
+  "mrr_at_k": 0.4833333333333333,
+  "negative_abstention": 0.0,
+  "positive_abstention": 0.0,
+  "routing_accuracy": 0.8333333333333334,
+  "questions": [
+    {
+      "id": "q01",
+      "split": "regression",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-ewing-professional:0138",
+          "source_id": "nci-ewing-professional",
+          "section": "Treatment of undifferentiated round cell sarcomas with BCOR genetic alterations",
+          "text_sha256": "0f7000d907075507453b4bdd24a08523164c75668ed4cd9a7d85e2c93c7068cd",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8107491731643677,
+          "ranking_score": 0.8107491731643677,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0027",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Molecular Features of Osteosarcoma",
+          "text_sha256": "bccca8893eb4086c23ae17ff5ca525ab1d9bedd220546277090e7b3a1300e70c",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.810510516166687,
+          "ranking_score": 0.810510516166687,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0003",
+          "source_id": "nci-ewing-patient",
+          "section": "Undifferentiated small round cell sarcoma may also form in the bone or soft tissue.",
+          "text_sha256": "020f3e7634b58df79a9ea23e052a730c57900e7e48eddc226ec0c5b37809c484",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8094160556793213,
+          "ranking_score": 0.8094160556793213,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0088",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Prognostic Factors for Recurrence",
+          "text_sha256": "48c7a806e8097a4c9e82c725f4cf7c1905e82388323449adb4812cfd50aebee1",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8084896206855774,
+          "ranking_score": 0.8084896206855774,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0079",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Options for Osteosarcoma and UPS of Bone With Metastatic Disease at Diagnosis",
+          "text_sha256": "dd1c1e6f3b7c9f75dbd802c92e59e8aef53910d646f2afaea0c0fe31d14ea456",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.808117151260376,
+          "ranking_score": 0.808117151260376,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q02",
+      "split": "regression",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-ewing-professional:0011",
+          "source_id": "nci-ewing-professional",
+          "section": "Diagnostic Evaluation",
+          "text_sha256": "6f0b3eebcb69e5c2b6d77c5b79de94e0019d4cc672d6d73cf6f259ba4b89cb6b",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7904859781265259,
+          "ranking_score": 0.7904859781265259,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0005",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "Tests are used to diagnose osteosarcoma and UPS.",
+          "text_sha256": "43bba1ba043dd708ed43e74c378e7c7d06e42ad0f2449247ba4172719dfa34e8",
+          "url": "https://www.cancer.gov/types/bone/patient/osteosarcoma-treatment-pdq",
+          "score": 0.7882275581359863,
+          "ranking_score": 0.7882275581359863,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0041",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Staging and Site Information for Osteosarcoma and UPS of Bone",
+          "text_sha256": "c97a8a0e02282eb98280103c3c025cf3790b2f0a08bd6751241efa5e44666f3c",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7879525423049927,
+          "ranking_score": 0.7879525423049927,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0030",
+          "source_id": "nci-ewing-professional",
+          "section": "Cellular Classification of Ewing Sarcoma",
+          "text_sha256": "4833681b9481bdf00237fc777b6185332a2bcea9cd8a630f9f5f8ed6d4a97113",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.787086009979248,
+          "ranking_score": 0.787086009979248,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "text_sha256": "15d84cd8b21319939b0d1769ea273dbf40581ab852921804e1a4d2d443149305",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.7867230176925659,
+          "ranking_score": 0.7867230176925659,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q03",
+      "split": "regression",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0004",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Osteosarcoma",
+          "text_sha256": "7ca12757caf3d8d3fff44c97638592d1f22c353cfda388fce878fe4ab8b143e2",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8578299283981323,
+          "ranking_score": 0.8578299283981323,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0042",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Localized Osteosarcoma",
+          "text_sha256": "d0c5ce4e38d416acd0025782d42a1c86e19fffe4d802f68a047d5580c81473bf",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8565319776535034,
+          "ranking_score": 0.8565319776535034,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0001",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "text_sha256": "cd4afc1000ed6f567a923033583a7c27c2f6c64e15f6d6d8cdca8a36e767d436",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8496735095977783,
+          "ranking_score": 0.8496735095977783,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0036",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Surface (Peripheral) Tumors",
+          "text_sha256": "7b56a72193336911bd80f27625c13319bc546628f977c442c976c7321942efaf",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.839938223361969,
+          "ranking_score": 0.839938223361969,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0041",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Staging and Site Information for Osteosarcoma and UPS of Bone",
+          "text_sha256": "c97a8a0e02282eb98280103c3c025cf3790b2f0a08bd6751241efa5e44666f3c",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.836442232131958,
+          "ranking_score": 0.836442232131958,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q04",
+      "split": "regression",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0088",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Prognostic Factors for Recurrence",
+          "text_sha256": "48c7a806e8097a4c9e82c725f4cf7c1905e82388323449adb4812cfd50aebee1",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8444684743881226,
+          "ranking_score": 0.8444684743881226,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0045",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+          "text_sha256": "3dbb59f7176519dcf04ac416bbc2e8745d3d39247eb14fdc3755d746c8948b94",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8421579599380493,
+          "ranking_score": 0.8421579599380493,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0001",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "text_sha256": "cd4afc1000ed6f567a923033583a7c27c2f6c64e15f6d6d8cdca8a36e767d436",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8417438268661499,
+          "ranking_score": 0.8417438268661499,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0048",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Option Overview for Osteosarcoma and UPS of Bone",
+          "text_sha256": "2083687d055b3e8bf85a2fef610e2cba810312ddf8a7f9b037cac7961c95156e",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8391202688217163,
+          "ranking_score": 0.8391202688217163,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0053",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment of Localized Osteosarcoma and UPS of Bone",
+          "text_sha256": "1f755f9189a6869e2ff92e080d7638a0a96e2c3fdcef3beeb40e6d4efd88bce0",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8377292156219482,
+          "ranking_score": 0.8377292156219482,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q05",
+      "split": "regression",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-ewing-patient:0002",
+          "source_id": "nci-ewing-patient",
+          "section": "Ewing sarcoma is a type of cancer that forms from a certain kind of cell in bone or soft tissue.",
+          "text_sha256": "b2b53f08c557be392ba13e55846dea170abf335f2f96e6cfd15fa57b5512239a",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8721397519111633,
+          "ranking_score": 0.8721397519111633,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0006",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Ewing sarcoma",
+          "text_sha256": "4164bb5b4adbd5127d683e3368dae916e0b7febfb62ead56b359783445bce3e0",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8488917350769043,
+          "ranking_score": 0.8488917350769043,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0001",
+          "source_id": "nci-ewing-professional",
+          "section": "General Information About Ewing Sarcoma and Undifferentiated Small Round Cell Sarcomas of Bone and Soft Tissue",
+          "text_sha256": "52384e603f3c69c379e368ca777ac9dfd5537f379cf2e0822aa0ae653e994a94",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8469139337539673,
+          "ranking_score": 0.8469139337539673,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0001",
+          "source_id": "nci-ewing-patient",
+          "section": "Key Points",
+          "text_sha256": "24db4d704244a4579bfddb791f8389b21c89a0807de8b0374ae1c3ca5101fd64",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8447982668876648,
+          "ranking_score": 0.8447982668876648,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0109",
+          "source_id": "nci-ewing-professional",
+          "section": "Treatment of Recurrent Ewing Sarcoma",
+          "text_sha256": "0e16e770818d6062f6f6308100023e9d9797fe288586ba6b1e553c0138cfe2f8",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8439767360687256,
+          "ranking_score": 0.8439767360687256,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q06",
+      "split": "regression",
+      "answerable": true,
+      "rank": 3,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-child-chordoma-professional:0001",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "text_sha256": "a2783e0877aeaaf236f13c97cd527f14f4d838583a4ec26b878e6925ce783170",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8394875526428223,
+          "ranking_score": 0.8394875526428223,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0007",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chordoma",
+          "text_sha256": "0f8a511754093a1f442a59122dfb9c0e3b82aa62de6767ef8df79a3886f572cc",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8351588845252991,
+          "ranking_score": 0.8351588845252991,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "text_sha256": "2b3fc73ddcc10e786fe7c9b9f339531bdac01dbc2dbd458fada59bf6c3f02371",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8268842697143555,
+          "ranking_score": 0.8268842697143555,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "text_sha256": "c23c12cd97777be0b5f07de51498a8db166d9533e9a1969957cde2dbc19deaf1",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8245276212692261,
+          "ranking_score": 0.8245276212692261,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "text_sha256": "15d84cd8b21319939b0d1769ea273dbf40581ab852921804e1a4d2d443149305",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8115028738975525,
+          "ranking_score": 0.8115028738975525,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q07",
+      "split": "regression",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0005",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chondrosarcoma",
+          "text_sha256": "b2972eb2a6db4084d8b317f90662ac2511a85d609efb2ff509689d41f5612164",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8567733764648438,
+          "ranking_score": 0.8567733764648438,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chondrosarcoma:0001",
+          "source_id": "nci-chondrosarcoma",
+          "section": "What is chondrosarcoma?",
+          "text_sha256": "2f12b2ff2b66519b5c34c3f99db563154718e503e6fcb91332dd887d1db1d04a",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondrosarcoma",
+          "score": 0.856198251247406,
+          "ranking_score": 0.856198251247406,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0034",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Cellular Classification of Osteosarcoma and UPS of Bone",
+          "text_sha256": "992e697226cabb1e258bab5727ef21b507ad124085142453a8912129f127f245",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8240172863006592,
+          "ranking_score": 0.8240172863006592,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0002",
+          "source_id": "nci-ewing-patient",
+          "section": "Ewing sarcoma is a type of cancer that forms from a certain kind of cell in bone or soft tissue.",
+          "text_sha256": "b2b53f08c557be392ba13e55846dea170abf335f2f96e6cfd15fa57b5512239a",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8232331275939941,
+          "ranking_score": 0.8232331275939941,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0004",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Osteosarcoma",
+          "text_sha256": "7ca12757caf3d8d3fff44c97638592d1f22c353cfda388fce878fe4ab8b143e2",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8189958333969116,
+          "ranking_score": 0.8189958333969116,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q08",
+      "split": "regression",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0001",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is chondromyxoid fibroma?",
+          "text_sha256": "ae52da9d913e2052a149796f70b0d401518a6a27f25b80c51d1f6fb72535ec31",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8579328060150146,
+          "ranking_score": 0.8579328060150146,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0003",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How is chondromyxoid fibroma diagnosed?",
+          "text_sha256": "34986c53678bb38a2035b837c26594e7997a887c12da2d2011e90a8d619bc0b6",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8353115320205688,
+          "ranking_score": 0.8353115320205688,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0002",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How common is chondromyxoid fibroma?",
+          "text_sha256": "33a950b548153e57fc385d9d288e6e122b125e8398a719cc0ccb068b346a3bf0",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8349513411521912,
+          "ranking_score": 0.8349513411521912,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0012",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is the prognosis for people with chondromyxoid fibroma?",
+          "text_sha256": "eddd30bb368ab9e84c6714def99824e22eb6ea54e80d795d868df1f20c81c6d1",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.831990659236908,
+          "ranking_score": 0.831990659236908,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0006",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "How is chondromyxoid fibroma treated?",
+          "text_sha256": "5c7588ccb387435122d6d3dc5adb6e402d885f7fd21fc8521c45897bec04a6d3",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8221394419670105,
+          "ranking_score": 0.8221394419670105,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q09",
+      "split": "regression",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-adamantinoma:0001",
+          "source_id": "nci-adamantinoma",
+          "section": "What is adamantinoma?",
+          "text_sha256": "c5a0a2b2dfc1532de4b3330499c2f0f5a4c0d6e1078b5fbddd0e762b21e1a36c",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8477875590324402,
+          "ranking_score": 0.8477875590324402,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0003",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma diagnosed?",
+          "text_sha256": "2d666384e4ffe61d484bec8bdb8f77f6e556b8ef14de30532dac4b95a25fec93",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8208089470863342,
+          "ranking_score": 0.8208089470863342,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0004",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma treated?",
+          "text_sha256": "d4f29303b883d0cc99b528dd3fec91846a66b4aae1ae49410d14569df152a772",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8065799474716187,
+          "ranking_score": 0.8065799474716187,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-adamantinoma:0002",
+          "source_id": "nci-adamantinoma",
+          "section": "How common is adamantinoma?",
+          "text_sha256": "181a5372a7bc0f33ada1a682ef4afc444cf6e1f306daed22aef4877d24c5cf29",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8034458160400391,
+          "ranking_score": 0.8034458160400391,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0042",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Localized Osteosarcoma",
+          "text_sha256": "d0c5ce4e38d416acd0025782d42a1c86e19fffe4d802f68a047d5580c81473bf",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7996928095817566,
+          "ranking_score": 0.7996928095817566,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q10",
+      "split": "regression",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": true,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-child-chordoma-professional:0001",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "text_sha256": "a2783e0877aeaaf236f13c97cd527f14f4d838583a4ec26b878e6925ce783170",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8471692800521851,
+          "ranking_score": 0.8471692800521851,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "text_sha256": "c23c12cd97777be0b5f07de51498a8db166d9533e9a1969957cde2dbc19deaf1",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8388122916221619,
+          "ranking_score": 0.8388122916221619,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "text_sha256": "15d84cd8b21319939b0d1769ea273dbf40581ab852921804e1a4d2d443149305",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.836663007736206,
+          "ranking_score": 0.836663007736206,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0003",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Symptoms of childhood chordoma",
+          "text_sha256": "8be38b21a752d34bbde66cdab190e28975df15e28f797f7a4a7bce8751ffafb7",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8314387798309326,
+          "ranking_score": 0.8314387798309326,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "text_sha256": "2b3fc73ddcc10e786fe7c9b9f339531bdac01dbc2dbd458fada59bf6c3f02371",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8268972039222717,
+          "ranking_score": 0.8268972039222717,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q11",
+      "split": "regression",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": false,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0003",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Disease Overview",
+          "text_sha256": "bfdcd2cf1814c7de088da764bedd0c63c5ce0cdb10eb2ff756add31b0774412b",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8003402948379517,
+          "ranking_score": 0.8003402948379517,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0134",
+          "source_id": "nci-ewing-professional",
+          "section": "Undifferentiated Small Round Cell (Ewing-Like) Sarcomas",
+          "text_sha256": "3f398db28b108915de685b9bec372f83bf5361c079c2864aa98ccca383e5dc68",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7991492748260498,
+          "ranking_score": 0.7991492748260498,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0030",
+          "source_id": "nci-ewing-professional",
+          "section": "Cellular Classification of Ewing Sarcoma",
+          "text_sha256": "4833681b9481bdf00237fc777b6185332a2bcea9cd8a630f9f5f8ed6d4a97113",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7970865964889526,
+          "ranking_score": 0.7970865964889526,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0032",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "RECQL4 variants",
+          "text_sha256": "23f0d7cbfc6a1ad2878f79af1a2416f2a0433e13e46d44fc9e456335ac7235c1",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7926315665245056,
+          "ranking_score": 0.7926315665245056,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0012",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "How is bone cancer diagnosed?",
+          "text_sha256": "7cda2e662c36b0060b179802948fcd38420055cc9d16d279e9541d33b2be46c8",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7911162376403809,
+          "ranking_score": 0.7911162376403809,
+          "retrieval_mode": "dense"
+        }
+      ]
+    },
+    {
+      "id": "q12",
+      "split": "regression",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "out_of_scope",
+      "status": "candidates_found",
+      "reason": "raw_retrieval",
+      "status_match": false,
+      "hits": 5,
+      "retrieved": [
+        {
+          "chunk_id": "nci-ewing-professional:0113",
+          "source_id": "nci-ewing-professional",
+          "section": "Chemotherapy",
+          "text_sha256": "6d55c0b218e1ffb14eb6bd67c108d82ca55d1784dce6f0e455e42b8a39aacced",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8017189502716064,
+          "ranking_score": 0.8017189502716064,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0095",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Chemotherapy and targeted therapy",
+          "text_sha256": "318879aa75e8c248990d5d5b6e59297f21be58c6f95227d56af5fe3f33ce702d",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7989161014556885,
+          "ranking_score": 0.7989161014556885,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0079",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Options for Osteosarcoma and UPS of Bone With Metastatic Disease at Diagnosis",
+          "text_sha256": "dd1c1e6f3b7c9f75dbd802c92e59e8aef53910d646f2afaea0c0fe31d14ea456",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7978588342666626,
+          "ranking_score": 0.7978588342666626,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0107",
+          "source_id": "nci-ewing-professional",
+          "section": "Other Therapies",
+          "text_sha256": "6e603faff0f30540444e5c9db3ce9386b2392cdc7c8ff207fb6d0ed3a294f848",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7974586486816406,
+          "ranking_score": 0.7974586486816406,
+          "retrieval_mode": "dense"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0069",
+          "source_id": "nci-ewing-professional",
+          "section": "High-Dose Chemotherapy With Stem Cell Support for Ewing Sarcoma",
+          "text_sha256": "079368396189cce058eb2f1866e943fe77abdb8f62a2e4f358e419b28e7191fc",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.7951834201812744,
+          "ranking_score": 0.7951834201812744,
+          "retrieval_mode": "dense"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-10-27T09:21:56.566820+00:00",
+  "corpus_sha256": "176311a556429af4fb3b2c2e327851b957463a1e57300fc9df973182a0a8a035",
+  "source_lock_sha256": "ad2879f2aa2749aa9ea5454c621e274b86a9af931ad4b6b3976f2dda2d472647",
+  "dataset_sha256": "24dfd1b33b8d9ec63596b55b5584d9d0014d90e6e95975270a6ee06750e2d197",
+  "config_sha256": "62779b99b66aafdd0d678c8fad6d1b719f61469bb4873a20bb247589157066ad",
+  "implementation_sha256": {
+    "retrieval.py": "a4047d5645269d45f0ac59e7d8dff8a9fbd9186f4b284e68117ba6552dd9b663",
+    "lexical.py": "fd2cf6c2b4e1ed79ed4e36863ed014e21a1e7ca32335b30d8b0e7caa0997424b",
+    "policy.py": "d98aa9228fb7816aaecf5123da60922e0f52d23463d9d3176586ed9dba0e2487",
+    "evaluate.py": "54689ea1330f9ed3754b8fa6881abe07f40ba9ca00e2b7e26c762b3a5fbfcca5",
+    "build_corpus.py": "15694bb404812969856056d474db36544b10b2563a7893c167bf0c2d66ae89a7",
+    "build_index.py": "c7470b6f961d7c935dfaa0bb87d2faf6b3ed3eaea1e5039b741b7c3b6f8522eb"
+  },
+  "model_revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+  "index_manifest_sha256": "70ef182e37a3fb97557c9aea52404007e2a8d94d0d4aab2f3425b1a991f2a18d",
+  "mode": "dense",
+  "apply_policy": false,
+  "split": "all",
+  "top_k": 5,
+  "min_score": null,
+  "gold_type": "source_section",
+  "dataset_provenance": "legacy regression set"
+}

@@ -1,0 +1,122 @@
+[
+  {
+    "experiment": "regression_baseline",
+    "answerable_count": 10,
+    "negative_count": 2,
+    "recall_at_k": 0.8,
+    "mrr_at_k": 0.7,
+    "negative_abstention": 1.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 1.0
+  },
+  {
+    "experiment": "regression_rerank",
+    "answerable_count": 10,
+    "negative_count": 2,
+    "recall_at_k": 1.0,
+    "mrr_at_k": 0.95,
+    "negative_abstention": 1.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 1.0
+  },
+  {
+    "experiment": "regression_coverage",
+    "answerable_count": 10,
+    "negative_count": 2,
+    "recall_at_k": 0.9,
+    "mrr_at_k": 0.85,
+    "negative_abstention": 1.0,
+    "positive_abstention": 0.1,
+    "routing_accuracy": 0.9166666666666666
+  },
+  {
+    "experiment": "v2_dev_baseline",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.75,
+    "mrr_at_k": 0.625,
+    "negative_abstention": 0.6666666666666666,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8571428571428571
+  },
+  {
+    "experiment": "v2_dev_rerank",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 1.0,
+    "mrr_at_k": 0.8125,
+    "negative_abstention": 0.6666666666666666,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8571428571428571
+  },
+  {
+    "experiment": "v2_dev_coverage",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.375,
+    "mrr_at_k": 0.3125,
+    "negative_abstention": 1.0,
+    "positive_abstention": 0.625,
+    "routing_accuracy": 0.6428571428571429
+  },
+  {
+    "experiment": "v2_used_test_baseline",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.875,
+    "mrr_at_k": 0.7125,
+    "negative_abstention": 0.6666666666666666,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8571428571428571
+  },
+  {
+    "experiment": "v2_used_test_rerank",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 1.0,
+    "mrr_at_k": 0.9375,
+    "negative_abstention": 0.6666666666666666,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.8571428571428571
+  },
+  {
+    "experiment": "v2_used_test_coverage",
+    "answerable_count": 8,
+    "negative_count": 6,
+    "recall_at_k": 0.0,
+    "mrr_at_k": 0.0,
+    "negative_abstention": 1.0,
+    "positive_abstention": 1.0,
+    "routing_accuracy": 0.42857142857142855
+  },
+  {
+    "experiment": "v3_stress_baseline",
+    "answerable_count": 10,
+    "negative_count": 10,
+    "recall_at_k": 0.8,
+    "mrr_at_k": 0.5333333333333333,
+    "negative_abstention": 0.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.5
+  },
+  {
+    "experiment": "v3_stress_rerank",
+    "answerable_count": 10,
+    "negative_count": 10,
+    "recall_at_k": 0.9,
+    "mrr_at_k": 0.75,
+    "negative_abstention": 0.0,
+    "positive_abstention": 0.0,
+    "routing_accuracy": 0.5
+  },
+  {
+    "experiment": "v3_stress_coverage",
+    "answerable_count": 10,
+    "negative_count": 10,
+    "recall_at_k": 0.4,
+    "mrr_at_k": 0.3,
+    "negative_abstention": 1.0,
+    "positive_abstention": 0.5,
+    "routing_accuracy": 0.75
+  }
+]

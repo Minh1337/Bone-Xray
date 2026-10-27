@@ -17,7 +17,8 @@ CACHE = ROOT / "source_cache"
 OUTPUT = DATA / "corpus.jsonl"
 LOCK = DATA / "source_lock.json"
 SKIP_TAGS = {"script", "style", "nav", "aside", "footer", "form", "figure", "noscript"}
-TEXT_TAGS = {"h1", "h2", "h3", "h4", "p", "li", "tr"}
+TEXT_TAGS = {"h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "tr"}
+BLOCK_BOUNDARIES = TEXT_TAGS | {"td", "th", "ul", "ol"}
 VOID_TAGS = {"area", "base", "br", "col", "embed", "hr", "img", "input",
              "link", "meta", "param", "source", "track", "wbr"}
 EXCLUDE_SECTIONS = {"references", "current clinical trials", "related resources",
@@ -61,7 +62,7 @@ class MainTextParser(HTMLParser):
         if tag in TEXT_TAGS and self.capture is None:
             self.capture = (tag, self.main_depth)
             self.buffer = []
-        elif tag == "br" and self.capture:
+        elif tag in BLOCK_BOUNDARIES and self.capture:
             self.buffer.append(" ")
 
     def handle_startendtag(self, tag, attrs):
@@ -83,6 +84,8 @@ class MainTextParser(HTMLParser):
                 self.blocks.append((tag, value))
             self.capture = None
             self.buffer = []
+        elif self.capture and tag in BLOCK_BOUNDARIES:
+            self.buffer.append(" ")
         self.main_depth -= 1
         if tag == "main" or self.main_depth <= 0:
             self.in_main = False
@@ -126,7 +129,8 @@ def chunks_for(source, blocks, html_sha, accessed_at, source_date):
             continue
         if value.startswith("You can help speed up the development of new treatments"):
             continue
-        if len(value) < 35 or value == (paragraphs[-1] if paragraphs else None):
+        minimum = 2 if tag in {'li', 'tr'} else 20
+        if len(value) < minimum or value == (paragraphs[-1] if paragraphs else None):
             continue
         if len(value) > 1300:
             flush()

@@ -1,6 +1,8 @@
 # Kho tài liệu nguồn cho RAG
 
-Giai đoạn này tạo kho văn bản nguồn để phát triển truy xuất. Chưa có mô hình embedding, chỉ mục vector hoặc chatbot. Không đưa ảnh bệnh nhân hay metadata ca bệnh vào kho.
+Giai đoạn 10 tạo kho văn bản nguồn để phát triển truy xuất. Embedding và chỉ mục đã được triển khai sau đó ở [giai đoạn 11](README_RAG_INDEX_VI.md); chatbot chưa được triển khai. Không đưa ảnh bệnh nhân hay metadata ca bệnh vào kho.
+
+Sau vòng sửa bộ trích xuất giai đoạn 11, corpus hiện có **416 đoạn từ 12 nguồn**. Bản đầu có 489 đoạn; các danh mục References bị gán nhầm vào nội dung đã được loại, khoảng trắng của block/ô bảng được sửa và các mục danh sách ngắn được giữ lại. Chunk ID và mã băm có thể đổi; cần dùng corpus, source lock, index và evidence của cùng phiên bản.
 
 ## Nguồn và quyền sử dụng
 
@@ -17,7 +19,7 @@ Từ thư mục gốc dự án:
 
 Sau lần tải đầu, chạy `rag/build_corpus.py --offline` để tạo lại từ HTML đã lưu trong `rag/source_cache/`. Bộ HTML này được bỏ qua bởi Git; `rag/data/corpus.jsonl` và `rag/data/source_lock.json` là bản chụp có thể chia sẻ. `source_lock.json` lưu URL, nhà xuất bản, thời điểm truy cập, mã băm HTML và số đoạn. Mỗi dòng `corpus.jsonl` lưu mã nguồn, tiêu đề, URL, tên mục, mã băm nguồn, mã băm đoạn và văn bản. Khi tái tạo về sau, nội dung nguồn có thể đổi và mã băm sẽ cho thấy sự khác biệt.
 
-`rag/data/evaluation_questions.json` chứa câu hỏi tiếng Việt, đáp án ngắn và nguồn/mục kỳ vọng. Hai câu ngoài phạm vi kiểm tra cách từ chối khẳng định thiếu bằng chứng và yêu cầu điều trị cá nhân hóa. Đây là bộ kiểm thử chuẩn bị cho giai đoạn retrieval, chưa phải điểm đánh giá đã đạt.
+`rag/data/evaluation_questions.json` chứa câu hỏi tiếng Việt, đáp án ngắn và nguồn/mục kỳ vọng. Hai câu ngoài phạm vi kiểm tra cách từ chối khẳng định thiếu bằng chứng và yêu cầu điều trị cá nhân hóa. Kết quả retrieval hiện tại nằm trong [hướng dẫn giai đoạn 11](README_RAG_INDEX_VI.md).
 
 ## Cập nhật và loại bỏ nguồn
 
@@ -25,7 +27,7 @@ Kiểm tra URL, ngày cập nhật và mã băm ít nhất mỗi quý và trư�
 
 ## Giới hạn và việc tiếp theo
 
-Kho hiện nghiêng về ung thư xương nguyên phát, osteosarcoma, Ewing sarcoma và một số u hiếm. Nhiều nhãn của mô hình ảnh như simple bone cyst, osteofibroma và synovial osteochondroma chưa có nguồn chuyên biệt. Không dùng kho hiện tại để khẳng định về các nhãn đó. Cần bổ sung nguồn có xuất xứ và quyền sử dụng rõ, rà soát nội dung chuyên môn, sau đó xây embedding/chỉ mục và đo retrieval trên bộ câu hỏi tách riêng để đánh giá.
+Kho hiện nghiêng về ung thư xương nguyên phát, osteosarcoma, Ewing sarcoma và một số u hiếm. Nhiều nhãn của mô hình ảnh như simple bone cyst, osteofibroma và synovial osteochondroma chưa có nguồn chuyên biệt. Không dùng kho hiện tại để khẳng định về các nhãn đó. Cần bổ sung nguồn có xuất xứ và quyền sử dụng rõ, rà soát nội dung chuyên môn, xây lại chỉ mục và đo retrieval trên bộ câu hỏi tách riêng để đánh giá.
 
 ## Completion Note — Giai đoạn 10
 
@@ -35,3 +37,4 @@ Kho hiện nghiêng về ung thư xương nguyên phát, osteosarcoma, Ewing sar
 - Citation: `source_id`, URL, tên mục, thời điểm truy cập và mã băm trên từng đoạn.
 - Bộ câu hỏi: 12 mục trong `rag/data/evaluation_questions.json`.
 - Trạng thái: PASS cho kho nguồn và khả năng truy ngược kỹ thuật; độ phủ nhãn và thẩm định chuyên môn còn cần bổ sung trước khi dùng chatbot.
+- Cập nhật từ giai đoạn 11: corpus hiện 416 đoạn; thêm `rag/data/evaluation_v2.json` gồm 28 câu dev/test với gold khóa theo mã băm đoạn. Kết quả và điểm tiếp tục ở `docs/STAGE11_HANDOFF_VI.md`.

@@ -1,5 +1,7 @@
 # Lộ trình thực hiện BoneScope cho AI
 
+**Trạng thái triển khai mới nhất:** xem [ghi chú bàn giao](PROJECT_STATUS_VI.md). Các mẫu Completion Note ở dưới là tiêu chí và biểu mẫu; kết quả thực tế của giai đoạn 10 và 11 được ghi trong tài liệu bàn giao và hướng dẫn RAG.
+
 > **Mục đích:** Tài liệu này là runbook dành cho các AI hoặc kỹ sư tiếp quản dự án
 > BoneScope/Bone X-ray Local Check. Có thể đọc từ đầu đến cuối để dựng lại môi
 > trường, kiểm tra mô hình, chạy API, chạy giao diện, xác minh dữ liệu và tiếp tục
@@ -35,9 +37,11 @@ BoneScope là ứng dụng chạy cục bộ trên Windows để:
   và Git LFS cho model.
 - **Đã xác minh kỹ thuật:** môi trường Python 3.11.9, PyTorch 2.6.0 + CUDA 12.4,
   RTX 3050 Laptop 4 GB, 3 ca mẫu chạy đạt kiểm tra lặp lại.
+- **Đã có bản đầu:** kho 12 nguồn NCI, hiện 416 đoạn sau sửa trích xuất, embeddings và vector index cục bộ.
+  Giai đoạn 11 còn vướng kết quả retrieval và xử lý câu ngoài phạm vi.
 - **Chưa được tuyên bố:** notebook parity đầy đủ, accuracy lâm sàng, xác suất đã hiệu
-  chuẩn, chẩn đoán y khoa, triển khai public có xác thực, RAG hoặc LLM.
-- **Cần phát triển tiếp:** kho tài liệu y khoa, embeddings, vector index, chatbot,
+  chuẩn, chẩn đoán y khoa, triển khai public có xác thực hoặc chatbot/LLM đã nghiệm thu.
+- **Cần phát triển tiếp:** độ phủ nguồn, chất lượng retrieval, chatbot có citation,
   đánh giá toàn diện, bảo mật triển khai và tài liệu/slide bàn giao cuối.
 
 ### 0.3. Quy tắc an toàn và tính trung thực
@@ -668,9 +672,9 @@ Repository URL:
 
 ---
 
-## 10. Xây kho tài liệu y khoa cho RAG (giai đoạn tiếp theo)
+## 10. Xây kho tài liệu y khoa cho RAG
 
-> Giai đoạn này **chưa được coi là hoàn thành** trong bản hiện tại.
+> Đã xây kho nguồn ban đầu và kiểm tra truy vết kỹ thuật. Xem [Completion Note thực tế](guides/README_RAG_CORPUS_VI.md); độ phủ nội dung và rà soát chuyên môn còn tiếp tục.
 
 ### Mục tiêu
 
@@ -713,7 +717,11 @@ Trạng thái: PASS / BLOCKED
 
 ## 11. Embeddings và chỉ mục vector
 
-> Giai đoạn này **chưa được coi là hoàn thành** trong bản hiện tại.
+> Đã xây chỉ mục và chạy evaluator; **chưa đạt để dùng cho chatbot y khoa**. Xem [kết quả thực tế và vấn đề còn mở](guides/README_RAG_INDEX_VI.md).
+
+> Điểm tiếp tục mới nhất cho AI: [STAGE11_HANDOFF_VI.md](STAGE11_HANDOFF_VI.md). Vòng 27/10 đã sửa trích xuất, thêm hybrid/routing và đánh giá 28 câu mới; vẫn thiếu kiểm tra đủ bằng chứng và thẩm định độc lập.
+
+> Vòng bổ sung: có rerank khái niệm và phép thử lọc từ vựng. Rerank cải thiện các tập đã xem, bộ lọc chặn nhầm nhiều câu dương nên không bật mặc định. Kết quả và hồ sơ phép thử ở đầu file bàn giao; báo cáo Word bản 1.3 đã đồng bộ.
 
 ### Mục tiêu
 

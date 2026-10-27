@@ -36,7 +36,7 @@
     "accessed_at": "2026-10-27T07:57:51.910686+00:00",
     "source_date": "2024-12-02",
     "html_sha256": "ef746e5823b57fd39aec99402ce8592788b873f97e562e6fd15f2c6bdf317205",
-    "chunk_count": 135
+    "chunk_count": 114
   },
   {
     "id": "nci-ewing-patient",
@@ -62,7 +62,7 @@
     "accessed_at": "2026-10-27T07:57:52.179098+00:00",
     "source_date": "2024-11-27",
     "html_sha256": "0784e6deb1cd9879b6fe4250e47b9f06e2b86a67332d6b00af9874f743502ade",
-    "chunk_count": 196
+    "chunk_count": 152
   },
   {
     "id": "nci-rare-bone-tumors",
@@ -127,7 +127,7 @@
     "accessed_at": "2026-10-27T07:57:53.353677+00:00",
     "source_date": "2025-04-03",
     "html_sha256": "09a099ab3d6ff04a2d371b33af7ae78c5f63efe0645cb763d2e68c1f8d161c22",
-    "chunk_count": 26
+    "chunk_count": 18
   },
   {
     "id": "nci-chondromyxoid-fibroma",
