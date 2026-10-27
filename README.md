@@ -16,6 +16,8 @@ Bone_Xray_Local_Check/
 │   ├── README_VI.md         # Hướng dẫn kiểm tra mô hình ban đầu
 │   ├── README_FASTAPI_VI.md # Tài liệu API FastAPI
 │   ├── README_UI_VI.md      # Tài liệu giao diện web
+│   ├── LO_TRINH_THUC_HIEN_DU_AN_AI.md # Runbook chi tiết cho AI tiếp quản
+│   ├── Bao_cao_tien_do.docx # Báo cáo tiến độ theo chương
 │   └── Tai_lieu_phat_trien_du_an.docx # Tài liệu roadmap & lộ trình 4 tuần
 ├── tools/                   # Bộ công cụ & installer
 │   └── python-3.11.9-amd64.exe # Bộ cài Python 3.11 64-bit

@@ -1,3 +1,16 @@
+# Tài liệu kiểm tra mô hình X-quang trên Windows
+
+## Tài liệu điều phối dự án
+
+- [Lộ trình thực hiện dự án cho AI](./LO_TRINH_THUC_HIEN_DU_AN_AI.md): runbook chi tiết
+  từ chuẩn bị môi trường, kiểm tra model, API, UI, SQLite đến kế hoạch RAG/LLM.
+- [Báo cáo tiến độ dự án](./Bao_cao_tien_do.docx): báo cáo theo chương, dùng để đọc,
+  in hoặc bàn giao.
+
+Tài liệu này là hướng dẫn thao tác kỹ thuật của giai đoạn kiểm tra model.
+
+---
+
 # Bước 1 — Kiểm tra mô hình X-quang trên Windows
 
 Gói này dành cho Windows 10 64-bit, Ryzen 5 7535HS, RTX 3050 Laptop, RAM 8 GB.
