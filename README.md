@@ -143,6 +143,52 @@ Lần chạy gần nhất đạt **36 passed, 14 subtests passed**.
 
 ---
 
+## 📊 Tiến Độ Dự Án — Cập nhật 27/10/2026
+
+### Đã hoàn thành
+
+- Hoàn thiện pipeline phân tích ảnh X-quang 10 lớp bằng model cục bộ.
+- Hoàn thiện API FastAPI, giao diện web, quản lý ca SQLite, lịch sử, nhận xét,
+  hiệu chỉnh nhãn độc lập và dashboard.
+- Hoàn thiện kho RAG gồm **12 nguồn NCI và 416 đoạn văn** có URL, section,
+  thời điểm truy xuất và mã băm để truy vết citation.
+- Hoàn thiện hybrid retrieval local, routing câu hỏi, đánh giá recall/MRR,
+  concept rerank và các thử nghiệm kiểm tra evidence.
+- Đồng bộ tài liệu cài đặt/chạy trên máy mới và cấu trúc repository.
+
+### Kết quả kiểm thử gần nhất
+
+- Toàn bộ test: **36 passed, 14 subtests passed**.
+- Hybrid retrieval mặc định: **8/10** câu regression đúng nguồn/mục,
+  **6/8** câu V2 dev và **7/8** câu V2 test đúng đoạn.
+- Concept rerank thử nghiệm: **10/10** câu regression, **8/8** V2 dev,
+  **8/8** V2 test và **9/10** V3 stress đúng đoạn.
+- `--verify-evidence` chưa đạt vì từ chối nhầm nhiều câu có đáp án; không bật
+  mặc định.
+- API parity với model thật cần chạy lại khi server đang hoạt động; lần kiểm tra
+  gần nhất chưa chạy vì không có server tại `127.0.0.1:8000`.
+
+### Trạng thái hiện tại
+
+**Giai đoạn 11 đang tiếp tục, chưa nghiệm thu để dùng làm nền trả lời y khoa.**
+RAG hiện chỉ cung cấp retrieval/evaluation CLI; chưa có chatbot, API chat hoặc
+giao diện hội thoại. Các chế độ evidence vẫn trả `answer_ready: false`.
+
+### Việc cần làm tiếp theo
+
+1. Kiểm định retrieval/rerank trên tập dữ liệu độc lập và bổ sung nguồn cho các
+   nhãn còn thiếu như `simple bone cyst`, `osteofibroma` và
+   `synovial osteochondroma`.
+2. Khởi động ứng dụng và chạy `06_verify_api.bat`/`verify_api.py` với model thật.
+3. Chỉ bắt đầu giai đoạn 12 sau khi có cơ chế đủ bằng chứng, citation và từ chối
+   an toàn; sau đó mới xây chatbot tiếng Việt local.
+4. Đánh giá toàn diện, bảo mật và đóng gói bàn giao ở giai đoạn 13.
+
+Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md) và
+[STAGE11_HANDOFF_VI.md](docs/STAGE11_HANDOFF_VI.md).
+
+---
+
 ## 🗺️ Lộ Trình Phát Triển Tiếp Theo (Theo Tài Liệu Dự Án)
 
 - [x] **Bước 1 — 4:** Kiểm kê mô hình, kiểm tra suy luận độc lập, API phân loại 10 lớp.
