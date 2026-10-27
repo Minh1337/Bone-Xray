@@ -1,6 +1,6 @@
 # Trạng thái dự án và ghi chú bàn giao
 
-Cập nhật: **27/10/2026 sau vòng phát triển giai đoạn 11**. Đọc cùng [lộ trình](LO_TRINH_THUC_HIEN_DU_AN_AI.md) để phân biệt phần đã triển khai với tiêu chí nghiệm thu. Nội dung hiện tại đã được commit tại `99e9817`. **AI tiếp quản đọc [điểm tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) trước.** Kết quả không thay thế đánh giá lâm sàng.
+Cập nhật: **27/10/2026 lúc 17:27, sau bổ sung policy routing**. Đọc cùng [lộ trình](LO_TRINH_THUC_HIEN_DU_AN_AI.md) để phân biệt phần đã triển khai với tiêu chí nghiệm thu. Nền tài liệu trước đó đã được commit tại `99e9817`; phần policy/test mới nhất chưa commit. **AI tiếp quản đọc [điểm tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) trước.** Kết quả không thay thế đánh giá lâm sàng.
 
 ## Việc đã hoàn thành
 
@@ -13,6 +13,7 @@ Cập nhật: **27/10/2026 sau vòng phát triển giai đoạn 11**. Đọc cù
 | Cấu trúc file | `docs/guides/` chứa hướng dẫn, `docs/reports/` chứa Word, `docs/reference/` chứa tham chiếu API; `rag/data/` chứa dữ liệu nguồn. Đã cập nhật `verify_api.py`, pipeline RAG và đường dẫn tài liệu. | Đã chuyển và rà soát các tham chiếu. |
 | Giai đoạn 10 | 12 trang NCI, hiện 416 đoạn sau sửa bộ trích xuất; giữ URL, mục, thời điểm và mã băm. | Đạt ở mức kho nguồn có thể truy vết; độ phủ y khoa còn thiếu. |
 | Giai đoạn 11 | Hybrid local; index 416 × 384, manifest schema 2; có thêm rerank khái niệm và bộ lọc thử nghiệm; 12 câu regression, 28 câu V2 và 20 câu stress V3. | Rerank triển vọng nhưng opt-in; bộ lọc chặn nhầm nhiều câu dương. **Chưa đạt điều kiện dùng làm nền trả lời y khoa**. |
+| Policy routing bổ sung | Nhận diện thêm tuyên bố chữa bệnh bằng phương pháp bổ sung, cam kết xét nghiệm/thiết bị tại nhà, yêu cầu chi phí ngoài corpus và thiết bị thay thế chuyên gia; 15 regression cases mới. | Đã kiểm tra trong test RAG; vẫn là bộ lọc từ khóa bảo thủ, không thay thế đánh giá bằng chứng hoặc đánh giá lâm sàng. |
 
 Chi tiết pipeline: [kho nguồn](guides/README_RAG_CORPUS_VI.md) và [chỉ mục](guides/README_RAG_INDEX_VI.md). Trọng số embedding, chỉ mục, HTML tải về, CSDL và kết quả runtime nằm trong các đường dẫn Git bỏ qua; bản checkout mới phải tải mô hình và tạo lại chỉ mục.
 
@@ -23,6 +24,7 @@ Chi tiết pipeline: [kho nguồn](guides/README_RAG_CORPUS_VI.md) và [chỉ m�
 - `rag/build_corpus.py --offline`: hiện tạo **416 đoạn từ 12 nguồn**. Đã sửa References dùng h6, các block/ô bảng dính chữ và mục danh sách ngắn bị loại; chỉ mục đã xây lại theo schema 2.
 - `rag/retrieval.py` với `HF_HUB_OFFLINE=1`: truy vấn mẫu trả đoạn cùng URL/mục/mã băm; không cần kết nối mạng lúc tìm kiếm.
 - `python -m pip check`: không có phụ thuộc bị hỏng; `git diff --check`: không có lỗi whitespace.
+- Sau bổ sung policy routing: `.\.venv\Scripts\python.exe -m pytest rag/tests -q` đạt **20 passed, 21 subtests passed**. Test dùng `.venv` của dự án; Python hệ thống thiếu `pytest`/`numpy` nên không dùng để kết luận validation.
 - Bộ cũ: baseline trước sửa corpus 6/10, MRR 0,417; hiện hybrid đúng nguồn/mục **8/10, MRR 0,700**, routing từ chối 2/2 câu âm.
 - V2 dev/test mỗi phần 8 câu có đáp án và 6 câu âm. Hybrid đúng đoạn **6/8 trên dev và 7/8 trên test**; cả hai từ chối 4/6 câu âm. Tập do AI soạn, test đã được xem kết quả, chưa có thẩm định độc lập. Báo cáo đầy đủ: `docs/reference/stage11_20261027/`.
 - Thử `--rerank-concepts`: đúng 10/10 câu cũ, 8/8 mỗi phần V2 đã xem và 9/10 câu V3 stress. Không tăng tỷ lệ từ chối câu âm. Bộ lọc `--verify-evidence` không đạt vì chặn nhầm 5/10 câu dương V3 và 8/8 câu dương V2 test đã xem. Cả hai opt-in, mặc định hybrid không đổi. Báo cáo mới: `docs/reference/stage11_evidence_rank_20261027/`; V3 cũng đã được dùng, chưa độc lập.

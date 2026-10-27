@@ -1,5 +1,49 @@
 # Điểm tiếp tục giai đoạn 11
 
+## Cập nhật phiên làm việc ngày 27/10/2026 lúc 17:27
+
+Đã hoàn thiện và kiểm tra phần routing an toàn cho các câu hỏi có tuyên bố
+không được corpus hiện tại xác minh trong `rag/policy.py`. Policy hiện nhận
+diện bốn nhóm chính: thuốc/thảo dược/thực phẩm chức năng được cho là chữa
+bệnh, thiết bị hoặc xét nghiệm tại nhà hứa hẹn chẩn đoán, yêu cầu giá/chi phí
+ngoài kho NCI, và thiết bị/ứng dụng thay thế bác sĩ hoặc chuyên gia. Các câu
+này được trả về `insufficient_evidence` trước khi nạp model. Đã bổ sung 15
+regression cases tiếng Việt/Anh trong `rag/tests/test_retrieval.py`.
+
+Validation đã chạy bằng môi trường chuẩn `.venv`:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest rag/tests -q
+# 20 passed, 21 subtests passed
+git diff --check
+# không có lỗi whitespace
+```
+
+Tại thời điểm bàn giao, hai file dưới đây **đang sửa nhưng chưa commit**:
+
+- `rag/policy.py`
+- `rag/tests/test_retrieval.py`
+
+Các thư mục `.pytest_cache/` và `__pycache__/` chỉ là file cache bị Git
+ignore, không phải thay đổi cần bàn giao. Không chạy lại API/model thật trong
+phiên này vì mục tiêu là hoàn thiện routing và test; API vẫn cần được khởi
+động rồi kiểm tra riêng theo hướng dẫn bên dưới.
+
+### Việc làm đầu tiên vào phiên sau
+
+1. Chạy lại `.\.venv\Scripts\python.exe -m pytest rag/tests -q` sau khi mở
+   workspace để xác nhận môi trường.
+2. Xem `git diff -- rag/policy.py rag/tests/test_retrieval.py`, sau đó quyết
+   định commit hai thay đổi này cùng nhau; không commit cache.
+3. Nếu tiếp tục giai đoạn 11, tạo một tập câu hỏi mới độc lập để đánh giá
+   policy và rerank; không tối ưu thêm chỉ trên V2/V3 đã xem.
+4. Bổ sung nguồn cho `simple bone cyst`, `osteofibroma` và
+   `synovial osteochondroma`, rồi xây lại corpus/index theo hướng dẫn nếu dữ
+   liệu thay đổi.
+5. Khi cần xác minh tích hợp, khởi động API trước rồi chạy `verify_api.py`;
+   ghi kết quả mới vào tài liệu, không coi việc routing test là kiểm chứng
+   độ chính xác lâm sàng.
+
 ## Điểm dừng mới nhất sau vòng thử kiểm tra bằng chứng
 
 Ngày 27/10/2026, đã hoàn thành thử nghiệm bổ sung bằng model/index hiện có, không tải thêm model. **Phần xếp hạng lại cải thiện các câu đã biết; bộ lọc đủ bằng chứng bằng từ vựng thất bại vì từ chối nhầm nhiều câu tiếng Việt. Cả hai giữ opt-in, mặc định vẫn hybrid như vòng trước; answer_ready luôn false.** Chưa nghiệm thu giai đoạn 11, chưa có chatbot.
