@@ -17,6 +17,9 @@ data/*.db
 data/*.sqlite3
 logs/
 results/
+rag/source_cache/
+rag/index/
+rag/models/
 api_results/
 *.log
 

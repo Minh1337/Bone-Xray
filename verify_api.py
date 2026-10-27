@@ -19,7 +19,7 @@ def main():
     report = {'status': 'FAILED', 'comparison': 'API versus saved LOCAL run; notebook parity remains unverified', 'cases': []}
     lines = []
     try:
-        baseline = json.loads((ROOT / 'api_reference_local.json').read_text(encoding='utf-8-sig'))
+        baseline = json.loads((ROOT / 'docs' / 'reference' / 'api_reference_local.json').read_text(encoding='utf-8-sig'))
         cases = json.loads((ROOT / 'cases.json').read_text(encoding='utf-8-sig'))
         by_id = {c['id']: c for c in baseline['cases']}
         if len(cases) != 3 or {c['id'] for c in cases} != set(by_id):

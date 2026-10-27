@@ -4,11 +4,13 @@ import json
 import logging
 import math
 import os
+import secrets
 from contextlib import asynccontextmanager
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from threading import Lock
 from time import perf_counter
+from time import monotonic
 import warnings
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
@@ -91,6 +93,8 @@ def create_app(loader=load_real):
     @asynccontextmanager
     async def lifespan(app):
         app.state.ready = False
+        app.state.pending_predictions = {}
+        app.state.pending_lock = Lock()
         predictor, info = loader()  # fail startup rather than silently serving a fake model
         app.state.predictor, app.state.info = predictor, info
         app.state.ready = True
@@ -168,10 +172,29 @@ def create_app(loader=load_real):
                     raise HTTPException(500, 'Prediction failed; inspect server log')
                 seconds = perf_counter() - start
                 ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+                prediction_id = secrets.token_urlsafe(32)
+                record = {'image_filename': Path(file.filename or 'image').name,
+                          'image_sha256': image_hash.hexdigest(), 'metadata': meta,
+                          'scores': scores, 'top1': ranked[0][0],
+                          'top1_score': ranked[0][1], 'prediction_seconds': seconds,
+                          'model_sha256': app.state.info['sha256']['best_model.pt'],
+                          'device': app.state.info['device'], 'api_version': '0.1.0'}
+                with app.state.pending_lock:
+                    now = monotonic()
+                    app.state.pending_predictions = {
+                        key: value for key, value in app.state.pending_predictions.items()
+                        if now - value[0] < 600
+                    }
+                    if len(app.state.pending_predictions) >= 1000:
+                        oldest = min(app.state.pending_predictions,
+                                     key=lambda key: app.state.pending_predictions[key][0])
+                        del app.state.pending_predictions[oldest]
+                    app.state.pending_predictions[prediction_id] = (now, record)
                 return {'top1': ranked[0][0], 'top3': [{'label': k, 'score': v} for k, v in ranked[:3]],
                         'scores': scores, 'prediction_seconds': seconds, 'image_sha256': image_hash.hexdigest(),
                         'model_sha256': app.state.info['sha256']['best_model.pt'],
                         'device': app.state.info['device'], 'api_version': '0.1.0',
+                        'prediction_id': prediction_id,
                         'notice': 'For coursework/research. Model scores are not calibrated disease probabilities.'}
         finally:
             file.file.close()

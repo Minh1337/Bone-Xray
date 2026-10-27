@@ -1,13 +1,20 @@
 """Serve the local UI alongside the already validated API."""
 from pathlib import Path
+from contextlib import asynccontextmanager
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from xray_api import app
 from case_api import router as case_router
 import database as db
 
-# Initialise database on startup
-db.init_db()
+# Initialise the runtime database only when the server starts.
+original_lifespan = app.router.lifespan_context
+@asynccontextmanager
+async def lifespan(application):
+    db.init_db()
+    async with original_lifespan(application):
+        yield
+app.router.lifespan_context = lifespan
 
 # Register case management routes
 app.include_router(case_router)

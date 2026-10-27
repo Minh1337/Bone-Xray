@@ -85,7 +85,7 @@ async function checkHealth(){
 $('reconnect').addEventListener('click',checkHealth);
 function validateResult(d){
  if(!d||!d.scores||Object.keys(d.scores).length!==10||labels.some(k=>!Object.hasOwn(d.scores,k)||typeof d.scores[k]!=='number'||!Number.isFinite(d.scores[k])||d.scores[k]<0||d.scores[k]>1))throw Error('API trả về điểm số không hợp lệ.');
- if(Math.abs(Object.values(d.scores).reduce((a,b)=>a+b,0)-1)>0.0001||!labels.includes(d.top1)||!Number.isFinite(d.prediction_seconds)||d.prediction_seconds<0)throw Error('Kết quả API không đúng cấu trúc mong đợi.');
+ if(Math.abs(Object.values(d.scores).reduce((a,b)=>a+b,0)-1)>0.0001||!labels.includes(d.top1)||!Number.isFinite(d.prediction_seconds)||d.prediction_seconds<0||typeof d.prediction_id!=='string'||d.prediction_id.length<32)throw Error('Kết quả API không đúng cấu trúc mong đợi.');
  const ranked=Object.entries(d.scores).sort((a,b)=>b[1]-a[1]);
  if(ranked[0][0]!==d.top1)throw Error('Nhãn top-1 không khớp điểm số.');
  return ranked;
@@ -134,19 +134,7 @@ $('save-case').addEventListener('click', async ()=>{
  hideSaveMessage();
  try{
   const d=lastResult.response;
-  const ranked=Object.entries(d.scores).sort((a,b)=>b[1]-a[1]);
-  const body={
-   image_filename: lastResult.image_name,
-   image_sha256: d.image_sha256,
-   metadata: lastResult.metadata,
-   scores: d.scores,
-   top1: d.top1,
-   top1_score: ranked[0][1],
-   prediction_seconds: d.prediction_seconds,
-   device: d.device,
-   model_sha256: d.model_sha256,
-   api_version: d.api_version || '0.1.0',
-  };
+  const body={prediction_id:d.prediction_id};
   const r=await fetch('/cases',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
   if(!r.ok){const err=await r.json().catch(()=>({}));throw Error(err.detail||'Lỗi khi lưu ca');}
   const saved=await r.json();

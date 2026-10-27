@@ -151,6 +151,7 @@
 <script>
   const caseId = window.location.pathname.split('/').pop();
   const pct = v => (v * 100).toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+  const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
   async function loadCaseDetail() {
     try {
@@ -159,11 +160,11 @@
       const c = await res.json();
 
       document.getElementById('case-id-eyebrow').textContent = `CA PHÂN TÍCH #${c.id}`;
-      document.getElementById('case-title').innerHTML = `Ảnh: <em>${c.image_filename}</em>`;
+      document.getElementById('case-title').innerHTML = `Ảnh: <em>${esc(c.image_filename)}</em>`;
       document.getElementById('case-meta-header').textContent = `Thời gian: ${new Date(c.created_at).toLocaleString('vi-VN')} · Thiết bị: ${c.device.toUpperCase()} · Xử lý: ${c.prediction_seconds.toFixed(3)}s`;
 
       document.getElementById('top1-scope-mark').textContent = 'Top-1';
-      document.getElementById('top1-scope-text').innerHTML = `<strong>${c.top1_label}</strong><small>${pct(c.top1_score)}</small>`;
+      document.getElementById('top1-scope-text').innerHTML = `<strong>${esc(c.top1_label)}</strong><small>${pct(c.top1_score)}</small>`;
       document.getElementById('detail-top-score').textContent = pct(c.top1_score);
 
       // Top 3
@@ -171,7 +172,7 @@
       document.getElementById('detail-top-three').innerHTML = ranked.slice(0, 3).map(([k, v], i) => `
         <div class="rank">
           <div class="rank-heading">
-            <span>0${i+1} ${k}</span>
+            <span>0${i+1} ${esc(k)}</span>
             <strong>${pct(v)}</strong>
           </div>
           <div class="bar">
@@ -182,7 +183,7 @@
 
       // All 10
       document.getElementById('detail-all-scores').innerHTML = ranked.map(([k, v]) => `
-        <tr><td>${k}</td><td style="text-align: right;"><strong>${pct(v)}</strong></td></tr>
+        <tr><td>${esc(k)}</td><td style="text-align: right;"><strong>${pct(v)}</strong></td></tr>
       `).join('');
 
       // Metadata display
@@ -190,7 +191,7 @@
       const metaDiv = document.getElementById('metadata-display');
       metaDiv.innerHTML = Object.entries(m).map(([k, v]) => `
         <div style="font-size: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
-          <span style="color: var(--muted);">${k}:</span> <strong>${v}</strong>
+          <span style="color: var(--muted);">${esc(k)}:</span> <strong>${esc(v)}</strong>
         </div>
       `).join('');
 
@@ -214,10 +215,10 @@
     div.innerHTML = list.map(item => `
       <div style="background: #fdf5f2; border: 1px solid #f9ded5; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
         <div style="display: flex; justify-content: space-between; font-size: 12px;">
-          <span>Nhãn hiệu chỉnh: <strong style="color: var(--red);">${item.corrected_label}</strong></span>
+          <span>Nhãn hiệu chỉnh: <strong style="color: var(--red);">${esc(item.corrected_label)}</strong></span>
           <small style="color: var(--muted);">${new Date(item.created_at).toLocaleString('vi-VN')}</small>
         </div>
-        ${item.reason ? `<p style="font-size: 12px; margin: 6px 0 0; color: var(--ink);"><em>Lý do:</em> ${item.reason}</p>` : ''}
+        ${item.reason ? `<p style="font-size: 12px; margin: 6px 0 0; color: var(--ink);"><em>Lý do:</em> ${esc(item.reason)}</p>` : ''}
       </div>
     `).join('');
   }
@@ -230,7 +231,7 @@
     }
     div.innerHTML = list.map(item => `
       <div style="background: #f8faf8; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
-        <p style="font-size: 13px; margin: 0 0 6px;">${item.content}</p>
+        <p style="font-size: 13px; margin: 0 0 6px;">${esc(item.content)}</p>
         <small style="color: var(--muted); font-size: 11px;">${new Date(item.created_at).toLocaleString('vi-VN')}</small>
       </div>
     `).join('');

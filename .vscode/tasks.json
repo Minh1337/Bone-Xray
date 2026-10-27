@@ -1,0 +1,62 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Inspect Git status",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"status",
+				"--short",
+				"--branch"
+			]
+		},
+		{
+			"label": "Inspect Git ignore changes",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"diff",
+				"--",
+				".gitignore"
+			]
+		},
+		{
+			"label": "Inspect Git ignore without pager",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"--no-pager",
+				"diff",
+				"--",
+				".gitignore"
+			]
+		},
+		{
+			"label": "List new source files",
+			"type": "shell",
+			"command": "git",
+			"args": [
+				"ls-files",
+				"--others",
+				"--exclude-standard"
+			]
+		},
+		{
+			"label": "Scan source for credential patterns",
+			"type": "shell",
+			"command": "rg",
+			"args": [
+				"-l",
+				"--hidden",
+				"-g",
+				"!.git/**",
+				"-g",
+				"!.vscode/tasks.json",
+				"-g",
+				"!*.docx",
+				"(sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AIza[0-9A-Za-z_-]{30,}|-----BEGIN (RSA |EC |OPENSSH )?PRIVATE KEY-----)"
+			]
+		}
+	]
+}

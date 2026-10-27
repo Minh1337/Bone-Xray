@@ -20,6 +20,7 @@
   <div class="connection">
     <span id="health" role="status">Đang kết nối…</span>
   </div>
+
 </header>
 
 <main>
@@ -76,6 +77,12 @@
     </table>
   </div>
 
+  <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px;">
+    <button id="prev-page" class="secondary btn-sm" type="button">Trang trước</button>
+    <span id="page-status" aria-live="polite"></span>
+    <button id="next-page" class="secondary btn-sm" type="button">Trang sau</button>
+  </div>
+
   <footer>
     <span>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang</span>
     <span>Giao diện 0.2.0</span>
@@ -87,6 +94,9 @@
   const totalBadge = document.getElementById('total-badge');
   const filterLabel = document.getElementById('filter-label');
   const refreshBtn = document.getElementById('refresh-btn');
+  const pageSize = 50;
+  let page = 0;
+  const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
   const pct = v => (v * 100).toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
 
@@ -94,33 +104,37 @@
     tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải...</td></tr>';
     try {
       const label = filterLabel.value;
-      const url = '/cases' + (label ? `?label=${encodeURIComponent(label)}` : '');
+      const url = `/cases?limit=${pageSize}&offset=${page * pageSize}` + (label ? `&label=${encodeURIComponent(label)}` : '');
       const res = await fetch(url);
       if (!res.ok) throw new Error('Không thể tải danh sách ca');
       const data = await res.json();
       totalBadge.textContent = data.total;
+      document.getElementById('page-status').textContent = `Trang ${page + 1} / ${Math.max(1, Math.ceil(data.total / pageSize))}`;
+      document.getElementById('prev-page').disabled = page === 0;
+      document.getElementById('next-page').disabled = (page + 1) * pageSize >= data.total;
 
       if (!data.cases || data.cases.length === 0) {
+        if (page > 0 && data.total > 0) { page--; return loadCases(); }
         tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 40px;">Chưa có ca nào được lưu. Hãy phân tích ảnh và nhấn "Lưu ca vào lịch sử".</td></tr>';
         return;
       }
 
       tbody.innerHTML = data.cases.map(c => `
         <tr>
-          <td><strong>${c.id}</strong></td>
+          <td><strong>${esc(c.id)}</strong></td>
           <td><small style="color: var(--muted)">${new Date(c.created_at).toLocaleString('vi-VN')}</small></td>
-          <td>${c.image_filename}</td>
-          <td><span class="badge badge-teal">${c.top1_label}</span></td>
+          <td>${esc(c.image_filename)}</td>
+          <td><span class="badge badge-teal">${esc(c.top1_label)}</span></td>
           <td><strong>${pct(c.top1_score)}</strong></td>
-          <td><small>${c.prediction_seconds.toFixed(3)}s (${c.device})</small></td>
+          <td><small>${c.prediction_seconds.toFixed(3)}s (${esc(c.device)})</small></td>
           <td class="table-actions">
-            <a href="/case/${c.id}" class="secondary btn-sm" style="text-decoration: none; display: inline-block;">Chi tiết</a>
-            <button onclick="removeCase('${c.id}')" class="btn-sm" style="background: transparent; color: var(--red); border: 1px solid #fad2cb;">Xóa</button>
+            <a href="/case/${encodeURIComponent(c.id)}" class="secondary btn-sm" style="text-decoration: none; display: inline-block;">Chi tiết</a>
+            <button data-delete-id="${esc(c.id)}" class="btn-sm" style="background: transparent; color: var(--red); border: 1px solid #fad2cb;">Xóa</button>
           </td>
         </tr>
       `).join('');
     } catch (err) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--red); padding: 30px;">Lỗi: ${err.message}</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--red); padding: 30px;">Lỗi: ${esc(err.message)}</td></tr>`;
     }
   }
 
@@ -135,7 +149,14 @@
     }
   }
 
-  filterLabel.addEventListener('change', loadCases);
+  tbody.addEventListener('click', event => {
+    const button = event.target.closest('[data-delete-id]');
+    if (button) removeCase(button.dataset.deleteId);
+  });
+
+  filterLabel.addEventListener('change', () => { page = 0; loadCases(); });
+  document.getElementById('prev-page').addEventListener('click', () => { if (page > 0) { page--; loadCases(); } });
+  document.getElementById('next-page').addEventListener('click', () => { page++; loadCases(); });
   refreshBtn.addEventListener('click', loadCases);
 
   // Health check

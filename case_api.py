@@ -1,9 +1,9 @@
 """API routes for case management: save, list, detail, comments, corrections, dashboard."""
-import json
 import logging
+from time import monotonic
 
-from fastapi import APIRouter, HTTPException
-from pydantic import BaseModel, Field
+from fastapi import APIRouter, HTTPException, Request
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 import database as db
 
@@ -15,17 +15,16 @@ router = APIRouter(tags=['cases'])
 # ---------------------------------------------------------------------------
 
 class SaveCaseRequest(BaseModel):
-    image_filename: str = Field(..., min_length=1, max_length=260)
-    image_sha256: str = Field(..., min_length=64, max_length=64)
-    metadata: dict
-    scores: dict
-    top1: str
-    top1_score: float = Field(..., ge=0, le=1)
-    prediction_seconds: float = Field(..., ge=0)
-    device: str
-    model_sha256: str = Field(..., min_length=64, max_length=64)
-    api_version: str = '0.1.0'
+    model_config = ConfigDict(extra='forbid')
+    prediction_id: str = Field(..., min_length=32, max_length=128)
     true_label: str | None = None
+
+    @field_validator('true_label')
+    @classmethod
+    def valid_true_label(cls, value):
+        if value is not None and value not in db.VALID_LABELS:
+            raise ValueError('Unknown true label')
+        return value
 
 
 class CommentRequest(BaseModel):
@@ -41,14 +40,21 @@ class CorrectionRequest(BaseModel):
 # ---------------------------------------------------------------------------
 
 @router.post('/cases')
-def create_case(req: SaveCaseRequest):
+def create_case(req: SaveCaseRequest, request: Request):
     """Save a completed prediction as a case."""
     try:
-        case = db.save_case(req.model_dump())
+        with request.app.state.pending_lock:
+            pending = request.app.state.pending_predictions.get(req.prediction_id)
+            if pending is None or monotonic() - pending[0] >= 600:
+                raise HTTPException(422, 'Prediction expired or unknown; analyze the image again')
+            case = db.save_case({**pending[1], 'true_label': req.true_label})
+            del request.app.state.pending_predictions[req.prediction_id]
         return case
+    except HTTPException:
+        raise
     except Exception as e:
         logger.exception('Failed to save case')
-        raise HTTPException(500, f'Failed to save case: {e}')
+        raise HTTPException(500, 'Failed to save case; inspect server log')
 
 
 @router.get('/cases')

@@ -8,17 +8,15 @@
 ## 📁 Cấu Trúc Dự Án (Đã Tinh Gọn & Chuẩn Hóa)
 
 ```
-Bone_Xray_Local_Check/
+BONESCOPE/
 ├── .vscode/                 # Cấu hình môi trường & Debug trong VSCode
 │   ├── launch.json          # 3 profile chạy (F5): UI+API, Chỉ API, Check Model
 │   └── settings.json        # Tự động chọn venv Python 3.11
-├── docs/                    # Tài liệu đặc tả & báo cáo dự án
-│   ├── README_VI.md         # Hướng dẫn kiểm tra mô hình ban đầu
-│   ├── README_FASTAPI_VI.md # Tài liệu API FastAPI
-│   ├── README_UI_VI.md      # Tài liệu giao diện web
-│   ├── LO_TRINH_THUC_HIEN_DU_AN_AI.md # Runbook chi tiết cho AI tiếp quản
-│   ├── Bao_cao_tien_do.docx # Báo cáo tiến độ theo chương
-│   └── Tai_lieu_phat_trien_du_an.docx # Tài liệu roadmap & lộ trình 4 tuần
+├── docs/                    # Lộ trình, hướng dẫn, báo cáo và tham chiếu
+│   ├── LO_TRINH_THUC_HIEN_DU_AN_AI.md
+│   ├── guides/              # Hướng dẫn theo giai đoạn
+│   ├── reports/             # Báo cáo Word
+│   └── reference/           # Báo cáo đối chiếu API
 ├── tools/                   # Bộ công cụ & installer
 │   └── python-3.11.9-amd64.exe # Bộ cài Python 3.11 64-bit
 ├── data/                    # Cơ sở dữ liệu ứng dụng
@@ -39,6 +37,15 @@ Bone_Xray_Local_Check/
 ├── tests/                   # Kiểm thử logic xác thực metadata & ảnh
 ├── api_tests/               # Kiểm thử API endpoints (/predict, /cases, /dashboard)
 ├── ui_tests/                # Kiểm thử UI routes & tích hợp
+├── rag/                     # Kho tài liệu và truy xuất cục bộ
+│   ├── data/                # Nguồn, corpus, câu hỏi đánh giá
+│   ├── build_corpus.py      # Tạo lại corpus từ nguồn
+│   ├── build_index.py       # Tạo embedding và chỉ mục vector
+│   ├── retrieval.py         # Truy xuất có kiểm tra phiên bản
+│   ├── evaluate.py          # Đo recall, MRR và câu ngoài phạm vi
+│   ├── index/               # Chỉ mục vector tạo tại máy (Git bỏ qua)
+│   ├── models/              # Mô hình embedding tại máy (Git bỏ qua)
+│   └── tests/               # Kiểm thử corpus/truy xuất
 ├── logs/                    # Nhật ký hoạt động hệ thống
 ├── results/                 # Kết quả các đợt chạy kiểm tra offline
 ├── api_results/             # Kết quả xác minh tính toàn vẹn API
@@ -53,7 +60,8 @@ Bone_Xray_Local_Check/
 ├── check_model.py           # Script kiểm tra môi trường & tính toán SHA256
 ├── cases.json               # Dữ liệu 3 ca mẫu chuẩn
 ├── requirements.txt         # Thư viện Python cho mô hình (torch, timm, ...)
-└── requirements_api.txt     # Thư viện cho API (fastapi, uvicorn, ...)
+├── requirements_api.txt     # Thư viện cho API (fastapi, uvicorn, ...)
+└── requirements_rag.txt     # Thư viện cho embedding cục bộ
 ```
 
 ---
@@ -123,7 +131,13 @@ python -m unittest discover -s ui_tests -v
 
 - [x] **Bước 1 — 4:** Kiểm kê mô hình, kiểm tra suy luận độc lập, API phân loại 10 lớp.
 - [x] **Bước 5:** Quản lý ca bệnh, CSDL SQLite, Lịch sử, Nhận xét, Hiệu chỉnh & Dashboard.
-- [ ] **Bước 6:** Xây dựng kho tài liệu y khoa u xương (10–20 tài liệu chuẩn, chia đoạn chunk).
-- [ ] **Bước 7:** Hệ thống nhúng (Embeddings) & Chỉ mục vector tìm kiếm ngữ nghĩa RAG.
-- [ ] **Bước 8:** Chatbot hội thoại thông minh tiếng Việt có trích dẫn nguồn tài liệu.
-- [ ] **Bước 9 — 11:** Đánh giá toàn diện, tài liệu bàn giao & slide báo cáo bảo vệ đồ án.
+- [x] **Giai đoạn 10:** Kho nguồn NCI và bộ câu hỏi tiếng Việt ban đầu.
+- [ ] **Giai đoạn 11:** Đã tạo embedding/chỉ mục; đánh giá ban đầu chưa đạt để dùng cho chatbot (xem báo cáo).
+- [ ] **Giai đoạn 12:** Chatbot tiếng Việt có trích dẫn nguồn và kiểm thử an toàn.
+- [ ] **Giai đoạn 13:** Đánh giá toàn diện, bảo mật và đóng gói bàn giao.
+
+Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. Xem [hướng dẫn kho tài liệu](docs/guides/README_RAG_CORPUS_VI.md). Một số nhãn u lành tính còn thiếu nguồn chuyên biệt.
+
+Tạo chỉ mục cục bộ: `python rag/build_index.py --download-model` (lần đầu), sau đó `python rag/build_index.py`; đo bằng `python rag/evaluate.py`. Xem [hướng dẫn truy xuất](docs/guides/README_RAG_INDEX_VI.md).
+
+Khi lưu ca, API trả `prediction_id` sau `/predict`; giao diện gửi mã này tới `/cases` trong vòng 10 phút. Máy chủ lấy dữ liệu dự đoán đã giữ tạm và chỉ lưu một lần, tránh ghi điểm số do yêu cầu tự khai báo.
