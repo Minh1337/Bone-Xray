@@ -1,0 +1,266 @@
+{
+  "status": "TECHNICAL_CHECK_PASSED",
+  "environment": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "os": "Windows-10-10.0.19045-SP0",
+    "packages": {
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "timm": "1.0.15",
+      "numpy": "1.26.4",
+      "pandas": "2.2.3",
+      "scikit-learn": "1.6.1",
+      "joblib": "1.4.2",
+      "albumentations": "2.0.8",
+      "opencv-python-headless": "4.11.0.86",
+      "Pillow": "11.1.0"
+    },
+    "ram_total_gb": 7.32,
+    "ram_available_gb": 1.73,
+    "cuda_available": true,
+    "torch_cuda": "12.4",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "vram_gb": 4.0
+  },
+  "cases": [
+    {
+      "id": "case_001",
+      "image_name": "IMG000001.jpg",
+      "image_sha256": "2ddae86a96c6c696ec5c30f43102ce63c9d29873bcdf1ec613371efb5dd837ad",
+      "scores": {
+        "other mt": 0.6834919452667236,
+        "osteosarcoma": 0.17357583343982697,
+        "giant cell tumor": 0.06294568628072739,
+        "simple bone cyst": 0.0376538410782814,
+        "other bt": 0.021754128858447075,
+        "multiple osteochondromas": 0.01614406146109104,
+        "osteochondroma": 0.003831269685178995,
+        "osteofibroma": 0.0005587238119915128,
+        "synovial osteochondroma": 3.372840365045704e-05,
+        "no-tumor": 1.0805277270264924e-05
+      },
+      "top1": "other mt",
+      "top3": [
+        {
+          "label": "other mt",
+          "score": 0.6834919452667236
+        },
+        {
+          "label": "osteosarcoma",
+          "score": 0.17357583343982697
+        },
+        {
+          "label": "giant cell tumor",
+          "score": 0.06294568628072739
+        }
+      ],
+      "warmup_seconds": 0.7610211999999592,
+      "measured_seconds": [
+        0.11646730000211392,
+        0.1110119000004488,
+        0.10966049999842653
+      ],
+      "median_seconds": 0.1110119000004488,
+      "repeat_max_delta": 0.0,
+      "repeat_pass": true,
+      "notebook_comparison": "NOT_PROVIDED",
+      "peak_allocated_vram_mb": 206.1630859375,
+      "process_ram_mb": 1374.4375,
+      "true_label": "other mt",
+      "correct": true,
+      "status": "PASS",
+      "metadata": {
+        "age": 48,
+        "gender": "F",
+        "hand": 0,
+        "ulna": 0,
+        "radius": 0,
+        "humerus": 0,
+        "foot": 0,
+        "tibia": 0,
+        "fibula": 0,
+        "femur": 0,
+        "hip bone": 1,
+        "ankle-joint": 0,
+        "knee-joint": 0,
+        "hip-joint": 0,
+        "elbow-joint": 0,
+        "shoulder-joint": 0,
+        "upper limb": 0,
+        "lower limb": 0,
+        "pelvis": 1,
+        "frontal": 1,
+        "lateral": 0,
+        "oblique": 0
+      }
+    },
+    {
+      "id": "case_002",
+      "image_name": "IMG000002.jpg",
+      "image_sha256": "f7b58cd92eae19e5263ec114b96b5bbc2a4152da4c5e96823c3dcbb5d4213bbf",
+      "scores": {
+        "osteosarcoma": 0.9500700235366821,
+        "other mt": 0.042369741946458817,
+        "giant cell tumor": 0.0034679772797971964,
+        "other bt": 0.002219951944425702,
+        "simple bone cyst": 0.0009589950204826891,
+        "osteofibroma": 0.0004328646755311638,
+        "multiple osteochondromas": 0.0002737778995651752,
+        "osteochondroma": 0.00020205222244840115,
+        "synovial osteochondroma": 3.1251781820174074e-06,
+        "no-tumor": 1.6121763337650918e-06
+      },
+      "top1": "osteosarcoma",
+      "top3": [
+        {
+          "label": "osteosarcoma",
+          "score": 0.9500700235366821
+        },
+        {
+          "label": "other mt",
+          "score": 0.042369741946458817
+        },
+        {
+          "label": "giant cell tumor",
+          "score": 0.0034679772797971964
+        }
+      ],
+      "warmup_seconds": 0.08133860000089044,
+      "measured_seconds": [
+        0.08036530000390485,
+        0.08121980000578333,
+        0.08785789999819826
+      ],
+      "median_seconds": 0.08121980000578333,
+      "repeat_max_delta": 0.0,
+      "repeat_pass": true,
+      "notebook_comparison": "NOT_PROVIDED",
+      "peak_allocated_vram_mb": 206.1630859375,
+      "process_ram_mb": 1375.97265625,
+      "true_label": "osteosarcoma",
+      "correct": true,
+      "status": "PASS",
+      "metadata": {
+        "age": 12,
+        "gender": "M",
+        "hand": 0,
+        "ulna": 0,
+        "radius": 0,
+        "humerus": 0,
+        "foot": 0,
+        "tibia": 1,
+        "fibula": 0,
+        "femur": 0,
+        "hip bone": 0,
+        "ankle-joint": 0,
+        "knee-joint": 0,
+        "hip-joint": 0,
+        "elbow-joint": 0,
+        "shoulder-joint": 0,
+        "upper limb": 0,
+        "lower limb": 1,
+        "pelvis": 0,
+        "frontal": 1,
+        "lateral": 0,
+        "oblique": 0
+      }
+    },
+    {
+      "id": "case_003",
+      "image_name": "IMG000003.jpg",
+      "image_sha256": "11bde800f29c60639c542bbf7e767c4f2786d6b60dfa1a023562934f2e861b43",
+      "scores": {
+        "osteosarcoma": 0.9464935064315796,
+        "other mt": 0.03238558769226074,
+        "simple bone cyst": 0.008281653746962547,
+        "other bt": 0.0071360464207828045,
+        "giant cell tumor": 0.0049879723228514194,
+        "osteochondroma": 0.00029085285495966673,
+        "multiple osteochondromas": 0.00021172048582229763,
+        "osteofibroma": 0.00019676299416460097,
+        "synovial osteochondroma": 1.1867265129694715e-05,
+        "no-tumor": 3.974759238190018e-06
+      },
+      "top1": "osteosarcoma",
+      "top3": [
+        {
+          "label": "osteosarcoma",
+          "score": 0.9464935064315796
+        },
+        {
+          "label": "other mt",
+          "score": 0.03238558769226074
+        },
+        {
+          "label": "simple bone cyst",
+          "score": 0.008281653746962547
+        }
+      ],
+      "warmup_seconds": 0.11063370000192663,
+      "measured_seconds": [
+        0.10521419999713544,
+        0.10385270000551827,
+        0.10410940000292612
+      ],
+      "median_seconds": 0.10410940000292612,
+      "repeat_max_delta": 0.0,
+      "repeat_pass": true,
+      "notebook_comparison": "NOT_PROVIDED",
+      "peak_allocated_vram_mb": 206.1630859375,
+      "process_ram_mb": 1375.97265625,
+      "true_label": "osteosarcoma",
+      "correct": true,
+      "status": "PASS",
+      "metadata": {
+        "age": 12,
+        "gender": "M",
+        "hand": 0,
+        "ulna": 0,
+        "radius": 0,
+        "humerus": 0,
+        "foot": 0,
+        "tibia": 1,
+        "fibula": 0,
+        "femur": 0,
+        "hip bone": 0,
+        "ankle-joint": 0,
+        "knee-joint": 0,
+        "hip-joint": 0,
+        "elbow-joint": 0,
+        "shoulder-joint": 0,
+        "upper limb": 0,
+        "lower limb": 1,
+        "pelvis": 0,
+        "frontal": 0,
+        "lateral": 1,
+        "oblique": 0
+      }
+    }
+  ],
+  "notes": [
+    "Technical check only; repeatability is not notebook parity or clinical validation."
+  ],
+  "device": "cuda",
+  "sha256": {
+    "best_model.pt": "2965de75f9e8105301fda7faf21a0c091be8ea99908cff6dc59b331ff07db830",
+    "metadata_processor.joblib": "1b47ca6c00bd88b5bc8637d750e38b75f1ca8d5a440b53128dab6443d90aa04e",
+    "val_transform.json": "78de795baa2ecb3fe5db20de3430002175e753f6c5f6856a610f445fa65f99ba",
+    "config.json": "0fa488736a18dae4a4e48fc85676ceb535bbb5dda526c9c399c9eb31c9220f87",
+    "model_definition.py": "cbc4ad3b001293dcea25177bc37f26c5a491b29520c8114a38abb4c7188030d0",
+    "inference.py": "7fac95377ac819504a53fb742b1c5648cf7e4e85724220754ce9745f173e8d72"
+  },
+  "load_seconds": 1.1804802999977255,
+  "labels": [
+    "no-tumor",
+    "osteochondroma",
+    "multiple osteochondromas",
+    "simple bone cyst",
+    "giant cell tumor",
+    "osteofibroma",
+    "synovial osteochondroma",
+    "other bt",
+    "osteosarcoma",
+    "other mt"
+  ],
+  "config_mismatches": {}
+}

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BoneScope · Lịch sử ca phân tích</title>
+  <link rel="stylesheet" href="/ui-assets/style.css?v=2">
+</head>
+<body>
+<header>
+  <a class="brand" href="/" aria-label="BoneScope trang chủ">
+    <span class="brand-icon">B</span>
+    <span>BoneScope<small>KHÔNG GIAN NGHIÊN CỨU X-QUANG</small></span>
+  </a>
+  <nav class="main-nav">
+    <a href="/" class="nav-link">Phân tích</a>
+    <a href="/history" class="nav-link active">Lịch sử</a>
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+  </nav>
+  <div class="connection">
+    <span id="health" role="status">Đang kết nối…</span>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div>
+      <p class="eyebrow">QUẢN LÝ DỮ LIỆU / LỊCH SỬ</p>
+      <h1>Danh sách các ca<br><em>đã phân tích & lưu trữ.</em></h1>
+      <p>Xem lại kết quả dự đoán, các nhận xét ghi chú và nhãn hiệu chỉnh chuyên gia.</p>
+    </div>
+    <div class="scope">
+      <span class="scope-mark" id="total-badge">0</span>
+      <p>Tổng số ca<small>Lưu trữ cục bộ SQLite</small></p>
+    </div>
+  </section>
+
+  <div class="card" style="padding: 16px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
+    <div style="display: flex; gap: 12px; align-items: center; flex: 1; min-width: 260px;">
+      <label style="margin: 0; font-size: 13px; white-space: nowrap;">Lọc theo nhãn:</label>
+      <select id="filter-label" style="margin: 0; min-height: 36px; padding: 6px 10px;">
+        <option value="">Tất cả các nhãn</option>
+        <option value="no-tumor">no-tumor</option>
+        <option value="osteochondroma">osteochondroma</option>
+        <option value="multiple osteochondromas">multiple osteochondromas</option>
+        <option value="simple bone cyst">simple bone cyst</option>
+        <option value="giant cell tumor">giant cell tumor</option>
+        <option value="osteofibroma">osteofibroma</option>
+        <option value="synovial osteochondroma">synovial osteochondroma</option>
+        <option value="other bt">other bt</option>
+        <option value="osteosarcoma">osteosarcoma</option>
+        <option value="other mt">other mt</option>
+      </select>
+    </div>
+    <button id="refresh-btn" class="secondary btn-sm" type="button">🔄 Làm mới</button>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Mã ca</th>
+          <th>Thời gian</th>
+          <th>Tên ảnh</th>
+          <th>Dự đoán Top-1</th>
+          <th>Điểm</th>
+          <th>Thời gian chạy</th>
+          <th>Thao tác</th>
+        </tr>
+      </thead>
+      <tbody id="cases-tbody">
+        <tr>
+          <td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải danh sách ca...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    <span>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang</span>
+    <span>Giao diện 0.2.0</span>
+  </footer>
+</main>
+
+<script>
+  const tbody = document.getElementById('cases-tbody');
+  const totalBadge = document.getElementById('total-badge');
+  const filterLabel = document.getElementById('filter-label');
+  const refreshBtn = document.getElementById('refresh-btn');
+
+  const pct = v => (v * 100).toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+
+  async function loadCases() {
+    tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải...</td></tr>';
+    try {
+      const label = filterLabel.value;
+      const url = '/cases' + (label ? `?label=${encodeURIComponent(label)}` : '');
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Không thể tải danh sách ca');
+      const data = await res.json();
+      totalBadge.textContent = data.total;
+
+      if (!data.cases || data.cases.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 40px;">Chưa có ca nào được lưu. Hãy phân tích ảnh và nhấn "Lưu ca vào lịch sử".</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.cases.map(c => `
+        <tr>
+          <td><strong>${c.id}</strong></td>
+          <td><small style="color: var(--muted)">${new Date(c.created_at).toLocaleString('vi-VN')}</small></td>
+          <td>${c.image_filename}</td>
+          <td><span class="badge badge-teal">${c.top1_label}</span></td>
+          <td><strong>${pct(c.top1_score)}</strong></td>
+          <td><small>${c.prediction_seconds.toFixed(3)}s (${c.device})</small></td>
+          <td class="table-actions">
+            <a href="/case/${c.id}" class="secondary btn-sm" style="text-decoration: none; display: inline-block;">Chi tiết</a>
+            <button onclick="removeCase('${c.id}')" class="btn-sm" style="background: transparent; color: var(--red); border: 1px solid #fad2cb;">Xóa</button>
+          </td>
+        </tr>
+      `).join('');
+    } catch (err) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align: center; color: var(--red); padding: 30px;">Lỗi: ${err.message}</td></tr>`;
+    }
+  }
+
+  async function removeCase(id) {
+    if (!confirm(`Bạn có chắc chắn muốn xóa ca ${id}?`)) return;
+    try {
+      const res = await fetch(`/cases/${id}`, { method: 'DELETE' });
+      if (!res.ok) throw new Error('Xóa ca thất bại');
+      loadCases();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+
+  filterLabel.addEventListener('change', loadCases);
+  refreshBtn.addEventListener('click', loadCases);
+
+  // Health check
+  fetch('/health').then(r => r.json()).then(d => {
+    const el = document.getElementById('health');
+    el.textContent = `Đã kết nối · ${d.device === 'cuda' ? 'GPU' : d.device.toUpperCase()}`;
+    el.className = 'online';
+  }).catch(() => {
+    const el = document.getElementById('health');
+    el.textContent = 'Chưa kết nối API';
+    el.className = 'offline';
+  });
+
+  loadCases();
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "🌐 BoneScope: API + UI (dev)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "xray_ui:app",
+                "--host", "127.0.0.1",
+                "--port", "8000",
+                "--reload"
+            ],
+            "env": {
+                "PYTHONUTF8": "1",
+                "NO_ALBUMENTATIONS_UPDATE": "1",
+                "HF_HUB_OFFLINE": "1"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "🔌 BoneScope: Chỉ API (không UI)",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": [
+                "xray_api:app",
+                "--host", "127.0.0.1",
+                "--port", "8000",
+                "--reload"
+            ],
+            "env": {
+                "PYTHONUTF8": "1",
+                "NO_ALBUMENTATIONS_UPDATE": "1",
+                "HF_HUB_OFFLINE": "1"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "🧪 BoneScope: Chạy kiểm tra model",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/check_model.py",
+            "env": {
+                "PYTHONUTF8": "1",
+                "NO_ALBUMENTATIONS_UPDATE": "1",
+                "HF_HUB_OFFLINE": "1"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

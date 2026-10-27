@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BoneScope · Phân tích X-quang</title><link rel="stylesheet" href="/ui-assets/style.css?v=2"></head>
+<body>
+<header><a class="brand" href="/" aria-label="BoneScope trang chủ"><span class="brand-icon">B</span><span>BoneScope<small>KHÔNG GIAN NGHIÊN CỨU X-QUANG</small></span></a>
+<nav class="main-nav"><a href="/" class="nav-link active">Phân tích</a><a href="/history" class="nav-link">Lịch sử</a><a href="/dashboard" class="nav-link">Dashboard</a></nav>
+<div class="connection"><span id="health" role="status">Đang kiểm tra kết nối…</span><button type="button" id="reconnect" class="quiet">Kiểm tra lại</button></div></header>
+<main>
+<section class="intro"><div><p class="eyebrow">PHÂN TÍCH ẢNH / BẢN THỬ NGHIỆM</p><h1>Từ ảnh chụp đến<br><em>kết quả phân loại.</em></h1><p>Tải ảnh, xác nhận thông tin và xem các lớp mà mô hình dự đoán.</p></div><div class="scope"><span class="scope-mark">01</span><p>Phân loại u xương<small>10 lớp · Ảnh và metadata</small></p></div></section>
+<div class="notice">Dùng cho học tập và nghiên cứu. Kết quả mô hình không thay thế chẩn đoán; điểm dự đoán chưa phải xác suất mắc bệnh đã được kiểm chứng.</div>
+<div class="workspace">
+<form id="analysis-form"><fieldset id="inputs">
+<section class="card"><div class="section-title"><span class="step">01</span><div><h2>Ảnh X-quang</h2><p>Chọn ảnh gốc tương ứng với metadata.</p></div></div>
+<div class="upload-box"><label for="image" class="upload-label"><span class="upload-icon">↑</span><strong>Chọn ảnh từ máy</strong><span>JPG, PNG, BMP hoặc TIFF · tối đa 30 MiB</span></label><input id="image" type="file" accept=".jpg,.jpeg,.png,.bmp,.tif,.tiff" required></div>
+<div id="preview-wrap" hidden><div class="preview"><img id="preview" alt="Ảnh đã chọn để phân tích"></div><p id="image-name" class="file-name"></p><p id="preview-note" class="hint" hidden>Trình duyệt không xem trước được ảnh này. API vẫn sẽ kiểm tra định dạng và nội dung ảnh.</p></div>
+</section>
+<section class="card"><div class="section-title"><span class="step">02</span><div><h2>Thông tin đi kèm</h2><p>Điền theo dataset hoặc nạp từ tệp đã chuẩn bị.</p></div></div>
+<div class="import-panel"><label class="secondary file-button">Nạp metadata JSON<input id="metadata-file" type="file" accept=".json,application/json"></label><span class="hint">Hỗ trợ cases.json hoặc một object metadata.</span><div id="case-picker-wrap" hidden><label for="case-picker">Chọn ca trong tệp</label><select id="case-picker"></select></div><p id="import-note" class="hint" role="status"></p></div>
+<div class="two-col"><label>Tuổi<input id="age" type="number" min="0" max="120" step="any" placeholder="Nhập tuổi" required></label><label>Giới tính<select id="gender" required><option value="">Chọn giới tính</option><option value="M">Nam (M)</option><option value="F">Nữ (F)</option></select></label></div>
+<div class="group-header"><h3>Vị trí và hướng chụp</h3><span id="completion">0/20 trường đã nhập</span></div><p class="hint">Mỗi trường phải là 0 hoặc 1 theo dữ liệu gốc. Không tự điền 0 khi chưa biết.</p>
+<div id="binary-fields" class="metadata-grid"></div>
+<label class="confirm"><input id="confirmed" type="checkbox" required><span>Tôi đã kiểm tra ảnh và metadata thuộc cùng một ca.</span></label>
+</section>
+<div class="actions"><button id="submit" type="submit" class="primary">Phân tích ảnh <span>→</span></button><button id="reset" type="button" class="secondary">Làm mới</button></div>
+</fieldset></form>
+<aside class="result-column"><section class="card result-card" aria-live="polite"><div class="section-title"><span class="step">03</span><div><h2>Kết quả phân tích</h2><p id="result-subtitle">Kết quả sẽ xuất hiện sau khi gửi ảnh.</p></div></div>
+<div id="message" role="alert" hidden></div>
+<div id="empty-result" class="empty-result"><span class="result-symbol">◎</span><h3>Sẵn sàng khi bạn hoàn tất</h3><p>Chọn ảnh và nhập đầy đủ thông tin ở bên trái để bắt đầu.</p></div>
+<div id="loading" hidden><div class="spinner"></div><h3>Đang phân tích ảnh…</h3><p>Yêu cầu đầu tiên có thể mất lâu hơn do làm nóng mô hình.</p></div>
+<div id="result" hidden><p class="eyebrow">LỚP CÓ ĐIỂM CAO NHẤT</p><h3 id="top-label" class="top-label"></h3><div class="main-score"><span id="top-score"></span><small>điểm dự đoán</small></div><div id="top-three"></div><div class="result-meta"><span>Thời gian xử lý<strong id="duration"></strong></span><span>Thiết bị<strong id="device"></strong></span></div><p class="hint">Thời gian trên gồm tiền xử lý và suy luận; chưa gồm tải ảnh và toàn bộ lượt gọi HTTP.</p><details><summary>Xem điểm của cả 10 lớp</summary><table><thead><tr><th>Lớp</th><th>Điểm</th></tr></thead><tbody id="all-scores"></tbody></table></details>
+<div class="save-actions"><button type="button" id="save-case" class="primary full">💾 Lưu ca vào lịch sử</button><button type="button" id="download" class="secondary full">Tải kết quả JSON</button></div>
+<div id="save-message" class="save-message" hidden></div>
+</div>
+</section><div class="side-note"><h3>Thông tin cho bước hiện tại</h3><p>Ảnh được xử lý qua API trên máy bạn. Chưa có lưu lịch sử hoặc hội thoại RAG.</p><p>Thay ảnh hoặc metadata sẽ xóa kết quả cũ để tránh nhầm ca. Tải JSON nếu cần giữ kết quả.</p></div></aside>
+</div><footer>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang<span>Giao diện 0.2.0</span></footer>
+</main><script src="/ui-assets/app.js" defer></script></body></html>

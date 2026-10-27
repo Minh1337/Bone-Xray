@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BoneScope · Dashboard thống kê</title>
+  <link rel="stylesheet" href="/ui-assets/style.css?v=2">
+</head>
+<body>
+<header>
+  <a class="brand" href="/" aria-label="BoneScope trang chủ">
+    <span class="brand-icon">B</span>
+    <span>BoneScope<small>KHÔNG GIAN NGHIÊN CỨU X-QUANG</small></span>
+  </a>
+  <nav class="main-nav">
+    <a href="/" class="nav-link">Phân tích</a>
+    <a href="/history" class="nav-link">Lịch sử</a>
+    <a href="/dashboard" class="nav-link active">Dashboard</a>
+  </nav>
+  <div class="connection">
+    <span id="health" role="status">Đang kết nối…</span>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div>
+      <p class="eyebrow">TỔNG QUAN HỆ THỐNG / THỐNG KÊ</p>
+      <h1>Dashboard phân tích<br><em>và thống kê hiệu năng.</em></h1>
+      <p>Tổng hợp các ca đã dự đoán, phân bố phân loại u xương và tốc độ xử lý phần cứng.</p>
+    </div>
+    <div class="scope">
+      <span class="scope-mark">📊</span>
+      <p>Báo cáo tự động<small>Cập nhật thời gian thực</small></p>
+    </div>
+  </section>
+
+  <!-- Stat summary cards -->
+  <div class="stat-grid">
+    <div class="stat-card">
+      <h3>Tổng số ca</h3>
+      <div class="stat-number" id="stat-total">0</div>
+      <div class="stat-desc">Đã xử lý và lưu trữ</div>
+    </div>
+    <div class="stat-card">
+      <h3>Ca có hiệu chỉnh</h3>
+      <div class="stat-number" id="stat-corrected">0</div>
+      <div class="stat-desc">Nhãn phản hồi chuyên gia</div>
+    </div>
+    <div class="stat-card">
+      <h3>Ca có nhận xét</h3>
+      <div class="stat-number" id="stat-commented">0</div>
+      <div class="stat-desc">Ghi chú lâm sàng / kỹ thuật</div>
+    </div>
+    <div class="stat-card">
+      <h3>Tốc độ trung bình</h3>
+      <div class="stat-number" id="stat-avg-time">0s</div>
+      <div class="stat-desc">Thời gian suy luận mô hình</div>
+    </div>
+  </div>
+
+  <!-- Distribution cards -->
+  <div class="workspace">
+    <div class="card">
+      <div class="section-title">
+        <span class="step">01</span>
+        <div>
+          <h2>Phân bố 10 lớp dự đoán</h2>
+          <p>Tỷ lệ các loại tổn thương u xương xuất hiện trong các ca đã lưu.</p>
+        </div>
+      </div>
+      <div id="labels-breakdown">
+        <p style="color: var(--muted); text-align: center; padding: 20px;">Đang tải dữ liệu thống kê...</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <span class="step">02</span>
+        <div>
+          <h2>Môi trường phần cứng</h2>
+          <p>Tỷ lệ suy luận qua GPU so với CPU.</p>
+        </div>
+      </div>
+      <div id="device-breakdown">
+        <p style="color: var(--muted); text-align: center; padding: 20px;">Đang tải...</p>
+      </div>
+
+      <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid var(--line);">
+        <h3 style="font-size: 14px; margin-bottom: 8px;">Ghi chú đánh giá mô hình</h3>
+        <p class="hint">Theo báo cáo xác minh: lớp <code>no-tumor</code> đạt độ chính xác cao nhất (293/293 ảnh test). Các lớp hiếm như <code>osteofibroma</code>, <code>other bt</code>, <code>other mt</code> có số lượng ảnh ít nên cần theo dõi hiệu chỉnh thường xuyên.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang</span>
+    <span>Giao diện 0.2.0</span>
+  </footer>
+</main>
+
+<script>
+  async function loadDashboard() {
+    try {
+      const res = await fetch('/dashboard/stats');
+      if (!res.ok) throw new Error('Không thể tải thống kê');
+      const data = await res.json();
+
+      document.getElementById('stat-total').textContent = data.total_cases;
+      document.getElementById('stat-corrected').textContent = data.corrected_cases;
+      document.getElementById('stat-commented').textContent = data.commented_cases;
+      document.getElementById('stat-avg-time').textContent = data.avg_prediction_seconds.toFixed(3) + 's';
+
+      // Labels breakdown
+      const labelsDiv = document.getElementById('labels-breakdown');
+      const dist = data.labels_distribution || {};
+      const total = data.total_cases || 1;
+      const entries = Object.entries(dist).sort((a, b) => b[1] - a[1]);
+
+      if (entries.length === 0) {
+        labelsDiv.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 30px;">Chưa có dữ liệu ca nào.</p>';
+      } else {
+        labelsDiv.innerHTML = entries.map(([label, count]) => {
+          const pct = ((count / total) * 100).toFixed(1);
+          return `
+            <div class="rank" style="margin: 14px 0;">
+              <div class="rank-heading">
+                <span><strong>${label}</strong></span>
+                <span>${count} ca (${pct}%)</span>
+              </div>
+              <div class="bar">
+                <span style="width: ${pct}%;"></span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // Device breakdown
+      const devDiv = document.getElementById('device-breakdown');
+      const devEntries = Object.entries(data.device_distribution || {});
+      if (devEntries.length === 0) {
+        devDiv.innerHTML = '<p style="color: var(--muted); text-align: center; padding: 20px;">Chưa có dữ liệu thiết bị.</p>';
+      } else {
+        devDiv.innerHTML = devEntries.map(([dev, count]) => {
+          const devName = dev === 'cuda' ? '🎮 NVIDIA GPU (CUDA)' : '💻 CPU';
+          const pct = ((count / total) * 100).toFixed(1);
+          return `
+            <div class="rank" style="margin: 14px 0;">
+              <div class="rank-heading">
+                <span><strong>${devName}</strong></span>
+                <span>${count} ca (${pct}%)</span>
+              </div>
+              <div class="bar">
+                <span style="width: ${pct}%; background: ${dev === 'cuda' ? 'var(--teal)' : '#687b80'};"></span>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  // Health check
+  fetch('/health').then(r => r.json()).then(d => {
+    const el = document.getElementById('health');
+    el.textContent = `Đã kết nối · ${d.device === 'cuda' ? 'GPU' : d.device.toUpperCase()}`;
+    el.className = 'online';
+  }).catch(() => {
+    const el = document.getElementById('health');
+    el.textContent = 'Chưa kết nối API';
+    el.className = 'offline';
+  });
+
+  loadDashboard();
+</script>
+</body>
+</html>

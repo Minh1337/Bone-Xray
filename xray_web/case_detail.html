@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BoneScope · Chi tiết ca phân tích</title>
+  <link rel="stylesheet" href="/ui-assets/style.css?v=2">
+</head>
+<body>
+<header>
+  <a class="brand" href="/" aria-label="BoneScope trang chủ">
+    <span class="brand-icon">B</span>
+    <span>BoneScope<small>KHÔNG GIAN NGHIÊN CỨU X-QUANG</small></span>
+  </a>
+  <nav class="main-nav">
+    <a href="/" class="nav-link">Phân tích</a>
+    <a href="/history" class="nav-link active">Lịch sử</a>
+    <a href="/dashboard" class="nav-link">Dashboard</a>
+  </nav>
+  <div class="connection">
+    <span id="health" role="status">Đang kết nối…</span>
+  </div>
+</header>
+
+<main>
+  <div style="margin-bottom: 20px;">
+    <a href="/history" class="quiet" style="font-size: 13px;">← Quay lại danh sách lịch sử</a>
+  </div>
+
+  <section class="intro">
+    <div>
+      <p class="eyebrow" id="case-id-eyebrow">CHI TIẾT CA</p>
+      <h1 id="case-title">Đang tải thông tin…</h1>
+      <p id="case-meta-header"></p>
+    </div>
+    <div class="scope">
+      <span class="scope-mark" id="top1-scope-mark">◎</span>
+      <p id="top1-scope-text">Dự đoán Top-1<small id="top1-scope-sub"></small></p>
+    </div>
+  </section>
+
+  <div class="workspace">
+    <!-- Left Column: Prediction & Metadata -->
+    <div>
+      <div class="card">
+        <div class="section-title">
+          <span class="step">01</span>
+          <div>
+            <h2>Kết quả phân loại mô hình</h2>
+            <p>Điểm dự đoán từ mô hình Swin + Cross-Attention.</p>
+          </div>
+        </div>
+
+        <div class="main-score">
+          <span id="detail-top-score">0%</span>
+          <small>điểm dự đoán</small>
+        </div>
+
+        <div id="detail-top-three"></div>
+
+        <details style="margin-top: 20px;">
+          <summary>Xem toàn bộ 10 lớp</summary>
+          <table>
+            <thead><tr><th>Lớp u xương</th><th>Điểm số</th></tr></thead>
+            <tbody id="detail-all-scores"></tbody>
+          </table>
+        </details>
+      </div>
+
+      <div class="card">
+        <div class="section-title">
+          <span class="step">02</span>
+          <div>
+            <h2>Thông tin ca bệnh (Metadata)</h2>
+            <p>22 trường thông tin đi kèm ảnh X-quang.</p>
+          </div>
+        </div>
+        <div id="metadata-display" class="metadata-grid" style="grid-template-columns: 1fr 1fr;">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Comments & Corrections -->
+    <div>
+      <!-- Corrections -->
+      <div class="card">
+        <div class="section-title">
+          <span class="step">03</span>
+          <div>
+            <h2>Hiệu chỉnh nhãn chuyên gia</h2>
+            <p>Ghi nhận nhãn chỉnh sửa độc lập (không ghi đè dự đoán gốc).</p>
+          </div>
+        </div>
+
+        <div id="corrections-list" style="margin-bottom: 18px;">
+          <!-- List of corrections -->
+        </div>
+
+        <form id="correction-form" style="border-top: 1px solid var(--line); padding-top: 16px;">
+          <label>Nhãn hiệu chỉnh:
+            <select id="corr-label" required>
+              <option value="">-- Chọn nhãn chính xác --</option>
+              <option value="no-tumor">no-tumor</option>
+              <option value="osteochondroma">osteochondroma</option>
+              <option value="multiple osteochondromas">multiple osteochondromas</option>
+              <option value="simple bone cyst">simple bone cyst</option>
+              <option value="giant cell tumor">giant cell tumor</option>
+              <option value="osteofibroma">osteofibroma</option>
+              <option value="synovial osteochondroma">synovial osteochondroma</option>
+              <option value="other bt">other bt</option>
+              <option value="osteosarcoma">osteosarcoma</option>
+              <option value="other mt">other mt</option>
+            </select>
+          </label>
+          <label style="margin-top: 10px;">Lý do / Bằng chứng lâm sàng:
+            <input type="text" id="corr-reason" placeholder="Ví dụ: Sinh thiết xác nhận..." style="margin-top: 6px;">
+          </label>
+          <button type="submit" class="secondary" style="margin-top: 12px; width: 100%;">Lưu hiệu chỉnh</button>
+        </form>
+      </div>
+
+      <!-- Comments -->
+      <div class="card">
+        <div class="section-title">
+          <span class="step">04</span>
+          <div>
+            <h2>Nhận xét & Ghi chú</h2>
+            <p>Thảo luận, ghi chú phục vụ báo cáo và nghiên cứu.</p>
+          </div>
+        </div>
+
+        <div id="comments-list" style="margin-bottom: 18px; max-height: 250px; overflow-y: auto;">
+          <!-- Comments -->
+        </div>
+
+        <form id="comment-form" style="border-top: 1px solid var(--line); padding-top: 16px;">
+          <textarea id="comment-text" rows="3" placeholder="Nhập ghi chú hoặc nhận xét..." style="width: 100%; border: 1px solid #ccd7d2; border-radius: 7px; padding: 10px; font-family: inherit; font-size: 13px;" required></textarea>
+          <button type="submit" class="secondary" style="margin-top: 10px; width: 100%;">Thêm nhận xét</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang</span>
+    <span>Giao diện 0.2.0</span>
+  </footer>
+</main>
+
+<script>
+  const caseId = window.location.pathname.split('/').pop();
+  const pct = v => (v * 100).toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+
+  async function loadCaseDetail() {
+    try {
+      const res = await fetch(`/cases/${caseId}`);
+      if (!res.ok) throw new Error('Không tìm thấy ca ' + caseId);
+      const c = await res.json();
+
+      document.getElementById('case-id-eyebrow').textContent = `CA PHÂN TÍCH #${c.id}`;
+      document.getElementById('case-title').innerHTML = `Ảnh: <em>${c.image_filename}</em>`;
+      document.getElementById('case-meta-header').textContent = `Thời gian: ${new Date(c.created_at).toLocaleString('vi-VN')} · Thiết bị: ${c.device.toUpperCase()} · Xử lý: ${c.prediction_seconds.toFixed(3)}s`;
+
+      document.getElementById('top1-scope-mark').textContent = 'Top-1';
+      document.getElementById('top1-scope-text').innerHTML = `<strong>${c.top1_label}</strong><small>${pct(c.top1_score)}</small>`;
+      document.getElementById('detail-top-score').textContent = pct(c.top1_score);
+
+      // Top 3
+      const ranked = Object.entries(c.scores_json).sort((a, b) => b[1] - a[1]);
+      document.getElementById('detail-top-three').innerHTML = ranked.slice(0, 3).map(([k, v], i) => `
+        <div class="rank">
+          <div class="rank-heading">
+            <span>0${i+1} ${k}</span>
+            <strong>${pct(v)}</strong>
+          </div>
+          <div class="bar">
+            <span style="width: ${v * 100}%;"></span>
+          </div>
+        </div>
+      `).join('');
+
+      // All 10
+      document.getElementById('detail-all-scores').innerHTML = ranked.map(([k, v]) => `
+        <tr><td>${k}</td><td style="text-align: right;"><strong>${pct(v)}</strong></td></tr>
+      `).join('');
+
+      // Metadata display
+      const m = c.metadata_json;
+      const metaDiv = document.getElementById('metadata-display');
+      metaDiv.innerHTML = Object.entries(m).map(([k, v]) => `
+        <div style="font-size: 12px; padding: 6px 0; border-bottom: 1px dashed var(--line);">
+          <span style="color: var(--muted);">${k}:</span> <strong>${v}</strong>
+        </div>
+      `).join('');
+
+      // Render corrections
+      renderCorrections(c.corrections || []);
+
+      // Render comments
+      renderComments(c.comments || []);
+
+    } catch (err) {
+      document.getElementById('case-title').textContent = 'Lỗi: ' + err.message;
+    }
+  }
+
+  function renderCorrections(list) {
+    const div = document.getElementById('corrections-list');
+    if (!list.length) {
+      div.innerHTML = '<p class="hint">Chưa có hiệu chỉnh chuyên gia cho ca này.</p>';
+      return;
+    }
+    div.innerHTML = list.map(item => `
+      <div style="background: #fdf5f2; border: 1px solid #f9ded5; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
+        <div style="display: flex; justify-content: space-between; font-size: 12px;">
+          <span>Nhãn hiệu chỉnh: <strong style="color: var(--red);">${item.corrected_label}</strong></span>
+          <small style="color: var(--muted);">${new Date(item.created_at).toLocaleString('vi-VN')}</small>
+        </div>
+        ${item.reason ? `<p style="font-size: 12px; margin: 6px 0 0; color: var(--ink);"><em>Lý do:</em> ${item.reason}</p>` : ''}
+      </div>
+    `).join('');
+  }
+
+  function renderComments(list) {
+    const div = document.getElementById('comments-list');
+    if (!list.length) {
+      div.innerHTML = '<p class="hint">Chưa có nhận xét nào.</p>';
+      return;
+    }
+    div.innerHTML = list.map(item => `
+      <div style="background: #f8faf8; border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; margin-bottom: 8px;">
+        <p style="font-size: 13px; margin: 0 0 6px;">${item.content}</p>
+        <small style="color: var(--muted); font-size: 11px;">${new Date(item.created_at).toLocaleString('vi-VN')}</small>
+      </div>
+    `).join('');
+  }
+
+  // Handle Correction Submit
+  document.getElementById('correction-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const label = document.getElementById('corr-label').value;
+    const reason = document.getElementById('corr-reason').value;
+    if (!label) return;
+    try {
+      const res = await fetch(`/cases/${caseId}/corrections`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ corrected_label: label, reason })
+      });
+      if (!res.ok) throw new Error('Không thể thêm hiệu chỉnh');
+      document.getElementById('corr-reason').value = '';
+      document.getElementById('corr-label').value = '';
+      loadCaseDetail();
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+
+  // Handle Comment Submit
+  document.getElementById('comment-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const content = document.getElementById('comment-text').value.trim();
+    if (!content) return;
+    try {
+      const res = await fetch(`/cases/${caseId}/comments`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content })
+      });
+      if (!res.ok) throw new Error('Không thể thêm nhận xét');
+      document.getElementById('comment-text').value = '';
+      loadCaseDetail();
+    } catch (err) {
+      alert(err.message);
+    }
+  });
+
+  // Health check
+  fetch('/health').then(r => r.json()).then(d => {
+    const el = document.getElementById('health');
+    el.textContent = `Đã kết nối · ${d.device === 'cuda' ? 'GPU' : d.device.toUpperCase()}`;
+    el.className = 'online';
+  }).catch(() => {
+    const el = document.getElementById('health');
+    el.textContent = 'Chưa kết nối API';
+    el.className = 'offline';
+  });
+
+  loadCaseDetail();
+</script>
+</body>
+</html>

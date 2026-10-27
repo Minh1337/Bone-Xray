@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment (Cực kỳ quan trọng: không đẩy .venv lên git)
+.venv/
+venv/
+env/
+ENV/
+
+# Binary installers
+tools/*.exe
+
+# Runtime SQLite Database & logs
+data/*.db
+data/*.sqlite3
+logs/
+results/
+api_results/
+*.log
+
+# Temporary & Cache files
+.temp/
+tmp/
+.cache/
+
+# OS generated files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Git LFS tracking note: model weights (~138MB) can be tracked via git-lfs or downloaded separately
