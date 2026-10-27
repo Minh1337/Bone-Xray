@@ -5,69 +5,74 @@
 
 ---
 
-## 📁 Cấu Trúc Dự Án (Đã Tinh Gọn & Chuẩn Hóa)
+## 📁 Cấu Trúc Dự Án (Đã Cập Nhật)
 
 ```
 BONESCOPE/
-├── .vscode/                 # Cấu hình môi trường & Debug trong VSCode
-│   ├── launch.json          # 3 profile chạy (F5): UI+API, Chỉ API, Check Model
-│   └── settings.json        # Tự động chọn venv Python 3.11
-├── docs/                    # Lộ trình, hướng dẫn, báo cáo và tham chiếu
-│   ├── LO_TRINH_THUC_HIEN_DU_AN_AI.md
-│   ├── guides/              # Hướng dẫn theo giai đoạn
-│   ├── reports/             # Báo cáo Word
-│   └── reference/           # Báo cáo đối chiếu API
-├── tools/                   # Bộ công cụ & installer
-│   └── python-3.11.9-amd64.exe # Bộ cài Python 3.11 64-bit
-├── data/                    # Cơ sở dữ liệu ứng dụng
-│   └── bonescope.db         # SQLite CSDL: lưu ca, nhận xét, hiệu chỉnh nhãn
-├── model/                   # Trọng số & cấu hình mô hình Deep Learning
-│   ├── best_model.pt        # Trọng số Swin + Cross-Attention (138 MB)
-│   ├── config.json          # Tham số cấu hình mô hình
-│   ├── metadata_processor.joblib # Bộ tiền xử lý 22 trường metadata
-│   └── val_transform.json   # Cấu hình biến đổi ảnh Albumentations
-├── test_images/             # Ảnh X-quang mẫu thử nghiệm (IMG000001 -> 03)
-├── xray_web/                # Giao diện web ứng dụng BoneScope
-│   ├── index.html           # Trang phân tích ảnh & nhập thông tin
-│   ├── history.html         # Trang lịch sử ca đã lưu
-│   ├── dashboard.html       # Trang thống kê & dashboard hiệu năng
-│   ├── case_detail.html     # Trang chi tiết ca, nhận xét & hiệu chỉnh
-│   ├── app.js               # Logic điều khiển frontend
-│   └── style.css            # Giao diện y tế hiện đại
-├── tests/                   # Kiểm thử logic xác thực metadata & ảnh
-├── api_tests/               # Kiểm thử API endpoints (/predict, /cases, /dashboard)
-├── ui_tests/                # Kiểm thử UI routes & tích hợp
-├── rag/                     # Kho tài liệu và truy xuất cục bộ
-│   ├── data/                # Nguồn, corpus, câu hỏi đánh giá
-│   ├── build_corpus.py      # Tạo lại corpus từ nguồn
-│   ├── build_index.py       # Tạo embedding và chỉ mục vector
-│   ├── retrieval.py         # Truy xuất có kiểm tra phiên bản
-│   ├── evaluate.py          # Đo recall, MRR và câu ngoài phạm vi
-│   ├── compare.py           # So sánh cấu hình và lưu báo cáo đầy đủ
-│   ├── lexical.py           # Từ khóa Việt–Anh, BM25 và kết hợp thứ hạng
-│   ├── policy.py            # Routing câu ngoài phạm vi và thiếu nguồn
-│   ├── evidence.py          # Thử nghiệm xếp hạng và độ phủ khái niệm
-│   ├── compare_evidence.py  # Đo riêng xếp hạng và lọc thử nghiệm
-│   ├── index/               # Chỉ mục vector tạo tại máy (Git bỏ qua)
-│   ├── models/              # Mô hình embedding tại máy (Git bỏ qua)
-│   └── tests/               # Kiểm thử corpus/truy xuất
-├── logs/                    # Nhật ký hoạt động hệ thống
-├── results/                 # Kết quả các đợt chạy kiểm tra offline
-├── api_results/             # Kết quả xác minh tính toàn vẹn API
-│
-├── xray_ui.py               # Main Web Entrypoint (kết nối API + UI + Database)
-├── xray_api.py              # Core FastAPI app (suy luận mô hình)
-├── case_api.py              # API quản lý ca bệnh, nhận xét, hiệu chỉnh
-├── database.py              # Module quản lý CSDL SQLite
-├── inference.py             # Pipeline nạp mô hình & suy luận
-├── model_definition.py      # Kiến trúc mạng Swin + Cross-Attention
-├── validation.py            # Quy tắc kiểm tra tính hợp lệ dữ liệu
-├── check_model.py           # Script kiểm tra môi trường & tính toán SHA256
-├── cases.json               # Dữ liệu 3 ca mẫu chuẩn
-├── requirements.txt         # Thư viện Python cho mô hình (torch, timm, ...)
-├── requirements_api.txt     # Thư viện cho API (fastapi, uvicorn, ...)
-└── requirements_rag.txt     # Thư viện cho embedding cục bộ
+├── .vscode/                 # Cấu hình chạy và debug trong VS Code
+├── docs/                    # Roadmap, hướng dẫn, trạng thái và báo cáo
+│   ├── PROJECT_STATUS_VI.md # Trạng thái và bằng chứng kiểm thử mới nhất
+│   ├── STAGE11_HANDOFF_VI.md # Điểm bàn giao RAG giai đoạn 11
+│   ├── guides/              # Hướng dẫn model, API, UI và RAG
+│   ├── reference/           # Thiết kế và báo cáo đánh giá RAG/API
+│   └── reports/             # Báo cáo Word
+├── model/                   # Trọng số và cấu hình model
+│   ├── best_model.pt        # Trọng số Swin + Cross-Attention
+│   ├── config.json          # Tham số cấu hình model
+│   ├── metadata_processor.joblib
+│   └── val_transform.json
+├── tools/                   # Công cụ cục bộ/installer (Git bỏ qua)
+├── rag/                     # Corpus, retrieval và đánh giá RAG cục bộ
+│   ├── data/                # Corpus, nguồn, gold evaluation và config
+│   ├── build_corpus.py      # Tạo corpus từ các nguồn
+│   ├── build_index.py       # Tạo embedding và vector index
+│   ├── retrieval.py         # Hybrid retrieval và routing
+│   ├── evaluate.py          # Đánh giá recall/MRR và câu ngoài phạm vi
+│   ├── lexical.py           # Từ khóa, BM25 và hợp nhất thứ hạng
+│   ├── policy.py            # Chính sách phạm vi và đủ nguồn
+│   ├── evidence.py          # Thử nghiệm xếp hạng/độ phủ bằng chứng
+│   ├── compare*.py          # Runner so sánh và báo cáo đánh giá
+│   ├── tests/               # Kiểm thử corpus, retrieval và evidence
+│   ├── index/               # Index tạo tại máy (Git bỏ qua)
+│   ├── models/              # Model embedding (Git bỏ qua)
+│   └── source_cache/        # HTML nguồn tải tại máy (Git bỏ qua)
+├── xray_web/                # Frontend HTML/CSS/JavaScript
+│   ├── index.html           # Phân tích ảnh và metadata
+│   ├── history.html         # Lịch sử ca SQLite
+│   ├── dashboard.html       # Thống kê và hiệu năng
+│   ├── case_detail.html     # Chi tiết, nhận xét và hiệu chỉnh
+│   ├── app.js               # Logic frontend
+│   └── style.css            # Giao diện
+├── tests/                   # Test validation và inference
+├── api_tests/               # Test API và quản lý ca
+├── ui_tests/                # Test route/UI
+├── data/                    # SQLite runtime (Git bỏ qua)
+├── logs/                    # Log runtime (Git bỏ qua)
+├── results/                 # Kết quả offline (Git bỏ qua)
+├── api_results/             # Kết quả verify API (Git bỏ qua)
+├── test_images/             # Ảnh X-quang mẫu
+├── 01_setup.bat             # Tạo venv và cài dependency model
+├── 04_setup_api.bat         # Cài dependency FastAPI
+├── 05_start_api.bat         # Chạy API tại cổng 8000
+├── 06_verify_api.bat        # Kiểm tra API với model thật
+├── 07_start_ui.bat          # Chạy UI và API
+├── xray_ui.py               # Entrypoint UI + API + database
+├── xray_api.py              # FastAPI suy luận model
+├── case_api.py              # Endpoint ca, nhận xét, hiệu chỉnh
+├── database.py              # SQLite và schema
+├── inference.py             # Pipeline nạp model và suy luận
+├── model_definition.py      # Kiến trúc Swin + Cross-Attention
+├── validation.py            # Kiểm tra input và score
+├── check_model.py           # Kiểm tra môi trường/model
+├── verify_api.py             # Verify API parity
+├── cases.json               # Metadata các ca mẫu
+├── metadata_example.json     # Metadata mẫu cho API
+├── requirements*.txt        # Dependency model, API và RAG
+└── README*.md               # Hướng dẫn tổng quan tiếng Anh/Việt
 ```
+
+Các thư mục đánh dấu **Git bỏ qua** sẽ được tạo lại sau khi cài đặt hoặc chạy
+ứng dụng. Database và log không được chia sẻ tự động giữa các máy.
 
 ---
 
