@@ -48,7 +48,7 @@ Test toàn bộ repository:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Kết quả gần nhất của toàn bộ suite là **36 passed, 14 subtests passed**. Việc
+Kết quả xác nhận ngày 27/10/2026 của toàn bộ suite là **36 passed, 28 subtests passed**. Việc
 chạy với model thật trên máy mới cần thêm bước kiểm tra API bằng `06_verify_api.bat`.
 
 ## Giới hạn

@@ -37,7 +37,7 @@ BoneScope là ứng dụng chạy cục bộ trên Windows để:
   và Git LFS cho model.
 - **Đã xác minh kỹ thuật:** môi trường Python 3.11.9, PyTorch 2.6.0 + CUDA 12.4,
   RTX 3050 Laptop 4 GB, 3 ca mẫu chạy đạt kiểm tra lặp lại.
-- **Đã có bản đầu:** kho 12 nguồn NCI, hiện 416 đoạn sau sửa trích xuất, embeddings và vector index cục bộ.
+- **Đã có bản đầu:** kho hiện 13 nguồn (12 trang NCI và một bài CC BY 4.0), 439 đoạn sau sửa trích xuất; embeddings và vector index cục bộ đã dựng lại. Hybrid vocabulary v2 bổ sung cách gọi nang xương đơn độc và truy vấn cỡ mẫu/kết quả; cần kiểm định độc lập.
   Giai đoạn 11 còn vướng kết quả retrieval và xử lý câu ngoài phạm vi.
 - **Chưa được tuyên bố:** notebook parity đầy đủ, accuracy lâm sàng, xác suất đã hiệu
   chuẩn, chẩn đoán y khoa, triển khai public có xác thực hoặc chatbot/LLM đã nghiệm thu.
@@ -721,7 +721,7 @@ Trạng thái: PASS / BLOCKED
 
 > Điểm tiếp tục mới nhất cho AI: [STAGE11_HANDOFF_VI.md](STAGE11_HANDOFF_VI.md). Vòng 27/10 đã sửa trích xuất, thêm hybrid/routing và đánh giá 28 câu mới; vẫn thiếu kiểm tra đủ bằng chứng và thẩm định độc lập.
 
-> Vòng bổ sung: có rerank khái niệm và phép thử lọc từ vựng. Rerank cải thiện các tập đã xem, bộ lọc chặn nhầm nhiều câu dương nên không bật mặc định. Kết quả và hồ sơ phép thử ở đầu file bàn giao; báo cáo Word bản 1.3 đã đồng bộ.
+> Vòng bổ sung: có rerank khái niệm, phép thử lọc từ vựng và routing một số tuyên bố không được corpus xác minh. Rerank cải thiện các tập đã xem, bộ lọc chặn nhầm nhiều câu dương nên không bật mặc định. Kết quả và hồ sơ phép thử ở đầu file bàn giao; báo cáo Word bản 1.4 đã đồng bộ.
 
 ### Mục tiêu
 
@@ -759,6 +759,61 @@ Top-k/threshold:
 Kết quả retrieval evaluation:
 Truy xuất citation có thể tái lập: Có/Không
 Vấn đề:
+```
+
+---
+
+## 11A. Ảnh X-quang tham chiếu và hệ quy chiếu đánh giá
+
+> Giai đoạn bổ sung theo yêu cầu ngày 27/10/2026. Đây là nhánh dữ liệu/đánh giá ảnh, tách với RAG văn bản. Không dùng kết quả từ nguồn huấn luyện hiện tại làm kiểm định độc lập.
+
+### Mục tiêu
+
+Tạo catalogue ảnh X-quang có xuất xứ, giấy phép, checksum, nhãn chuẩn, metadata và quy tắc phân nhóm; dùng làm nguồn phát triển có thể tái lập, sau đó bổ sung bộ kiểm định thật sự độc lập.
+
+### Nguồn ảnh được chọn
+
+- BTXRD, DOI `10.6084/m9.figshare.27865398.v1`, Figshare chính thức.
+- Trang dataset công bố 3.746 ảnh và ghi giấy phép CC BY 4.0. Hãy trích dẫn Yao et al., *Scientific Data* 12, 88 (2025), DOI `10.1038/s41597-024-04311-y`.
+- Archive Figshare `BTXRD.zip`, kích thước 840,474,929 byte, file ID 50653575, MD5 `59132a5036d030580ccade8add8f13df`.
+- Archive đã tải và xác minh; SHA-256 `e7c800c3b4e090262b160525a0765f9d93bcc53d639c03806a3ac47b0ded3373`. Manifest bao phủ 3.746 ảnh; 3.745 nhãn hợp lệ (1.879 no-tumor và 1.866 có u), 1 ảnh nhãn subtype xung đột được giữ lại nhưng không chấm điểm. Metadata đủ 22/22 cho cả 3.746 ảnh.
+- Exact duplicate audit tìm thấy 21 nhóm gồm 42 ảnh. Nguồn không có patient/lesion IDs; partition vẫn unassigned. Không thể tái lập split của checkpoint hiện tại.
+- Ảnh và manifest runtime nằm dưới `data/external_datasets/BTXRD/`, bị Git bỏ qua. Không commit ảnh hay metadata ca; giữ nguyên bản gốc và attribution.
+
+### Hệ quy chiếu lớp và metadata
+
+Ánh xạ chuẩn 10 lớp phải giữ nguyên thứ tự model: `no-tumor`, `osteochondroma`, `multiple osteochondromas`, `simple bone cyst`, `giant cell tumor`, `osteofibroma`, `synovial osteochondroma`, `other bt`, `osteosarcoma`, `other mt`. Ca bình thường được xác định bằng cờ tumor=0; ca u chỉ nhận nhãn khi đúng một cờ subtype bật. Trường hợp thiếu/xung đột phải đánh dấu không hợp lệ, không đoán nhãn.
+
+Giữ metadata chuẩn 22 trường mà predictor yêu cầu: age, gender, các cờ xương/vùng giải phẫu và frontal/lateral/oblique. Lưu `image_id`, đường dẫn tương đối, SHA-256, center, label status, metadata status, license, DOI và attribution trong manifest. Không resize, CLAHE hoặc ghi đè ảnh nguồn; inference dùng chính validation transform đang khóa trong model.
+
+### Quy tắc chia tập và giới hạn hiện tại
+
+- Không chia ngẫu nhiên từng ảnh. Ưu tiên patient/lesion ID; nếu không có, tìm bản sao trùng bằng hash và perceptual hash rồi nhóm theo nguồn/center.
+- BTXRD chính là nguồn được ghi trong config checkpoint hiện tại (`/kaggle/input/.../btxrd-dataset`). Checkpoint chỉ lưu `split_signature`, không có ID ảnh train/validation/test. Vì vậy toàn bộ BTXRD hiện được gắn `independent_of_checkpoint_training=false`, `partition=unassigned`; kết quả trên đó chỉ là phát triển/tái lập, không phải external validation.
+- Để đánh giá ảnh “chụp bên ngoài”, cần một tập khác có quyền sử dụng, nhãn tham chiếu được chuyên gia xác nhận và không trùng bệnh nhân/ảnh huấn luyện. Không coi ảnh tải từ web không rõ nhãn là ground truth.
+- Báo cáo phải có confusion matrix, precision/recall/F1 theo lớp, macro-F1, top-1/top-3, calibration và phân tầng theo center/view; công bố số ca bỏ do nhãn/metadata lỗi. Không xem softmax là xác suất đã hiệu chuẩn.
+
+### Tiêu chí nghiệm thu Giai đoạn 11A
+
+- Archive khớp checksum nguồn; manifest bao phủ toàn bộ ảnh/metadata và ghi mọi hàng lỗi.
+- Class map và metadata map được đối chiếu với checkpoint/API, không suy diễn lớp.
+- Không đưa BTXRD vào đánh giá độc lập của checkpoint hiện tại khi chưa khôi phục split IDs.
+- Có bộ ngoài BTXRD với quyền và nhãn chuẩn được xác minh trước khi tuyên bố khả năng tổng quát.
+
+### Completion Note — Giai đoạn 11A
+
+Kết quả 27/10/2026: archive/checksum xác minh; manifest `data/external_datasets/BTXRD/reference/manifest.csv` có 3.746 ảnh, summary có hash/phân bố lớp; có 1 hàng nhãn lỗi, 0 hàng metadata lỗi, 21 nhóm exact duplicate/42 ảnh; không có patient/lesion grouping ID. Checkpoint dùng nguồn BTXRD nhưng thiếu image IDs từng split nên catalogue chỉ là nguồn phát triển/tái lập. Chưa có bộ ngoài BTXRD để đánh giá ảnh chụp mới. Giai đoạn 11A hoàn tất phần catalogue; phần external validation vẫn mở.
+
+```text
+[COMPLETION NOTE — GĐ11A]
+Dataset/DOI/license/checksum:
+Số ảnh và phân bố lớp:
+Số hàng label/metadata không hợp lệ:
+Patient/lesion grouping và duplicate audit:
+Quan hệ với dữ liệu huấn luyện checkpoint:
+External validation set:
+Kết quả metric và khoảng tin cậy:
+Trạng thái: PASS / INCOMPLETE / BLOCKED
 ```
 
 ---

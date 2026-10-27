@@ -1,5 +1,76 @@
 # Điểm tiếp tục giai đoạn 11
 
+## Bàn giao mới nhất — thêm Giai đoạn 11A và catalogue ảnh BTXRD — 27/10/2026
+
+- Đã tải BTXRD từ Figshare chính thức (CC BY 4.0; DOI `10.6084/m9.figshare.27865398.v1`). Archive 840,474,929 byte; MD5 nguồn khớp `59132a5036d030580ccade8add8f13df`; SHA-256 `e7c800c3b4e090262b160525a0765f9d93bcc53d639c03806a3ac47b0ded3373`.
+- Manifest runtime: `data/external_datasets/BTXRD/reference/manifest.csv`; summary: `data/external_datasets/BTXRD/reference/summary.json`. Có 3.746 ảnh và đủ 22/22 metadata; 3.745 nhãn hợp lệ (1.879 no-tumor, 1.866 tumor), 1 ảnh `IMG001276.jpeg` xung đột nhiều subtype nên nhãn để trống; 21 nhóm exact duplicate gồm 42 ảnh.
+- Không có patient/lesion IDs; checkpoint có nguồn huấn luyện BTXRD nhưng chỉ giữ `split_signature`, thiếu danh sách image ID từng split. Vì vậy mọi partition để `unassigned`, `independent_of_checkpoint_training=false`. Không tính hay tuyên bố accuracy trên BTXRD cho checkpoint đang có; muốn benchmark ảnh chụp mới phải có nguồn khác, độc lập, có quyền dùng và nhãn chuyên gia.
+- Script tái lập: `tools/prepare_btxrd_reference.py` (yêu cầu `openpyxl==3.1.5`, đã khai báo trong `requirements_rag.txt`). Hướng dẫn tại `docs/guides/README_IMAGE_REFERENCE_VI.md`, register tại `docs/reference/btxrd_source_register.json`, lộ trình tại `docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md`.
+- Giai đoạn 11A hoàn tất phần tải/kiểm checksum/catalogue và đánh dấu rõ giới hạn leakage; mục tiêu external validation chưa thể nghiệm thu. Giai đoạn 11 RAG cũng chưa hoàn tất: `answer_ready=false`, chatbot chưa có. Trạng thái và các hạng mục trước đó giữ nguyên bên dưới.
+
+### Việc tiếp tục
+
+1. Tiếp tục tìm một bộ X-quang ngoài BTXRD có giấy phép, nhãn chuẩn chuyên gia và provenance; không dùng ảnh ngẫu nhiên trên web làm nhãn chuẩn.
+2. Nếu có thể, khôi phục danh sách split train/validation/test gốc; không chia ngẫu nhiên ảnh hiện tại do thiếu patient/lesion IDs.
+3. Song song tiếp tục RAG theo phần bàn giao cũ dưới đây: tập độc lập, false refusal/acceptance, xác minh nguồn/nhãn; chỉ sau nghiệm thu mới mở chatbot.
+
+Nguồn: [Figshare BTXRD](https://figshare.com/articles/dataset/A_Radiograph_Dataset_for_the_Classification_Localization_and_Segmentation_of_Primary_Bone_Tumors/27865398), [bài báo Scientific Data](https://www.nature.com/articles/s41597-024-04311-y).
+
+Lệnh tái tạo catalogue sau khi cài dependency:
+
+```powershell
+\.venv\Scripts\python.exe -m pip install -r requirements_rag.txt
+\.venv\Scripts\python.exe tools\prepare_btxrd_reference.py
+```
+
+## Bàn giao mới nhất — cập nhật hybrid vocabulary — 27/10/2026
+
+- Corpus hiện **439 đoạn / 13 nguồn** (12 NCI, 1 Open Orthopaedics CC BY 4.0); hash `552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb`. Trang nguồn đã lọc khối Metrics/downloads khỏi corpus. Index 439 × 384 đã được dựng lại.
+- `retrieval_config.json` lên `hybrid-v2`; thêm đồng nghĩa Việt–Anh cho unicameral/simple bone cyst, vị trí humerus, cohort hồi cứu, cỡ mẫu, tiêm và kết quả tránh mổ mở. `simple bone cyst` được chuyển khỏi danh sách unsupported vì hiện có bằng chứng trong corpus; các nhãn thiếu khác vẫn bị chặn.
+- Tập dev mới `rag/data/evaluation_expansion_dev_v1.json`: 6 câu có đáp án, 3 câu âm. Kết quả apply-policy hybrid: Recall@5 **6/6**, MRR@5 **0,639**, negative abstention **3/3**, routing accuracy **9/9**. Báo cáo tại `docs/reference/stage11_expansion_dev_v1.json`. Tập do AI soạn, dùng khi phát triển/tuning và có rà lại evidence sau khi xem hit; không phải test độc lập.
+- Đã gắn lại bằng chứng cho câu dev V2 `n04` vì nguồn mới trả lời được câu simple bone cyst. Test split V2 không đổi nhưng đã xem trước đó; toàn bộ V2 chỉ regression. Với policy bật: 17 câu dương Recall@5 **14/17**, MRR@5 **0,688**; 11/11 câu âm được từ chối; routing accuracy **28/28**. `frozen_config_matches=false` là điều dự kiến do vocabulary đã đổi. Báo cáo: `docs/reference/stage11_20261027_config_v2_regression.json`.
+- RAG test: **23 passed, 24 subtests passed**. Full suite: **39 passed, 31 subtests passed**, một cảnh báo deprecation Starlette. Thêm kiểm tra ngăn Metrics vào corpus và kiểm tra expansion/routing tiếng Việt.
+- `answer_ready` tiếp tục false; không có chatbot. Điểm tiếp theo là thiết kế tập độc lập do người khác rà soát, rồi đo retrieval/false refusal/false acceptance trên nhiều nhãn. Tiếp tục xác minh `osteofibroma`; không xem kết quả dev là bằng chứng an toàn y khoa.
+
+Lệnh tái lập: `.\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q`; `.\.venv\Scripts\python.exe rag\evaluate.py --mode hybrid --apply-policy --dataset rag\data\evaluation_expansion_dev_v1.json --output docs\reference\stage11_expansion_dev_v1.json --summary`. Các mục cũ phía dưới là lịch sử, số liệu được giữ theo thời điểm đo.
+
+## Bàn giao phiên trước — 27/10/2026
+
+- Đã mở rộng `rag/data/sources.json` thêm một nguồn Open Orthopaedics CC BY 4.0; nguồn ghi rõ tác giả, publisher, ngày, URL, giấy phép và scope. Nghiên cứu là cohort hồi cứu 51 ca UBC đầu trên xương cánh tay về một phương pháp điều trị, không phải chỉ dẫn tổng quát.
+- Pipeline hiện xác thực host, giấy phép và scope cho nguồn ngoài NCI, gắn metadata nguồn lên từng chunk, đồng thời lọc email/boilerplate của trang nguồn.
+- Corpus/index mới: **440 chunks, 13 sources, 384 dimensions**. Corpus SHA-256: `466a467a7b27dae86ab94b6b76d33d22ef32618a2b2719aeb6f25d3f242b5a15`. `evaluation_v2.json` và `evaluation_evidence_v3.json` được đồng bộ hash corpus; gold/câu hỏi không thay đổi. Các tập này đã được xem, không phải đánh giá độc lập.
+- RAG tests: **21 passed, 21 subtests passed**. Full project: **37 passed, 28 subtests passed**, một cảnh báo deprecation Starlette.
+- Chạy lại hybrid trên `evaluation_v2.json` (28 câu đã xem; retrieval thô, `apply_policy=false`): Recall@5 **13/16 = 0,8125**, MRR@5 **0,66875**; **12/12 câu âm vẫn có hit**. Báo cáo đầy đủ tại `docs/reference/stage11_20261027_source_expansion_v1.json`. Không dùng kết quả này để tuyên bố khả năng từ chối hay đánh giá độc lập.
+- Truy vấn tiếng Anh về nguồn mới lấy đúng source và hit, nhưng `status=candidates_found`, `answer_ready=false`. Câu hỏi tương đương tiếng Việt trả `insufficient_evidence`/`corpus_coverage_gap`; cần sửa/đo lại multilingual retrieval và routing.
+- Nguồn AAOS không được ingest do điều khoản hạn chế tái sử dụng; tải MDPI bị 403, PMC gặp lỗi TLS. Hai nguồn không toàn văn kiểm chứng được nên không đưa vào corpus. Nhãn `osteofibroma` vẫn chưa được xác minh với metadata dataset gốc/chuyên gia.
+- Giai đoạn 11 **chưa hoàn tất**; chatbot chưa được xây. Không bật sinh câu trả lời hoặc `answer_ready` dựa riêng trên hit.
+
+### Lệnh tiếp tục
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
+.\.venv\Scripts\python.exe rag/retrieval.py "What did the retrospective cohort report about unicameral bone cysts of the proximal humerus?" --top-k 5
+```
+
+Trước tiên xử lý lỗi tiếng Việt trên bằng các câu dev mới; không tuning trên test V2/V3 đã xem. Sau đó mới tìm tiếp nguồn CC BY/được phép, xác minh nhãn `osteofibroma`, bổ sung tập độc lập và đánh giá đủ bằng chứng. Phần dưới ghi lịch sử các vòng trước, giữ nguyên để tra cứu.
+
+## Điểm bàn giao tại phiên trước — 27/10/2026
+
+Lần tiếp tục này đã đọc README tiếng Anh/Việt và toàn bộ Markdown trong `docs/`, đối chiếu code với handoff, rồi chạy toàn bộ suite:
+
+```powershell
+\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
+# 36 passed, 28 subtests passed; một Starlette deprecation warning
+```
+
+Repository bắt đầu ở `main`, `HEAD=d1ef896` (`Harden RAG policy routing and document handoff`), working tree sạch, local branch ahead `origin/main` một commit. Policy routing mới và 15 regression cases đã commit; đoạn lịch sử ngay dưới đây ghi “chưa commit” tại thời điểm cũ và không còn mô tả trạng thái hiện nay.
+
+**Tiến độ kỹ thuật:** không đổi corpus/index/gold trong lượt này. Giai đoạn 11 vẫn chưa nghiệm thu; strict lexical evidence filter đã thất bại do false refusal, reranker mới được đo trên các tập đã xem, `answer_ready` luôn `false`, và chưa có chatbot.
+
+**Bước phát triển kế tiếp:** mở rộng corpus có kiểm soát. Đã tìm thấy tài liệu AAOS hữu ích cho simple bone cyst và multiple osteochondromas, nhưng chưa ingest vì cần xác minh quyền tái sử dụng. Nhãn `osteofibroma` chưa được tự ý đồng nhất với osteofibrous dysplasia. Xác minh nguồn dữ liệu nhãn và điều khoản trước; sau đó cập nhật `sources.json`, tạo lại corpus/index, gắn lại gold và lưu báo cáo mới vào thư mục mới. Không sửa các tập V2/V3 đã xem rồi gọi chúng là đánh giá độc lập.
+
+Xác minh API/model thật đã hoàn tất: `verify_api.py` trả `API_LOCAL_PARITY_PASSED` cho 3/3 ca, sai lệch score tối đa 0, metadata và hash ảnh khớp; metadata thiếu bị từ chối 422, ảnh hỏng bị từ chối 415. Báo cáo runtime: `api_results/20261027_212246_844539/api_report.json` (Git bỏ qua). Phép này chỉ so với baseline local, không phải notebook parity hay đánh giá lâm sàng.
+
 ## Cập nhật phiên làm việc ngày 27/10/2026 lúc 17:27
 
 Đã hoàn thiện và kiểm tra phần routing an toàn cho các câu hỏi có tuyên bố

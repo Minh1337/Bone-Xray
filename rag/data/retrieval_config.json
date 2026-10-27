@@ -1,5 +1,5 @@
 {
-  "version": "hybrid-v1",
+  "version": "hybrid-v2",
   "description": "Agent-authored bilingual retrieval vocabulary; review before medical use. Expansion is keyword matching, not a medical answer or full translation.",
   "rrf_constant": 60,
   "rrf_weights": {"original_dense": 2.0, "expanded_dense": 1.0, "lexical": 1.0},
@@ -18,6 +18,20 @@
     "chan doan": "diagnosis diagnostic",
     "xet nghiem": "tests examination",
     "sinh thiet": "biopsy",
+    "nang xuong don doc": "unicameral bone cyst simple bone cyst",
+    "nang xuong don thuan": "unicameral bone cyst simple bone cyst",
+    "nang xuong don gian": "unicameral bone cyst simple bone cyst",
+    "xuong canh tay": "humerus upper arm",
+    "simple bone cyst": "unicameral bone cyst",
+    "unicameral bone cyst": "simple bone cyst",
+    "nghien cuu hoi cuu": "retrospective cohort",
+    "bao nhieu benh nhan": "how many patients",
+    "tranh duoc mo mo": "avoided open procedure",
+    "ty le nao": "percentage proportion",
+    "chien luoc tiem": "injection strategy",
+    "nghien cuu": "study research",
+    "hoi cuu": "retrospective",
+    "tiem": "injection",
     "chuyen gia ung thu chinh hinh": "orthopedic oncologist",
     "bao ton chi": "limb sparing surgery",
     "ac tinh": "malignant cancer",
@@ -62,10 +76,11 @@
   "supported_terms": [
     "bone", "sarcoma", "osteosarcoma", "ewing", "chordoma", "chondrosarcoma",
     "chondromyxoid fibroma", "adamantinoma", "xuong", "u sun", "u sac song",
-    "biopsy", "sinh thiet", "osteochondroma", "giant cell tumor"
+    "biopsy", "sinh thiet", "osteochondroma", "giant cell tumor",
+    "unicameral bone cyst", "simple bone cyst", "nang xuong don doc"
   ],
   "unsupported_terms": [
-    "simple bone cyst", "osteofibroma", "synovial osteochondroma",
-    "multiple osteochondromas", "nang xuong don doc", "other bt", "other mt", "no tumor"
+    "osteofibroma", "synovial osteochondroma",
+    "multiple osteochondromas", "other bt", "other mt", "no tumor"
   ]
 }

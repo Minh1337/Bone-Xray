@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb",
+  "config_sha256_at_freeze": "bbf94ecf32ad470efb2ff6f6823950a8c5ee0b0ccd07cae6a901e5b67525246f",
+  "provenance": "Agent-authored development cases based on the newly added CC BY 4.0 cohort. Targeted to Vietnamese/English query coverage and routing; not independent expert validation; do not describe as a held-out test set.",
+  "questions": [
+    {
+      "id": "c01",
+      "split": "dev",
+      "question_vi": "Nang xương đơn độc ở xương cánh tay được nghiên cứu điều trị như thế nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0009",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "MATERIALS AND METHODS",
+          "text_sha256": "1c230a965b8b7fc74d501d33dd544972f8d49cfd733051b9b42a008272f5a1bb"
+        }
+      ],
+      "evidence_quote": "The treatment evaluated in this study was the injection of UBCs with BMA/DBM."
+    },
+    {
+      "id": "c02",
+      "split": "dev",
+      "question_vi": "Nang xương đơn thuần có tên tiếng Anh và vị trí thường gặp nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0006",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "INTRODUCTION",
+          "text_sha256": "71a9c3f9089eb0390555dfe4d1a08981fe2b5f3f35bc9845e952d8c56326c6d1"
+        }
+      ],
+      "evidence_quote": "Unicameral bone cysts (UBCs), also known as simple bone cysts"
+    },
+    {
+      "id": "c03",
+      "split": "dev",
+      "question_vi": "Nghiên cứu hồi cứu về nang xương đơn độc đầu trên xương cánh tay gồm bao nhiêu bệnh nhân?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0002",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Methods:",
+          "text_sha256": "a0e34946205588ffe222052ab8447dfff614cb492e42fc68a06ea46d5641d932"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0015",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "ac7480fa751b9d632926d6dac5df683232ad0523645fcf1ccb3afe5801d028c2"
+        }
+      ],
+      "evidence_quote": "Fifty-one patients with proximal humerus lesions treated by BMA/DBM injection"
+    },
+    {
+      "id": "c04",
+      "split": "dev",
+      "question_vi": "Trong nghiên cứu nang xương đơn độc, chiến lược tiêm BMA/DBM tránh được mổ mở ở tỷ lệ nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0004",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Conclusion:",
+          "text_sha256": "c5343c86718913237a4d282f36fd60a4e4b24edcf3dee9bc409d42e772612d40"
+        }
+      ],
+      "evidence_quote": "A BMA/DBM injection strategy avoided an open procedure in 78% of patients"
+    },
+    {
+      "id": "c05",
+      "split": "dev",
+      "question_vi": "Simple bone cyst of the proximal humerus: what did this cohort study report about treatment?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0001",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Background:",
+          "text_sha256": "57836975ee3f73638c509095aec49273f2c8fef1c12655695c5e51b7a1ee699d"
+        }
+      ],
+      "evidence_quote": "The purpose of this study was to report the outcomes of injecting bone marrow aspirate and demineralized bone matrix"
+    },
+    {
+      "id": "c06",
+      "split": "dev",
+      "question_vi": "What proportion of patients in the proximal humerus unicameral bone cyst cohort avoided an open procedure?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0004",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Conclusion:",
+          "text_sha256": "c5343c86718913237a4d282f36fd60a4e4b24edcf3dee9bc409d42e772612d40"
+        }
+      ],
+      "evidence_quote": "A BMA/DBM injection strategy avoided an open procedure in 78% of patients"
+    },
+    {
+      "id": "n01",
+      "split": "dev",
+      "question_vi": "Nang xương đơn độc có thể chữa khỏi bằng curcumin không?",
+      "expected_status": "insufficient_evidence",
+      "evidence": [],
+      "expected_behavior": "insufficient_evidence"
+    },
+    {
+      "id": "n02",
+      "split": "dev",
+      "question_vi": "What chemotherapy dose should a patient with a simple bone cyst take?",
+      "expected_status": "out_of_scope",
+      "evidence": [],
+      "expected_behavior": "out_of_scope"
+    },
+    {
+      "id": "n03",
+      "split": "dev",
+      "question_vi": "Giá sinh thiết nang xương tại bệnh viện địa phương hôm nay bao nhiêu?",
+      "expected_status": "insufficient_evidence",
+      "evidence": [],
+      "expected_behavior": "insufficient_evidence"
+    }
+  ]
+}

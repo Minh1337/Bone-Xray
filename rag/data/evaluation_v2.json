@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "corpus_sha256": "176311a556429af4fb3b2c2e327851b957463a1e57300fc9df973182a0a8a035",
+  "corpus_sha256": "552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb",
   "config_sha256_at_freeze": "62779b99b66aafdd0d678c8fad6d1b719f61469bb4873a20bb247589157066ad",
-  "provenance": "Agent-authored from source snapshots; dev and test separated before evaluation. Not independent expert validation. Test questions must not be reused for tuning after this run.",
+  "provenance": "Agent-authored; the dev split gold was updated on 2026-10-27 because the expanded corpus now contains supporting evidence for n04. Historical test split unchanged, but has been viewed. Entire dataset is a regression set, not independent expert validation or a held-out test.",
   "questions": [
     {
       "id": "p01",
@@ -269,8 +269,16 @@
       "id": "n04",
       "split": "dev",
       "question_vi": "Simple bone cyst có đặc điểm gì?",
-      "expected_status": "insufficient_evidence",
-      "evidence": []
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0006",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "INTRODUCTION",
+          "text_sha256": "71a9c3f9089eb0390555dfe4d1a08981fe2b5f3f35bc9845e952d8c56326c6d1"
+        }
+      ],
+      "evidence_quote": "also known as simple bone cysts"
     },
     {
       "id": "n05",

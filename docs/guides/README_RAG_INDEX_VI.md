@@ -14,7 +14,7 @@ Từ thư mục gốc dự án:
 .\.venv\Scripts\python.exe rag/retrieval.py "Chordoma thường xuất hiện ở vùng nào?" --top-k 5
 ```
 
-Lần xây lại tiếp theo dùng `rag/build_index.py` không có `--download-model`. Mô hình `intfloat/multilingual-e5-small` được ghim theo revision trong `rag/retrieval.py`; vector dùng chuẩn `passage: ` cho đoạn và `query: ` cho câu hỏi, chuẩn hóa L2. Kho hiện có **416 đoạn** sau khi sửa lỗi h5/h6, bỏ danh mục References khỏi phần truy xuất và giữ các mục danh sách ngắn. Không có dịch vụ embedding bên ngoài khi truy vấn.
+Lần xây lại gần nhất dùng `rag/build_index.py` không có `--download-model`. Mô hình `intfloat/multilingual-e5-small` được ghim theo revision trong `rag/retrieval.py`; vector dùng chuẩn `passage: ` cho đoạn và `query: ` cho câu hỏi, chuẩn hóa L2. Kho hiện có **439 đoạn × 384 chiều từ 13 nguồn**; corpus hash là `552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb`. Không có dịch vụ embedding bên ngoài khi truy vấn.
 
 `rag/index/manifest.json` schema 2 lưu mã băm corpus, source lock, trọng số, các tệp tokenizer/pooling/configuration, ma trận vector và thứ tự chunk. Khi các đầu vào này đổi, truy xuất dừng và yêu cầu xây lại chỉ mục; index schema cũ cũng cần xây lại. Vector tải lên phải hữu hạn và chuẩn hóa L2. Kết quả truy xuất kèm `source_id`, tiêu đề, URL, mục, thời điểm truy cập, mã băm nguồn và đoạn văn để gắn citation thật ở giai đoạn chatbot.
 
@@ -40,7 +40,7 @@ Các nhãn u chưa có nguồn chuyên biệt trong kho vẫn là khoảng trố
 
 - Ngày: 27/10/2026.
 - Mô hình: `intfloat/multilingual-e5-small`, revision được ghim trong `rag/retrieval.py`; checksum trọng số và vector trong `rag/index/manifest.json`.
-- Vector store hiện tại: NumPy cục bộ, **416 đoạn × 384 chiều**; schema 2, top-k 5; chưa đặt ngưỡng cosine.
+- Vector store hiện tại: NumPy cục bộ, **439 đoạn × 384 chiều**; schema 2, top-k 5; chưa đặt ngưỡng cosine.
 - Baseline trước sửa corpus: source+section recall@5 = 0,60 (6/10), MRR@5 = 0,417; không trả hit cho câu âm = 0/2.
 - Kết quả cuối trên corpus mới: dense 7/10, MRR 0,483; hybrid 8/10, MRR 0,700. Routing từ chối được 2/2 câu âm của bộ cũ.
 - V2 dev với hybrid/routing: đúng đoạn 6/8, MRR 0,625; không trả hit cho câu âm 4/6.

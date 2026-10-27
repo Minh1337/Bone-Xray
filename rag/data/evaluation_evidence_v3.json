@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "corpus_sha256": "176311a556429af4fb3b2c2e327851b957463a1e57300fc9df973182a0a8a035",
+  "corpus_sha256": "552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb",
   "config_sha256_at_freeze": "62779b99b66aafdd0d678c8fad6d1b719f61469bb4873a20bb247589157066ad",
   "evidence_config_sha256_at_freeze": "76c2cd12a143e9a22370fc5ece48e0a35f3f749591dbeae26ccb350f8cb74265",
   "provenance": "Agent-authored targeted bilingual stress suite frozen before first run of the concept checker. Not blind or independent clinical validation; some facts overlap earlier gold. Do not tune against these results and call them held-out.",

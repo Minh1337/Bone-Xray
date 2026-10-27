@@ -1,60 +1,54 @@
 # Trạng thái dự án và ghi chú bàn giao
 
-Cập nhật: **27/10/2026 lúc 17:27, sau bổ sung policy routing**. Đọc cùng [lộ trình](LO_TRINH_THUC_HIEN_DU_AN_AI.md) để phân biệt phần đã triển khai với tiêu chí nghiệm thu. Nền tài liệu trước đó đã được commit tại `99e9817`; phần policy/test mới nhất chưa commit. **AI tiếp quản đọc [điểm tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) trước.** Kết quả không thay thế đánh giá lâm sàng.
+Cập nhật: **27/10/2026**. Đọc cùng [lộ trình](LO_TRINH_THUC_HIEN_DU_AN_AI.md) để phân biệt phần đã triển khai với tiêu chí nghiệm thu. Điểm tiếp tục chi tiết ở [bàn giao Giai đoạn 11](STAGE11_HANDOFF_VI.md). Kết quả kỹ thuật không thay thế đánh giá lâm sàng.
 
-## Việc đã hoàn thành
+## Trạng thái hiện tại
 
-| Phần | Thay đổi thực tế | Trạng thái |
+| Phần | Hiện trạng | Giới hạn chính |
 | --- | --- | --- |
-| Phân tích ảnh | Ứng dụng nhận X-quang và metadata, nạp mô hình cục bộ, trả 10 điểm số và Top-3. | Có chức năng và bài kiểm thử; chưa chứng minh độ chính xác lâm sàng. |
-| Lưu ca | `/predict` cấp `prediction_id`; `/cases` lấy kết quả do máy chủ giữ, chỉ lưu một lần trong 10 phút. Không nhận điểm số tự khai từ trình duyệt. | Đã sửa và kiểm thử vòng đời ca. |
-| Giao diện | Dữ liệu từ người dùng/API được chèn bằng text an toàn hoặc escape; lịch sử ca có phân trang theo `limit`/`offset`. | Đã sửa và chạy kiểm thử UI/API. |
-| Dữ liệu kiểm thử | Bài kiểm thử ca dùng SQLite tạm, không ghi vào CSDL vận hành. | Đã kiểm tra. |
-| Cấu trúc file | `docs/guides/` chứa hướng dẫn, `docs/reports/` chứa Word, `docs/reference/` chứa tham chiếu API; `rag/data/` chứa dữ liệu nguồn. Đã cập nhật `verify_api.py`, pipeline RAG và đường dẫn tài liệu. | Đã chuyển và rà soát các tham chiếu. |
-| Giai đoạn 10 | 12 trang NCI, hiện 416 đoạn sau sửa bộ trích xuất; giữ URL, mục, thời điểm và mã băm. | Đạt ở mức kho nguồn có thể truy vết; độ phủ y khoa còn thiếu. |
-| Giai đoạn 11 | Hybrid local; index 416 × 384, manifest schema 2; có thêm rerank khái niệm và bộ lọc thử nghiệm; 12 câu regression, 28 câu V2 và 20 câu stress V3. | Rerank triển vọng nhưng opt-in; bộ lọc chặn nhầm nhiều câu dương. **Chưa đạt điều kiện dùng làm nền trả lời y khoa**. |
-| Policy routing bổ sung | Nhận diện thêm tuyên bố chữa bệnh bằng phương pháp bổ sung, cam kết xét nghiệm/thiết bị tại nhà, yêu cầu chi phí ngoài corpus và thiết bị thay thế chuyên gia; 15 regression cases mới. | Đã kiểm tra trong test RAG; vẫn là bộ lọc từ khóa bảo thủ, không thay thế đánh giá bằng chứng hoặc đánh giá lâm sàng. |
+| Phân tích ảnh, API, UI, SQLite | Ứng dụng local hỗ trợ dự đoán 10 lớp, lưu ca, lịch sử, ghi chú, hiệu chỉnh nhãn và dashboard. | Chưa chứng minh độ chính xác lâm sàng; `prediction_id` chỉ tồn tại trong bộ nhớ một tiến trình. |
+| Giai đoạn 10 — kho nguồn | 12 trang NCI và 1 bài CC BY 4.0, tổng cộng 439 đoạn; từng đoạn có nguồn, quyền tái sử dụng, mục và mã băm. | Nguồn bổ sung chỉ là cohort 51 ca nang xương đơn độc vùng đầu trên xương cánh tay; không khái quát hóa điều trị. Thiếu nguồn cho nhiều nhãn và chưa có thẩm định chuyên môn. |
+| Giai đoạn 11 — retrieval | Hybrid local, routing, rerank khái niệm opt-in, evaluator và citation metadata. | Chưa có kiểm tra đủ bằng chứng đáng tin cậy; chưa có tập kiểm định độc lập. `answer_ready` luôn `false`. |
+| Giai đoạn 11A — ảnh tham chiếu | Đã tải/xác minh archive BTXRD; manifest 3.746 ảnh, SHA-256 từng ảnh, nhãn 10 lớp, 22 metadata, nhóm ảnh trùng và provenance. | Có 1 ảnh nhãn xung đột; không có patient/lesion IDs và không khôi phục được checkpoint split. Chỉ dùng làm catalogue/phát triển, không phải kiểm định độc lập. |
+| Giai đoạn 12 — chatbot | Chưa triển khai API hội thoại, LLM hoặc UI chat. | Chỉ bắt đầu nguyên mẫu sau khi các giới hạn retrieval/evidence được xử lý và ghi rõ. |
+| Giai đoạn 13 — bàn giao | Chưa nghiệm thu. | Còn đánh giá toàn diện, bảo mật và đóng gói. |
 
-Chi tiết pipeline: [kho nguồn](guides/README_RAG_CORPUS_VI.md) và [chỉ mục](guides/README_RAG_INDEX_VI.md). Trọng số embedding, chỉ mục, HTML tải về, CSDL và kết quả runtime nằm trong các đường dẫn Git bỏ qua; bản checkout mới phải tải mô hình và tạo lại chỉ mục.
+## Việc đã xác nhận trong lần tiếp tục này
 
-## Bằng chứng kiểm tra gần nhất
+- Giai đoạn 11A: tải bộ BTXRD chính thức Figshare CC BY 4.0, DOI `10.6084/m9.figshare.27865398.v1`. Archive 840,474,929 byte; MD5 khớp `59132a5036d030580ccade8add8f13df`, SHA-256 `e7c800c3b4e090262b160525a0765f9d93bcc53d639c03806a3ac47b0ded3373`.
+- Catalogue có 3.746 ảnh: 1.879 no-tumor và 1.866 nhãn u hợp lệ; 1 ảnh `IMG001276.jpeg` có nhiều subtype cùng bật nên được giữ với trạng thái lỗi, không tự gán. Có 21 nhóm exact-duplicate gồm 42 ảnh; không có patient/lesion IDs, nên mọi partition vẫn `unassigned`. Toàn bộ dữ liệu tải và manifest nằm trong thư mục Git-ignore `data/external_datasets/BTXRD/`.
+- Model checkpoint khai báo BTXRD là nguồn huấn luyện nhưng không lưu danh sách ID của train/validation/test. Vì vậy không báo cáo accuracy/benchmark trên BTXRD cho checkpoint hiện tại. Đánh giá ảnh chụp X-quang ngoài thực tế cần một nguồn khác độc lập, có quyền sử dụng và nhãn chuyên gia.
+- Hướng dẫn quy trình: [bộ ảnh tham chiếu](guides/README_IMAGE_REFERENCE_VI.md); register nguồn: [btxrd_source_register.json](reference/btxrd_source_register.json); script tái tạo: `tools/prepare_btxrd_reference.py`.
 
-- `python -m pytest api_tests rag/tests tests ui_tests -q`: **36 passed, 14 subtests passed**.
-- Cảnh báo deprecated của Starlette không làm test thất bại.
-- `rag/build_corpus.py --offline`: hiện tạo **416 đoạn từ 12 nguồn**. Đã sửa References dùng h6, các block/ô bảng dính chữ và mục danh sách ngắn bị loại; chỉ mục đã xây lại theo schema 2.
-- `rag/retrieval.py` với `HF_HUB_OFFLINE=1`: truy vấn mẫu trả đoạn cùng URL/mục/mã băm; không cần kết nối mạng lúc tìm kiếm.
-- `python -m pip check`: không có phụ thuộc bị hỏng; `git diff --check`: không có lỗi whitespace.
-- Sau bổ sung policy routing: `.\.venv\Scripts\python.exe -m pytest rag/tests -q` đạt **20 passed, 21 subtests passed**. Test dùng `.venv` của dự án; Python hệ thống thiếu `pytest`/`numpy` nên không dùng để kết luận validation.
-- Bộ cũ: baseline trước sửa corpus 6/10, MRR 0,417; hiện hybrid đúng nguồn/mục **8/10, MRR 0,700**, routing từ chối 2/2 câu âm.
-- V2 dev/test mỗi phần 8 câu có đáp án và 6 câu âm. Hybrid đúng đoạn **6/8 trên dev và 7/8 trên test**; cả hai từ chối 4/6 câu âm. Tập do AI soạn, test đã được xem kết quả, chưa có thẩm định độc lập. Báo cáo đầy đủ: `docs/reference/stage11_20261027/`.
-- Thử `--rerank-concepts`: đúng 10/10 câu cũ, 8/8 mỗi phần V2 đã xem và 9/10 câu V3 stress. Không tăng tỷ lệ từ chối câu âm. Bộ lọc `--verify-evidence` không đạt vì chặn nhầm 5/10 câu dương V3 và 8/8 câu dương V2 test đã xem. Cả hai opt-in, mặc định hybrid không đổi. Báo cáo mới: `docs/reference/stage11_evidence_rank_20261027/`; V3 cũng đã được dùng, chưa độc lập.
-- `verify_api.py` lần kiểm tra gần nhất **không chạy được vì không có server tại `127.0.0.1:8000`**. Đây không phải kết quả so sánh suy luận API; muốn kiểm tra lại phải khởi động ứng dụng trước.
+- Repository ở nhánh `main`, `HEAD` là `d1ef896` (`Harden RAG policy routing and document handoff`); khi bắt đầu lượt, working tree sạch và nhánh local ahead `origin/main` 1 commit.
+- Đọc README tiếng Anh/Việt và toàn bộ Markdown trong `docs/`, gồm roadmap, hướng dẫn, thiết kế evidence và handoff.
+- Kiểm tra commit mới: policy routing đã được commit; ghi chú trước đó nói hai file policy/test chưa commit là lỗi thời.
+- Chạy `\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q`: **36 passed, 28 subtests passed**, một cảnh báo deprecated từ Starlette.
+- Khởi động API cục bộ trên CUDA và chạy `verify_api.py`: **API_LOCAL_PARITY_PASSED**, 3/3 ca khớp baseline local (sai lệch score tối đa 0, Top-1/metadata/hash ảnh khớp); metadata thiếu trả 422, ảnh hỏng trả 415. JSON đầy đủ tại `api_results/20261027_212246_844539/api_report.json` (runtime, Git bỏ qua).
+- Phép parity này chỉ đối chiếu API với kết quả chạy local đã lưu; **không** xác minh parity với notebook và **không** chứng minh độ chính xác lâm sàng.
+- Giai đoạn 11 vẫn chưa đạt điều kiện làm nền cho chatbot y khoa. Kết quả hybrid/rerank và thất bại của strict lexical filter được giữ nguyên như trong handoff và báo cáo thử nghiệm; các tập V2/V3 đã xem không phải kiểm định độc lập.
 
-## Giới hạn và rủi ro đang mở
+## Quyết định về mở rộng corpus
 
-1. **Đủ bằng chứng chưa được giải quyết:** mặc định còn 2/10 câu cũ và 1/8 câu V2 test trượt. Rerank opt-in xử lý được các ca đó trên tập đã xem, nhưng chưa kiểm định độc lập và vẫn bỏ lọt câu thiếu nguồn. Bộ lọc từ vựng không thể bật mặc định vì false refusal cao. Chưa có ngưỡng similarity đã kiểm định. `candidates_found` chỉ là ứng viên; `answer_ready` luôn false.
-2. **Kho nguồn thiếu nhãn:** một số lớp ảnh như simple bone cyst, osteofibroma và synovial osteochondroma chưa có nguồn chuyên biệt. Không để chatbot suy luận chắc chắn về các nhãn đó từ kho hiện tại.
-3. **`prediction_id` là trạng thái trong bộ nhớ của một tiến trình:** mất khi khởi động lại, hết hạn sau 10 phút và không dùng chung giữa nhiều worker. Nếu triển khai nhiều worker hoặc cần lưu ca bền vững, phải thiết kế kho trạng thái dùng chung.
-4. **Chưa có chatbot, API/chat UI, bộ kiểm thử citation và an toàn.** Hai cờ evidence hiện chỉ là thử nghiệm; `answer_ready` luôn false. Điểm softmax của mô hình ảnh không phải xác suất bệnh đã hiệu chuẩn hoặc chẩn đoán mô bệnh học.
-5. **Chưa xác minh lại API với model thật sau lần sắp xếp file** bằng `verify_api.py` khi server đang chạy. Kiểm thử tự động hiện dùng predictor giả cho API.
+Đã bổ sung một bài từ Open Orthopaedics Journal theo CC BY 4.0; tác giả, nhà xuất bản, URL, giấy phép và phạm vi nghiên cứu nằm trong `rag/data/sources.json`, source lock và metadata từng đoạn. Corpus hiện **439 đoạn/13 nguồn**; hash `552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb`. Khối metrics tải trang đã loại bỏ. Index 384 chiều đã được dựng lại. Nguồn AAOS không được ingest vì điều khoản tái sử dụng hạn chế; nguồn MDPI bị 403 và PMC gặp lỗi chứng thực TLS. Nhãn `osteofibroma` chưa được đối chiếu metadata dataset gốc/chuyên gia.
 
-## Việc tiếp theo, theo thứ tự
+Đã mở rộng vocabulary retrieval lên `hybrid-v2` cho các cách gọi tiếng Việt/Anh của unicameral/simple bone cyst, humerus, cohort, cỡ mẫu và kết quả điều trị. Tập dev riêng 9 câu đạt **Recall@5 6/6**, từ chối/ngoài phạm vi **3/3**, routing accuracy 9/9. Tập do AI soạn và đã dùng để điều chỉnh; không phải test độc lập. V2 hồi quy (đã xem; dev n04 được gắn lại bằng chứng sau khi thêm nguồn) đạt Recall@5 **14/17**, MRR@5 **0,688**, từ chối câu âm 11/11; không phải kiểm định độc lập. `answer_ready` vẫn false.
 
-1. **Hoàn thiện giai đoạn 11:** theo checkpoint mới ở `STAGE11_HANDOFF_VI.md`; bổ sung nguồn và kiểm tra đủ bằng chứng có xử lý ngôn ngữ tốt hơn, kiểm định rerank trên tập mới độc lập. V2/V3 đã sử dụng; không chỉnh từ vựng chỉ để đạt điểm trên chúng. Chạy `rag/compare_evidence.py` để tái lập vào thư mục mới, giữ bằng chứng cũ.
-2. **Xác minh hệ thống:** khởi động ứng dụng, chạy `verify_api.py` với ba ca tham chiếu, kiểm tra không thay đổi kết quả mô hình; ghi commit và log kiểm thử trong tài liệu.
-3. **Bắt đầu giai đoạn 12 khi retrieval đủ tin cậy:** chọn LLM chạy local phù hợp RAM/VRAM, dựng luồng kiểm tra phạm vi → truy xuất → đánh giá đủ bằng chứng → sinh câu trả lời tiếng Việt → gắn citation từ `source_id`/URL/mục thực. Kiểm thử câu không có nguồn, prompt injection, thông tin định danh và yêu cầu chẩn đoán/phác đồ cá nhân hóa; mời người có chuyên môn rà soát.
-4. **Giai đoạn 13:** đánh giá toàn diện và đóng gói sau khi các tiêu chí của giai đoạn 12 đạt.
+Kiểm thử toàn dự án sau cập nhật vocabulary v2: **39 passed, 31 subtests passed**, một cảnh báo deprecation của Starlette. RAG riêng: **23 passed, 24 subtests passed**. Bộ dev mở rộng đạt 6/6 câu có đáp án trong top 5 và 3/3 câu âm được routing đúng; V2 regression đạt 14/17 câu dương, 11/11 câu âm. Các tập do AI soạn/đã xem, không phải kiểm định độc lập. `answer_ready=false`.
 
-## Lệnh để tiếp tục
+## Việc tiếp theo
 
-Chạy từ thư mục gốc dự án, sau khi thiết lập `.venv`:
+1. Tìm nguồn ảnh khác BTXRD có quyền sử dụng, nhãn chuẩn được chuyên gia xác nhận và provenance đủ để đánh giá tổng quát.
+2. Nếu nhà phát hành cung cấp, khôi phục danh sách split gốc của checkpoint; không suy ra split từ archive hiện tại.
+3. Cần tập RAG độc lập do người khác soạn/rà soát; V2/V3 đã xem không phải kiểm định mới.
+4. Xác minh `osteofibroma` với metadata dataset gốc/người chuyên môn; đánh giá kiểm tra đủ bằng chứng theo ngữ nghĩa.
+5. Chỉ triển khai prototype chatbot sau khi retrieval/evidence được xác minh; không bật `answer_ready` hay tuyên bố độ chính xác ảnh trên BTXRD có overlap chưa loại trừ.
+
+## Lệnh kiểm tra
 
 ```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements_rag.txt
-.\.venv\Scripts\python.exe -m unittest discover -s rag/tests -v
-.\.venv\Scripts\python.exe rag/build_index.py --download-model  # chỉ lần đầu tại máy mới
-.\.venv\Scripts\python.exe rag/evaluate.py
-.\.venv\Scripts\python.exe rag/retrieval.py "Chordoma thường xuất hiện ở vùng nào?" --top-k 5
+\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
+git diff --check
 ```
 
-Khi đã có `rag/models/e5-small/`, xây lại chỉ mục bằng `rag/build_index.py` không có `--download-model`. Để chạy `verify_api.py`, khởi động ứng dụng theo [hướng dẫn UI](guides/README_UI_VI.md) ở một terminal trước, sau đó chạy script ở terminal khác. `model_definition.py` và mã nạp mô hình vẫn ở thư mục gốc vì checkpoint và lệnh khởi chạy phụ thuộc vị trí import hiện tại.
+Đọc [README tiếng Việt](../README_VI.md), [hướng dẫn corpus](guides/README_RAG_CORPUS_VI.md), [hướng dẫn retrieval](guides/README_RAG_INDEX_VI.md) và [điểm bàn giao Giai đoạn 11](STAGE11_HANDOFF_VI.md) trước khi sửa pipeline. Các model/index/cache local bị Git bỏ qua; không xóa hoặc ghi đè bằng chứng trong `docs/reference/`.

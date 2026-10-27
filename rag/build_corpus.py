@@ -1,4 +1,4 @@
-"""Build a traceable text-only NCI corpus. No patient data or model output is used."""
+"""Build a traceable, license-checked text-only corpus. No patient data is used."""
 
 import argparse
 import hashlib
@@ -25,7 +25,11 @@ EXCLUDE_SECTIONS = {"references", "current clinical trials", "related resources"
                     "about pdq", "about this pdq summary", "reviewers and updates",
                     "clinical trial information", "permission to use this summary",
                     "disclaimer", "contact us", "purpose of this summary",
-                    "levels of evidence"}
+                    "levels of evidence", "metrics"}
+ALLOWED_HOSTS = {"www.cancer.gov", "openorthopaedicsjournal.com"}
+CC_BY_4 = "https://creativecommons.org/licenses/by/4.0/"
+NCI_LICENSE = "NCI text reuse policy; credit and link to source; no images"
+NCI_LICENSE_URL = "https://www.cancer.gov/policies/copyright-reuse"
 
 
 def clean(value):
@@ -110,8 +114,11 @@ def chunks_for(source, blocks, html_sha, accessed_at, source_date):
         chunks.append({
             "chunk_id": f"{source['id']}:{len(chunks) + 1:04d}",
             "source_id": source["id"], "title": source["title"],
-            "publisher": "National Cancer Institute", "url": source["url"],
+            "publisher": source.get("publisher", "National Cancer Institute"), "url": source["url"],
             "authors": source["authors"], "source_date": source_date,
+            "license": source.get("license", NCI_LICENSE),
+            "license_url": source.get("license_url", NCI_LICENSE_URL),
+            "scope": source.get("scope", ""),
             "section": section, "accessed_at": accessed_at,
             "source_sha256": html_sha,
             "text_sha256": hashlib.sha256(content.encode("utf-8")).hexdigest(),
@@ -123,9 +130,16 @@ def chunks_for(source, blocks, html_sha, accessed_at, source_date):
         if tag.startswith("h"):
             flush()
             section = value
-            excluded = value.casefold() in EXCLUDE_SECTIONS
+            if value.casefold() in EXCLUDE_SECTIONS or value.casefold().startswith("downloads"):
+                excluded = True
+            else:
+                excluded = False
             continue
         if excluded:
+            continue
+        if value == "All published articles of this journal are available on ScienceDirect." \
+                or value.startswith("E-Mail Address of Dr.") \
+                or re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", value):
             continue
         if value.startswith("You can help speed up the development of new treatments"):
             continue
@@ -155,10 +169,22 @@ def chunks_for(source, blocks, html_sha, accessed_at, source_date):
     return unique
 
 
-def download(source):
+def validate_source(source):
     parsed = urlparse(source["url"])
-    if parsed.scheme != "https" or parsed.netloc != "www.cancer.gov":
-        raise ValueError(f"Source URL is not an approved NCI HTTPS URL: {source['url']}")
+    if parsed.scheme != "https" or parsed.hostname not in ALLOWED_HOSTS:
+        raise ValueError(f"Source URL host is not approved: {source['url']}")
+    if parsed.hostname == "www.cancer.gov":
+        if source.get("license_url", NCI_LICENSE_URL) != NCI_LICENSE_URL:
+            raise ValueError(f"Unexpected NCI reuse policy URL: {source['id']}")
+    elif source.get("license") != "CC BY 4.0" or source.get("license_url") != CC_BY_4:
+        raise ValueError(f"Non-NCI sources must explicitly declare CC BY 4.0: {source['id']}")
+    if parsed.hostname != "www.cancer.gov" and not source.get("scope"):
+        raise ValueError(f"Non-NCI source must declare its evidence scope: {source['id']}")
+
+
+def download(source):
+    validate_source(source)
+    parsed = urlparse(source["url"])
     request = Request(source["url"], headers={"User-Agent": "BoneScope-research-corpus/1.0"})
     with urlopen(request, timeout=30) as response:
         if "text/html" not in response.headers.get("Content-Type", ""):
@@ -178,8 +204,12 @@ def build(offline=False):
     all_chunks = []
     lock = []
     for source in sources:
-        source = {**source, "authors": ("PDQ Pediatric Treatment Editorial Board"
-                  if "-pdq" in source["url"] else "National Cancer Institute")}
+        source = {**source, "authors": source.get("authors", (
+            "PDQ Pediatric Treatment Editorial Board" if "-pdq" in source["url"]
+            else "National Cancer Institute")),
+            "publisher": source.get("publisher", "National Cancer Institute"),
+            "license": source.get("license", NCI_LICENSE),
+            "license_url": source.get("license_url", NCI_LICENSE_URL)}
         cache_path = CACHE / f"{source['id']}.html"
         if offline:
             data = cache_path.read_bytes()
@@ -191,15 +221,13 @@ def build(offline=False):
         html_sha = hashlib.sha256(data).hexdigest()
         html = data.decode("utf-8", errors="replace")
         dates = re.findall(r'<time[^>]+datetime="(\d{4}-\d{2}-\d{2})', html)
-        source_date = dates[-1] if dates else None
+        source_date = dates[-1] if dates else source.get("source_date")
         blocks = extract_blocks(html)
         chunks = chunks_for(source, blocks, html_sha, accessed_at, source_date)
         if not chunks:
             raise ValueError(f"No text extracted from {source['id']}")
         all_chunks.extend(chunks)
-        lock.append({**source, "publisher": "National Cancer Institute",
-                     "license": "NCI text reuse policy; credit and link to source; no images",
-                     "license_url": "https://www.cancer.gov/policies/copyright-reuse",
+        lock.append({**source,
                      "accessed_at": accessed_at, "source_date": source_date,
                      "html_sha256": html_sha,
                      "chunk_count": len(chunks)})

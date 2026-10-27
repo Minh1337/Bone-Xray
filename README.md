@@ -139,7 +139,7 @@ Lệnh kiểm thử hiện tại:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Lần chạy gần nhất đạt **36 passed, 14 subtests passed**.
+Lần chạy ngày 27/10/2026 đạt **36 passed, 28 subtests passed** (một cảnh báo deprecated của Starlette).
 
 ---
 
@@ -150,7 +150,7 @@ Lần chạy gần nhất đạt **36 passed, 14 subtests passed**.
 - Hoàn thiện pipeline phân tích ảnh X-quang 10 lớp bằng model cục bộ.
 - Hoàn thiện API FastAPI, giao diện web, quản lý ca SQLite, lịch sử, nhận xét,
   hiệu chỉnh nhãn độc lập và dashboard.
-- Hoàn thiện kho RAG gồm **12 nguồn NCI và 416 đoạn văn** có URL, section,
+- Hoàn thiện kho RAG gồm **13 nguồn (12 NCI và 1 CC BY 4.0) và 439 đoạn văn** có URL, section,
   thời điểm truy xuất và mã băm để truy vết citation.
 - Hoàn thiện hybrid retrieval local, routing câu hỏi, đánh giá recall/MRR,
   concept rerank và các thử nghiệm kiểm tra evidence.
@@ -158,15 +158,15 @@ Lần chạy gần nhất đạt **36 passed, 14 subtests passed**.
 
 ### Kết quả kiểm thử gần nhất
 
-- Toàn bộ test: **36 passed, 14 subtests passed**.
+- Toàn bộ test (27/10/2026): **36 passed, 28 subtests passed**.
+- API parity với baseline local trên model thật: **3/3 ca đạt**, sai lệch score tối đa 0; metadata thiếu/ảnh hỏng bị từ chối đúng. Notebook parity chưa được xác minh.
 - Hybrid retrieval mặc định: **8/10** câu regression đúng nguồn/mục,
   **6/8** câu V2 dev và **7/8** câu V2 test đúng đoạn.
 - Concept rerank thử nghiệm: **10/10** câu regression, **8/8** V2 dev,
   **8/8** V2 test và **9/10** V3 stress đúng đoạn.
 - `--verify-evidence` chưa đạt vì từ chối nhầm nhiều câu có đáp án; không bật
   mặc định.
-- API parity với model thật cần chạy lại khi server đang hoạt động; lần kiểm tra
-  gần nhất chưa chạy vì không có server tại `127.0.0.1:8000`.
+- API parity với model thật đã đạt trên 3 ca; notebook parity chưa được xác minh.
 
 ### Trạng thái hiện tại
 
@@ -194,7 +194,8 @@ Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md) và
 - [x] **Bước 1 — 4:** Kiểm kê mô hình, kiểm tra suy luận độc lập, API phân loại 10 lớp.
 - [x] **Bước 5:** Quản lý ca bệnh, CSDL SQLite, Lịch sử, Nhận xét, Hiệu chỉnh & Dashboard.
 - [x] **Giai đoạn 10:** Kho nguồn NCI và bộ câu hỏi tiếng Việt ban đầu.
-- [ ] **Giai đoạn 11:** Đã có corpus 416 đoạn, hybrid retrieval, routing, rerank thử nghiệm và đánh giá evidence; chưa đạt để dùng làm nền trả lời y khoa.
+- [ ] **Giai đoạn 11:** Đã có corpus 439 đoạn, hybrid retrieval v2, routing, rerank thử nghiệm và đánh giá evidence; chưa đạt để dùng làm nền trả lời y khoa.
+- [x] **Giai đoạn 11A:** Đã tải và lập manifest BTXRD (3.746 ảnh, 10 lớp, 22 metadata, checksum và duplicate audit); do checkpoint hiện tại huấn luyện trên BTXRD nên chưa dùng làm kiểm định độc lập.
 - [ ] **Giai đoạn 12:** Chatbot tiếng Việt có trích dẫn nguồn và kiểm thử an toàn.
 - [ ] **Giai đoạn 13:** Đánh giá toàn diện, bảo mật và đóng gói bàn giao.
 
@@ -202,7 +203,7 @@ Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. 
 
 Để tiếp tục phát triển, đọc [trạng thái dự án và ghi chú bàn giao](docs/PROJECT_STATUS_VI.md) trước. Trang này tổng hợp các thay đổi đã làm, bằng chứng kiểm thử và việc còn mở.
 
-Điểm tiếp tục hiện tại: [giai đoạn 11](docs/STAGE11_HANDOFF_VI.md). Corpus hiện 416 đoạn; hybrid đạt 8/10 câu regression đúng nguồn/mục và 7/8 câu V2 test đã sử dụng đúng đoạn bằng chứng, nhưng vẫn bỏ lọt câu không có nguồn. Chưa có chatbot.
+Điểm tiếp tục hiện tại: [giai đoạn 11](docs/STAGE11_HANDOFF_VI.md). Từ vựng hybrid v2 đã giúp bộ dev riêng tìm 6/6 bằng chứng, nhưng chưa được kiểm định độc lập. Corpus hiện 439 đoạn; `answer_ready` vẫn luôn false. Chưa có chatbot.
 
 Rerank thử nghiệm (`--rerank-concepts`) đạt 10/10 câu cũ, 8/8 trên V2 dev/test đã xem và 9/10 trên V3 stress; cần kiểm định độc lập. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Cả hai chế độ vẫn trả `answer_ready: false`. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
 

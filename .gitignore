@@ -15,6 +15,7 @@ tools/*.exe
 # Runtime SQLite Database & logs
 data/*.db
 data/*.sqlite3
+data/external_datasets/
 logs/
 results/
 rag/source_cache/

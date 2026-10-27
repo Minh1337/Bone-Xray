@@ -14,12 +14,12 @@
 | [Kho nguồn RAG](guides/README_RAG_CORPUS_VI.md) | Thu thập, chia đoạn và quản lý nguồn |
 | [Chỉ mục RAG](guides/README_RAG_INDEX_VI.md) | Embedding, truy xuất và kết quả đánh giá |
 | `reference/api_reference_local.json` | Dữ liệu tham chiếu cho `verify_api.py` |
-| [Báo cáo tiến độ](reports/Bao_cao_tien_do.docx) | Báo cáo Word bản 1.3, gồm Completion Note giai đoạn 10–11, kết quả rerank/lọc thử nghiệm và điểm tiếp tục |
+| [Báo cáo tiến độ](reports/Bao_cao_tien_do.docx) | Báo cáo Word bản 1.4, gồm Completion Note giai đoạn 10–11, kết quả routing, rerank/lọc thử nghiệm và điểm tiếp tục |
 | [Tài liệu phát triển](reports/Tai_lieu_phat_trien_du_an.docx) | Tài liệu Word nền tảng của dự án |
 
 Các đường dẫn lệnh trong tài liệu được hiểu từ thư mục gốc `BONESCOPE/`, trừ khi có ghi khác.
 
-Trạng thái hiện tại: code và tài liệu đã được đồng bộ tại commit `99e9817`.
+Trạng thái code gần nhất đã commit: `d1ef896` (policy routing và bàn giao Giai đoạn 11). Đọc [trạng thái dự án](PROJECT_STATUS_VI.md) để xem các xác minh mới hơn và thay đổi tài liệu đang thực hiện.
 RAG đã có corpus/index/retrieval CLI và các phép đánh giá thử nghiệm; chatbot
 chưa được triển khai, `answer_ready` vẫn luôn `false`, và giai đoạn 11 chưa
 được nghiệm thu để dùng làm nền trả lời y khoa.

@@ -154,5 +154,19 @@
     "source_date": "2019-02-27",
     "html_sha256": "91c1e0203b492fceb1b59d93076762938282f834adc335301e5b01d374189051",
     "chunk_count": 7
+  },
+  {
+    "id": "open-orthopaedics-unicameral-cyst",
+    "title": "Injection of Unicameral Bone Cysts with Bone Marrow Aspirate and Demineralized Bone Matrix Avoids Open Curettage and Bone Grafting in a Retrospective Cohort",
+    "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+    "authors": "Kenneth R. Gundle; Etasha M. Bhatt; Stephanie E. Punt; Viviana Bompadre; Ernest U. Conrad",
+    "publisher": "The Open Orthopaedics Journal (Bentham Science)",
+    "source_date": "2017-05-31",
+    "license": "CC BY 4.0",
+    "license_url": "https://creativecommons.org/licenses/by/4.0/",
+    "scope": "Retrospective cohort of 51 proximal humerus unicameral bone cysts treated with bone marrow aspirate and demineralized bone matrix injection; evidence is limited to this cohort and intervention.",
+    "accessed_at": "2026-10-27T14:32:15.412068+00:00",
+    "html_sha256": "a5df9aaace7bad76e2fa6f93e4d891595ee5093166b8aeb3a0481dbd6d6fb854",
+    "chunk_count": 23
   }
 ]

@@ -3,7 +3,7 @@ import json
 import unittest
 from pathlib import Path
 
-from rag.build_corpus import extract_blocks, chunks_for
+from rag.build_corpus import extract_blocks, chunks_for, validate_source
 
 
 ROOT = Path(__file__).resolve().parents[1] / 'data'
@@ -30,6 +30,14 @@ class CorpusTests(unittest.TestCase):
                                 '<table><tr><th>Test</th><td>Biopsy</td></tr></table></main>')
         self.assertEqual(blocks, [('li', 'First sentence. Second sentence.'), ('tr', 'Test Biopsy')])
 
+    def test_metrics_section_is_not_added_to_retrieval_corpus(self):
+        source = {'id': 'test', 'title': 'Article', 'url': 'https://example.org', 'authors': 'Test'}
+        blocks = [('h1', 'Article'), ('h3', 'Metrics'), ('h3', 'downloads11,803'),
+                  ('li', 'Last 6 Months11,803'),
+                  ('h2', 'Abstract'), ('p', 'A sufficiently long abstract sentence about bone cyst research.')]
+        chunks = chunks_for(source, blocks, 'hash', 'date', None)
+        self.assertEqual([row['section'] for row in chunks], ['Abstract'])
+
     def test_parser_keeps_sections_and_discards_scripts(self):
         html = '<main><h1>Bone cancer</h1><p>Primary bone cancer begins in bone tissue.</p>' \
                '<script>alert("ignore")</script><h2>Diagnosis</h2>' \
@@ -48,12 +56,15 @@ class CorpusTests(unittest.TestCase):
         self.assertEqual({s['id'] for s in sources}, {s['id'] for s in lock})
         self.assertEqual({s['id'] for s in sources}, {r['source_id'] for r in rows})
         self.assertEqual(len(rows), len({r['chunk_id'] for r in rows}))
+        source_by_id = {source['id']: source for source in lock}
         for row in rows:
             self.assertEqual(row['text_sha256'], hashlib.sha256(row['text'].encode('utf-8')).hexdigest())
             self.assertTrue(row['section'])
             self.assertTrue(row['authors'])
             self.assertIn('source_date', row)
-            self.assertTrue(row['url'].startswith('https://www.cancer.gov/'))
+            self.assertEqual(row['license'], source_by_id[row['source_id']]['license'])
+            self.assertEqual(row['license_url'], source_by_id[row['source_id']]['license_url'])
+            self.assertEqual(row['scope'], source_by_id[row['source_id']].get('scope', ''))
         locations = {(row['source_id'], row['section']) for row in rows}
         for question in questions:
             if question['source_id']:
@@ -76,6 +87,16 @@ class CorpusTests(unittest.TestCase):
                 self.assertEqual(row['source_id'], evidence['source_id'])
                 self.assertEqual(row['section'], evidence['section'])
                 self.assertIn(question['evidence_quote'], row['text'])
+
+    def test_external_sources_require_an_explicit_reuse_license(self):
+        source = {'id': 'test', 'url': 'https://openorthopaedicsjournal.com/article',
+                  'license': 'CC BY 4.0',
+                  'license_url': 'https://creativecommons.org/licenses/by/4.0/', 'scope': 'Test scope'}
+        with self.assertRaisesRegex(ValueError, 'explicitly declare CC BY 4.0'):
+            validate_source({**source, 'license': 'CC BY-NC-ND 4.0'})
+        source.update(url='https://example.com/article')
+        with self.assertRaisesRegex(ValueError, 'host is not approved'):
+            validate_source(source)
 
 
 if __name__ == '__main__':

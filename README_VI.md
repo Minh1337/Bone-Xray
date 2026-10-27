@@ -77,7 +77,8 @@ Cài dependency và tạo index lần đầu:
 .\.venv\Scripts\python.exe rag\retrieval.py "Chordoma thường xuất hiện ở vùng nào?" --top-k 5
 ```
 
-Corpus hiện gồm 416 đoạn từ 12 nguồn NCI. Các thư mục
+Corpus hiện gồm 439 đoạn từ 13 nguồn (12 trang NCI và 1 bài Open Orthopaedics
+CC BY 4.0 có giới hạn phạm vi). Các thư mục
 `rag\index\`, `rag\models\` và `rag\source_cache\` được tạo/tải tại máy và bị
 Git bỏ qua. Lần sau chỉ cần chạy `rag\build_index.py` nếu model embedding đã có.
 
@@ -93,13 +94,18 @@ Hai tùy chọn thử nghiệm không bật mặc định:
 Cả hai chế độ vẫn trả `answer_ready: false`. Xem [hướng dẫn RAG](docs/README.md)
 và [bàn giao giai đoạn 11](docs/STAGE11_HANDOFF_VI.md).
 
+Catalogue ảnh tham chiếu BTXRD Figshare CC BY 4.0 đã được tải và tạo manifest,
+nhưng đây cũng là nguồn huấn luyện của checkpoint hiện tại nên không dùng để
+tuyên bố hiệu năng độc lập. Xem [hướng dẫn bộ ảnh](docs/guides/README_IMAGE_REFERENCE_VI.md)
+và [trạng thái dự án](docs/PROJECT_STATUS_VI.md).
+
 ## 6. Kiểm thử
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Kết quả xác nhận gần nhất: **36 passed, 14 subtests passed**. Một cảnh báo
+Kết quả xác nhận ngày 27/10/2026: **39 passed, 31 subtests passed**. Một cảnh báo
 deprecated của Starlette không làm test thất bại.
 
 ## 7. Tài liệu và giới hạn
@@ -109,6 +115,7 @@ deprecated của Starlette không làm test thất bại.
 - [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
 - [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)
 - [Hướng dẫn index và retrieval](docs/guides/README_RAG_INDEX_VI.md)
+- [Hệ quy chiếu ảnh X-quang](docs/guides/README_IMAGE_REFERENCE_VI.md)
 - [Thiết kế kiểm tra bằng chứng](docs/reference/EVIDENCE_CHECK_DESIGN_VI.md)
 
 Mô hình ảnh chưa được tuyên bố là có accuracy lâm sàng hoặc xác suất đã hiệu

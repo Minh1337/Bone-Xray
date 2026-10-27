@@ -1,0 +1,46 @@
+{
+  "dataset": "BTXRD",
+  "title": "A Radiograph Dataset for the Classification, Localization, and Segmentation of Primary Bone Tumors",
+  "dataset_doi": "10.6084/m9.figshare.27865398.v1",
+  "official_url": "https://figshare.com/articles/dataset/A_Radiograph_Dataset_for_the_Classification_Localization_and_Segmentation_of_Primary_Bone_Tumors/27865398",
+  "paper": "Yao et al., Scientific Data 12, 88 (2025)",
+  "paper_doi": "10.1038/s41597-024-04311-y",
+  "license": "CC BY 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "attribution": "Yao et al. A Radiograph Dataset for the Classification, Localization, and Segmentation of Primary Bone Tumors. Scientific Data 12, 88 (2025). Dataset DOI: 10.6084/m9.figshare.27865398.v1",
+  "archive": {
+    "filename": "BTXRD.zip",
+    "figshare_file_id": 50653575,
+    "size_bytes": 840474929,
+    "md5": "59132a5036d030580ccade8add8f13df",
+    "sha256": "e7c800c3b4e090262b160525a0765f9d93bcc53d639c03806a3ac47b0ded3373"
+  },
+  "catalogue": {
+    "image_count": 3746,
+    "valid_label_count": 3745,
+    "invalid_label_count": 1,
+    "metadata_valid_count": 3746,
+    "metadata_field_count": 22,
+    "exact_duplicate_group_count": 21,
+    "images_in_exact_duplicate_groups": 42,
+    "patient_or_lesion_group_ids_available": false,
+    "checkpoint_split_ids_available": false,
+    "partition": "unassigned",
+    "independent_of_checkpoint_training": false,
+    "use": "development/reference only; not independent evaluation of the current checkpoint"
+  },
+  "label_counts": {
+    "no-tumor": 1879,
+    "osteochondroma": 753,
+    "multiple osteochondromas": 263,
+    "simple bone cyst": 206,
+    "giant cell tumor": 93,
+    "osteofibroma": 44,
+    "synovial osteochondroma": 50,
+    "other bt": 115,
+    "osteosarcoma": 297,
+    "other mt": 45
+  },
+  "runtime_path": "data/external_datasets/BTXRD/",
+  "regeneration_command": "python tools/prepare_btxrd_reference.py"
+}
