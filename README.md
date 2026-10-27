@@ -128,7 +128,13 @@ python -m unittest discover -s api_tests -v
 # Kiểm tra UI & Web Routes
 python -m unittest discover -s ui_tests -v
 ```
-*(Hiện tại 100% các bài test đều PASS).*
+Lệnh kiểm thử hiện tại:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
+```
+
+Lần chạy gần nhất đạt **36 passed, 14 subtests passed**.
 
 ---
 
@@ -137,7 +143,7 @@ python -m unittest discover -s ui_tests -v
 - [x] **Bước 1 — 4:** Kiểm kê mô hình, kiểm tra suy luận độc lập, API phân loại 10 lớp.
 - [x] **Bước 5:** Quản lý ca bệnh, CSDL SQLite, Lịch sử, Nhận xét, Hiệu chỉnh & Dashboard.
 - [x] **Giai đoạn 10:** Kho nguồn NCI và bộ câu hỏi tiếng Việt ban đầu.
-- [ ] **Giai đoạn 11:** Đã tạo embedding/chỉ mục; đánh giá ban đầu chưa đạt để dùng cho chatbot (xem báo cáo).
+- [ ] **Giai đoạn 11:** Đã có corpus 416 đoạn, hybrid retrieval, routing, rerank thử nghiệm và đánh giá evidence; chưa đạt để dùng làm nền trả lời y khoa.
 - [ ] **Giai đoạn 12:** Chatbot tiếng Việt có trích dẫn nguồn và kiểm thử an toàn.
 - [ ] **Giai đoạn 13:** Đánh giá toàn diện, bảo mật và đóng gói bàn giao.
 
@@ -147,7 +153,7 @@ Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. 
 
 Điểm tiếp tục hiện tại: [giai đoạn 11](docs/STAGE11_HANDOFF_VI.md). Corpus hiện 416 đoạn; hybrid đạt 8/10 câu regression đúng nguồn/mục và 7/8 câu V2 test đã sử dụng đúng đoạn bằng chứng, nhưng vẫn bỏ lọt câu không có nguồn. Chưa có chatbot.
 
-Rerank thử nghiệm (`--rerank-concepts`) đạt 10/10 câu cũ và 8/8 câu V2 test đã xem; cần kiểm định độc lập. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
+Rerank thử nghiệm (`--rerank-concepts`) đạt 10/10 câu cũ, 8/8 trên V2 dev/test đã xem và 9/10 trên V3 stress; cần kiểm định độc lập. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Cả hai chế độ vẫn trả `answer_ready: false`. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
 
 Tạo chỉ mục cục bộ: `python rag/build_index.py --download-model` (lần đầu), sau đó `python rag/build_index.py`; đo bằng `python rag/evaluate.py`. Xem [hướng dẫn truy xuất](docs/guides/README_RAG_INDEX_VI.md).
 

@@ -4,6 +4,7 @@
 
 | Tài liệu | Nội dung |
 | --- | --- |
+| [README tiếng Việt](../README_VI.md) | Cài đặt, khởi động, sử dụng và kiểm thử trên máy mới |
 | [Trạng thái dự án](PROJECT_STATUS_VI.md) | Điểm bàn giao, thay đổi gần đây, kiểm thử và thứ tự phát triển tiếp |
 | [Tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) | Điểm dừng, ca trượt, kết quả cuối và lệnh tái lập cho AI tiếp quản |
 | [Lộ trình thực hiện](LO_TRINH_THUC_HIEN_DU_AN_AI.md) | Tiêu chí và mẫu Completion Note cho từng giai đoạn |
@@ -17,5 +18,10 @@
 | [Tài liệu phát triển](reports/Tai_lieu_phat_trien_du_an.docx) | Tài liệu Word nền tảng của dự án |
 
 Các đường dẫn lệnh trong tài liệu được hiểu từ thư mục gốc `BONESCOPE/`, trừ khi có ghi khác.
+
+Trạng thái hiện tại: code và tài liệu đã được đồng bộ tại commit `99e9817`.
+RAG đã có corpus/index/retrieval CLI và các phép đánh giá thử nghiệm; chatbot
+chưa được triển khai, `answer_ready` vẫn luôn `false`, và giai đoạn 11 chưa
+được nghiệm thu để dùng làm nền trả lời y khoa.
 
 Sau mỗi thay đổi chức năng hoặc kết thúc một giai đoạn, cập nhật `PROJECT_STATUS_VI.md` với việc đã làm, lệnh/kết quả kiểm thử, giới hạn và bước tiếp theo; cập nhật Completion Note của giai đoạn tương ứng khi đủ tiêu chí trong lộ trình. Nếu thay đổi đường dẫn, API hoặc cách chạy, sửa cả hướng dẫn liên quan và README gốc trong cùng lượt thay đổi.

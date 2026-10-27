@@ -1,6 +1,6 @@
 # Trạng thái dự án và ghi chú bàn giao
 
-Cập nhật: **27/10/2026 sau vòng phát triển giai đoạn 11**. Đọc cùng [lộ trình](LO_TRINH_THUC_HIEN_DU_AN_AI.md) để phân biệt phần đã triển khai với tiêu chí nghiệm thu. Commit nền là `59f4dfd`; các thay đổi tài liệu và RAG sau đó hiện nằm trong working tree, xem `git status`. **AI tiếp quản đọc [điểm tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) trước.** Kết quả không thay thế đánh giá lâm sàng.
+Cập nhật: **27/10/2026 sau vòng phát triển giai đoạn 11**. Đọc cùng [lộ trình](LO_TRINH_THUC_HIEN_DU_AN_AI.md) để phân biệt phần đã triển khai với tiêu chí nghiệm thu. Nội dung hiện tại đã được commit tại `99e9817`. **AI tiếp quản đọc [điểm tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) trước.** Kết quả không thay thế đánh giá lâm sàng.
 
 ## Việc đã hoàn thành
 
@@ -18,10 +18,8 @@ Chi tiết pipeline: [kho nguồn](guides/README_RAG_CORPUS_VI.md) và [chỉ m�
 
 ## Bằng chứng kiểm tra gần nhất
 
-- `python -m unittest discover -s tests -v`: **4/4 đạt**.
-- `python -m unittest discover -s api_tests -v`: **11/11 đạt**. Log `Test failure` trong bài kiểm tra xử lý lỗi là lỗi giả lập có chủ đích.
-- `python -m unittest discover -s ui_tests -v`: **1/1 đạt**.
-- `python -m unittest discover -s rag/tests -v`: **20/20 đạt trong vòng giai đoạn 11 mới nhất**. Các kết quả tests/api_tests/ui_tests ở trên là lần chạy trước đó, không được chạy lại trong vòng sửa RAG này.
+- `python -m pytest api_tests rag/tests tests ui_tests -q`: **36 passed, 14 subtests passed**.
+- Cảnh báo deprecated của Starlette không làm test thất bại.
 - `rag/build_corpus.py --offline`: hiện tạo **416 đoạn từ 12 nguồn**. Đã sửa References dùng h6, các block/ô bảng dính chữ và mục danh sách ngắn bị loại; chỉ mục đã xây lại theo schema 2.
 - `rag/retrieval.py` với `HF_HUB_OFFLINE=1`: truy vấn mẫu trả đoạn cùng URL/mục/mã băm; không cần kết nối mạng lúc tìm kiếm.
 - `python -m pip check`: không có phụ thuộc bị hỏng; `git diff --check`: không có lỗi whitespace.
@@ -35,7 +33,7 @@ Chi tiết pipeline: [kho nguồn](guides/README_RAG_CORPUS_VI.md) và [chỉ m�
 1. **Đủ bằng chứng chưa được giải quyết:** mặc định còn 2/10 câu cũ và 1/8 câu V2 test trượt. Rerank opt-in xử lý được các ca đó trên tập đã xem, nhưng chưa kiểm định độc lập và vẫn bỏ lọt câu thiếu nguồn. Bộ lọc từ vựng không thể bật mặc định vì false refusal cao. Chưa có ngưỡng similarity đã kiểm định. `candidates_found` chỉ là ứng viên; `answer_ready` luôn false.
 2. **Kho nguồn thiếu nhãn:** một số lớp ảnh như simple bone cyst, osteofibroma và synovial osteochondroma chưa có nguồn chuyên biệt. Không để chatbot suy luận chắc chắn về các nhãn đó từ kho hiện tại.
 3. **`prediction_id` là trạng thái trong bộ nhớ của một tiến trình:** mất khi khởi động lại, hết hạn sau 10 phút và không dùng chung giữa nhiều worker. Nếu triển khai nhiều worker hoặc cần lưu ca bền vững, phải thiết kế kho trạng thái dùng chung.
-4. **Chưa có chatbot, API/chat UI, bộ kiểm thử citation và an toàn.** Điểm softmax của mô hình ảnh không phải xác suất bệnh đã hiệu chuẩn hoặc chẩn đoán mô bệnh học.
+4. **Chưa có chatbot, API/chat UI, bộ kiểm thử citation và an toàn.** Hai cờ evidence hiện chỉ là thử nghiệm; `answer_ready` luôn false. Điểm softmax của mô hình ảnh không phải xác suất bệnh đã hiệu chuẩn hoặc chẩn đoán mô bệnh học.
 5. **Chưa xác minh lại API với model thật sau lần sắp xếp file** bằng `verify_api.py` khi server đang chạy. Kiểm thử tự động hiện dùng predictor giả cho API.
 
 ## Việc tiếp theo, theo thứ tự

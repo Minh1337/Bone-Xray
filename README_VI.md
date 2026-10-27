@@ -1,102 +1,116 @@
-# Bước 1 — Kiểm tra mô hình X-quang trên Windows
+# BoneScope — Hướng dẫn cài đặt và sử dụng trên Windows
 
-Gói này dành cho Windows 10 64-bit, Ryzen 5 7535HS, RTX 3050 Laptop, RAM 8 GB.
-Chạy từng ảnh, FP32, không training lại và không sửa trọng số. Chưa tích hợp API LLM.
-RTX 3050 có nhiều dung lượng VRAM khác nhau; chương trình sẽ ghi dung lượng thực tế.
-Chưa thể bảo đảm tốc độ/bộ nhớ trước khi chạy với trọng số thật trên máy của bạn.
+BoneScope là ứng dụng chạy cục bộ để phân tích ảnh X-quang u xương bằng mô hình
+học sâu, quản lý ca bằng SQLite và thử nghiệm truy xuất tài liệu RAG. Đây là
+phần mềm nghiên cứu; kết quả không thay thế chẩn đoán hoặc tư vấn y khoa.
 
-## 1. Chuẩn bị
+## 1. Lấy mã nguồn
 
-1. Giải nén toàn bộ ZIP vào một thư mục, ví dụ `D:\Bone_Xray_Local_Check`. Không chạy bên trong ZIP.
-2. Cài Python 3.11 64-bit có Python Launcher. Bộ cài Windows có tại:
-   https://www.python.org/downloads/release/python-3119/
-   Chọn **Windows installer (64-bit)**, bật Python Launcher và Add python.exe to PATH.
-   Đây là phiên bản được chọn cho môi trường tái lập này, không phải khuyến nghị dùng bản Python mới nhất.
-3. Chép trọng số chính bạn xuất từ notebook vào `model/best_model.pt`.
-   Tên phải chính xác; không dùng `last_checkpoint.pt` thay thế. Không cần tải trọng số lên chat.
-4. Đặt ảnh test vào `test_images`. Giữ nguyên ảnh test gốc, không chụp màn hình hay resize lại.
-5. Khi cài đặt cần Internet và vài GB dung lượng đĩa trống cho thư viện. Đóng ứng dụng nặng khi chạy vì RAM chỉ có 8 GB.
+Cài Git và Python **3.11 64-bit**, sau đó chạy:
 
-Gói đã có mã model/inference gốc và config, metadata processor, val_transform từ các tệp bạn gửi.
-Không thay đổi tên lớp model hoặc cấu trúc mạng khi kiểm tra lần đầu.
-Checkpoint và joblib có thể chứa mã thực thi: chỉ nạp bộ tệp do chính bạn xuất và tin cậy.
+```powershell
+git clone https://github.com/Minh1337/Bone-Xray.git
+cd Bone-Xray
+```
+
+Model chính nằm trong `model/`. Nếu checkout chỉ có Git LFS pointer, cài Git
+LFS rồi tải dữ liệu:
+
+```powershell
+git lfs install
+git lfs pull
+```
+
+Không commit hoặc chia sẻ ảnh bệnh nhân, database runtime, log hay secret.
 
 ## 2. Cài môi trường
 
-Nhấp đúp `01_setup.bat`. Đợi thông báo `Setup complete`.
-Cửa sổ có thể ít cập nhật; tiến độ chi tiết nằm ở `logs/setup.log`.
-Không cần bật PowerShell execution policy, không cần cài CUDA Toolkit riêng cho bộ kiểm tra này.
-Cần driver NVIDIA tương thích với bản PyTorch CUDA. Nếu không nhận GPU, gửi log để xử lý;
-không tự gỡ driver hoặc cài nhiều bản CUDA.
+Nhấp đúp `01_setup.bat`. Script tạo `.venv`, cài PyTorch và dependency mô hình,
+chạy kiểm tra cơ bản rồi tạo log trong `logs/`.
 
-Lựa chọn môi trường: Python 3.11, torch 2.6.0 + torchvision 0.21.0 CUDA 12.4,
-scikit-learn 1.6.1, Albumentations 2.0.8, timm 1.0.15.
-Hai phiên bản sklearn/Albumentations được xác định từ tệp đã gửi. Phiên bản torch/timm
-gốc của notebook chưa được xác minh; các bản trên là môi trường thử được ghim phiên bản.
-Nếu strict load hoặc phép biến đổi lỗi, gửi log và phiên bản thư viện notebook, không bỏ strict=True.
-Lệnh PyTorch được đối chiếu tại https://docs.pytorch.org/get-started/previous-versions/.
+Tiếp theo nhấp đúp `04_setup_api.bat` để cài FastAPI và chạy test API.
+Không copy `.venv` từ máy khác; hãy tạo lại trên từng máy để tránh lỗi đường dẫn,
+Python và phần cứng.
 
-## 3. Điền cases.json
+## 3. Khởi động ứng dụng
 
-Mở `cases.json` bằng VS Code hoặc Notepad. Tệp là một danh sách ca.
-Mẫu có null để buộc bạn nhập dữ liệu thật; chưa điền thì chương trình sẽ dừng rõ lý do.
+Nhấp đúp `07_start_ui.bat`, sau đó mở:
 
-- `id`: mã tự đặt, không trùng giữa các ca, ví dụ `case_001`.
-- `image`: ví dụ `test_images/IMG000123.jpeg`. Dùng dấu `/` để tránh lỗi escape JSON.
-- `metadata.age`: tuổi dạng số, ví dụ `35`, không phải chuỗi `"35"`.
-- `metadata.gender`: đúng `"M"` hoặc `"F"` như dataset.
-- 20 trường còn lại: số `0` hoặc `1`, giữ đúng giá trị trong dòng dataset của ảnh.
-  Không tự suy ra các nhóm xương/khớp/chi từ tên ảnh. Không tự điền tất cả bằng 0.
-- Giữ nguyên tên khóa có khoảng trắng hoặc dấu gạch nối như `hip bone`, `knee-joint`.
-- Không biết metadata thì gửi lại dòng dữ liệu để xử lý, không tự bịa giá trị.
-- `true_label`: nhãn thật nếu có, nếu chưa có giữ `null`.
-- `expected_top1`: nhãn do notebook dự đoán trên đúng ảnh này, không phải nhãn thật;
-  chưa có thì giữ `null`.
-- `expected_scores`: nếu có, là object đủ 10 tên lớp và xác suất softmax từ notebook;
-  chưa có giữ `null`. Không dán 12 xác suất phân cấp trực tiếp vào đây.
+```text
+http://127.0.0.1:8000/
+```
 
-Các tên lớp đúng: `no-tumor`, `osteochondroma`, `multiple osteochondromas`,
-`simple bone cyst`, `giant cell tumor`, `osteofibroma`, `synovial osteochondroma`,
-`other bt`, `osteosarcoma`, `other mt`.
+API có tài liệu tại `http://127.0.0.1:8000/docs`. Không chạy
+`05_start_api.bat` đồng thời với `07_start_ui.bat` vì cả hai dùng cổng 8000.
+Nếu cần chạy API riêng, dùng `05_start_api.bat`.
 
-Để thêm ca, sao chép object đầu trong mảng, ngăn cách bằng dấu phẩy, đổi id và dữ liệu.
-Không thêm dấu phẩy sau phần tử cuối. Lần đầu chỉ dùng 1–3 ảnh.
-Nếu metadata hiện nằm trong CSV/Excel, có thể gửi các dòng tương ứng để chuyển sang JSON;
-chưa cần gửi toàn bộ dataset.
+## 4. Phân tích và lưu ca
 
-## 4. Chạy kiểm tra
+1. Chọn ảnh JPG, PNG, BMP hoặc TIFF, tối đa 30 MiB.
+2. Nạp `cases.json` hoặc một object metadata JSON đủ 22 trường.
+3. Bảo đảm ảnh và metadata thuộc cùng một ca; không tự đoán các trường còn thiếu.
+4. Bấm **Phân tích ảnh** để xem Top-1, Top-3 và điểm của 10 lớp.
+5. Bấm **Lưu ca vào lịch sử** nếu muốn lưu kết quả vào SQLite.
 
-Nhấp đúp `02_run_check.bat`. Mặc định chọn CUDA nếu PyTorch nhận GPU, nếu không thì dùng CPU.
-Chương trình kiểm tra đầu vào, tính SHA256, nạp model strict, kiểm tra config và metadata,
-rồi chạy mỗi ảnh 1 lần làm nóng + 3 lần đo. Thời gian gồm đọc ảnh, tiền xử lý và dự đoán,
-không gồm nạp model. Nạp model được đo riêng. Batch size suy luận luôn là 1.
-Mỗi lượt tạo thư mục kết quả mới để không ghi đè lượt trước.
+Các trang chính:
 
-Nếu thiếu VRAM, chương trình ghi lỗi; đóng các ứng dụng dùng GPU rồi thử lại.
-Có thể dùng `03_run_cpu.bat` để thử CPU. Không giảm kích thước ảnh hoặc thay preprocessing.
-Với RAM 8 GB, CPU cũng có thể chậm hoặc thiếu bộ nhớ; log sẽ giúp quyết định bước tiếp.
+- `/`: phân tích ảnh và metadata.
+- `/history`: lịch sử ca đã lưu, lọc và phân trang.
+- `/dashboard`: thống kê ca, hiệu chỉnh, nhận xét và thiết bị.
+- `/case/{id}`: chi tiết ca, nhận xét và hiệu chỉnh nhãn độc lập.
 
-## 5. Đọc và gửi kết quả
+Database `data/bonescope.db` được tạo tại máy và bị Git bỏ qua. Máy mới sẽ không
+có lịch sử từ máy cũ. Nếu cần chuyển lịch sử, dừng ứng dụng rồi sao lưu/copy
+database riêng; không đưa dữ liệu bệnh nhân lên repository công khai.
 
-Mở thư mục mới nhất trong `results`:
-- `report.json`: môi trường, mã kiểm tra tệp, điểm số đủ 10 lớp, thời gian, RAM/VRAM và lỗi.
-- `predictions.csv`: bảng tóm tắt (chỉ tạo sau khi đã chạy tới giai đoạn dự đoán).
-- `run_log.txt`: log ngắn.
-Gửi `report.json` và `run_log.txt`; nếu cài lỗi, gửi `logs/setup.log`.
-Nếu không thấy results, gửi `logs/last_run_console.txt`.
-Không cần gửi ảnh hoặc trọng số lại để chỉ xem lỗi môi trường.
+## 5. Tạo chỉ mục RAG cục bộ
 
-`TECHNICAL_CHECK_PASSED` chỉ nghĩa là mô hình nạp được và đầu ra vượt qua kiểm tra kỹ thuật.
-Nếu `notebook_comparison = NOT_PROVIDED`, chưa xác minh khớp notebook.
-`TOP1_ONLY` chỉ đối chiếu nhãn, chưa đối chiếu mọi điểm số.
-`SCORES_CHECKED` có sai số tối đa và ngưỡng 1e-4. Sai số vượt ngưỡng cần xem xét,
-không tự kết luận checkpoint hỏng và không tự nới ngưỡng để nhận PASS.
-Kiểm tra lặp lại dùng ngưỡng 1e-5. Nhãn dự đoán sai so với true_label được ghi nhận riêng,
-không đồng nghĩa với lỗi chạy mã. Vài ca này không thay thế đánh giá trên 563 ảnh test.
+RAG hiện mới có corpus, embedding, retrieval, đánh giá và chính sách routing;
+**chưa có chatbot và chưa được nghiệm thu để trả lời y khoa**.
 
-## 6. Phạm vi xác minh gói
+Cài dependency và tạo index lần đầu:
 
-Đã kiểm tra cú pháp và unit test cho kiểm tra metadata/đường dẫn/điểm tham chiếu trên môi trường soạn gói.
-Chưa chạy cài đặt trên Windows, chưa chạy GPU RTX 3050 và chưa nạp best_model.pt vì chưa có tệp.
-Không có tải ảnh lên Internet hoặc gọi API LLM trong mã kiểm tra. Bước cài thư viện dùng Internet.
-Giao diện và API LLM sẽ được xây sau khi kiểm tra mô hình này hoàn tất.
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements_rag.txt
+.\.venv\Scripts\python.exe rag\build_index.py --download-model
+.\.venv\Scripts\python.exe rag\evaluate.py
+.\.venv\Scripts\python.exe rag\retrieval.py "Chordoma thường xuất hiện ở vùng nào?" --top-k 5
+```
+
+Corpus hiện gồm 416 đoạn từ 12 nguồn NCI. Các thư mục
+`rag\index\`, `rag\models\` và `rag\source_cache\` được tạo/tải tại máy và bị
+Git bỏ qua. Lần sau chỉ cần chạy `rag\build_index.py` nếu model embedding đã có.
+
+Hai tùy chọn thử nghiệm không bật mặc định:
+
+```powershell
+.\.venv\Scripts\python.exe rag\retrieval.py "..." --rerank-concepts
+.\.venv\Scripts\python.exe rag\retrieval.py "..." --verify-evidence
+```
+
+`--rerank-concepts` cần kiểm định thêm trên tập độc lập. `--verify-evidence`
+đang từ chối nhầm nhiều câu có đáp án nên không dùng cho người dùng cuối.
+Cả hai chế độ vẫn trả `answer_ready: false`. Xem [hướng dẫn RAG](docs/README.md)
+và [bàn giao giai đoạn 11](docs/STAGE11_HANDOFF_VI.md).
+
+## 6. Kiểm thử
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
+```
+
+Kết quả xác nhận gần nhất: **36 passed, 14 subtests passed**. Một cảnh báo
+deprecated của Starlette không làm test thất bại.
+
+## 7. Tài liệu và giới hạn
+
+- [README tổng quan](README.md)
+- [Trạng thái dự án](docs/PROJECT_STATUS_VI.md)
+- [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
+- [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)
+- [Hướng dẫn index và retrieval](docs/guides/README_RAG_INDEX_VI.md)
+- [Thiết kế kiểm tra bằng chứng](docs/reference/EVIDENCE_CHECK_DESIGN_VI.md)
+
+Mô hình ảnh chưa được tuyên bố là có accuracy lâm sàng hoặc xác suất đã hiệu
+chuẩn. RAG còn thiếu nguồn cho một số nhãn, chưa có chatbot, chưa có citation
+generation và chưa được phép dùng để tự chẩn đoán hay đề xuất phác đồ.
