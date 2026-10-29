@@ -1,0 +1,314 @@
+{
+  "created_at_utc": "2026-10-29T01:30:00+00:00",
+  "input_report": "docs/reference/stage11_evidence_unknown_token_gate_experiment_20261029_v3.json",
+  "input_sha256": "5b1770a1ee2ba565152d9ff2d7933926cb77dbab73b6b5644724c3d0e49c604f",
+  "method": "Count EvidenceVerifier best_missing terms for answerable queries still abstaining under in-memory require_known_query_terms=false. This is one top candidate per query, not all possible missing concepts or a medical ontology.",
+  "positive_abstained_questions": 21,
+  "best_missing_term_counts": {
+    "literal:don": {
+      "count": 4,
+      "question_ids": [
+        "c01",
+        "c02",
+        "c03",
+        "c04"
+      ]
+    },
+    "tissue": {
+      "count": 3,
+      "question_ids": [
+        "c04",
+        "ofd02",
+        "p16"
+      ]
+    },
+    "literal:cyst": {
+      "count": 2,
+      "question_ids": [
+        "c05",
+        "c06"
+      ]
+    },
+    "literal:cohort": {
+      "count": 2,
+      "question_ids": [
+        "c05",
+        "c06"
+      ]
+    },
+    "literal:authors": {
+      "count": 2,
+      "question_ids": [
+        "c24",
+        "c25"
+      ]
+    },
+    "literal:report": {
+      "count": 1,
+      "question_ids": [
+        "c05"
+      ]
+    },
+    "bone": {
+      "count": 1,
+      "question_ids": [
+        "c06"
+      ]
+    },
+    "literal:proportion": {
+      "count": 1,
+      "question_ids": [
+        "c06"
+      ]
+    },
+    "literal:unicameral": {
+      "count": 1,
+      "question_ids": [
+        "c06"
+      ]
+    },
+    "biopsy": {
+      "count": 1,
+      "question_ids": [
+        "c13"
+      ]
+    },
+    "literal:ap": {
+      "count": 1,
+      "question_ids": [
+        "c13"
+      ]
+    },
+    "literal:x": {
+      "count": 1,
+      "question_ids": [
+        "c14"
+      ]
+    },
+    "literal:include": {
+      "count": 1,
+      "question_ids": [
+        "c15"
+      ]
+    },
+    "literal:identifiable": {
+      "count": 1,
+      "question_ids": [
+        "c15"
+      ]
+    },
+    "pain": {
+      "count": 1,
+      "question_ids": [
+        "c16"
+      ]
+    },
+    "literal:mri": {
+      "count": 1,
+      "question_ids": [
+        "c17"
+      ]
+    },
+    "literal:feature": {
+      "count": 1,
+      "question_ids": [
+        "c17"
+      ]
+    },
+    "literal:suggest": {
+      "count": 1,
+      "question_ids": [
+        "c17"
+      ]
+    },
+    "literal:locations": {
+      "count": 1,
+      "question_ids": [
+        "c19"
+      ]
+    },
+    "literal:used": {
+      "count": 1,
+      "question_ids": [
+        "c19"
+      ]
+    },
+    "literal:classify": {
+      "count": 1,
+      "question_ids": [
+        "c19"
+      ]
+    },
+    "literal:evaluating": {
+      "count": 1,
+      "question_ids": [
+        "c20"
+      ]
+    },
+    "literal:white": {
+      "count": 1,
+      "question_ids": [
+        "c22"
+      ]
+    },
+    "literal:paper": {
+      "count": 1,
+      "question_ids": [
+        "c22"
+      ]
+    },
+    "literal:population": {
+      "count": 1,
+      "question_ids": [
+        "c22"
+      ]
+    },
+    "literal:context": {
+      "count": 1,
+      "question_ids": [
+        "c22"
+      ]
+    },
+    "literal:address": {
+      "count": 1,
+      "question_ids": [
+        "c22"
+      ]
+    },
+    "literal:rads": {
+      "count": 1,
+      "question_ids": [
+        "c24"
+      ]
+    },
+    "literal:take": {
+      "count": 1,
+      "question_ids": [
+        "c24"
+      ]
+    },
+    "literal:limit": {
+      "count": 1,
+      "question_ids": [
+        "c25"
+      ]
+    },
+    "literal:scope": {
+      "count": 1,
+      "question_ids": [
+        "c25"
+      ]
+    },
+    "symptoms": {
+      "count": 1,
+      "question_ids": [
+        "ofd03"
+      ]
+    },
+    "literal:he": {
+      "count": 1,
+      "question_ids": [
+        "ofd05"
+      ]
+    },
+    "tests": {
+      "count": 1,
+      "question_ids": [
+        "sc04"
+      ]
+    }
+  },
+  "by_report": {
+    "expansion_dev_strict.json": {
+      "positive_abstentions": 16,
+      "question_ids": [
+        "c01",
+        "c02",
+        "c03",
+        "c04",
+        "c05",
+        "c06",
+        "c13",
+        "c14",
+        "c15",
+        "c16",
+        "c17",
+        "c19",
+        "c20",
+        "c22",
+        "c24",
+        "c25"
+      ],
+      "best_missing_terms": {
+        "biopsy": 1,
+        "bone": 1,
+        "literal:address": 1,
+        "literal:ap": 1,
+        "literal:authors": 2,
+        "literal:classify": 1,
+        "literal:cohort": 2,
+        "literal:context": 1,
+        "literal:cyst": 2,
+        "literal:don": 4,
+        "literal:evaluating": 1,
+        "literal:feature": 1,
+        "literal:identifiable": 1,
+        "literal:include": 1,
+        "literal:limit": 1,
+        "literal:locations": 1,
+        "literal:mri": 1,
+        "literal:paper": 1,
+        "literal:population": 1,
+        "literal:proportion": 1,
+        "literal:rads": 1,
+        "literal:report": 1,
+        "literal:scope": 1,
+        "literal:suggest": 1,
+        "literal:take": 1,
+        "literal:unicameral": 1,
+        "literal:used": 1,
+        "literal:white": 1,
+        "literal:x": 1,
+        "pain": 1,
+        "tissue": 1
+      }
+    },
+    "osteofibrous_dysplasia_dev_strict.json": {
+      "positive_abstentions": 3,
+      "question_ids": [
+        "ofd02",
+        "ofd03",
+        "ofd05"
+      ],
+      "best_missing_terms": {
+        "literal:he": 1,
+        "symptoms": 1,
+        "tissue": 1
+      }
+    },
+    "synovial_source_dev_strict.json": {
+      "positive_abstentions": 1,
+      "question_ids": [
+        "sc04"
+      ],
+      "best_missing_terms": {
+        "tests": 1
+      }
+    },
+    "synovial_synonym_dev_strict.json": {
+      "positive_abstentions": 0,
+      "question_ids": [],
+      "best_missing_terms": {}
+    },
+    "v2_test_strict.json": {
+      "positive_abstentions": 1,
+      "question_ids": [
+        "p16"
+      ],
+      "best_missing_terms": {
+        "tissue": 1
+      }
+    }
+  },
+  "interpretation": "Diagnostic to prioritize reviewer discussion of concept/translation coverage. Do not add aliases from these seen queries and do not treat frequency as prevalence or entailment."
+}

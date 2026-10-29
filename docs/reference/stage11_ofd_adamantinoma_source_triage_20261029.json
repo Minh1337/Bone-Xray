@@ -1,0 +1,195 @@
+{
+  "checked_at_utc": "2026-10-29T01:47:44Z",
+  "purpose": "Source and reuse-rights triage for current OFD/adamantinoma terminology and natural-history uncertainty; not a clinical evidence synthesis or reference standard.",
+  "sources": [
+    {
+      "id": "jayan_rekhi_review_2026_issue",
+      "title": "Osteofibrous dysplasia (OFD) and adamantinoma: A comprehensive review and updates",
+      "authors": [
+        "Radhika Jayan",
+        "Bharat Rekhi"
+      ],
+      "doi": "10.14670/HH-18-950",
+      "urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/40539236/",
+        "https://www.hh.um.es/Abstracts/Vol_41/41_1/41_1_11.htm"
+      ],
+      "publication": "Histology and Histopathology 2026;41(1):11-23; epub 2025-06-13",
+      "reviewed_content": "PubMed metadata and abstract only. The abstract covers OFD clinical, radiological and pathological features and the histopathological spectrum/differential diagnosis of adamantinoma.",
+      "reuse_rights": "PubMed states open access CC BY International; publisher full-text endpoint returned HTTP 502 in this check, so the article-level license and full text were not revalidated in the payload.",
+      "disposition": "Follow-up lead only; no cache, registry entry, corpus ingestion, or BTXRD-label mapping. Revisit only after full text and article-level license can be verified."
+    },
+    {
+      "id": "chen_retrospective_2025",
+      "title": "Osteofibrous dysplasia, osteofibrous Dysplasia-Like adamantinoma, and adamantinoma: A Single-center retrospective analysis",
+      "authors": [
+        "Wei Chen",
+        "Qinglin Jin",
+        "Shaohua Du",
+        "Shuangwu Dai",
+        "Changhe Hou",
+        "Zixiong Lei",
+        "Lin Zhong",
+        "Qingzhu Wei",
+        "Haomiao Li"
+      ],
+      "pmcid": "PMC12271915",
+      "doi": "10.1016/j.jbo.2025.100700",
+      "urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12271915/",
+        "https://www.sciencedirect.com/science/article/pii/S2212137425000417"
+      ],
+      "publication": "Journal of Bone Oncology 2025;53:100700",
+      "reviewed_content": "Single-center retrospective study of 50 patients (16 OFD, 27 OFD-AD, 7 AD), with minimum 24-month follow-up. The authors discuss a possible evolutionary relationship; two recurrent lesions were reclassified at later pathology review.",
+      "reuse_rights": "Article JATS identifies CC BY-NC-ND 4.0; this is outside the corpus builder's explicit CC BY 4.0 allowlist.",
+      "limitations": [
+        "Small, selected single-center series",
+        "Reclassification on recurrence does not establish biological transformation",
+        "The article's counts vary by available follow-up denominators"
+      ],
+      "disposition": "Do not cache or ingest. Retain only as a cited reviewer lead on contested terminology and longitudinal reclassification."
+    },
+    {
+      "id": "ramkumar_retrospective_2026",
+      "title": "Treatment and Management of Osteofibrous Dysplasia Like Adamantinoma - A Single Institution Experience",
+      "authors": [
+        "Dipak B Ramkumar",
+        "Niveditta Ramkumar",
+        "Sean P Kelly",
+        "Georges Basile",
+        "Nelson Merchan",
+        "Mark C Gebhardt",
+        "Megan E Anderson"
+      ],
+      "pmcid": "PMC13015733",
+      "doi": "10.1016/j.jposna.2026.100341",
+      "urls": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC13015733/",
+        "https://pubmed.ncbi.nlm.nih.gov/41890885/"
+      ],
+      "publication": "Journal of the Pediatric Orthopaedic Society of North America 2026",
+      "reviewed_content": "Single-institution retrospective chart review spanning 1958-2016. The abstract reports 59 patients, including 43 OFD, 9 OFDLA, 5 ADA, with two mixed/uncertain categories in the full-text cohort table. Authors report no increased progression risk in this limited follow-up.",
+      "reuse_rights": "Article JATS identifies CC BY-NC-ND 4.0; outside the corpus builder's explicit CC BY 4.0 allowlist.",
+      "limitations": [
+        "Not all OFD diagnoses had confirmatory biopsy",
+        "Treatment indications/procedures were not standardized",
+        "Very small OFDLA and ADA groups",
+        "Historical records span changing diagnostic classifications",
+        "Follow-up may miss late events"
+      ],
+      "disposition": "Do not cache or ingest. Reviewer context only; does not establish a general natural-history rule."
+    },
+    {
+      "id": "jayan_rekhi_pathology_series_2026",
+      "title": "Clinicopathological analysis of osteofibrous dysplasia and adamantinoma: A single institution experience",
+      "authors": [
+        "Radhika Jayan",
+        "Bharat Rekhi",
+        "Mukta Ramadwar",
+        "Poonam Panjwani"
+      ],
+      "doi": "10.1016/j.anndiagpath.2026.152618",
+      "urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/41653544/",
+        "https://www.sciencedirect.com/science/article/pii/S1092913426000146"
+      ],
+      "publication": "Annals of Diagnostic Pathology 2026;82:152618; epub 2026-01-30",
+      "reviewed_content": "Abstract reports 58 tumors reviewed, with 12/58 diagnoses modified after pathology review; radiology impression matched histopathology in 40% of OFD and 60% of adamantinoma. No OFD progression to adamantinoma was observed during median follow-up of 51.15 months (range 4.36-97.94).",
+      "reuse_rights": "PubMed states Copyright © 2026 Elsevier Inc. All rights reserved; no open license verified.",
+      "limitations": [
+        "Single-center rare-tumor series",
+        "Follow-up durations varied, including short follow-up",
+        "Not an externally validated imaging classifier",
+        "Abstract-level screen for this source triage"
+      ],
+      "disposition": "Do not cache or ingest. Specialist follow-up lead; its radiology-pathology concordance is not an estimate of BoneScope performance."
+    },
+    {
+      "id": "wu_pediatric_ofd_series_2026",
+      "title": "Clinical Pathological Features and Cytokeratin Expression Patterns of Osteofibrous Dysplasia in Children",
+      "authors": [
+        "Xue-Mei Wu",
+        "Qin-Qin Zhang",
+        "Xiang-Yue Meng",
+        "Yuan Fang",
+        "Yi-Zhen Wang"
+      ],
+      "doi": "10.1080/15513815.2026.2683413",
+      "urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/42266005/",
+        "https://www.tandfonline.com/doi/full/10.1080/15513815.2026.2683413?needAccess=true&scroll=top"
+      ],
+      "publication": "Fetal and Pediatric Pathology 2026;45(3):222-232",
+      "reviewed_content": "PubMed abstract reports 49 pathology-confirmed pediatric OFD cases from one hospital (2008-2025), CK positivity in 29/49 (59.1%), and no recurrence/malignant transformation during the reported follow-up.",
+      "reuse_rights": "No open reuse license verified; publisher full text requires access.",
+      "limitations": [
+        "Single pediatric institution",
+        "Follow-up duration is not stated in the abstract",
+        "Does not establish adult outcomes or image-only diagnostic performance",
+        "Abstract-only review"
+      ],
+      "disposition": "Do not cache or ingest; retain as an abstract-level specialist lead only."
+    },
+    {
+      "id": "hung_genomic_2026",
+      "title": "Genomic Characterization of Classic Adamantinoma, Osteofibrous Dysplasia, and Osteofibrous Dysplasia-like Adamantinoma",
+      "authors": [
+        "Yin P Hung",
+        "Valentina Nardi",
+        "Azra H Ligon",
+        "Charlotte I Wang",
+        "Connie Y Chang",
+        "Erik T Newman",
+        "Kevin A Raskin",
+        "Santiago A Lozano-Calderón",
+        "Kristin Sikkink",
+        "Logan Van Meter",
+        "Kay Linker",
+        "Anthony D Schmitt",
+        "Ivan Chebib",
+        "G Petur Nielsen"
+      ],
+      "doi": "10.1016/j.modpat.2026.101033",
+      "urls": [
+        "https://pubmed.ncbi.nlm.nih.gov/42379271/",
+        "https://www.sciencedirect.com/science/article/abs/pii/S0893395226000761"
+      ],
+      "publication": "Modern Pathology 2026;39(9):101033",
+      "reviewed_content": "Publisher/PubMed abstract reports a single-center genomic series of 10 tumors: 3 classic adamantinomas, 5 OFDs, and 2 OFD-like adamantinomas. Authors suggest classic adamantinoma and OFD may be genetically distinct; OFD-like delineation findings are exploratory.",
+      "reuse_rights": "No open reuse license verified; publisher page presents Get rights and content. Full-text reuse rights remain unknown.",
+      "limitations": [
+        "Only 10 cases",
+        "Selected pathology-file cohort",
+        "Not an externally validated diagnostic classifier",
+        "Abstract-level review only"
+      ],
+      "disposition": "Do not cache or ingest. Keep as a specialist follow-up lead only."
+    },
+    {
+      "id": "aaos_orthoinfo_reviewed_20261029",
+      "title": "Osteofibrous Dysplasia and Adamantinoma",
+      "organization": "American Academy of Orthopaedic Surgeons (OrthoInfo)",
+      "urls": [
+        "https://www.orthoinfo.org/diseases--conditions/osteofibrous-dysplasia-and-adamantinoma/"
+      ],
+      "reviewed_content": "English patient-education page states that OFD has not been shown to become cancerous and that there is no good evidence OFD turns into adamantinoma; it describes these entities as distinct. Contributor/update and peer-review clinician names are shown on page.",
+      "reuse_rights": "Page states AAOS copyright/all rights reserved; no open reuse license verified. Its translation warning says non-English versions may use AI and may not have professional review.",
+      "limitations": [
+        "Patient-education resource, not a primary cohort or evidence-graded clinical guideline",
+        "Do not interpret lack of good evidence as proof of no biological relationship",
+        "Use English original for source review"
+      ],
+      "disposition": "External reviewer context only; do not cache or ingest."
+    }
+  ],
+  "synthesis_limit": "Sources differ in case selection, histopathology criteria, historical classification, follow-up, and evidence type. They do not resolve whether/how entities are related and do not map the BTXRD osteofibroma class.",
+  "project_disposition": {
+    "source_registry_changed": false,
+    "corpus_changed": false,
+    "evaluation_gold_changed": false,
+    "image_data_accessed": false,
+    "clinical_rule_created": false,
+    "answer_ready": false,
+    "reviewer_gate_closed": false
+  }
+}

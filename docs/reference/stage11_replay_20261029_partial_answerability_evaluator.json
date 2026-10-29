@@ -1,0 +1,12 @@
+{
+  "created_at_utc": "2026-10-29T02:24:47.153653+00:00",
+  "bundle": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE\\docs\\reference\\stage11_policy_rerun_20261029_evidence_neutral_v8",
+  "manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+  "replay_implementation_sha256": "1b5c664e608a987bd47fb8f97822ee1c00789a80f05ac53f752de1f14872bf1b",
+  "preflight_mismatches": [
+    "evaluate_sha256"
+  ],
+  "report_artifacts_checked": 0,
+  "reports": [],
+  "status": "FAIL"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "corpus_sha256": "552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb",
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
   "config_sha256_at_freeze": "62779b99b66aafdd0d678c8fad6d1b719f61469bb4873a20bb247589157066ad",
   "provenance": "Agent-authored; the dev split gold was updated on 2026-10-27 because the expanded corpus now contains supporting evidence for n04. Historical test split unchanged, but has been viewed. Entire dataset is a regression set, not independent expert validation or a held-out test.",
   "questions": [
@@ -336,5 +336,6 @@
       "expected_status": "insufficient_evidence",
       "evidence": []
     }
-  ]
+  ],
+  "revalidation_note_20261028": "Corpus expanded with a verified CC BY 4.0 synovial chondromatosis review; existing gold entries and query text were not changed. Evidence keys were rechecked against the rebuilt corpus; these previously viewed sets remain regression/development only."
 }

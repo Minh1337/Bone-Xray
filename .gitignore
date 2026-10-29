@@ -24,6 +24,9 @@ rag/models/
 api_results/
 *.log
 
+# Generated project checkpoints (large snapshots and patch bundles)
+checkpoints/
+
 # Temporary & Cache files
 .temp/
 tmp/

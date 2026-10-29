@@ -1,0 +1,46 @@
+{
+  "created_at_utc": "2026-10-28T15:04:14.116181+00:00",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
+  "working_directory": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+  "exit_code": 0,
+  "status": "PASS",
+  "collected": 66,
+  "passed": 66,
+  "failed": 0,
+  "subtests_passed": 79,
+  "python": "3.11.9",
+  "pytest": "9.1.1",
+  "warnings": [
+    "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal"
+  ],
+  "corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+  "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+  "retrieval_config_sha256": "d3d1a2488c482f47bea9835a0fefc90ce990ab3ddc53c9f5ac9d9c5f6bc7d787",
+  "implementation_hashes": {
+    "rag/policy.py": "005a4a406ab68224ded85ff4dd313dc8612cf30500f684d9a961ff51ea7c1d3d",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "rag/audit.py": "f285377dc265487093bfc86c98ae282cbbdc06c1f6e0a62f00bf34a156dc9896",
+    "rag/replay_reports.py": "575d80954d420360f29f0b6c127b045d76e4bbbe9559c184af74bd149d4a9918",
+    "rag/tests/test_retrieval.py": "42550a63b4f7a44841f1b2fafb4769a2e6b87e0c1351c2d94f828a672032cec7",
+    "rag/tests/test_evaluation.py": "98b2c772a8f902d2c4c65d4f57308bd47795fe80e935449256869a12524aa031",
+    "rag/tests/test_audit.py": "ebb54a802adf2693c2b1c87631718a2beab9f0022c794f889effee4b693bf07a"
+  },
+  "targeted_regression": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_retrieval.py -q",
+    "passed": 13,
+    "subtests_passed": 68,
+    "exit_code": 0
+  },
+  "policy_probe_dataset": {
+    "path": "docs/reference/stage11_personal_image_outcome_probes_v2_20261028.json",
+    "sha256": "c062ba6d3a03c2f50874e351362a794e927643c979c2466b2122cc819240b478",
+    "personal_image_cases": 12,
+    "personal_image_abstentions": 12,
+    "general_education_controls": 6,
+    "controls_in_scope": 6,
+    "provenance": "Agent-authored and policy-tuned in-sample development probes; not independent/blind/representative; text only, no attachment pixels/metadata."
+  },
+  "scope_note": "Full and targeted regression suites after expanded personal-image outcome-language routing and default report bundle update. This is software regression evidence only; not independent retrieval or clinical validation."
+}

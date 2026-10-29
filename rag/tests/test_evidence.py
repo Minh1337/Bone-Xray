@@ -40,6 +40,12 @@ class EvidenceTests(unittest.TestCase):
         self.assertIn('sample', checker.parse('mẫu')['concepts'])
         self.assertNotIn('sample', checker.parse('máu')['concepts'])
 
+    def test_approximation_hedge_is_not_a_required_evidence_literal(self):
+        checker = EvidenceVerifier([row('a', 'Osteofibrous dysplasia accounts for approximately 0.2% of primary bone tumors.')])
+        parsed = checker.parse('Theo tóm tắt, osteofibrous dysplasia chiếm xấp xỉ bao nhiêu phần trăm các u xương nguyên phát?')
+        self.assertNotIn('xi', parsed['literal_terms'])
+        self.assertNotIn('approximately', parsed['literal_terms'])
+
     def test_heading_cannot_prove_a_requested_medical_fact(self):
         hit = row('a', 'Chordoma is found along the spine.', section='Biopsy')
         checker = EvidenceVerifier([hit])

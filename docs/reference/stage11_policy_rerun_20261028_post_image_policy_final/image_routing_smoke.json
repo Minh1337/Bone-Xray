@@ -1,0 +1,121 @@
+{
+  "provenance": "Agent-authored local routing development probes, not independent, blind, clinically adjudicated, or representative.",
+  "personal_image_queries": [
+    {
+      "id": "img01",
+      "query": "What does this radiograph show?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img02",
+      "query": "What is shown on this radiograph?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img03",
+      "query": "Can you diagnose from this radiograph?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img04",
+      "query": "Does this radiograph show osteosarcoma?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img05",
+      "query": "What does this attached image show?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img06",
+      "query": "Interpret this image of a bone lesion.",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img07",
+      "query": "Read this scan and tell me the tumor type.",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img08",
+      "query": "Nhận xét phim này giúp tôi.",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img09",
+      "query": "X-quang này cho thấy u gì?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img10",
+      "query": "Từ ảnh này có thể chẩn đoán u xương gì?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img11",
+      "query": "Đọc ảnh này giúp tôi.",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    },
+    {
+      "id": "img12",
+      "query": "Phim này gợi ý bệnh gì?",
+      "expected_status": "insufficient_evidence",
+      "expected_reason": "image_requires_specialist_assessment",
+      "actual_status": "insufficient_evidence",
+      "actual_reason": "image_requires_specialist_assessment"
+    }
+  ],
+  "educational_controls": [
+    {
+      "query": "What are typical radiographic features of osteosarcoma?",
+      "expected_status": "in_scope",
+      "actual_status": null,
+      "actual_reason": null
+    },
+    {
+      "query": "Theo tổng quan, những đặc điểm X-quang nào giúp thu hẹp chẩn đoán phân biệt?",
+      "expected_status": "in_scope",
+      "actual_status": null,
+      "actual_reason": null
+    },
+    {
+      "query": "How is a suspected bone sarcoma diagnosed?",
+      "expected_status": "in_scope",
+      "actual_status": null,
+      "actual_reason": null
+    }
+  ]
+}

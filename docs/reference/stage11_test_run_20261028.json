@@ -1,0 +1,19 @@
+{
+  "created_at_utc": "2026-10-28T09:10:46.116555+00:00",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "exit_code": 0,
+  "status": "PASS",
+  "passed": 66,
+  "subtests_passed": 61,
+  "warnings": [
+    "Starlette TestClient AnyIO BlockingPortal deprecation"
+  ],
+  "corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+  "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+  "retrieval_config_sha256": "d3d1a2488c482f47bea9835a0fefc90ce990ab3ddc53c9f5ac9d9c5f6bc7d787",
+  "audit_implementation_sha256": "05812a3011df49db4ce541481bbf429cd937e9ebdfc8c09911022aba09b056b2",
+  "nci_parser_test_sha256": "9d2e17465ab82d178555a2ac616663d5197091ae2698700f00611d1c7550ffae",
+  "retrieval_policy_test_sha256": "0d96b313dbd6438e2a37c5b4762a150812211f965fc64ec1310575435cedcdc7",
+  "note": "Full suite after chondrosarcoma three-chunk route, OFD administrative-section exclusion, and strict NCI glossary JSON shape validation. V2 p13 was already viewed and used to tune routing; no independent validation is implied."
+}

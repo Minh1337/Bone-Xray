@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-10-29T08:06:37.497348+00:00",
+  "change": "Checkpoint readiness metadata now identifies the current Cureus ABC routing bundle and verifies that the audit and replay refer to its manifest.",
+  "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "exit_code": 0,
+  "status": "PASS",
+  "passed": 86,
+  "subtests_passed": 132,
+  "failed": 0,
+  "warnings": [
+    "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias."
+  ],
+  "scope": "Full software regression after checkpoint provenance metadata change; tests include checkpoint utility integrity, missing-input warnings, and current-bundle linkage. No clinical validation or gate sign-off.",
+  "code_sha256": {
+    "tools/create_project_checkpoint.py": "9f0b620404541bc26b53ec14bc41457a777279f38276f8e22093982a803c0568",
+    "tests/test_checkpoint_tool.py": "4162fc4d89e9409524bf13aabef09bad63afc5efd9aca22baa7b74c5461d2103"
+  }
+}

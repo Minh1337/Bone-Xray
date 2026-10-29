@@ -1,0 +1,91 @@
+{
+  "created_at_utc": "2026-10-28T16:47:43.942957+00:00",
+  "bundle": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE\\docs\\reference\\stage11_policy_rerun_20261028_post_offline_license_guard",
+  "manifest_sha256": "e7e6122d476ed14a3f38701a92a7a97e2d7b40e4c0766c4316e2bdd5763a1557",
+  "replay_implementation_sha256": "4e7a1fbb3bbc10b579047e5d534af42a069cdf231f0dbbd31bf02792f3496781",
+  "preflight_mismatches": [],
+  "report_artifacts_checked": 16,
+  "reports": [
+    {
+      "path": "evidence_v3_viewed.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "expansion_dev.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "expansion_dev_concept_rerank.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "expansion_dev_strict.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "image_routing_dev.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "legacy_all.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "osteofibrous_dysplasia_dev.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "osteofibrous_dysplasia_dev_strict.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "synovial_source_dev.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "synovial_source_dev_strict.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "synovial_synonym_dev.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "synovial_synonym_dev_strict.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "v2_test_concept_rerank.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "v2_test_regression.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "v2_test_strict.json",
+      "match": true,
+      "different_fields": []
+    },
+    {
+      "path": "nci_osteochondroma_dev.json",
+      "match": true,
+      "different_fields": []
+    }
+  ],
+  "status": "PASS"
+}

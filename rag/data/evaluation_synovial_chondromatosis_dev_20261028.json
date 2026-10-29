@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "config_sha256_at_freeze": "c5f22a8d70254488b7ec53dd99bb8de1c90c2064c52d9eb1118d4ab2326e5c94",
+  "provenance": "Six agent-authored development queries created after inspecting the newly ingested CC BY 4.0 2026 narrative review; four positive evidence targets and two policy negatives. Deliberately in-sample routing regression only; not independent, blind, clinically adjudicated, or a validation set. The synonym-mapping negative preserves the distinction between the BTXRD class name and the canonical disease term.",
+  "source_id": "synovial-chondromatosis-review-2026",
+  "source_payload_sha256": "13b37e87aba2bac5f29c4cde583a99e9a0bc6ce62c02fb4787068f6ada04d8b8",
+  "questions": [
+    {
+      "id": "sc01",
+      "split": "dev",
+      "question_vi": "Synovial chondromatosis được định nghĩa thế nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "synovial-chondromatosis-review-2026:0003",
+          "source_id": "synovial-chondromatosis-review-2026",
+          "section": "1. Introduction",
+          "text_sha256": "ffca3ad04369b37cf57760dd91e8ede51a5064edde21de03876c71fa737240bc"
+        }
+      ]
+    },
+    {
+      "id": "sc02",
+      "split": "dev",
+      "question_vi": "MRI phát hiện synovial chondromatosis giai đoạn sớm như thế nào, nhất là nốt chưa vôi hóa?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "synovial-chondromatosis-review-2026:0012",
+          "source_id": "synovial-chondromatosis-review-2026",
+          "section": "6.1. Imaging",
+          "text_sha256": "93f0494fd11bfbca10d7a11856d9d50639b9db63b4d3b5f35cf29fcea3fa7567"
+        }
+      ]
+    },
+    {
+      "id": "sc03",
+      "split": "dev",
+      "question_vi": "Điều trị synovial chondromatosis hiện dựa trên mức chứng cứ nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "synovial-chondromatosis-review-2026:0022",
+          "source_id": "synovial-chondromatosis-review-2026",
+          "section": "7. Management",
+          "text_sha256": "8baa252fffcbe978a694b5a3ae61257bec58f3a63e5758dbc228238155c219cf"
+        }
+      ]
+    },
+    {
+      "id": "sc04",
+      "split": "dev",
+      "question_vi": "Xét nghiệm nào xác nhận chẩn đoán synovial chondromatosis?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "synovial-chondromatosis-review-2026:0014",
+          "source_id": "synovial-chondromatosis-review-2026",
+          "section": "6.2. Histopathology",
+          "text_sha256": "25f711164b76cad3b63c84b1c938b6505fecd3f5eabf4e8699908ed075a0f1e9"
+        }
+      ]
+    },
+    {
+      "id": "sc05",
+      "split": "dev",
+      "question_vi": "Nhãn BTXRD “synovial osteochondroma” có thể xem chính xác là synovial chondromatosis không?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "sc06",
+      "split": "dev",
+      "question_vi": "Tôi nên dùng thuốc nào để điều trị synovial chondromatosis?",
+      "expected_status": "out_of_scope",
+      "evidence": []
+    }
+  ]
+}

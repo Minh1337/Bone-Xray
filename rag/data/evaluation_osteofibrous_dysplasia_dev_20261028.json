@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "config_sha256_at_freeze": "0ca97861114eadbe6376c7f7be7fcf24e5f767cf24b6561c85404aa8a35025a3",
+  "provenance": "Seven agent-authored, in-sample development probes derived from the cached 2024 CC BY 4.0 narrative review after source ingestion. Five source-grounded retrieval questions, one unsupported BTXRD-label mapping negative, and one individualized treatment request policy negative. Not independent, blind, clinically adjudicated, or validation evidence. The narrative review itself reports no systematic evaluation or meta-analysis. Evidence parsing lexicon now includes an exact full-name entity and common Vietnamese query stop words; acronym OFD remains excluded from routing to avoid ambiguity. Final query wording was informed by exploratory retrieval on this same corpus; the resulting measurements are in-sample development diagnostics, not held-out evidence.",
+  "source_id": "osteofibrous-dysplasia-review-2024",
+  "source_payload_sha256": "be017ab4d7546064180d5b00aece02264bb8d969d367c00233efd7b9a5ab1c7c",
+  "questions": [
+    {
+      "id": "ofd01",
+      "split": "dev",
+      "question_vi": "Theo phần tóm tắt, osteofibrous dysplasia chiếm xấp xỉ bao nhiêu phần trăm các u xương nguyên phát?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0001",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Abstract",
+          "text_sha256": "6cd11a8819074bee437141bf216aa4262d64515cf0082c30bf18cf289e0abbbb"
+        }
+      ]
+    },
+    {
+      "id": "ofd02",
+      "split": "dev",
+      "question_vi": "Vị trí thường gặp của osteofibrous dysplasia được review mô tả là vùng vỏ thân giữa xương chày (intra-cortical mid-shaft tibia) phải không?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0005",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Epidemiology",
+          "text_sha256": "b6ee4e3e68ba4f7b5ff45ab8ede81f8ba2b9cea0376c697c8ed93ba4c76758e7"
+        }
+      ]
+    },
+    {
+      "id": "ofd03",
+      "split": "dev",
+      "question_vi": "Bài tổng quan nêu các dấu hiệu X-quang của osteofibrous dysplasia gồm tổn thương tiêu xương lệch tâm phía trước, giãn vỏ xương và lan vào trong tủy như thế nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0009",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Radiological characteristics",
+          "text_sha256": "ed46ae5d76e3e3a9dc5456a7bd4b3d7fc71802d32a6d2fa91b65cfac06be4f43"
+        }
+      ]
+    },
+    {
+      "id": "ofd04",
+      "split": "dev",
+      "question_vi": "Theo bài tổng quan osteofibrous dysplasia, CT đánh giá những đặc điểm nào tốt hơn MRI?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0010",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Radiological characteristics",
+          "text_sha256": "3bcfbe0b2b90ab3cd1415f6a11b9ad6cb8c5e7c2b7c746ca944e7ebc5db91367"
+        }
+      ]
+    },
+    {
+      "id": "ofd05",
+      "split": "dev",
+      "question_vi": "Bài tổng quan osteofibrous dysplasia có giới hạn gì khi không đánh giá có hệ thống hoặc phân tích gộp (meta-analysis)?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0028",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Limitations",
+          "text_sha256": "f9dd81a89ef7c8ce182e52cb674bc97c30268f3abcb53ce6852edc1a3ff59e83"
+        }
+      ]
+    },
+    {
+      "id": "ofd06",
+      "split": "dev",
+      "question_vi": "BTXRD label “osteofibroma” có được review này xác nhận là tương đương với osteofibrous dysplasia không?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    },
+    {
+      "id": "ofd07",
+      "split": "dev",
+      "question_vi": "Toi co osteofibrous dysplasia, toi nen dung thuoc nao de dieu tri?",
+      "expected_status": "out_of_scope",
+      "evidence": []
+    }
+  ]
+}

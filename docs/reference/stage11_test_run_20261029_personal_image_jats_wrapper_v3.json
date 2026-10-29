@@ -1,0 +1,150 @@
+{
+  "created_at_utc": "2026-10-28T17:41:50.581218+00:00",
+  "command": ".venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "working_directory": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+  "exit_code": 0,
+  "status": "PASS",
+  "collected": 73,
+  "passed": 73,
+  "failed": 0,
+  "subtests_passed": 113,
+  "python": "3.11.9",
+  "pytest": "9.1.1",
+  "warnings": [
+    "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal instead."
+  ],
+  "implementation_hashes": {
+    "rag/policy.py": "1ab9910c264e5162f64cd665f1f02abd3be3b34d91ff6a3f59d54e0b5f8a0dab",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/audit.py": "e7ab8c2b3888fdc1f180722b428902fa821036b54c0e512ff3c2c5814ea8ae89",
+    "rag/replay_reports.py": "d6883af85d7b7f19175d2f43f8ef3bfdae73e1f48fefecbfacfc3728186246b7",
+    "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "rag/build_corpus.py": "c78602be9c9e839e9dca96834b7064bc2b900fbb495ec3e809291b6143b3f31f",
+    "rag/build_evaluation_bundle.py": "b9acfa268befa68398827b0b51edfa4530fb926ebf5bc9bc530966920c1382f8"
+  },
+  "test_file_hashes": {
+    "rag/tests/test_retrieval.py": "fd3dda4c90416e19106a97670cffb40f94850af6125df9c7f0ad647169d721d5",
+    "rag/tests/test_corpus.py": "12cb43286b2227c2825ec0868c374d75b9499d6734f5bfc0495c065c58d162fd",
+    "rag/tests/test_audit.py": "ebb54a802adf2693c2b1c87631718a2beab9f0022c794f889effee4b693bf07a",
+    "rag/tests/test_evaluation.py": "9edd849021e2575a21bef0cc9c370f9f5f88ddae1899ea5128d7b642c5c5bdb7",
+    "rag/tests/test_evidence.py": "c6e6ec82834259c55c4f35a09a097b805b7f452402899bd40dff6ded169c540e",
+    "api_tests/test_api.py": "5e3ede7c63c79938def8eb1d04d595d1d780036a68688fb4080019102c08da99",
+    "api_tests/test_case_api.py": "b8547db40956371e274a7e18a7df67dfc9bd12eb5c08519ce82921ccf2074bf5",
+    "tests/test_validation.py": "021b1e0e25320040f7cad188c8c0bc72964032340a80f362618514d4f959c1a9",
+    "ui_tests/test_ui_routes.py": "00585825226ae799ebb9c953b7d53e4a26b434fe79a1a16575f5ab2e6be1fca9"
+  },
+  "bundle": {
+    "path": "docs/reference/stage11_policy_rerun_20261029_personal_image_jats_wrapper_v3",
+    "manifest_sha256": "aab9064a1f771f8d4e98cbf056c0b2ed43cff8a6471c6eff12e5874f7e581f41",
+    "comparison_sha256": "46ac95670cda09f462f12d29c336549f9427b663b61775e47d0fb9c8648cbb94",
+    "reports": 16,
+    "changed_report": "image_routing_dev.json",
+    "image_routing_questions": 41,
+    "previous_image_routing_questions": 36,
+    "other_reports_metrics_unchanged": 15
+  },
+  "audit": {
+    "path": "docs/reference/stage11_integrity_audit_20261029_personal_image_jats_wrapper_v3.json",
+    "status": "PASS",
+    "sha256": "bbe70bf0ff632db6f13ce2ad280e54940f4f2daf3ab446ac6d058f7e1c390a61",
+    "source_count": 21,
+    "chunk_count": 759,
+    "datasets": 9,
+    "reports": 16,
+    "errors": []
+  },
+  "replay": {
+    "path": "docs/reference/stage11_replay_20261029_personal_image_jats_wrapper_v3.json",
+    "status": "PASS",
+    "sha256": "bbb41b0dabd72251bdb788e4d648adaf195b9cc94231822c03b1b1bcf44b8ab5",
+    "reports_matched": 16,
+    "reports_total": 16,
+    "preflight_mismatches": []
+  },
+  "image_routing_dev": {
+    "path": "rag/data/evaluation_image_routing_dev_20261028.json",
+    "sha256": "6ad5234173a1d5dcfa77230c5d44d3f8e90d6993e6b7dbf8e0c3b113dd336ced",
+    "questions": 41,
+    "routing_accuracy": 1.0,
+    "negative_abstention": 1.0,
+    "all_statuses_match": true,
+    "in_sample": true
+  },
+  "personal_image_edge_probes": {
+    "path": "docs/reference/stage11_personal_image_routing_edge_probes_20261029_v2.json",
+    "sha256": "2f20a38a46ef7bdc1c9263ea82e3055f138812f8125bb05dbd5163d6945600af",
+    "record": {
+      "created_at_utc": "2026-10-28T17:41:50.557218+00:00",
+      "scope": "in-sample policy regression; text-only; no medical images processed",
+      "provenance": "Prompts written after inspecting policy misses; not blind, independent, representative, or specialist-adjudicated.",
+      "image_cases": [
+        {
+          "id": "img37",
+          "question": "Patient I reviewed this morning has this MRI. What is it?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img38",
+          "question": "This was taken from my clinic; what abnormalities do you see?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img39",
+          "question": "Can you help with a patient image from my hospital?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img40",
+          "question": "What does the X-ray of a patient from our service show?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img41",
+          "question": "Can you read the picture for the child I care for?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        }
+      ],
+      "education_controls": [
+        {
+          "question": "Patient I saw has MRI. How do MRI features differ between ABC and GCT?",
+          "actual_status": null,
+          "reason": null,
+          "match": true
+        },
+        {
+          "question": "I saw a patient today. How do MRI findings differ between ABC and GCT?",
+          "actual_status": null,
+          "reason": null,
+          "match": true
+        },
+        {
+          "question": "In my clinic I teach radiographs. What are general signs of cortical destruction?",
+          "actual_status": null,
+          "reason": null,
+          "match": true
+        }
+      ],
+      "personal_cases_passed": 5,
+      "personal_cases_total": 5,
+      "education_controls_passed": 3,
+      "education_controls_total": 3,
+      "image_routing_dev_questions": 41
+    }
+  },
+  "scope_note": "Software and artifact integrity evidence only; no clinical validity, specialist review, blind evaluation, image attachment handling, or independent acceptance is claimed."
+}

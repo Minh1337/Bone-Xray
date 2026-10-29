@@ -1,0 +1,57 @@
+{
+  "record_id": "stage11-current-technical-state-provenance-qa-20261029-v1",
+  "review_date": "2026-10-29",
+  "verification": "PASS",
+  "scope": "Read-only cross-check that current local corpus/config/index/evaluator/policy, bundle manifest, report/dataset files, replay record and listed regression code fingerprints match their existing evidence. Does not rerun pytest/audit/replay and is not clinical validation or acceptance sign-off.",
+  "current_workspace": {
+    "source_count": 22,
+    "chunk_count": 794,
+    "vector_shape": [
+      794,
+      384
+    ],
+    "status": "PASS",
+    "errors": [],
+    "fingerprints": {
+      "corpus": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "retrieval_config": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "index_manifest": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a"
+    }
+  },
+  "bundle": {
+    "path": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1/manifest.json",
+    "sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c",
+    "manifest_report_count": 16,
+    "report_artifacts_rehashed": 16,
+    "evaluation_datasets_rehashed": 16,
+    "replay_status": "PASS",
+    "replay_reports_matching": 16,
+    "preflight_mismatches": [],
+    "replay_manifest_sha256_matches": true
+  },
+  "regression": {
+    "record": "docs/reference/stage11_test_run_20261029_checkpoint_provenance_v2_full.json",
+    "record_sha256": "da12a32e59f7c1e22a3963fc41a03cba5766f0f6a7da15a7a47b7f2c8b3573f6",
+    "status": "PASS",
+    "exit_code": 0,
+    "passed": 87,
+    "subtests_passed": 132,
+    "failed": 0,
+    "code_fingerprints_verified": {
+      "tools/create_project_checkpoint.py": {
+        "expected": "9f0b620404541bc26b53ec14bc41457a777279f38276f8e22093982a803c0568",
+        "actual": "9f0b620404541bc26b53ec14bc41457a777279f38276f8e22093982a803c0568",
+        "match": true
+      },
+      "tests/test_checkpoint_tool.py": {
+        "expected": "aabda633d8d8f353a736a3b7a00cea970827512a2466e8bfb96d1d6c73f4ea7e",
+        "actual": "aabda633d8d8f353a736a3b7a00cea970827512a2466e8bfb96d1d6c73f4ea7e",
+        "match": true
+      }
+    }
+  },
+  "conclusion": "The previously recorded audit/replay/regression artifacts still describe matching local technical inputs. They do not establish independent clinical validity; all seven acceptance gates remain OPEN."
+}

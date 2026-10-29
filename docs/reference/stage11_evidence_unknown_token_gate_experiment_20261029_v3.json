@@ -1,0 +1,1516 @@
+{
+  "created_at_utc": "2026-10-29T01:29:59.507476+00:00",
+  "status": "EXPLORATORY_COMPARISON",
+  "baseline_bundle": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE\\docs\\reference\\stage11_policy_rerun_20261029_evidence_neutral_v8",
+  "baseline_manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+  "candidate_policy": "Do not reject solely because a query token is unknown; still require all recognized concepts and corpus-vocabulary literals to be covered lexically.",
+  "production_config_changed": false,
+  "production_evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+  "implementation_sha256": {
+    "tools/compare_evidence_unknown_term_policy.py": "725f520526be8d4641be5501a7cd86f7b028bf9c26e29d63ce578d8e399ce69a",
+    "rag/evidence.py": "d8ec53d3767118962caab11c6c1dc41569b0ce3e88af117c279e0e32bf2c06c8",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916"
+  },
+  "aggregate": {
+    "strict_report_count": 5,
+    "positive_questions": 40,
+    "candidate_positive_accepts": 19,
+    "positive_abstentions": 21,
+    "positive_abstention_rate": 0.525,
+    "negative_questions": 14,
+    "negative_candidate_accepts": 0,
+    "negative_abstentions": 14,
+    "negative_abstention_rate": 1.0,
+    "interpretation": "All datasets are agent-authored or previously viewed development/regression sets. Candidate passage is lexical coverage, not citation entailment. This comparison cannot justify enabling the checker."
+  },
+  "reports": [
+    {
+      "report": "expansion_dev_strict.json",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "a753fbc6d63f4816c7ebe3ee58524ca699a9b7c3f6557d7a216a31996874a134",
+      "positive_questions": 22,
+      "negative_questions": 3,
+      "baseline": {
+        "answerable_count": 22,
+        "negative_count": 3,
+        "recall_at_k": 0.045454545454545456,
+        "positive_abstention": 0.9545454545454546,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.16,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 21
+      },
+      "candidate": {
+        "answerable_count": 22,
+        "negative_count": 3,
+        "recall_at_k": 0.18181818181818182,
+        "positive_abstention": 0.7272727272727273,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.36,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 16
+      },
+      "question_statuses": [
+        {
+          "id": "c01",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "treatment"
+            ],
+            "literal_terms": [
+              "don"
+            ],
+            "unknown_terms": [
+              "nang",
+              "doc",
+              "tay",
+              "nghien",
+              "cuu"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:don"
+            ]
+          }
+        },
+        {
+          "id": "c02",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "location",
+              "prevalence"
+            ],
+            "literal_terms": [
+              "don",
+              "ten"
+            ],
+            "unknown_terms": [
+              "nang",
+              "thuan",
+              "tieng",
+              "anh"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:don"
+            ]
+          }
+        },
+        {
+          "id": "c03",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "pain"
+            ],
+            "literal_terms": [
+              "don"
+            ],
+            "unknown_terms": [
+              "nghien",
+              "cuu",
+              "nang",
+              "doc",
+              "tay"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:don"
+            ]
+          }
+        },
+        {
+          "id": "c04",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "tissue"
+            ],
+            "literal_terms": [
+              "don",
+              "bma",
+              "dbm"
+            ],
+            "unknown_terms": [
+              "nghien",
+              "cuu",
+              "nang",
+              "doc",
+              "chien",
+              "luoc",
+              "tiem",
+              "tranh",
+              "ty",
+              "le"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "tissue",
+              "literal:don"
+            ]
+          }
+        },
+        {
+          "id": "c05",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "treatment"
+            ],
+            "literal_terms": [
+              "simple",
+              "cyst",
+              "proximal",
+              "humerus",
+              "cohort",
+              "report"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:cyst",
+              "literal:cohort",
+              "literal:report"
+            ]
+          }
+        },
+        {
+          "id": "c06",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "proportion",
+              "patients",
+              "proximal",
+              "humerus",
+              "unicameral",
+              "cyst",
+              "cohort",
+              "avoided",
+              "open",
+              "procedure"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "bone",
+              "literal:proportion",
+              "literal:unicameral",
+              "literal:cyst",
+              "literal:cohort"
+            ]
+          }
+        },
+        {
+          "id": "c10",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "mri",
+              "aneurysmal",
+              "cyst"
+            ],
+            "unknown_terms": [
+              "hinh",
+              "anh"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 4,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "c11",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "diagnosis",
+              "bone",
+              "child"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "biet",
+              "chinh",
+              "nang",
+              "phinh",
+              "mach"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 4,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "c12",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "diagnosis",
+              "bone"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "nang",
+              "phinh",
+              "mach",
+              "con",
+              "ngo",
+              "bang",
+              "loai",
+              "chung"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 34,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "c13",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "primary",
+              "malignant",
+              "bone",
+              "biopsy"
+            ],
+            "literal_terms": [
+              "bsg",
+              "ap",
+              "uk",
+              "tumour"
+            ],
+            "unknown_terms": [
+              "dong",
+              "thuan",
+              "dung",
+              "ngo",
+              "chuyen"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "biopsy",
+              "literal:ap"
+            ]
+          }
+        },
+        {
+          "id": "c14",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "primary",
+              "malignant",
+              "bone"
+            ],
+            "literal_terms": [
+              "bsg",
+              "uk",
+              "x",
+              "tumour"
+            ],
+            "unknown_terms": [
+              "huong",
+              "dan",
+              "phim",
+              "binh",
+              "loai",
+              "tru"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:x"
+            ]
+          }
+        },
+        {
+          "id": "c15",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [],
+            "literal_terms": [
+              "intraosseous",
+              "lesions",
+              "include",
+              "identifiable",
+              "routine",
+              "knee",
+              "mri"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:include",
+              "literal:identifiable"
+            ]
+          }
+        },
+        {
+          "id": "c16",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "prevalence",
+              "location",
+              "pain"
+            ],
+            "literal_terms": [
+              "giant",
+              "cell",
+              "tumour"
+            ],
+            "unknown_terms": [
+              "quanh",
+              "goi"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "pain"
+            ]
+          }
+        },
+        {
+          "id": "c17",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [],
+            "literal_terms": [
+              "knee",
+              "mri",
+              "feature",
+              "abc",
+              "significant",
+              "solid",
+              "component",
+              "suggest"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:mri",
+              "literal:feature",
+              "literal:suggest"
+            ]
+          }
+        },
+        {
+          "id": "n01",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "unverified_alternative_medicine_claim",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n02",
+          "answerable": false,
+          "expected_status": "out_of_scope",
+          "status": "out_of_scope",
+          "reason": "individual_treatment_or_dose",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n03",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "pricing_not_in_corpus",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "c18",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "diagnosis"
+            ],
+            "literal_terms": [
+              "x"
+            ],
+            "unknown_terms": [
+              "thong",
+              "tin",
+              "thu",
+              "hep",
+              "biet"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 1,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "c19",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "transverse",
+              "locations",
+              "within",
+              "used",
+              "classify",
+              "lesion"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:locations",
+              "literal:used",
+              "literal:classify"
+            ]
+          }
+        },
+        {
+          "id": "c20",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone",
+              "location"
+            ],
+            "literal_terms": [
+              "specific",
+              "longitudinal",
+              "transverse",
+              "help",
+              "evaluating",
+              "lesion"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:evaluating"
+            ]
+          }
+        },
+        {
+          "id": "c21",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "primary",
+              "bone"
+            ],
+            "literal_terms": [
+              "solitary",
+              "multifocal",
+              "lesions"
+            ],
+            "unknown_terms": [
+              "say"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 2,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "c22",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "rads",
+              "white",
+              "paper",
+              "patient",
+              "population",
+              "imaging",
+              "context",
+              "algorithms",
+              "address"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:white",
+              "literal:paper",
+              "literal:population",
+              "literal:context",
+              "literal:address"
+            ]
+          }
+        },
+        {
+          "id": "c23",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "four",
+              "possible",
+              "rads",
+              "management",
+              "recommendations"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 2,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "c24",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "rads",
+              "authors",
+              "take",
+              "flowcharts"
+            ],
+            "unknown_terms": [
+              "say",
+              "precedence"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:rads",
+              "literal:authors",
+              "literal:take"
+            ]
+          }
+        },
+        {
+          "id": "c25",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "bone"
+            ],
+            "literal_terms": [
+              "authors",
+              "limit",
+              "rads",
+              "scope",
+              "solitary",
+              "lesions"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:authors",
+              "literal:limit",
+              "literal:scope"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "report": "osteofibrous_dysplasia_dev_strict.json",
+      "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "dataset_sha256": "b5a25bcff7c906c10655248b3ead9b839635ef12b2e6913efe15f0d253cbc3ed",
+      "positive_questions": 5,
+      "negative_questions": 2,
+      "baseline": {
+        "answerable_count": 5,
+        "negative_count": 2,
+        "recall_at_k": 0.4,
+        "positive_abstention": 0.6,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.5714285714285714,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 3
+      },
+      "candidate": {
+        "answerable_count": 5,
+        "negative_count": 2,
+        "recall_at_k": 0.4,
+        "positive_abstention": 0.6,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.5714285714285714,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 3
+      },
+      "question_statuses": [
+        {
+          "id": "ofd01",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "osteofibrous_dysplasia",
+              "bone_tumor",
+              "primary"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 4,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "ofd02",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "location",
+              "prevalence",
+              "osteofibrous_dysplasia",
+              "tissue",
+              "tibia"
+            ],
+            "literal_terms": [
+              "intra",
+              "cortical",
+              "mid",
+              "shaft"
+            ],
+            "unknown_terms": [
+              "vo"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "tissue"
+            ]
+          }
+        },
+        {
+          "id": "ofd03",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "symptoms",
+              "osteofibrous_dysplasia",
+              "bone"
+            ],
+            "literal_terms": [
+              "x"
+            ],
+            "unknown_terms": [
+              "ton",
+              "tieu",
+              "lech",
+              "tam",
+              "phia",
+              "gian",
+              "vo",
+              "lan",
+              "vao",
+              "tuy"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "symptoms"
+            ]
+          }
+        },
+        {
+          "id": "ofd04",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "osteofibrous_dysplasia"
+            ],
+            "literal_terms": [
+              "ct",
+              "mri"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 1,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "ofd05",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "osteofibrous_dysplasia"
+            ],
+            "literal_terms": [
+              "he",
+              "meta",
+              "analysis"
+            ],
+            "unknown_terms": [
+              "thong",
+              "tich",
+              "gop"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "literal:he"
+            ]
+          }
+        },
+        {
+          "id": "ofd06",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "unverified_dataset_label_mapping",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "ofd07",
+          "answerable": false,
+          "expected_status": "out_of_scope",
+          "status": "out_of_scope",
+          "reason": "individual_treatment_or_dose",
+          "status_match": true,
+          "evidence_check": null
+        }
+      ]
+    },
+    {
+      "report": "synovial_source_dev_strict.json",
+      "dataset_path": "rag/data/evaluation_synovial_chondromatosis_dev_20261028.json",
+      "dataset_sha256": "f37f2fb3702d53a3fac16a9df88260043ffa42132d53a968403a6447d7535011",
+      "positive_questions": 4,
+      "negative_questions": 2,
+      "baseline": {
+        "answerable_count": 4,
+        "negative_count": 2,
+        "recall_at_k": 0.0,
+        "positive_abstention": 1.0,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.3333333333333333,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 4
+      },
+      "candidate": {
+        "answerable_count": 4,
+        "negative_count": 2,
+        "recall_at_k": 0.5,
+        "positive_abstention": 0.25,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.8333333333333334,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 1
+      },
+      "question_statuses": [
+        {
+          "id": "sc01",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [],
+            "literal_terms": [
+              "synovial",
+              "chondromatosis"
+            ],
+            "unknown_terms": [
+              "dinh",
+              "nghia"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 21,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "sc02",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [],
+            "literal_terms": [
+              "mri",
+              "synovial",
+              "chondromatosis"
+            ],
+            "unknown_terms": [
+              "phat",
+              "giai",
+              "doan",
+              "som",
+              "hoa"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 2,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "sc03",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "treatment"
+            ],
+            "literal_terms": [
+              "synovial",
+              "chondromatosis"
+            ],
+            "unknown_terms": [
+              "dua",
+              "muc",
+              "chung",
+              "cu"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 11,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "sc04",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "tests",
+              "diagnosis"
+            ],
+            "literal_terms": [
+              "synovial",
+              "chondromatosis"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "tests"
+            ]
+          }
+        },
+        {
+          "id": "sc05",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "unverified_dataset_label_mapping",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "sc06",
+          "answerable": false,
+          "expected_status": "out_of_scope",
+          "status": "out_of_scope",
+          "reason": "individual_treatment_or_dose",
+          "status_match": true,
+          "evidence_check": null
+        }
+      ]
+    },
+    {
+      "report": "synovial_synonym_dev_strict.json",
+      "dataset_path": "rag/data/evaluation_synovial_synonym_dev_20261028.json",
+      "dataset_sha256": "2ffdfcbec367238a4a58fc02f86098b80d74de3ecc15ec420b89b1877efd1243",
+      "positive_questions": 1,
+      "negative_questions": 1,
+      "baseline": {
+        "answerable_count": 1,
+        "negative_count": 1,
+        "recall_at_k": 1.0,
+        "positive_abstention": 0.0,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 1.0,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 0
+      },
+      "candidate": {
+        "answerable_count": 1,
+        "negative_count": 1,
+        "recall_at_k": 1.0,
+        "positive_abstention": 0.0,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 1.0,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 0
+      },
+      "question_statuses": [
+        {
+          "id": "sco01",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [],
+            "literal_terms": [
+              "synovial",
+              "osteochondromatosis"
+            ],
+            "unknown_terms": [],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 2,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "sco02",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "unverified_dataset_label_mapping",
+          "status_match": true,
+          "evidence_check": null
+        }
+      ]
+    },
+    {
+      "report": "v2_test_strict.json",
+      "dataset_path": "rag/data/evaluation_v2.json",
+      "dataset_sha256": "e2713ad7000cb016eb151bd0d0540cc1371b7d9c17ccd8a0f2f4bf6f30eb03c9",
+      "positive_questions": 8,
+      "negative_questions": 6,
+      "baseline": {
+        "answerable_count": 8,
+        "negative_count": 6,
+        "recall_at_k": 0.0,
+        "positive_abstention": 1.0,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.42857142857142855,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 8
+      },
+      "candidate": {
+        "answerable_count": 8,
+        "negative_count": 6,
+        "recall_at_k": 0.875,
+        "positive_abstention": 0.125,
+        "negative_abstention": 1.0,
+        "routing_accuracy": 0.9285714285714286,
+        "negative_with_candidates_count": 0,
+        "positive_without_candidates_count": 1
+      },
+      "question_statuses": [
+        {
+          "id": "p09",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "cause",
+              "bone_tumor",
+              "primary"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "dinh"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 4,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p10",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "child",
+              "bone_tumor"
+            ],
+            "literal_terms": [
+              "alkaline",
+              "phosphatase"
+            ],
+            "unknown_terms": [
+              "cao",
+              "phat"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 1,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p11",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "ewing",
+              "pain",
+              "swelling",
+              "bone"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "gay",
+              "ly"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 2,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p12",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "child",
+              "chordoma"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "mac",
+              "nhin",
+              "doi",
+              "kho",
+              "nuot"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 29,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p13",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "pathology",
+              "sample",
+              "biopsy",
+              "chondrosarcoma"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "kiem",
+              "tra"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 2,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p14",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "cmf",
+              "benign",
+              "tissue"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "xam",
+              "lan"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 1,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p15",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "candidates_found",
+          "reason": "lexically_covered_candidates_not_verified",
+          "status_match": true,
+          "evidence_check": {
+            "concepts": [
+              "chordoma",
+              "skull",
+              "sacrum",
+              "symptoms"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "gay",
+              "ra"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 3,
+            "best_missing": []
+          }
+        },
+        {
+          "id": "p16",
+          "answerable": true,
+          "expected_status": "candidates_found",
+          "status": "insufficient_evidence",
+          "reason": "question_concepts_not_covered",
+          "status_match": false,
+          "evidence_check": {
+            "concepts": [
+              "diagnosis",
+              "adamantinoma",
+              "sample",
+              "tissue",
+              "microscope"
+            ],
+            "literal_terms": [],
+            "unknown_terms": [
+              "bac",
+              "si",
+              "xem"
+            ],
+            "checker_version": "concept-coverage-v1-experimental",
+            "check_type": "lexical_coverage_not_entailment",
+            "candidate_count": 80,
+            "rerank_only": false,
+            "complete_candidate_count": 0,
+            "best_missing": [
+              "tissue"
+            ]
+          }
+        },
+        {
+          "id": "n07",
+          "answerable": false,
+          "expected_status": "out_of_scope",
+          "status": "out_of_scope",
+          "reason": "individual_treatment_or_dose",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n08",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "image_score_is_not_diagnostic_evidence",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n09",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "corpus_coverage_gap",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n10",
+          "answerable": false,
+          "expected_status": "out_of_scope",
+          "status": "out_of_scope",
+          "reason": "outside_bone_tumor_corpus",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n11",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "unverified_home_device_claim",
+          "status_match": true,
+          "evidence_check": null
+        },
+        {
+          "id": "n12",
+          "answerable": false,
+          "expected_status": "insufficient_evidence",
+          "status": "insufficient_evidence",
+          "reason": "unverified_alternative_medicine_claim",
+          "status_match": true,
+          "evidence_check": null
+        }
+      ]
+    }
+  ]
+}

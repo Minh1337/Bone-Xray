@@ -4,64 +4,805 @@
   "candidate_pool": 80,
   "require_known_query_terms": true,
   "concepts": [
-    {"id":"bone_tumor","aliases":["ung thu xuong","u xuong","bone cancer","bone tumor","bone tumors","bone cancers"],"evidence":["bone cancer","bone tumor","bone tumors","bone cancers","bone sarcoma"],"kind":"generic_entity"},
-    {"id":"cancer","aliases":["ung thu","cancer"],"evidence":["cancer","cancers","cancerous","malignant"]},
-    {"id":"bone","aliases":["xuong","bone","bones"],"evidence":["bone","bones","skeletal","skeleton"]},
-    {"id":"osteosarcoma","aliases":["osteosarcoma"],"evidence":["osteosarcoma"],"kind":"entity"},
-    {"id":"ewing","aliases":["ewing sarcoma","ewing"],"evidence":["ewing"],"kind":"entity"},
-    {"id":"chordoma","aliases":["chordoma"],"evidence":["chordoma","chordomas"],"kind":"entity"},
-    {"id":"chondrosarcoma","aliases":["chondrosarcoma"],"evidence":["chondrosarcoma"],"kind":"entity"},
-    {"id":"cmf","aliases":["chondromyxoid fibroma","cmf"],"evidence":["chondromyxoid fibroma","cmf"],"kind":"entity"},
-    {"id":"adamantinoma","aliases":["adamantinoma"],"evidence":["adamantinoma"],"kind":"entity"},
-    {"id":"osteochondroma","aliases":["osteochondroma"],"evidence":["osteochondroma","osteochondromas"],"kind":"entity"},
-    {"id":"giant_cell","aliases":["giant cell tumor"],"evidence":["giant cell tumor"],"kind":"entity"},
-    {"id":"primary","aliases":["nguyen phat","primary"],"evidence":["primary"]},
-    {"id":"metastasis","aliases":["di can den xuong","di can","lan sang bo phan khac","lan den","metastatic","metastasis","spread"],"evidence":["metastatic","metastases","metastasizes","spread","spreads"]},
-    {"id":"benign","aliases":["lanh tinh","khong phai ung thu","benign"],"evidence":["benign","not cancer","noncancerous"]},
-    {"id":"malignant","aliases":["ac tinh","malignant","co phai ung thu"],"evidence":["malignant","cancer","cancerous"]},
-    {"id":"diagnosis","aliases":["chan doan","xac nhan chan doan","diagnosis","diagnosed","diagnose","diagnostic"],"evidence":["diagnosis","diagnosed","diagnose","diagnostic","biopsy","pathologist"]},
-    {"id":"tests","aliases":["xet nghiem","tests","test"],"evidence":["test","tests","scan","scans","biopsy"]},
-    {"id":"biopsy","aliases":["sinh thiet","lay mau sinh thiet","lay mau mo","biopsy"],"evidence":["biopsy","biopsies"]},
-    {"id":"pathology","aliases":["bac si giai phau benh","giai phau benh","mo benh hoc","pathologist","pathology","histology"],"evidence":["pathologist","pathology","histology","histological"]},
-    {"id":"microscope","aliases":["duoi kinh hien vi","kinh hien vi","microscope"],"evidence":["microscope","microscopic"]},
-    {"id":"sample","aliases":["mau mo","mau sinh thiet","mau","sample","tissue sample"],"evidence":["sample","samples","tissue"]},
-    {"id":"orthopedic","aliases":["chuyen gia ung thu chinh hinh","bac si ung thu chinh hinh","orthopedic oncologist"],"evidence":["orthopedic oncologist"]},
-    {"id":"location","aliases":["vi tri","xuat hien","thuong gap o dau","location"],"evidence":["found","occurs","occur","located","starts","arise","arises","forms","spine","bone","leg"]},
-    {"id":"limb","aliases":["cua chi","chi","extremity","limb"],"evidence":["limb","limbs","extremity","extremities","arm","arms","leg","legs","knee","shoulder"]},
-    {"id":"spine","aliases":["cot song","spine","spinal"],"evidence":["spine","spinal"]},
-    {"id":"skull","aliases":["nen so","skull base","base of the skull"],"evidence":["skull","clival"]},
-    {"id":"sacrum","aliases":["xuong cung","sacrum"],"evidence":["sacrum","sacral","tailbone"]},
-    {"id":"marrow","aliases":["tuy xuong","bone marrow"],"evidence":["bone marrow"]},
-    {"id":"tibia","aliases":["xuong chay","tibia"],"evidence":["tibia","shinbone"]},
-    {"id":"fibula","aliases":["xuong mac","fibula"],"evidence":["fibula","calf bone"]},
-    {"id":"leg","aliases":["cang chan","chi duoi","chan","leg"],"evidence":["leg","legs","tibia","fibula"]},
-    {"id":"cartilage","aliases":["mo sun","sun","cartilage"],"evidence":["cartilage"]},
-    {"id":"child","aliases":["tre em","tre nho","childhood","children","pediatric"],"evidence":["child","children","childhood","pediatric"]},
-    {"id":"young","aliases":["nguoi tre","thanh thieu nien","young","adolescents"],"evidence":["young","adolescent","adolescents","teenagers"]},
-    {"id":"adult","aliases":["nguoi lon","adults"],"evidence":["adult","adults"]},
-    {"id":"age","aliases":["do tuoi","nhom tuoi","tuoi","age"],"evidence":["age","ages","years","young","adults","children"]},
-    {"id":"symptoms","aliases":["trieu chung","dau hieu","symptoms","signs"],"evidence":["symptom","symptoms","sign","signs","pain","swelling"]},
-    {"id":"pain","aliases":["dau xuong","dau","pain"],"evidence":["pain","painful"]},
-    {"id":"swelling","aliases":["sung","swelling"],"evidence":["swelling","swollen"]},
-    {"id":"treatment","aliases":["dieu tri","treatment","treatments"],"evidence":["treatment","treatments","treated","surgery","chemotherapy","radiation"]},
-    {"id":"surgery","aliases":["phau thuat","cat bo","surgery","resection"],"evidence":["surgery","surgical","resection","removed"]},
-    {"id":"chemotherapy","aliases":["hoa tri","chemotherapy"],"evidence":["chemotherapy"]},
-    {"id":"radiotherapy","aliases":["xa tri","radiation therapy"],"evidence":["radiation","radiotherapy"]},
-    {"id":"risk","aliases":["yeu to nguy co","nguy co","risk factors","risk"],"evidence":["risk","risks"]},
-    {"id":"cause","aliases":["nguyen nhan","cause","causes","caused"],"evidence":["cause","causes","caused","unknown","form","forms"]},
-    {"id":"formation","aliases":["hinh thanh","bat nguon","bat dau","form","forms"],"evidence":["form","forms","formed","begins","begin","starts","cells"]},
-    {"id":"cells","aliases":["te bao","cells"],"evidence":["cell","cells"]},
-    {"id":"tissue","aliases":["loai mo","mo","tissue"],"evidence":["tissue","tissues","cartilage"]},
-    {"id":"genetic","aliases":["di truyen","hereditary","inherited","genetic"],"evidence":["hereditary","inherited","genetic"]},
-    {"id":"dna","aliases":["dna"],"evidence":["dna"]},
-    {"id":"home","aliases":["tai nha","at home","home"],"evidence":["home","at home"]},
-    {"id":"cost","aliases":["chi phi","phi","gia tien","cost","price"],"evidence":["cost","costs","price","pricing","fee"]},
-    {"id":"today","aliases":["hom nay","today"],"evidence":["today"]},
-    {"id":"prevalence","aliases":["muc do pho bien","pho bien","thuong gap","common"],"evidence":["common","rare","usually","often"]},
-    {"id":"prognosis","aliases":["tien luong","prognosis"],"evidence":["prognosis","survival"]},
-    {"id":"recurrence","aliases":["tai phat","recurrence","recurrent"],"evidence":["recurrence","recurrent","recur","returns"]},
-    {"id":"cure","aliases":["chua khoi","cure","cured"],"evidence":["cure","cured","curable"]}
+    {
+      "id": "bone_tumor",
+      "aliases": [
+        "ung thu xuong",
+        "u xuong",
+        "bone cancer",
+        "bone tumor",
+        "bone tumors",
+        "bone cancers"
+      ],
+      "evidence": [
+        "bone cancer",
+        "bone tumor",
+        "bone tumors",
+        "bone cancers",
+        "bone sarcoma"
+      ],
+      "kind": "generic_entity"
+    },
+    {
+      "id": "cancer",
+      "aliases": [
+        "ung thu",
+        "cancer"
+      ],
+      "evidence": [
+        "cancer",
+        "cancers",
+        "cancerous",
+        "malignant"
+      ]
+    },
+    {
+      "id": "bone",
+      "aliases": [
+        "xuong",
+        "bone",
+        "bones"
+      ],
+      "evidence": [
+        "bone",
+        "bones",
+        "skeletal",
+        "skeleton"
+      ]
+    },
+    {
+      "id": "osteosarcoma",
+      "aliases": [
+        "osteosarcoma"
+      ],
+      "evidence": [
+        "osteosarcoma"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "ewing",
+      "aliases": [
+        "ewing sarcoma",
+        "ewing"
+      ],
+      "evidence": [
+        "ewing"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "chordoma",
+      "aliases": [
+        "chordoma"
+      ],
+      "evidence": [
+        "chordoma",
+        "chordomas"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "chondrosarcoma",
+      "aliases": [
+        "chondrosarcoma"
+      ],
+      "evidence": [
+        "chondrosarcoma"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "cmf",
+      "aliases": [
+        "chondromyxoid fibroma",
+        "cmf"
+      ],
+      "evidence": [
+        "chondromyxoid fibroma",
+        "cmf"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "adamantinoma",
+      "aliases": [
+        "adamantinoma"
+      ],
+      "evidence": [
+        "adamantinoma"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "osteochondroma",
+      "aliases": [
+        "osteochondroma"
+      ],
+      "evidence": [
+        "osteochondroma",
+        "osteochondromas"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "giant_cell",
+      "aliases": [
+        "giant cell tumor"
+      ],
+      "evidence": [
+        "giant cell tumor"
+      ],
+      "kind": "entity"
+    },
+    {
+      "id": "primary",
+      "aliases": [
+        "nguyen phat",
+        "primary"
+      ],
+      "evidence": [
+        "primary"
+      ]
+    },
+    {
+      "id": "metastasis",
+      "aliases": [
+        "di can den xuong",
+        "di can",
+        "lan sang bo phan khac",
+        "lan den",
+        "metastatic",
+        "metastasis",
+        "spread"
+      ],
+      "evidence": [
+        "metastatic",
+        "metastases",
+        "metastasizes",
+        "spread",
+        "spreads"
+      ]
+    },
+    {
+      "id": "benign",
+      "aliases": [
+        "lanh tinh",
+        "khong phai ung thu",
+        "benign"
+      ],
+      "evidence": [
+        "benign",
+        "not cancer",
+        "noncancerous"
+      ]
+    },
+    {
+      "id": "malignant",
+      "aliases": [
+        "ac tinh",
+        "malignant",
+        "co phai ung thu"
+      ],
+      "evidence": [
+        "malignant",
+        "cancer",
+        "cancerous"
+      ]
+    },
+    {
+      "id": "diagnosis",
+      "aliases": [
+        "chan doan",
+        "xac nhan chan doan",
+        "diagnosis",
+        "diagnosed",
+        "diagnose",
+        "diagnostic"
+      ],
+      "evidence": [
+        "diagnosis",
+        "diagnosed",
+        "diagnose",
+        "diagnostic",
+        "biopsy",
+        "pathologist"
+      ]
+    },
+    {
+      "id": "tests",
+      "aliases": [
+        "xet nghiem",
+        "tests",
+        "test"
+      ],
+      "evidence": [
+        "test",
+        "tests",
+        "scan",
+        "scans",
+        "biopsy"
+      ]
+    },
+    {
+      "id": "biopsy",
+      "aliases": [
+        "sinh thiet",
+        "lay mau sinh thiet",
+        "lay mau mo",
+        "biopsy"
+      ],
+      "evidence": [
+        "biopsy",
+        "biopsies"
+      ]
+    },
+    {
+      "id": "pathology",
+      "aliases": [
+        "bac si giai phau benh",
+        "giai phau benh",
+        "mo benh hoc",
+        "pathologist",
+        "pathology",
+        "histology"
+      ],
+      "evidence": [
+        "pathologist",
+        "pathology",
+        "histology",
+        "histological"
+      ]
+    },
+    {
+      "id": "microscope",
+      "aliases": [
+        "duoi kinh hien vi",
+        "kinh hien vi",
+        "microscope"
+      ],
+      "evidence": [
+        "microscope",
+        "microscopic"
+      ]
+    },
+    {
+      "id": "sample",
+      "aliases": [
+        "mau mo",
+        "mau sinh thiet",
+        "mau",
+        "sample",
+        "tissue sample"
+      ],
+      "evidence": [
+        "sample",
+        "samples",
+        "tissue"
+      ]
+    },
+    {
+      "id": "orthopedic",
+      "aliases": [
+        "chuyen gia ung thu chinh hinh",
+        "bac si ung thu chinh hinh",
+        "orthopedic oncologist"
+      ],
+      "evidence": [
+        "orthopedic oncologist"
+      ]
+    },
+    {
+      "id": "location",
+      "aliases": [
+        "vi tri",
+        "xuat hien",
+        "thuong gap o dau",
+        "location"
+      ],
+      "evidence": [
+        "found",
+        "occurs",
+        "occur",
+        "located",
+        "starts",
+        "arise",
+        "arises",
+        "forms",
+        "spine",
+        "bone",
+        "leg"
+      ]
+    },
+    {
+      "id": "limb",
+      "aliases": [
+        "cua chi",
+        "chi",
+        "extremity",
+        "limb"
+      ],
+      "evidence": [
+        "limb",
+        "limbs",
+        "extremity",
+        "extremities",
+        "arm",
+        "arms",
+        "leg",
+        "legs",
+        "knee",
+        "shoulder"
+      ]
+    },
+    {
+      "id": "spine",
+      "aliases": [
+        "cot song",
+        "spine",
+        "spinal"
+      ],
+      "evidence": [
+        "spine",
+        "spinal"
+      ]
+    },
+    {
+      "id": "skull",
+      "aliases": [
+        "nen so",
+        "skull base",
+        "base of the skull"
+      ],
+      "evidence": [
+        "skull",
+        "clival"
+      ]
+    },
+    {
+      "id": "sacrum",
+      "aliases": [
+        "xuong cung",
+        "sacrum"
+      ],
+      "evidence": [
+        "sacrum",
+        "sacral",
+        "tailbone"
+      ]
+    },
+    {
+      "id": "marrow",
+      "aliases": [
+        "tuy xuong",
+        "bone marrow"
+      ],
+      "evidence": [
+        "bone marrow"
+      ]
+    },
+    {
+      "id": "tibia",
+      "aliases": [
+        "xuong chay",
+        "tibia"
+      ],
+      "evidence": [
+        "tibia",
+        "shinbone"
+      ]
+    },
+    {
+      "id": "fibula",
+      "aliases": [
+        "xuong mac",
+        "fibula"
+      ],
+      "evidence": [
+        "fibula",
+        "calf bone"
+      ]
+    },
+    {
+      "id": "leg",
+      "aliases": [
+        "cang chan",
+        "chi duoi",
+        "chan",
+        "leg"
+      ],
+      "evidence": [
+        "leg",
+        "legs",
+        "tibia",
+        "fibula"
+      ]
+    },
+    {
+      "id": "cartilage",
+      "aliases": [
+        "mo sun",
+        "sun",
+        "cartilage"
+      ],
+      "evidence": [
+        "cartilage"
+      ]
+    },
+    {
+      "id": "child",
+      "aliases": [
+        "tre em",
+        "tre nho",
+        "childhood",
+        "children",
+        "pediatric"
+      ],
+      "evidence": [
+        "child",
+        "children",
+        "childhood",
+        "pediatric"
+      ]
+    },
+    {
+      "id": "young",
+      "aliases": [
+        "nguoi tre",
+        "thanh thieu nien",
+        "young",
+        "adolescents"
+      ],
+      "evidence": [
+        "young",
+        "adolescent",
+        "adolescents",
+        "teenagers"
+      ]
+    },
+    {
+      "id": "adult",
+      "aliases": [
+        "nguoi lon",
+        "adults"
+      ],
+      "evidence": [
+        "adult",
+        "adults"
+      ]
+    },
+    {
+      "id": "age",
+      "aliases": [
+        "do tuoi",
+        "nhom tuoi",
+        "tuoi",
+        "age"
+      ],
+      "evidence": [
+        "age",
+        "ages",
+        "years",
+        "young",
+        "adults",
+        "children"
+      ]
+    },
+    {
+      "id": "symptoms",
+      "aliases": [
+        "trieu chung",
+        "dau hieu",
+        "symptoms",
+        "signs"
+      ],
+      "evidence": [
+        "symptom",
+        "symptoms",
+        "sign",
+        "signs",
+        "pain",
+        "swelling"
+      ]
+    },
+    {
+      "id": "pain",
+      "aliases": [
+        "dau xuong",
+        "dau",
+        "pain"
+      ],
+      "evidence": [
+        "pain",
+        "painful"
+      ]
+    },
+    {
+      "id": "swelling",
+      "aliases": [
+        "sung",
+        "swelling"
+      ],
+      "evidence": [
+        "swelling",
+        "swollen"
+      ]
+    },
+    {
+      "id": "treatment",
+      "aliases": [
+        "dieu tri",
+        "treatment",
+        "treatments"
+      ],
+      "evidence": [
+        "treatment",
+        "treatments",
+        "treated",
+        "surgery",
+        "chemotherapy",
+        "radiation"
+      ]
+    },
+    {
+      "id": "surgery",
+      "aliases": [
+        "phau thuat",
+        "cat bo",
+        "surgery",
+        "resection"
+      ],
+      "evidence": [
+        "surgery",
+        "surgical",
+        "resection",
+        "removed"
+      ]
+    },
+    {
+      "id": "chemotherapy",
+      "aliases": [
+        "hoa tri",
+        "chemotherapy"
+      ],
+      "evidence": [
+        "chemotherapy"
+      ]
+    },
+    {
+      "id": "radiotherapy",
+      "aliases": [
+        "xa tri",
+        "radiation therapy"
+      ],
+      "evidence": [
+        "radiation",
+        "radiotherapy"
+      ]
+    },
+    {
+      "id": "risk",
+      "aliases": [
+        "yeu to nguy co",
+        "nguy co",
+        "risk factors",
+        "risk"
+      ],
+      "evidence": [
+        "risk",
+        "risks"
+      ]
+    },
+    {
+      "id": "cause",
+      "aliases": [
+        "nguyen nhan",
+        "cause",
+        "causes",
+        "caused"
+      ],
+      "evidence": [
+        "cause",
+        "causes",
+        "caused",
+        "unknown",
+        "form",
+        "forms"
+      ]
+    },
+    {
+      "id": "formation",
+      "aliases": [
+        "hinh thanh",
+        "bat nguon",
+        "bat dau",
+        "form",
+        "forms"
+      ],
+      "evidence": [
+        "form",
+        "forms",
+        "formed",
+        "begins",
+        "begin",
+        "starts",
+        "cells"
+      ]
+    },
+    {
+      "id": "cells",
+      "aliases": [
+        "te bao",
+        "cells"
+      ],
+      "evidence": [
+        "cell",
+        "cells"
+      ]
+    },
+    {
+      "id": "tissue",
+      "aliases": [
+        "loai mo",
+        "mo",
+        "tissue"
+      ],
+      "evidence": [
+        "tissue",
+        "tissues",
+        "cartilage"
+      ]
+    },
+    {
+      "id": "genetic",
+      "aliases": [
+        "di truyen",
+        "hereditary",
+        "inherited",
+        "genetic"
+      ],
+      "evidence": [
+        "hereditary",
+        "inherited",
+        "genetic"
+      ]
+    },
+    {
+      "id": "dna",
+      "aliases": [
+        "dna"
+      ],
+      "evidence": [
+        "dna"
+      ]
+    },
+    {
+      "id": "home",
+      "aliases": [
+        "tai nha",
+        "at home",
+        "home"
+      ],
+      "evidence": [
+        "home",
+        "at home"
+      ]
+    },
+    {
+      "id": "cost",
+      "aliases": [
+        "chi phi",
+        "phi",
+        "gia tien",
+        "cost",
+        "price"
+      ],
+      "evidence": [
+        "cost",
+        "costs",
+        "price",
+        "pricing",
+        "fee"
+      ]
+    },
+    {
+      "id": "today",
+      "aliases": [
+        "hom nay",
+        "today"
+      ],
+      "evidence": [
+        "today"
+      ]
+    },
+    {
+      "id": "prevalence",
+      "aliases": [
+        "muc do pho bien",
+        "pho bien",
+        "thuong gap",
+        "common"
+      ],
+      "evidence": [
+        "common",
+        "rare",
+        "usually",
+        "often"
+      ]
+    },
+    {
+      "id": "prognosis",
+      "aliases": [
+        "tien luong",
+        "prognosis"
+      ],
+      "evidence": [
+        "prognosis",
+        "survival"
+      ]
+    },
+    {
+      "id": "recurrence",
+      "aliases": [
+        "tai phat",
+        "recurrence",
+        "recurrent"
+      ],
+      "evidence": [
+        "recurrence",
+        "recurrent",
+        "recur",
+        "returns"
+      ]
+    },
+    {
+      "id": "cure",
+      "aliases": [
+        "chua khoi",
+        "cure",
+        "cured"
+      ],
+      "evidence": [
+        "cure",
+        "cured",
+        "curable"
+      ]
+    },
+    {
+      "id": "osteofibrous_dysplasia",
+      "aliases": [
+        "osteofibrous dysplasia"
+      ],
+      "evidence": [
+        "osteofibrous dysplasia"
+      ],
+      "kind": "entity"
+    }
   ],
-  "neutral_phrases":["nhu the nao","nhung cach","nhung loai","cac loai","theo tai lieu","tai lieu nci","theo nci","cho toi biet","cho biet","giai thich","co the","de cap","nhac toi","duoc nêu","kho tai lieu","what is","what are","how does","how do","is there","the difference between"],
-  "neutral_words":"thuong nao gi cua trong voi cac nhung mot cac duoc khi bo phan khac sao tai sao can truoc sau nghi xac nhan danh gia xet giup vi o chi nhat ve nay nay noi chua ro da du moi nhieu it nguoi co duoc nhu vay hay hoac nhung the nao tu so voi tren va duoi toi ban nay cung canh nho gan rat thuong phan gom la lam mo ta tai lieu nci nho do dieu nen khong lieu phap neu khac nhau giua based according explain describe description difference differences compare comparison versus vs role function called associated usual typical generally often certain specifically necessarily may might should could will can example examples known reason reasons methods method types type kind kinds any whether why how about does do did is are a an the and or for to of in at with by not as it its this that then where which who when during despite without into across over under between such than obtain check examine examines examining study need necessary require tell give name named list described mentioned"
+  "neutral_phrases": [
+    "xap xi",
+    "approximately",
+    "nhu the nao",
+    "nhung cach",
+    "nhung loai",
+    "cac loai",
+    "theo tai lieu",
+    "tai lieu nci",
+    "theo nci",
+    "cho toi biet",
+    "cho biet",
+    "giai thich",
+    "co the",
+    "de cap",
+    "nhac toi",
+    "duoc nêu",
+    "kho tai lieu",
+    "what is",
+    "what are",
+    "how does",
+    "how do",
+    "is there",
+    "the difference between"
+  ],
+  "neutral_words": "a about according across an and any are as associated at bai ban based between bo by cac called can canh certain check chi chiem chon chua co compare comparison could cua cung da dac danh describe described description despite did diem dieu difference differences do does du duoc duoi during examine examines examining example examples explain for function gan generally gi gia gioi giua giup give gom han hay hoac hon how in into is it its khac khi khia khong kind kinds known la lam lieu list luan may mentioned method methods might mo moi mot name named nao nay nci necessarily necessary need nen neu nghi nguoi nhan nhat nhau nhieu nho nhu nhung noi not o obtain of often or over phan phap phuong quan quang rat reason reasons require review ro role sao sau should so specifically study such ta tac tai tat tell than that thay the then theo this thuong to toi tom tong tot tram tren trong truoc tu type types typical under usual va vay ve versus vi voi vs vung when where whether which who why will with without xac xap xet"
 }

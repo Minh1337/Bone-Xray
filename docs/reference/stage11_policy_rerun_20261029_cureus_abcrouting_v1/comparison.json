@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "previous_snapshot": "stage11_policy_rerun_20261029_tibia_source_v1",
+  "current_snapshot": "stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+  "comparison_scope": "All reports regenerated against current code and current datasets using the prior bundle's evaluation configuration. Agent-authored development probes are in-sample and not independent.",
+  "reports": [
+    {
+      "report": "evidence_v3_viewed.json",
+      "dataset_sha256_previous": "6045d2096696d43f7189c9ac24f5cb608cc579b93ef1ec8a8f6f466e591571f7",
+      "dataset_sha256_current": "6045d2096696d43f7189c9ac24f5cb608cc579b93ef1ec8a8f6f466e591571f7",
+      "question_count_previous": 20,
+      "question_count_current": 20,
+      "changed_metrics": {}
+    },
+    {
+      "report": "expansion_dev.json",
+      "dataset_sha256_previous": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "dataset_sha256_current": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "question_count_previous": 25,
+      "question_count_current": 25,
+      "changed_metrics": {
+        "recall_at_k": {
+          "previous": 0.9545454545454546,
+          "current": 1.0
+        },
+        "mrr_at_k": {
+          "previous": 0.6439393939393939,
+          "current": 0.6893939393939393
+        },
+        "legacy_evidence_list_completion_at_k": {
+          "previous": 0.9090909090909091,
+          "current": 0.9545454545454546
+        },
+        "legacy_evidence_list_completion_mrr": {
+          "previous": 0.6212121212121212,
+          "current": 0.6666666666666666
+        },
+        "evidence_precision_at_k": {
+          "previous": 0.19090909090909094,
+          "current": 0.20000000000000007
+        },
+        "evidence_recall_at_k": {
+          "previous": 0.9318181818181818,
+          "current": 0.9772727272727273
+        },
+        "evidence_ndcg_at_k": {
+          "previous": 0.7123832422119677,
+          "current": 0.757837787666513
+        }
+      }
+    },
+    {
+      "report": "expansion_dev_concept_rerank.json",
+      "dataset_sha256_previous": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "dataset_sha256_current": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "question_count_previous": 25,
+      "question_count_current": 25,
+      "changed_metrics": {}
+    },
+    {
+      "report": "expansion_dev_strict.json",
+      "dataset_sha256_previous": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "dataset_sha256_current": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "question_count_previous": 25,
+      "question_count_current": 25,
+      "changed_metrics": {}
+    },
+    {
+      "report": "image_routing_dev.json",
+      "dataset_sha256_previous": "c4bd405b6be25c762237b914ad9e8c670d49728cdc1b9467b5f43b54abfc938e",
+      "dataset_sha256_current": "c4bd405b6be25c762237b914ad9e8c670d49728cdc1b9467b5f43b54abfc938e",
+      "question_count_previous": 51,
+      "question_count_current": 51,
+      "changed_metrics": {}
+    },
+    {
+      "report": "legacy_all.json",
+      "dataset_sha256_previous": "24dfd1b33b8d9ec63596b55b5584d9d0014d90e6e95975270a6ee06750e2d197",
+      "dataset_sha256_current": "24dfd1b33b8d9ec63596b55b5584d9d0014d90e6e95975270a6ee06750e2d197",
+      "question_count_previous": 12,
+      "question_count_current": 12,
+      "changed_metrics": {}
+    },
+    {
+      "report": "osteofibrous_dysplasia_dev.json",
+      "dataset_sha256_previous": "efbaab1e8b94caea886761a08a70379ab986943a85b4f0c97ff5a97d6205d386",
+      "dataset_sha256_current": "efbaab1e8b94caea886761a08a70379ab986943a85b4f0c97ff5a97d6205d386",
+      "question_count_previous": 7,
+      "question_count_current": 7,
+      "changed_metrics": {}
+    },
+    {
+      "report": "osteofibrous_dysplasia_dev_strict.json",
+      "dataset_sha256_previous": "efbaab1e8b94caea886761a08a70379ab986943a85b4f0c97ff5a97d6205d386",
+      "dataset_sha256_current": "efbaab1e8b94caea886761a08a70379ab986943a85b4f0c97ff5a97d6205d386",
+      "question_count_previous": 7,
+      "question_count_current": 7,
+      "changed_metrics": {}
+    },
+    {
+      "report": "synovial_source_dev.json",
+      "dataset_sha256_previous": "4118000a5d5070774ee56c1bef442ffb4fbd9127eee2e88054368745fac0802c",
+      "dataset_sha256_current": "4118000a5d5070774ee56c1bef442ffb4fbd9127eee2e88054368745fac0802c",
+      "question_count_previous": 6,
+      "question_count_current": 6,
+      "changed_metrics": {}
+    },
+    {
+      "report": "synovial_source_dev_strict.json",
+      "dataset_sha256_previous": "4118000a5d5070774ee56c1bef442ffb4fbd9127eee2e88054368745fac0802c",
+      "dataset_sha256_current": "4118000a5d5070774ee56c1bef442ffb4fbd9127eee2e88054368745fac0802c",
+      "question_count_previous": 6,
+      "question_count_current": 6,
+      "changed_metrics": {}
+    },
+    {
+      "report": "synovial_synonym_dev.json",
+      "dataset_sha256_previous": "357b5dcfa7e32c3cb45ef4330fe48202b18afd7e2f1fdd85bbb8e71e5dcb97c8",
+      "dataset_sha256_current": "357b5dcfa7e32c3cb45ef4330fe48202b18afd7e2f1fdd85bbb8e71e5dcb97c8",
+      "question_count_previous": 2,
+      "question_count_current": 2,
+      "changed_metrics": {}
+    },
+    {
+      "report": "synovial_synonym_dev_strict.json",
+      "dataset_sha256_previous": "357b5dcfa7e32c3cb45ef4330fe48202b18afd7e2f1fdd85bbb8e71e5dcb97c8",
+      "dataset_sha256_current": "357b5dcfa7e32c3cb45ef4330fe48202b18afd7e2f1fdd85bbb8e71e5dcb97c8",
+      "question_count_previous": 2,
+      "question_count_current": 2,
+      "changed_metrics": {}
+    },
+    {
+      "report": "v2_test_concept_rerank.json",
+      "dataset_sha256_previous": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "dataset_sha256_current": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "question_count_previous": 14,
+      "question_count_current": 14,
+      "changed_metrics": {}
+    },
+    {
+      "report": "v2_test_regression.json",
+      "dataset_sha256_previous": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "dataset_sha256_current": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "question_count_previous": 14,
+      "question_count_current": 14,
+      "changed_metrics": {}
+    },
+    {
+      "report": "v2_test_strict.json",
+      "dataset_sha256_previous": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "dataset_sha256_current": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "question_count_previous": 14,
+      "question_count_current": 14,
+      "changed_metrics": {}
+    },
+    {
+      "report": "nci_osteochondroma_dev.json",
+      "dataset_sha256_previous": "afd4c33bcdd086ed220284a3565fecec604e3921f54be77d34760d9e64941fc5",
+      "dataset_sha256_current": "afd4c33bcdd086ed220284a3565fecec604e3921f54be77d34760d9e64941fc5",
+      "question_count_previous": 2,
+      "question_count_current": 2,
+      "changed_metrics": {}
+    }
+  ]
+}

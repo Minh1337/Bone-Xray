@@ -1,0 +1,867 @@
+{
+  "schema_version": 2,
+  "created_at_utc": "2026-10-29T07:51:04.124383+00:00",
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+  "retrieval_config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+  "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+  "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+  "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+  "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+  "report_count": 16,
+  "reports": [
+    {
+      "path": "evidence_v3_viewed.json",
+      "sha256": "7682e00d63ebe9aafabb18a600c63c7e70a0955b15950d6e43480ad3fe90a7ba",
+      "dataset_path": "rag/data/evaluation_evidence_v3.json",
+      "dataset_sha256": "6045d2096696d43f7189c9ac24f5cb608cc579b93ef1ec8a8f6f466e591571f7",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 20,
+      "metrics": {
+        "answerable_count": 10,
+        "negative_count": 10,
+        "recall_at_k": 0.8,
+        "mrr_at_k": 0.6333333333333333,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 10,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 10,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 10
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 10
+          }
+        },
+        "evidence_question_count": 10,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 10,
+        "legacy_evidence_list_completion_at_k": 0.8,
+        "legacy_evidence_list_completion_mrr": 0.6333333333333333,
+        "evidence_precision_at_k": 0.15999999999999998,
+        "evidence_recall_at_k": 0.8,
+        "evidence_ndcg_at_k": 0.6761859507142916
+      }
+    },
+    {
+      "path": "expansion_dev.json",
+      "sha256": "8c297fbac5ccb0a17247869cb554dc36df4b78a03e63302ccea28aad4da4be19",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 25,
+      "metrics": {
+        "answerable_count": 22,
+        "negative_count": 3,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.6893939393939393,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 3,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 22,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 22
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 2
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 22,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 22,
+        "legacy_evidence_list_completion_at_k": 0.9545454545454546,
+        "legacy_evidence_list_completion_mrr": 0.6666666666666666,
+        "evidence_precision_at_k": 0.20000000000000007,
+        "evidence_recall_at_k": 0.9772727272727273,
+        "evidence_ndcg_at_k": 0.757837787666513
+      }
+    },
+    {
+      "path": "expansion_dev_concept_rerank.json",
+      "sha256": "0acec1d444442a6193a13c69db8916e851993746c7ca58c3969b87feec0ca14e",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": true,
+      "split": "all",
+      "question_count": 25,
+      "metrics": {
+        "answerable_count": 22,
+        "negative_count": 3,
+        "recall_at_k": 0.8636363636363636,
+        "mrr_at_k": 0.5962121212121212,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 3,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 22,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 22
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 2
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 22,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 22,
+        "legacy_evidence_list_completion_at_k": 0.8636363636363636,
+        "legacy_evidence_list_completion_mrr": 0.5962121212121212,
+        "evidence_precision_at_k": 0.17272727272727278,
+        "evidence_recall_at_k": 0.8636363636363636,
+        "evidence_ndcg_at_k": 0.6637776312153038
+      }
+    },
+    {
+      "path": "expansion_dev_strict.json",
+      "sha256": "325b532e00e912a7d85568e0fddcbb437d505de459a6d4a23c67d1839566630f",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "63af670a85f0369d2ed8d1aa376960229623367e121609199b60b253cb27b735",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": true,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 25,
+      "metrics": {
+        "answerable_count": 22,
+        "negative_count": 3,
+        "recall_at_k": 0.045454545454545456,
+        "mrr_at_k": 0.022727272727272728,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.9545454545454546,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 3,
+        "positive_without_candidates_count": 21,
+        "positive_without_candidates_denominator": 22,
+        "routing_accuracy": 0.16,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "insufficient_evidence": 21,
+            "candidates_found": 1
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 2
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 22,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 22,
+        "legacy_evidence_list_completion_at_k": 0.045454545454545456,
+        "legacy_evidence_list_completion_mrr": 0.022727272727272728,
+        "evidence_precision_at_k": 0.009090909090909092,
+        "evidence_recall_at_k": 0.045454545454545456,
+        "evidence_ndcg_at_k": 0.02867862516233898
+      }
+    },
+    {
+      "path": "image_routing_dev.json",
+      "sha256": "a1d9db60b4b12c7e40c8b3f2019424b8adfc1d7eb8aa8faf118af6fa01b05ae0",
+      "dataset_path": "rag/data/evaluation_image_routing_dev_20261028.json",
+      "dataset_sha256": "c4bd405b6be25c762237b914ad9e8c670d49728cdc1b9467b5f43b54abfc938e",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 51,
+      "metrics": {
+        "answerable_count": 0,
+        "negative_count": 51,
+        "recall_at_k": null,
+        "mrr_at_k": null,
+        "negative_abstention": 1.0,
+        "positive_abstention": null,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 51,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 0,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "insufficient_evidence": {
+            "insufficient_evidence": 51
+          }
+        },
+        "evidence_question_count": 0,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 0,
+        "legacy_evidence_list_completion_at_k": null,
+        "legacy_evidence_list_completion_mrr": null,
+        "evidence_precision_at_k": null,
+        "evidence_recall_at_k": null,
+        "evidence_ndcg_at_k": null
+      }
+    },
+    {
+      "path": "legacy_all.json",
+      "sha256": "ec792518b2ebc81d45fd07fc96c283d6498cd370a76f70e2c5cec28e12e74a72",
+      "dataset_path": "rag/data/evaluation_questions.json",
+      "dataset_sha256": "24dfd1b33b8d9ec63596b55b5584d9d0014d90e6e95975270a6ee06750e2d197",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 12,
+      "metrics": {
+        "answerable_count": 10,
+        "negative_count": 2,
+        "recall_at_k": 0.8,
+        "mrr_at_k": 0.7333333333333333,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 2,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 10,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 10
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 0,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 0,
+        "legacy_evidence_list_completion_at_k": null,
+        "legacy_evidence_list_completion_mrr": null,
+        "evidence_precision_at_k": null,
+        "evidence_recall_at_k": null,
+        "evidence_ndcg_at_k": null
+      }
+    },
+    {
+      "path": "osteofibrous_dysplasia_dev.json",
+      "sha256": "74606d7d09324e28309a67c0f191cb84d312885e5f021ae2d707420bbc9c2415",
+      "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "dataset_sha256": "efbaab1e8b94caea886761a08a70379ab986943a85b4f0c97ff5a97d6205d386",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 7,
+      "metrics": {
+        "answerable_count": 5,
+        "negative_count": 2,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.7,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 2,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 5,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 5
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 5,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 5,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 0.7,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.7785578521428744
+      }
+    },
+    {
+      "path": "osteofibrous_dysplasia_dev_strict.json",
+      "sha256": "69e589c76bf842aa4298cf909202550efc37443d6065e9cc3e4715ddc67d2bc8",
+      "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "dataset_sha256": "efbaab1e8b94caea886761a08a70379ab986943a85b4f0c97ff5a97d6205d386",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": true,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 7,
+      "metrics": {
+        "answerable_count": 5,
+        "negative_count": 2,
+        "recall_at_k": 0.4,
+        "mrr_at_k": 0.4,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.6,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 2,
+        "positive_without_candidates_count": 3,
+        "positive_without_candidates_denominator": 5,
+        "routing_accuracy": 0.5714285714285714,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 2,
+            "insufficient_evidence": 3
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 5,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 5,
+        "legacy_evidence_list_completion_at_k": 0.4,
+        "legacy_evidence_list_completion_mrr": 0.4,
+        "evidence_precision_at_k": 0.08,
+        "evidence_recall_at_k": 0.4,
+        "evidence_ndcg_at_k": 0.4
+      }
+    },
+    {
+      "path": "synovial_source_dev.json",
+      "sha256": "d2661326d25b051fea3896c835f55ddbb837cb534e97cc465f655f63d98b8e7f",
+      "dataset_path": "rag/data/evaluation_synovial_chondromatosis_dev_20261028.json",
+      "dataset_sha256": "4118000a5d5070774ee56c1bef442ffb4fbd9127eee2e88054368745fac0802c",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 6,
+      "metrics": {
+        "answerable_count": 4,
+        "negative_count": 2,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.5416666666666666,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 2,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 4,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 4
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 4,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 4,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 0.5416666666666666,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.6577324383928644
+      }
+    },
+    {
+      "path": "synovial_source_dev_strict.json",
+      "sha256": "3c4fc89c172630c8d6cba1bd353e8382d7c7e25c7b4bc35937c525fa8283678c",
+      "dataset_path": "rag/data/evaluation_synovial_chondromatosis_dev_20261028.json",
+      "dataset_sha256": "4118000a5d5070774ee56c1bef442ffb4fbd9127eee2e88054368745fac0802c",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": true,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 6,
+      "metrics": {
+        "answerable_count": 4,
+        "negative_count": 2,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 1.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 2,
+        "positive_without_candidates_count": 4,
+        "positive_without_candidates_denominator": 4,
+        "routing_accuracy": 0.3333333333333333,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "insufficient_evidence": 4
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          },
+          "out_of_scope": {
+            "out_of_scope": 1
+          }
+        },
+        "evidence_question_count": 4,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 4,
+        "legacy_evidence_list_completion_at_k": 0.0,
+        "legacy_evidence_list_completion_mrr": 0.0,
+        "evidence_precision_at_k": 0.0,
+        "evidence_recall_at_k": 0.0,
+        "evidence_ndcg_at_k": 0.0
+      }
+    },
+    {
+      "path": "synovial_synonym_dev.json",
+      "sha256": "ec973b039f79bcfdc39116a2d8905bb613e893d183e192e59f71985ad7f02d5d",
+      "dataset_path": "rag/data/evaluation_synovial_synonym_dev_20261028.json",
+      "dataset_sha256": "357b5dcfa7e32c3cb45ef4330fe48202b18afd7e2f1fdd85bbb8e71e5dcb97c8",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 2,
+      "metrics": {
+        "answerable_count": 1,
+        "negative_count": 1,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 1,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 1,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 1
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          }
+        },
+        "evidence_question_count": 1,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 1,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 1.0,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 1.0
+      }
+    },
+    {
+      "path": "synovial_synonym_dev_strict.json",
+      "sha256": "4740ccba6e311f6358066bd551490eb2658bdd20c332b4952e95122d32d9eda5",
+      "dataset_path": "rag/data/evaluation_synovial_synonym_dev_20261028.json",
+      "dataset_sha256": "357b5dcfa7e32c3cb45ef4330fe48202b18afd7e2f1fdd85bbb8e71e5dcb97c8",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": true,
+      "rerank_concepts": false,
+      "split": "all",
+      "question_count": 2,
+      "metrics": {
+        "answerable_count": 1,
+        "negative_count": 1,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 1,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 1,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 1
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          }
+        },
+        "evidence_question_count": 1,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 1,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 1.0,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 1.0
+      }
+    },
+    {
+      "path": "v2_test_concept_rerank.json",
+      "sha256": "7f76660106be646a13049dd792625bce4afc9865751e3a4d7d7fce823c47cdf3",
+      "dataset_path": "rag/data/evaluation_v2.json",
+      "dataset_sha256": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": true,
+      "split": "test",
+      "question_count": 14,
+      "metrics": {
+        "answerable_count": 8,
+        "negative_count": 6,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.9375,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 6,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 8,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 8
+          },
+          "out_of_scope": {
+            "out_of_scope": 2
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 4
+          }
+        },
+        "evidence_question_count": 8,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 8,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 0.9375,
+        "evidence_precision_at_k": 0.19999999999999998,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.9538662191964322
+      }
+    },
+    {
+      "path": "v2_test_regression.json",
+      "sha256": "460e9821eb8414e79af314c52521ea5dc59a6b09a83979f819391bf418be5406",
+      "dataset_path": "rag/data/evaluation_v2.json",
+      "dataset_sha256": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "test",
+      "question_count": 14,
+      "metrics": {
+        "answerable_count": 8,
+        "negative_count": 6,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.6708333333333334,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 6,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 8,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 8
+          },
+          "out_of_scope": {
+            "out_of_scope": 2
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 4
+          }
+        },
+        "evidence_question_count": 8,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 8,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 0.6708333333333334,
+        "evidence_precision_at_k": 0.19999999999999998,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.7522228201007499
+      }
+    },
+    {
+      "path": "v2_test_strict.json",
+      "sha256": "58f63968e39e54d1b9b71bf7fb3145d3e182783ef456ef9896695b0255f2259a",
+      "dataset_path": "rag/data/evaluation_v2.json",
+      "dataset_sha256": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": true,
+      "rerank_concepts": false,
+      "split": "test",
+      "question_count": 14,
+      "metrics": {
+        "answerable_count": 8,
+        "negative_count": 6,
+        "recall_at_k": 0.0,
+        "mrr_at_k": 0.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 1.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 6,
+        "positive_without_candidates_count": 8,
+        "positive_without_candidates_denominator": 8,
+        "routing_accuracy": 0.42857142857142855,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "insufficient_evidence": 8
+          },
+          "out_of_scope": {
+            "out_of_scope": 2
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 4
+          }
+        },
+        "evidence_question_count": 8,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 8,
+        "legacy_evidence_list_completion_at_k": 0.0,
+        "legacy_evidence_list_completion_mrr": 0.0,
+        "evidence_precision_at_k": 0.0,
+        "evidence_recall_at_k": 0.0,
+        "evidence_ndcg_at_k": 0.0
+      }
+    },
+    {
+      "path": "nci_osteochondroma_dev.json",
+      "sha256": "e191c3e5b36fc1050f735dce31eefccb9da4aa2862f7ee38c2925520b48e6116",
+      "dataset_path": "rag/data/evaluation_nci_osteochondroma_dev_20261028.json",
+      "dataset_sha256": "afd4c33bcdd086ed220284a3565fecec604e3921f54be77d34760d9e64941fc5",
+      "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+      "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+      "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+      "evidence_config_sha256": null,
+      "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+      "evaluate_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "policy_sha256": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "mode": "hybrid",
+      "apply_policy": true,
+      "verify_evidence": false,
+      "rerank_concepts": false,
+      "split": "dev",
+      "question_count": 2,
+      "metrics": {
+        "answerable_count": 1,
+        "negative_count": 1,
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "negative_with_candidates_count": 0,
+        "negative_with_candidates_denominator": 1,
+        "positive_without_candidates_count": 0,
+        "positive_without_candidates_denominator": 1,
+        "routing_accuracy": 1.0,
+        "routing_confusion_matrix": {
+          "candidates_found": {
+            "candidates_found": 1
+          },
+          "insufficient_evidence": {
+            "insufficient_evidence": 1
+          }
+        },
+        "evidence_question_count": 1,
+        "evidence_group_question_count": 0,
+        "evidence_alternative_group_count": 0,
+        "evidence_group_completion_at_k": null,
+        "evidence_group_completion_mrr": null,
+        "legacy_evidence_list_question_count": 1,
+        "legacy_evidence_list_completion_at_k": 1.0,
+        "legacy_evidence_list_completion_mrr": 1.0,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 1.0
+      }
+    }
+  ],
+  "comparison": {
+    "path": "comparison.json",
+    "sha256": "430f032a98f97c682909a7f5b9ef51f010391027e689bc2890ceee600b706402",
+    "reports_compared": 16
+  }
+}

@@ -36,6 +36,8 @@
     </div>
   </section>
 
+  <div class="notice" role="note">Bản thử nghiệm học tập/nghiên cứu. Không dùng cho chẩn đoán, sàng lọc, phân loại cấp cứu hay quyết định điều trị. Điểm softmax (0–1) chưa hiệu chuẩn cho lâm sàng; không diễn giải là xác suất mắc bệnh.</div>
+
   <div class="card" style="padding: 16px 20px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap;">
     <div style="display: flex; gap: 12px; align-items: center; flex: 1; min-width: 260px;">
       <label style="margin: 0; font-size: 13px; white-space: nowrap;">Lọc theo nhãn:</label>
@@ -64,7 +66,7 @@
           <th>Thời gian</th>
           <th>Tên ảnh</th>
           <th>Dự đoán Top-1</th>
-          <th>Điểm</th>
+          <th>Điểm softmax (0–1)</th>
           <th>Thời gian chạy</th>
           <th>Thao tác</th>
         </tr>
@@ -98,7 +100,7 @@
   let page = 0;
   const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
-  const pct = v => (v * 100).toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+  const score = v => Number(v).toLocaleString('vi-VN', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
 
   async function loadCases() {
     tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted); padding: 30px;">Đang tải...</td></tr>';
@@ -125,7 +127,7 @@
           <td><small style="color: var(--muted)">${new Date(c.created_at).toLocaleString('vi-VN')}</small></td>
           <td>${esc(c.image_filename)}</td>
           <td><span class="badge badge-teal">${esc(c.top1_label)}</span></td>
-          <td><strong>${pct(c.top1_score)}</strong></td>
+          <td><strong>${score(c.top1_score)}</strong></td>
           <td><small>${c.prediction_seconds.toFixed(3)}s (${esc(c.device)})</small></td>
           <td class="table-actions">
             <a href="/case/${encodeURIComponent(c.id)}" class="secondary btn-sm" style="text-decoration: none; display: inline-block;">Chi tiết</a>

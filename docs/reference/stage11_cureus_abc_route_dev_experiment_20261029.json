@@ -1,0 +1,143 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-10-29T07:52:54.922911+00:00",
+  "change": "Add explicit soft source preference for the CC BY 4.0 Cureus aneurysmal bone cyst review, reserving three source-specific results for exact ABC terminology.",
+  "source": {
+    "id": "cureus-aneurysmal-bone-cyst",
+    "title": "Diagnosis and Current Treatment of Aneurysmal Bone Cysts",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915701/",
+    "license": "CC BY 4.0",
+    "relevant_chunk": "cureus-aneurysmal-bone-cyst:0001",
+    "relevant_text_claim": "The review describes MRI-visible fluid-fluid levels; this retrieval route does not assert diagnostic sufficiency or entailment."
+  },
+  "trigger_terms": [
+    "aneurysmal bone cyst",
+    "nang xuong phinh mach"
+  ],
+  "retrieval_config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+  "selection_basis": {
+    "dataset": "rag/data/evaluation_expansion_dev_v1.json",
+    "question_id": "c10",
+    "question": "Trên MRI, đặc điểm hình ảnh nào của aneurysmal bone cyst được nêu trong tổng quan?",
+    "gold_chunk": "cureus-aneurysmal-bone-cyst:0001",
+    "before_rank": null,
+    "after_rank": 3,
+    "note": "The viewed 25-question dev split was used to select preferred_count=3. No blind set was accessed."
+  },
+  "expansion_dev_before_after": {
+    "question_count": 25,
+    "recall_at_5": {
+      "before": 0.9545454545454546,
+      "after": 1.0
+    },
+    "mrr_at_5": {
+      "before": 0.6439393939393939,
+      "after": 0.6893939393939393
+    },
+    "evidence_recall_at_5": {
+      "before": 0.9318181818181818,
+      "after": 0.9772727272727273
+    },
+    "negative_abstention": {
+      "before": 1.0,
+      "after": 1.0
+    },
+    "routing_accuracy": {
+      "before": 1.0,
+      "after": 1.0
+    }
+  },
+  "other_dev_sets": [
+    {
+      "dataset": "evaluation_image_routing_dev_20261028.json",
+      "n": 51,
+      "result": "no answerable queries; negative abstention and routing unchanged at 1.0"
+    },
+    {
+      "dataset": "evaluation_nci_osteochondroma_dev_20261028.json",
+      "n": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "unchanged": true
+    },
+    {
+      "dataset": "evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "n": 7,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.7,
+      "unchanged": true
+    },
+    {
+      "dataset": "evaluation_synovial_chondromatosis_dev_20261028.json",
+      "n": 6,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5416666666666666,
+      "unchanged": true
+    },
+    {
+      "dataset": "evaluation_synovial_synonym_dev_20261028.json",
+      "n": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 1.0,
+      "unchanged": true
+    },
+    {
+      "dataset": "evaluation_tibia_dysplasia_dev_20261029.json",
+      "n": 3,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.4444444444444444,
+      "unchanged": true
+    },
+    {
+      "dataset": "evaluation_v2.json",
+      "split": "dev",
+      "n": 14,
+      "recall_at_5": 0.7777777777777778,
+      "mrr_at_5": 0.6481481481481483,
+      "negative_abstention": 1.0,
+      "unchanged": true
+    }
+  ],
+  "candidate_limit_sweep": {
+    "values": [
+      40,
+      80,
+      120,
+      160,
+      240
+    ],
+    "result": "40 reduced expansion-dev Recall@5 to 0.9091; 80/120/160/240 all remained 0.9545 and did not retrieve c10 gold. This did not resolve the miss."
+  },
+  "full_bundle": {
+    "path": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "manifest_sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c",
+    "comparison_sha256": "430f032a98f97c682909a7f5b9ef51f010391027e689bc2890ceee600b706402",
+    "report_count": 16,
+    "reports_with_metric_changes": [
+      "expansion_dev.json"
+    ],
+    "other_15_reports_unchanged": true,
+    "viewed_test_reports_changed": false
+  },
+  "provenance": {
+    "retrieval_config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe"
+  },
+  "limitations": [
+    "All evaluation data are agent-authored, development, or previously viewed; none are independent validation.",
+    "Source routing is a retrieval preference, not evidence entailment or a diagnosis rule.",
+    "Retain answer_ready=false; seven acceptance gates remain open."
+  ],
+  "full_regression": {
+    "record": "docs/reference/stage11_test_run_20261029_cureus_abcrouting_full.json",
+    "record_sha256": "9f16341bb19940b94e048cc0ce64d6086da611f127cc46e27873e2db481af051",
+    "status": "PASS",
+    "passed": 86,
+    "subtests_passed": 132,
+    "warnings": [
+      "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias."
+    ]
+  }
+}

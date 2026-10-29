@@ -1,0 +1,18 @@
+{
+  "created_at_utc": "2026-10-29T02:34:17.251291+00:00",
+  "baseline_bundle": "docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8",
+  "baseline_manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+  "baseline_evaluator_sha256": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+  "current_evaluator_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+  "expected_provenance_difference": [
+    "implementation_sha256.evaluate.py"
+  ],
+  "preflight_mismatches": [
+    "evaluate_sha256"
+  ],
+  "other_preflight_mismatches": [],
+  "reports_checked": 16,
+  "reports_match_except_expected_evaluator_hash": 16,
+  "report_differences": [],
+  "status": "PASS"
+}

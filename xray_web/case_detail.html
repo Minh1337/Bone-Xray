@@ -23,6 +23,8 @@
 </header>
 
 <main>
+  <div class="notice" role="note">Bản thử nghiệm học tập/nghiên cứu. Không dùng cho chẩn đoán, sàng lọc, phân loại cấp cứu hay quyết định điều trị. Điểm softmax (0–1) chưa hiệu chuẩn cho lâm sàng; không diễn giải là xác suất mắc bệnh.</div>
+
   <div style="margin-bottom: 20px;">
     <a href="/history" class="quiet" style="font-size: 13px;">← Quay lại danh sách lịch sử</a>
   </div>
@@ -47,13 +49,13 @@
           <span class="step">01</span>
           <div>
             <h2>Kết quả phân loại mô hình</h2>
-            <p>Điểm dự đoán từ mô hình Swin + Cross-Attention.</p>
+          <p>Đầu ra softmax từ mô hình Swin + Cross-Attention; chưa hiệu chuẩn cho lâm sàng.</p>
           </div>
         </div>
 
         <div class="main-score">
-          <span id="detail-top-score">0%</span>
-          <small>điểm dự đoán</small>
+          <span id="detail-top-score">0,000</span>
+          <small>điểm softmax (0–1)</small>
         </div>
 
         <div id="detail-top-three"></div>
@@ -61,7 +63,7 @@
         <details style="margin-top: 20px;">
           <summary>Xem toàn bộ 10 lớp</summary>
           <table>
-            <thead><tr><th>Lớp u xương</th><th>Điểm số</th></tr></thead>
+            <thead><tr><th>Lớp</th><th>Điểm softmax (0–1)</th></tr></thead>
             <tbody id="detail-all-scores"></tbody>
           </table>
         </details>
@@ -150,7 +152,7 @@
 
 <script>
   const caseId = window.location.pathname.split('/').pop();
-  const pct = v => (v * 100).toLocaleString('vi-VN', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+  const score = v => Number(v).toLocaleString('vi-VN', { minimumFractionDigits: 4, maximumFractionDigits: 4 });
   const esc = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 
   async function loadCaseDetail() {
@@ -164,8 +166,8 @@
       document.getElementById('case-meta-header').textContent = `Thời gian: ${new Date(c.created_at).toLocaleString('vi-VN')} · Thiết bị: ${c.device.toUpperCase()} · Xử lý: ${c.prediction_seconds.toFixed(3)}s`;
 
       document.getElementById('top1-scope-mark').textContent = 'Top-1';
-      document.getElementById('top1-scope-text').innerHTML = `<strong>${esc(c.top1_label)}</strong><small>${pct(c.top1_score)}</small>`;
-      document.getElementById('detail-top-score').textContent = pct(c.top1_score);
+      document.getElementById('top1-scope-text').innerHTML = `<strong>${esc(c.top1_label)}</strong><small>${score(c.top1_score)}</small>`;
+      document.getElementById('detail-top-score').textContent = score(c.top1_score);
 
       // Top 3
       const ranked = Object.entries(c.scores_json).sort((a, b) => b[1] - a[1]);
@@ -173,7 +175,7 @@
         <div class="rank">
           <div class="rank-heading">
             <span>0${i+1} ${esc(k)}</span>
-            <strong>${pct(v)}</strong>
+            <strong>${score(v)}</strong>
           </div>
           <div class="bar">
             <span style="width: ${v * 100}%;"></span>
@@ -183,7 +185,7 @@
 
       // All 10
       document.getElementById('detail-all-scores').innerHTML = ranked.map(([k, v]) => `
-        <tr><td>${esc(k)}</td><td style="text-align: right;"><strong>${pct(v)}</strong></td></tr>
+        <tr><td>${esc(k)}</td><td style="text-align: right;"><strong>${score(v)}</strong></td></tr>
       `).join('');
 
       // Metadata display

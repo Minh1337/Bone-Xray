@@ -1,0 +1,24 @@
+{
+  "created_at_utc": "2026-10-29T07:12:04.751819+00:00",
+  "created_at_ict": "2026-10-29T14:12:04.751819+07:00",
+  "scope": "full software regression including checkpoint manifest/verification utility; not clinical validation or independent acceptance",
+  "targeted_test_command": ".\\.venv\\Scripts\\python.exe -m pytest tests/test_checkpoint_tool.py -q",
+  "targeted_result": {
+    "passed": 4,
+    "subtests_passed": 3,
+    "exit_code": 0
+  },
+  "full_test_command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "full_result": {
+    "passed": 83,
+    "subtests_passed": 130,
+    "warnings": 1,
+    "warning": "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias",
+    "exit_code": 0
+  },
+  "python": "3.11.9",
+  "implementation_sha256": {
+    "tools/create_project_checkpoint.py": "1d50d202e2855544afe773f9ee6e98aea14e99ea62a086936ba656f7b3c316bf",
+    "tests/test_checkpoint_tool.py": "6b6987365ad100a29bc3100536e27f776fadb71440b39202b44a1b84152ab8d6"
+  }
+}

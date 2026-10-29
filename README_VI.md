@@ -73,12 +73,15 @@ Cài dependency và tạo index lần đầu:
 ```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements_rag.txt
 .\.venv\Scripts\python.exe rag\build_index.py --download-model
+.\.venv\Scripts\python.exe rag\audit.py
 .\.venv\Scripts\python.exe rag\evaluate.py
 .\.venv\Scripts\python.exe rag\retrieval.py "Chordoma thường xuất hiện ở vùng nào?" --top-k 5
 ```
 
-Corpus hiện gồm 439 đoạn từ 13 nguồn (12 trang NCI và 1 bài Open Orthopaedics
-CC BY 4.0 có giới hạn phạm vi). Các thư mục
+Corpus hiện gồm **794 đoạn từ 22 nguồn**: 13 mục NCI và 9 nguồn ngoài NCI. Mỗi nguồn có provenance/license/scope theo registry; C12 TCIA QIN-SARCOMA và C13 Gitto được rà soát nhưng không ingest hoặc dùng làm evaluation vì không khớp task hoặc thiếu ảnh/quyền dữ liệu. Xem [cohort register](docs/reference/stage11_external_cohort_screening_register_20261029.csv) và [status dự án](docs/PROJECT_STATUS_VI.md).
+Các bảng và captions từ BioC của BSG/Cureus bị loại; xem căn cứ trong
+[rà soát nguồn trực tuyến](docs/reference/stage11_online_evidence_review_20261028.md).
+Các thư mục
 `rag\index\`, `rag\models\` và `rag\source_cache\` được tạo/tải tại máy và bị
 Git bỏ qua. Lần sau chỉ cần chạy `rag\build_index.py` nếu model embedding đã có.
 
@@ -89,15 +92,32 @@ Hai tùy chọn thử nghiệm không bật mặc định:
 .\.venv\Scripts\python.exe rag\retrieval.py "..." --verify-evidence
 ```
 
-`--rerank-concepts` cần kiểm định thêm trên tập độc lập. `--verify-evidence`
-đang từ chối nhầm nhiều câu có đáp án nên không dùng cho người dùng cuối.
+`--rerank-concepts` cần kiểm định thêm trên tập độc lập. Historical v8
+`--verify-evidence` chỉ giữ 1/22 câu dương trên dev và 0/8 trên V2 đã xem, nên
+không dùng cho người dùng cuối; lexical coverage không xác minh entailment.
 Cả hai chế độ vẫn trả `answer_ready: false`. Xem [hướng dẫn RAG](docs/README.md)
 và [bàn giao giai đoạn 11](docs/STAGE11_HANDOFF_VI.md).
 
-Catalogue ảnh tham chiếu BTXRD Figshare CC BY 4.0 đã được tải và tạo manifest,
-nhưng đây cũng là nguồn huấn luyện của checkpoint hiện tại nên không dùng để
-tuyên bố hiệu năng độc lập. Xem [hướng dẫn bộ ảnh](docs/guides/README_IMAGE_REFERENCE_VI.md)
-và [trạng thái dự án](docs/PROJECT_STATUS_VI.md).
+Catalogue ảnh tham chiếu BTXRD Figshare (record gốc ghi CC BY 4.0) đã được tải
+và tạo manifest, nhưng checkpoint hiện tại dùng BTXRD và thiếu image IDs theo
+split nên không thể tuyên bố đánh giá độc lập trên bộ này. Terms upstream của
+ảnh Radiopaedia/MedPix chưa được audit riêng theo ảnh. Xem
+[hướng dẫn bộ ảnh](docs/guides/README_IMAGE_REFERENCE_VI.md) và
+[trạng thái dự án](docs/PROJECT_STATUS_VI.md). G4 đã sàng lọc 15 cohort candidates;
+chưa có cohort đủ điều kiện external test với quyền, reference standard, patient-level
+provenance và overlap clearance. C12 TCIA QIN-SARCOMA không khớp modality/disease/
+endpoint; C13 Gitto chỉ phát hành workbook radiomics, không có ảnh X-ray; C14 Frontiers
+chỉ có 11 ca tumor-positive và repository không hiển thị data license; C15 IIEST là bộ
+hỗn hợp 217 ảnh, trong đó 69 ảnh cancer-labelled, chưa xác minh package/quyền/overlap. Bone-CNN và
+SKELEX dùng cùng BTXRD lineage, không phải cohort độc lập mới. Không có dữ liệu nào
+được nhận hoặc dùng để đánh giá. Xem [register](docs/reference/stage11_external_cohort_screening_register_20261029.csv),
+[C14 screen](docs/reference/stage11_frontiers_11case_cohort_screen_20261029.json),
+[C15 screen](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json) và
+[due diligence](docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md).
+Dùng [checklist thẩm định](docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md)
+trước khi truy cập hoặc đánh giá nguồn mới.
+
+Lệnh `rag\audit.py` kiểm tra tính toàn vẹn của source lock, corpus, gold evidence/citation và index. Kết quả PASS không xác minh độ đúng y khoa; `answer_ready` vẫn false.
 
 ## 6. Kiểm thử
 
@@ -105,18 +125,38 @@ và [trạng thái dự án](docs/PROJECT_STATUS_VI.md).
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Kết quả xác nhận ngày 27/10/2026: **39 passed, 31 subtests passed**. Một cảnh báo
-deprecated của Starlette không làm test thất bại.
+Full suite vừa chạy lại: **87 passed/132 subtests**, một cảnh báo deprecation Starlette. Đây là regression phần mềm, không phải kiểm định độc lập hay lâm sàng. Xem [run record mới với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json). Corpus 22 nguồn/794 chunk; [fresh integrity audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json) PASS và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json) PASS 16/16. Một số dev/V2 đã xem; chưa có reviewer-labeled blind set hoặc citation-entailment adjudication. Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`. Xem [progress note](docs/STAGE11_PROGRESS_2026-10-29.md) và [checkpoint](docs/STAGE11_CHECKPOINT_LATEST.md).
 
 ## 7. Tài liệu và giới hạn
 
 - [README tổng quan](README.md)
 - [Trạng thái dự án](docs/PROJECT_STATUS_VI.md)
+- [Báo cáo tổng hợp Giai đoạn 11 — 29/10/2026](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md)
 - [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
 - [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)
 - [Hướng dẫn index và retrieval](docs/guides/README_RAG_INDEX_VI.md)
 - [Hệ quy chiếu ảnh X-quang](docs/guides/README_IMAGE_REFERENCE_VI.md)
 - [Thiết kế kiểm tra bằng chứng](docs/reference/EVIDENCE_CHECK_DESIGN_VI.md)
+- [Quy trình thẩm định độc lập Giai đoạn 11](docs/reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md)
+- [Crosswalk reporting guideline AI/y tế (trọng tâm STARD-AI)](docs/reference/STAGE11_STARD_AI_REPORTING_CROSSWALK_VI.md)
+- [CSV checklist STARD-AI trắng, có attribution CC BY](docs/reference/stage11_stard_ai_reporting_checklist_template_20261029.csv)
+- [Hồ sơ reviewer và snapshot hash Giai đoạn 11](docs/reference/STAGE11_REVIEWER_PACKET_VI.md)
+- [Mẫu intended-use lock theo chức năng](docs/reference/STAGE11_INTENDED_USE_LOCK_TEMPLATE_VI.md)
+- [Hướng dẫn safety review và hazard analysis](docs/reference/STAGE11_SAFETY_REVIEW_GUIDE_VI.md)
+- [CSV trống cho hazard scenario](docs/reference/stage11_safety_hazard_analysis_template_20261029.csv)
+- [Mẫu khai báo reviewer, độc lập và ký nhận](docs/reference/STAGE11_REVIEWER_DECLARATION_TEMPLATE_VI.md)
+- [Mẫu adjudication log tách biệt, giữ nguyên hai bản nhãn gốc](docs/reference/stage11_adjudication_log_template_20261029.csv)
+- [Kế hoạch khóa phương pháp và seed lấy mẫu mù](docs/reference/stage11_blind_sampling_plan_template_20261029.json)
+- [Mẫu sampling manifest mù, giữ riêng source/cluster/overlap mapping](docs/reference/stage11_blind_sampling_manifest_template_20261029.csv)
+- [Rà soát nguồn trực tuyến và regulatory](docs/reference/stage11_online_evidence_review_20261028.md)
+- [Rà soát privacy/security cục bộ](docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md)
+- [Phiếu closeout privacy/security theo phạm vi](docs/reference/STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md)
+- [Checklist cohort ảnh ngoài BTXRD](docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md)
+- [CSV trống ghi nhận quyền tái sử dụng theo ảnh](docs/reference/stage11_image_rights_chain_template_20261028.csv)
+- [Integrity audit hiện hành](docs/reference/stage11_integrity_audit_20261029_cureus_abcrouting_v1.json)
+- [Deterministic replay hiện hành](docs/reference/stage11_replay_20261029_cureus_abcrouting_v1.json)
+- [Full regression record mới nhất](docs/reference/stage11_test_run_20261029_postdocs_full.json)
+- [Progress note Giai đoạn 11](docs/STAGE11_PROGRESS_2026-10-29.md)
 
 Mô hình ảnh chưa được tuyên bố là có accuracy lâm sàng hoặc xác suất đã hiệu
 chuẩn. RAG còn thiếu nguồn cho một số nhãn, chưa có chatbot, chưa có citation

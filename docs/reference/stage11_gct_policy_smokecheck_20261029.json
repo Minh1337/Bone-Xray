@@ -1,0 +1,50 @@
+{
+  "created_at_utc": "2026-10-28T17:58:48.461214+00:00",
+  "purpose": "manual smoke-check of GCT query expansion and policy boundaries after v6",
+  "corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "retrieval_config_sha256": "c8f45d1af962c5b78a57096db2b219f66bd85168fdaf094daec7c7e083533aed",
+  "policy_sha256": "4a258f2c62de84fe0c41e9081a4a2d910c3e381d184108eab638bbdaa3fc8eaa",
+  "model_revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+  "top_k": 3,
+  "mode": "hybrid",
+  "results": [
+    {
+      "question": "What are common MRI features of GCT in bone?",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "answer_ready": false,
+      "top_hits": [
+        "knee-intraosseous-tumours-2026:0004",
+        "knee-intraosseous-tumours-2026:0003",
+        "knee-intraosseous-tumours-2026:0005"
+      ]
+    },
+    {
+      "question": "How do radiologists describe GCT on MRI in general?",
+      "status": "candidates_found",
+      "reason": "unvalidated_candidates",
+      "answer_ready": false,
+      "top_hits": [
+        "knee-intraosseous-tumours-2026:0004",
+        "knee-intraosseous-tumours-2026:0003",
+        "synovial-chondromatosis-review-2026:0019"
+      ],
+      "observation": "One of three top candidates is from an unrelated synovial source; inspect in future reviewer-labeled ranking work, do not treat this smoke-check as a metric."
+    },
+    {
+      "question": "What is GCT on pituitary MRI?",
+      "status": "out_of_scope",
+      "reason": "outside_bone_tumor_corpus",
+      "answer_ready": false,
+      "top_hits": []
+    },
+    {
+      "question": "Can herbs cure GCT on MRI?",
+      "status": "insufficient_evidence",
+      "reason": "unverified_alternative_medicine_claim",
+      "answer_ready": false,
+      "top_hits": []
+    }
+  ],
+  "provenance": "Agent-authored diagnostic prompts, inspected manually and used to develop the policy; not blind, not independent, not gold-labeled, not a quantitative evaluation or clinical claim. Retriever only returned candidate spans; answer_ready=false for every result."
+}

@@ -54,6 +54,8 @@ chạy với model thật trên máy mới cần thêm bước kiểm tra API b�
 ## Giới hạn
 
 Giao diện chỉ chạy local, không có xác thực người dùng và không phù hợp để
-public Internet. Điểm mô hình không phải chẩn đoán hoặc xác suất bệnh đã hiệu
-chuẩn. SQLite, log và kết quả runtime nằm ngoài Git; lịch sử không tự đồng bộ
-giữa các máy.
+public Internet. Bản thử nghiệm chỉ dành cho học tập/nghiên cứu; không dùng cho
+chẩn đoán, sàng lọc, phân loại cấp cứu hoặc quyết định điều trị. Điểm hiển thị
+là đầu ra softmax trong khoảng 0–1, chưa hiệu chuẩn cho lâm sàng và không được
+diễn giải thành xác suất mắc bệnh. SQLite, log và kết quả runtime nằm ngoài Git;
+lịch sử không tự đồng bộ giữa các máy.

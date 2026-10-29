@@ -1,0 +1,865 @@
+{
+  "answerable_count": 8,
+  "negative_count": 6,
+  "recall_at_k": 1.0,
+  "mrr_at_k": 0.875,
+  "negative_abstention": 1.0,
+  "positive_abstention": 0.0,
+  "negative_with_candidates_count": 0,
+  "negative_with_candidates_denominator": 6,
+  "positive_without_candidates_count": 0,
+  "positive_without_candidates_denominator": 8,
+  "routing_accuracy": 1.0,
+  "routing_confusion_matrix": {
+    "candidates_found": {
+      "candidates_found": 8
+    },
+    "out_of_scope": {
+      "out_of_scope": 2
+    },
+    "insufficient_evidence": {
+      "insufficient_evidence": 4
+    }
+  },
+  "evidence_question_count": 8,
+  "evidence_precision_at_k": 0.19999999999999998,
+  "evidence_recall_at_k": 1.0,
+  "evidence_ndcg_at_k": 0.9077324383928644,
+  "questions": [
+    {
+      "id": "p09",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "cause",
+          "bone_tumor",
+          "primary"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "dinh"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 3,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0008",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the possible causes of bone cancer?",
+          "text_sha256": "a039ea59be9bac809eece7704ead87b6c53042ebd95654215ac3acf9b67ac4df",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7767860889434814,
+          "ranking_score": 0.053575106459962704,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0001",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are bone tumors?",
+          "text_sha256": "7daf3ab407d70109092b1bfbe39c15976215077d86ca2092fff537421ac2d5d5",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7455508708953857,
+          "ranking_score": 0.029418126757516764,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0002",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are bone tumors?",
+          "text_sha256": "a07294ef90eba0ecfcda774d08593c6fc124438aafe79e665f60c0a015268ef1",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7571618556976318,
+          "ranking_score": 0.023063200815494393,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0009",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the possible causes of bone cancer?",
+          "text_sha256": "dc74c78ec02d83b36d3094e904c7dfdaaacb9935d6896d335d1349060630b085",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7856186628341675,
+          "ranking_score": 0.061596778014688464,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0003",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the different types of primary bone cancer?",
+          "text_sha256": "a521051643573e649a07f27dec2ee8e6fe7ac149e5b990db025871c26bbbcd8a",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7561869621276855,
+          "ranking_score": 0.029273504273504274,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p10",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "child",
+          "bone_tumor"
+        ],
+        "literal_terms": [
+          "alkaline",
+          "phosphatase"
+        ],
+        "unknown_terms": [
+          "cao",
+          "phat"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 1,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "nci-primary-bone-cancer:0015",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "How is bone cancer diagnosed?",
+          "text_sha256": "ef24ef169f93b9d7f3c2a531a5c2235b6131390415c429732ff46745f7b09fb9",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8430403470993042,
+          "ranking_score": 0.06557377049180328,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0004",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Osteosarcoma",
+          "text_sha256": "7ca12757caf3d8d3fff44c97638592d1f22c353cfda388fce878fe4ab8b143e2",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7992047071456909,
+          "ranking_score": 0.047920878300625136,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0009",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the possible causes of bone cancer?",
+          "text_sha256": "dc74c78ec02d83b36d3094e904c7dfdaaacb9935d6896d335d1349060630b085",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7872626185417175,
+          "ranking_score": 0.024099883855981417,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0008",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "What are the possible causes of bone cancer?",
+          "text_sha256": "a039ea59be9bac809eece7704ead87b6c53042ebd95654215ac3acf9b67ac4df",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7870458364486694,
+          "ranking_score": 0.021568627450980392,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0018",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "How is primary bone cancer treated?",
+          "text_sha256": "9e1d0d02a0765bd11819a4079a2511bc4c3df02863c1faacc495332a20d664d0",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7656155824661255,
+          "ranking_score": 0.018925518925518928,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p11",
+      "split": "test",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "ewing",
+          "pain",
+          "swelling",
+          "bone"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "gay",
+          "ly"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 2,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "nci-ewing-patient:0001",
+          "source_id": "nci-ewing-patient",
+          "section": "Key Points",
+          "text_sha256": "24db4d704244a4579bfddb791f8389b21c89a0807de8b0374ae1c3ca5101fd64",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.87353515625,
+          "ranking_score": 0.06224925083729949,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0006",
+          "source_id": "nci-ewing-patient",
+          "section": "Symptoms of Ewing sarcoma include swelling and pain near the tumor.",
+          "text_sha256": "1fc2a1574c43f73ee3accd3e747da1ab7efbd98898a1d55abbf4cc20ced2c726",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8597156405448914,
+          "ranking_score": 0.057848212233060234,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0002",
+          "source_id": "nci-ewing-patient",
+          "section": "Ewing sarcoma is a type of cancer that forms from a certain kind of cell in bone or soft tissue.",
+          "text_sha256": "b2b53f08c557be392ba13e55846dea170abf335f2f96e6cfd15fa57b5512239a",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8700741529464722,
+          "ranking_score": 0.062350137276066156,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0001",
+          "source_id": "nci-ewing-professional",
+          "section": "General Information About Ewing Sarcoma and Undifferentiated Small Round Cell Sarcomas of Bone and Soft Tissue",
+          "text_sha256": "52384e603f3c69c379e368ca777ac9dfd5537f379cf2e0822aa0ae653e994a94",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8582093119621277,
+          "ranking_score": 0.05849014336917563,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0071",
+          "source_id": "nci-ewing-professional",
+          "section": "Extraosseous Ewing Sarcoma",
+          "text_sha256": "302aa76aec5c1ff3a90839e910ad72a131f8033c65e0a3a25197434493f45ac2",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8518707156181335,
+          "ranking_score": 0.057694992553983616,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "child",
+          "chordoma"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "mac",
+          "nhin",
+          "doi",
+          "kho",
+          "nuot"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 31,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "nci-child-chordoma-patient:0003",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Symptoms of childhood chordoma",
+          "text_sha256": "8be38b21a752d34bbde66cdab190e28975df15e28f797f7a4a7bce8751ffafb7",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8258348703384399,
+          "ranking_score": 0.06256805303507278,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0001",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Incidence",
+          "text_sha256": "a2783e0877aeaaf236f13c97cd527f14f4d838583a4ec26b878e6925ce783170",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.819616436958313,
+          "ranking_score": 0.06113256113256113,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0001",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "What is childhood chordoma?",
+          "text_sha256": "c23c12cd97777be0b5f07de51498a8db166d9533e9a1969957cde2dbc19deaf1",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8005414605140686,
+          "ranking_score": 0.0582321748849783,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0005",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "46d7f33f20bace2b505d2577463981a32b043345782766b817d7d94027c140af",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8144187927246094,
+          "ranking_score": 0.05804028291590481,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0003",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Prognosis and Molecular Features",
+          "text_sha256": "65c414f92f588066f7ddd797c73e5f4c1aa5c72ee39c593ad221eccb9bc511d4",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8153072595596313,
+          "ranking_score": 0.05779094639427275,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "split": "test",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "pathology",
+          "sample",
+          "biopsy",
+          "chondrosarcoma"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "kiem",
+          "tra"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 2,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0019",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Investigation",
+          "text_sha256": "9f2e49f2c7fe14b7d84436a1cfa2e7e4a959517803f6b81381f3a0af1624b650",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.813679575920105,
+          "ranking_score": 0.06308991554893195,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chondrosarcoma:0003",
+          "source_id": "nci-chondrosarcoma",
+          "section": "How is CS diagnosed?",
+          "text_sha256": "8d4b20a7dbb48dc2da157aa692d2fd55d15739604fb78cbfb6d65ef1ec456e0c",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondrosarcoma",
+          "score": 0.7896789908409119,
+          "ranking_score": 0.016129032258064516,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0006",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "Tests are used to diagnose osteosarcoma and UPS.",
+          "text_sha256": "e1e10bb1e45fe361c000c46126c271a9f1ba9bd1e0ac93f5d673f146bcc8628e",
+          "url": "https://www.cancer.gov/types/bone/patient/osteosarcoma-treatment-pdq",
+          "score": 0.8116641640663147,
+          "ranking_score": 0.056091734352603916,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0023",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Investigation",
+          "text_sha256": "b21855a1da2ea216c2819765510d486e773e92920d4fe07cb7f6e17d7f001cad",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8179967403411865,
+          "ranking_score": 0.05568836595090592,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0011",
+          "source_id": "nci-ewing-patient",
+          "section": "Tests that examine the bone and soft tissue are used to diagnose and stage Ewing sarcoma.",
+          "text_sha256": "2037256b28c50aa71606a261457b00ec30ac3ba24ed0f0bbd1f60d7e34c68bfd",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8038268089294434,
+          "ranking_score": 0.04820828733872212,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p14",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "cmf",
+          "benign",
+          "tissue"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "xam",
+          "lan"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 1,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "nci-chondromyxoid-fibroma:0001",
+          "source_id": "nci-chondromyxoid-fibroma",
+          "section": "What is chondromyxoid fibroma?",
+          "text_sha256": "ae52da9d913e2052a149796f70b0d401518a6a27f25b80c51d1f6fb72535ec31",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chondromyxoid-fibroma",
+          "score": 0.8529205322265625,
+          "ranking_score": 0.06557377049180328,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0019",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Osteochondroma (OC)/hereditary multiple exostoses (HME)",
+          "text_sha256": "2aa59325c7055380a095143674981a456e1059eea55c5a2cf5b517bea39a4e4e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8107376098632812,
+          "ranking_score": 0.05071983748454337,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0016",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Chondrogenic tumours",
+          "text_sha256": "702fb625d7077a9f9a6e5f1ffa0ef5f07794042cc0dd9d84dcceb444319f8f41",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.7973082065582275,
+          "ranking_score": 0.04176880557558279,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0004",
+          "source_id": "nci-ewing-patient",
+          "section": "Undifferentiated small round cell sarcoma may also form in the bone or soft tissue.",
+          "text_sha256": "362f9a5386882922718016fbacdcced6c225e4d5d774771ada92e608859c7d1a",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.7970041036605835,
+          "ranking_score": 0.039934364124928415,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0007",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chordoma",
+          "text_sha256": "0f8a511754093a1f442a59122dfb9c0e3b82aa62de6767ef8df79a3886f572cc",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.7979570627212524,
+          "ranking_score": 0.028491096532333643,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p15",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "chordoma",
+          "skull",
+          "sacrum",
+          "symptoms"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "gay",
+          "ra"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 3,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "nci-chordoma:0003",
+          "source_id": "nci-chordoma",
+          "section": "How is chordoma diagnosed?",
+          "text_sha256": "81b7c2b9ef91ae773cf42645895c4a22c630442524269b2f059dd395beebd058",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8375810980796814,
+          "ranking_score": 0.06478053939714437,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-chordoma:0001",
+          "source_id": "nci-chordoma",
+          "section": "What is chordoma?",
+          "text_sha256": "2b3fc73ddcc10e786fe7c9b9f339531bdac01dbc2dbd458fada59bf6c3f02371",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/chordoma",
+          "score": 0.8273759484291077,
+          "ranking_score": 0.060206460206460206,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0028",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Overview of management",
+          "text_sha256": "e419a2f1ead0b93f5fa830eb02535a02ac1324368489544cc1f33b1f5f0474a8",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.7918378710746765,
+          "ranking_score": 0.043298192771084335,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-primary-bone-cancer:0007",
+          "source_id": "nci-primary-bone-cancer",
+          "section": "Chordoma",
+          "text_sha256": "0f8a511754093a1f442a59122dfb9c0e3b82aa62de6767ef8df79a3886f572cc",
+          "url": "https://www.cancer.gov/types/bone/bone-fact-sheet",
+          "score": 0.8309348821640015,
+          "ranking_score": 0.0635164584959667,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-professional:0002",
+          "source_id": "nci-child-chordoma-professional",
+          "section": "Clinical Presentation and Diagnosis",
+          "text_sha256": "15d84cd8b21319939b0d1769ea273dbf40581ab852921804e1a4d2d443149305",
+          "url": "https://www.cancer.gov/types/bone/hp/child-chordoma-treatment-pdq",
+          "score": 0.8523745536804199,
+          "ranking_score": 0.06242943101747967,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "p16",
+      "split": "test",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "diagnosis",
+          "adamantinoma",
+          "sample",
+          "tissue",
+          "microscope"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "bac",
+          "si",
+          "xem"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "tissue"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "nci-adamantinoma:0003",
+          "source_id": "nci-adamantinoma",
+          "section": "How is adamantinoma diagnosed?",
+          "text_sha256": "2d666384e4ffe61d484bec8bdb8f77f6e556b8ef14de30532dac4b95a25fec93",
+          "url": "https://www.cancer.gov/pediatric-adult-rare-tumor/rare-tumors/rare-bone-tumors/adamantinoma",
+          "score": 0.8425286412239075,
+          "ranking_score": 0.06410570100318082,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-patient:0006",
+          "source_id": "nci-osteosarcoma-patient",
+          "section": "Tests are used to diagnose osteosarcoma and UPS.",
+          "text_sha256": "e1e10bb1e45fe361c000c46126c271a9f1ba9bd1e0ac93f5d673f146bcc8628e",
+          "url": "https://www.cancer.gov/types/bone/patient/osteosarcoma-treatment-pdq",
+          "score": 0.809759259223938,
+          "ranking_score": 0.039124015748031496,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-child-chordoma-patient:0007",
+          "source_id": "nci-child-chordoma-patient",
+          "section": "Biopsy",
+          "text_sha256": "a3c2cf03da333460e18fc62e9fd19895c4f74e1de375c73f1e144221303b7015",
+          "url": "https://www.cancer.gov/types/bone/patient/child-chordoma-treatment-pdq",
+          "score": 0.8055433630943298,
+          "ranking_score": 0.03076923076923077,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-patient:0012",
+          "source_id": "nci-ewing-patient",
+          "section": "Tests that examine the bone and soft tissue are used to diagnose and stage Ewing sarcoma.",
+          "text_sha256": "9f59a29c98d7ef2045baa511edad9103900fa157e1929a75881c9269765176c7",
+          "url": "https://www.cancer.gov/types/bone/patient/ewing-treatment-pdq",
+          "score": 0.8018946647644043,
+          "ranking_score": 0.027777777777777776,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0022",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Investigation",
+          "text_sha256": "6ca1238aca3da2f75292c6ce80eac2f0e16405126790922a11bb5eda12930230",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8024673461914062,
+          "ranking_score": 0.05433852393443843,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "n07",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "out_of_scope",
+      "status": "out_of_scope",
+      "reason": "individual_treatment_or_dose",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n08",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "image_score_is_not_diagnostic_evidence",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n09",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "corpus_coverage_gap",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n10",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "out_of_scope",
+      "status": "out_of_scope",
+      "reason": "outside_bone_tumor_corpus",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n11",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "unverified_home_device_claim",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n12",
+      "split": "test",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "unverified_alternative_medicine_claim",
+      "status_match": true,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    }
+  ],
+  "created_at": "2026-10-28T02:15:18.151527+00:00",
+  "corpus_sha256": "ba61b097d6c1c9da0dcfb26c220661041adf4d8d6a7ed8362f05cd3cf7158347",
+  "source_lock_sha256": "facf3e1ec76b3a9897b973909ae9f94ce0cdad10cad70eefde7e47dbd1d5513a",
+  "dataset_sha256": "3f007f47ee08c055ae3dbf56c5fc887b067986e4fb24eac9ef89f1c231c0c10f",
+  "config_sha256": "74111f52f0f06bd359ac6351faf6f719645e4e1dc98023bda1d2c8f9a90dfef5",
+  "implementation_sha256": {
+    "retrieval.py": "307d5847f57ccc12a2afca02f6c732cf22ebc8982e916592f49bf46dc309f5e8",
+    "lexical.py": "fd2cf6c2b4e1ed79ed4e36863ed014e21a1e7ca32335b30d8b0e7caa0997424b",
+    "policy.py": "fead0f1fde7d65997c47127a7c9906f9b5e26ed173e4dbaadf0b7e3fcc98bf8b",
+    "evidence.py": "d8ec53d3767118962caab11c6c1dc41569b0ce3e88af117c279e0e32bf2c06c8",
+    "evaluate.py": "c655dae2ec50948e25fb8089f1fed729e18da052c982f998e0ab407f111b08cb",
+    "build_corpus.py": "a58ac10bd3abae7c11339a14a04c74a27a217e3554a8f5563508f6421c2b8290",
+    "build_index.py": "c7470b6f961d7c935dfaa0bb87d2faf6b3ed3eaea1e5039b741b7c3b6f8522eb"
+  },
+  "model_revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+  "index_manifest_sha256": "13a95b6fd39b16a85475ccb48c87fd74ed09e1617e4b3fe54f5e6aadbb7bde89",
+  "mode": "hybrid",
+  "apply_policy": true,
+  "split": "test",
+  "verify_evidence": false,
+  "rerank_concepts": true,
+  "top_k": 5,
+  "min_score": null,
+  "gold_type": "chunk_id_source_section_text_hash",
+  "dataset_provenance": "Agent-authored; the dev split gold was updated on 2026-10-27 because the expanded corpus now contains supporting evidence for n04. Historical test split unchanged, but has been viewed. Entire dataset is a regression set, not independent expert validation or a held-out test.",
+  "frozen_config_matches": false,
+  "evidence_config_sha256": "76c2cd12a143e9a22370fc5ece48e0a35f3f749591dbeae26ccb350f8cb74265",
+  "frozen_evidence_config_matches": false
+}

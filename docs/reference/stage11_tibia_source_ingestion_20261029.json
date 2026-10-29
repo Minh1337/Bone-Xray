@@ -1,0 +1,156 @@
+{
+  "created_at_utc": "2026-10-29T07:35:27.623480+00:00",
+  "change": "Add text-only cached CC BY 4.0 tibial-lesion review; filter non-evidence publication disclosures; update provenance audit to discover every evaluation*.json dataset.",
+  "source": {
+    "id": "tibia-lesions-dysplasia-2025",
+    "title": "Bone lesions of the tibia: Multimodal iconographic review and diagnostic algorithms, Part 1: Diagnostic algorithms, dysplasia and diaphyseal lesions",
+    "official_fulltext_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12123328/",
+    "download_url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12123328/fullTextXML",
+    "pmcid": "PMC12123328",
+    "doi": "10.1016/j.ejro.2025.100653",
+    "license": "CC BY 4.0",
+    "license_verified_from_article_page": true,
+    "payload_path": "rag/source_cache/tibia-lesions-dysplasia-2025.xml",
+    "payload_bytes": 125636,
+    "payload_sha256": "c1df65ed09b9fb0d80ec11eb91b75b8db77e31d8a705922b51e19d929950e572",
+    "parser_identity_license_check": "PASS: exact PMCID/DOI; explicit CC BY 4.0 URL in article JATS",
+    "parsed_blocks_before_section_filter": 134,
+    "corpus_chunks_after_filter": 35,
+    "scope_limit": "Non-systematic narrative review; terminology/frequencies are not gold clinical rules or BTXRD label mapping. Text only; figures/tables/references excluded."
+  },
+  "corpus": {
+    "source_count": 22,
+    "chunk_count": 794,
+    "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "index_shape": [
+      794,
+      384
+    ],
+    "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+    "retrieval_config_sha256": "c8f45d1af962c5b78a57096db2b219f66bd85168fdaf094daec7c7e083533aed"
+  },
+  "new_development_probe": {
+    "dataset": "rag/data/evaluation_tibia_dysplasia_dev_20261029.json",
+    "report": "docs/reference/stage11_tibia_dysplasia_retrieval_dev_20261029.json",
+    "question_count": 3,
+    "split": "dev",
+    "provenance": "Three agent-authored development probes created after ingesting the cached CC BY 4.0 tibial lesion narrative review. Questions and exact gold chunks were derived from that same source; this is in-sample retrieval diagnostics only, not independent, blind, clinically adjudicated, or validation evidence. No blind set was accessed or used for tuning.",
+    "recall_at_5": 1.0,
+    "mrr_at_5": 0.4444444444444444,
+    "limitations": "Three agent-authored source-derived positives; no negatives, independent labels or blind evaluation; in-sample only.",
+    "dataset_sha256": "a4f8081403077736c223e3ab3043d89264c36ba55a3f2dcc036583aba8d4a0c5",
+    "report_sha256": "8be283e7fcfb0390273b1520ca5c264789c6a6bb0fa669769c94a8f45c065953"
+  },
+  "regression": {
+    "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+    "status": "PASS",
+    "passed": 85,
+    "subtests_passed": 130,
+    "warnings": [
+      "One Starlette TestClient anyio.abc.BlockingPortal deprecation warning."
+    ],
+    "changed_metric_reports_in_16_report_comparison": 4,
+    "changed_reports": [
+      {
+        "report": "evidence_v3_viewed.json",
+        "metrics": {
+          "mrr_at_k": {
+            "previous": 0.6,
+            "current": 0.6333333333333333
+          },
+          "legacy_evidence_list_completion_mrr": {
+            "previous": 0.6,
+            "current": 0.6333333333333333
+          },
+          "evidence_ndcg_at_k": {
+            "previous": 0.652371901428583,
+            "current": 0.6761859507142916
+          }
+        }
+      },
+      {
+        "report": "expansion_dev.json",
+        "metrics": {
+          "recall_at_k": {
+            "previous": 1.0,
+            "current": 0.9545454545454546
+          },
+          "mrr_at_k": {
+            "previous": 0.6833333333333333,
+            "current": 0.6439393939393939
+          },
+          "legacy_evidence_list_completion_at_k": {
+            "previous": 0.9545454545454546,
+            "current": 0.9090909090909091
+          },
+          "legacy_evidence_list_completion_mrr": {
+            "previous": 0.6606060606060606,
+            "current": 0.6212121212121212
+          },
+          "evidence_precision_at_k": {
+            "previous": 0.20000000000000007,
+            "current": 0.19090909090909094
+          },
+          "evidence_recall_at_k": {
+            "previous": 0.9772727272727273,
+            "current": 0.9318181818181818
+          },
+          "evidence_ndcg_at_k": {
+            "previous": 0.7526947334499013,
+            "current": 0.7123832422119677
+          }
+        }
+      },
+      {
+        "report": "expansion_dev_concept_rerank.json",
+        "metrics": {
+          "mrr_at_k": {
+            "previous": 0.5734848484848484,
+            "current": 0.5962121212121212
+          },
+          "legacy_evidence_list_completion_mrr": {
+            "previous": 0.5734848484848484,
+            "current": 0.5962121212121212
+          },
+          "evidence_ndcg_at_k": {
+            "previous": 0.6470017109230972,
+            "current": 0.6637776312153038
+          }
+        }
+      },
+      {
+        "report": "v2_test_regression.json",
+        "metrics": {
+          "mrr_at_k": {
+            "previous": 0.7333333333333334,
+            "current": 0.6708333333333334
+          },
+          "legacy_evidence_list_completion_mrr": {
+            "previous": 0.7333333333333334,
+            "current": 0.6708333333333334
+          },
+          "evidence_ndcg_at_k": {
+            "previous": 0.7983566009043177,
+            "current": 0.7522228201007499
+          }
+        }
+      }
+    ],
+    "bundle": "docs/reference/stage11_policy_rerun_20261029_tibia_source_v1",
+    "bundle_manifest_sha256": "cd1a810b0f2aa400bb3a7e68417b3b3fbc97149aa900d2e698d59465e99ca01f",
+    "audit_status": "PASS",
+    "evaluation_datasets_checked": 10,
+    "replay_status": "PASS",
+    "replay_reports": 16,
+    "replay_preflight_mismatches": 0,
+    "record": "docs/reference/stage11_test_run_20261029_tibia_source_full.json",
+    "record_sha256": "65524d95e296786653f9e9ce9498861b836327f6fb2ebfcc9b837d9609f3bc34"
+  },
+  "acceptance": {
+    "closed_gates": 0,
+    "total_gates": 7,
+    "answer_ready": false
+  },
+  "scope_note": "Integrity/reproducibility and software regression only; does not establish clinical validity, citation entailment, independent external performance, or regulatory sign-off."
+}

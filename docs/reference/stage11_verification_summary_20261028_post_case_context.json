@@ -1,0 +1,303 @@
+{
+  "created_at_utc": "2026-10-28T09:58:05Z",
+  "project": "BoneScope Stage 11 RAG",
+  "status": "technically_in_progress_not_independently_accepted",
+  "snapshot": "post_case_context_20261028",
+  "snapshot_status": "SUPERSEDED: see stage11_verification_summary_20261028_post_case_context_sentence_scope.json",
+  "scope_note": "Authoritative current technical snapshot. Integrity/replay and agent-authored development probes are not clinical validation.",
+  "corpus": {
+    "sources": 21,
+    "chunks": 759,
+    "vector_shape": [
+      759,
+      384
+    ],
+    "sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+    "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+    "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+    "retrieval_config_sha256": "d3d1a2488c482f47bea9835a0fefc90ce990ab3ddc53c9f5ac9d9c5f6bc7d787",
+    "evidence_config_sha256": "bffd40b2dddf2cc4881232902f9f2ed1f21b82967fe246d71c672f8488ce2aa6"
+  },
+  "ofd_source": {
+    "id": "osteofibrous-dysplasia-review-2024",
+    "pmcid": "PMC10967096",
+    "doi": "10.1186/s13018-024-04682-3",
+    "license": "CC BY 4.0",
+    "cache_path": "rag/source_cache/osteofibrous-dysplasia-review-2024.xml",
+    "bytes": 143385,
+    "sha256": "be017ab4d7546064180d5b00aece02264bb8d969d367c00233efd7b9a5ab1c7c",
+    "parser_status": "PASS",
+    "parser_blocks": 54,
+    "corpus_chunks": 29,
+    "administrative_sections_excluded": true
+  },
+  "latest_bundle": {
+    "directory": "docs/reference/stage11_policy_rerun_20261028_post_case_context",
+    "report_count": 16,
+    "manifest_sha256": "83f8518ec6cd595f5b0a4b37242e4a13ba15ddcb0c932911cff51c8359a8b707",
+    "comparison_sha256": "e301e930c51b4e93991a78d9bb9a7f3838a56dcc826670fc2d73a38978c5911b"
+  },
+  "replay": {
+    "status": "PASS",
+    "reports_matched": 16,
+    "reports_total": 16,
+    "manifest_sha256": "83f8518ec6cd595f5b0a4b37242e4a13ba15ddcb0c932911cff51c8359a8b707",
+    "report_sha256": "066d75dc8d09383bb490db307b5ca24903dde508ce95f403aa45b4da3e90a1b5",
+    "command": ".\\.venv\\Scripts\\python.exe rag/replay_reports.py --output docs/reference/stage11_replay_20261028_post_case_context.json",
+    "default_bundle": "docs/reference/stage11_policy_rerun_20261028_post_case_context",
+    "implementation_sha256": "11cab835e0e36b07fef1fa8da5e838f50809c37aae9a4acf4387220015112d4a"
+  },
+  "audit": {
+    "status": "PASS",
+    "scope": "artifact_integrity_and_provenance_only_not_medical_validity",
+    "source_caches_checked": 21,
+    "datasets_checked": 9,
+    "reports_checked": 16,
+    "manifest_sha256": "83f8518ec6cd595f5b0a4b37242e4a13ba15ddcb0c932911cff51c8359a8b707",
+    "sha256": "c3dcc87190aec10db8f95c964d6127f2d351ab6619234eee219a0f10026cfa68",
+    "implementation_sha256": "772975a91b96f5005152789ed817e4c343c06d2fa9744cb9c493bc1266ab3fda",
+    "command": ".\\.venv\\Scripts\\python.exe rag/audit.py --output docs/reference/stage11_integrity_audit_20261028_post_case_context.json",
+    "default_report_directory": "docs/reference/stage11_policy_rerun_20261028_post_case_context"
+  },
+  "policy_probe": {
+    "dataset": "rag/data/evaluation_image_routing_dev_20261028.json",
+    "dataset_sha256": "d2cef8209dfa92c59f6427b39d870534f20461624fcb541314ab09f1abb8ef70",
+    "negative_cases": 30,
+    "abstained": 30,
+    "routing_accuracy": 1.0,
+    "provenance": "30 agent-authored, directly inspected and policy-tuned in-sample text probes; not representative, independent or blind; does not test actual image attachments."
+  },
+  "code_hashes": {
+    "rag/policy.py": "aa457ac407850016412a9299084d54bdadf5fe75565ce1dcdbbc4b5b1c4ecc5a",
+    "rag/build_evaluation_bundle.py": "b9acfa268befa68398827b0b51edfa4530fb926ebf5bc9bc530966920c1382f8",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/audit.py": "772975a91b96f5005152789ed817e4c343c06d2fa9744cb9c493bc1266ab3fda",
+    "rag/replay_reports.py": "11cab835e0e36b07fef1fa8da5e838f50809c37aae9a4acf4387220015112d4a"
+  },
+  "tests": {
+    "status": "PASS",
+    "collected": 66,
+    "passed": 66,
+    "failed": 0,
+    "subtests": null,
+    "warnings": [
+      "One Starlette TestClient AnyIO BlockingPortal deprecation warning"
+    ],
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest",
+    "run_record": "docs/reference/stage11_test_run_20261028_post_case_context.json",
+    "run_record_sha256": "043c12dad0dd45c5172e64a29bda618b794785c971747e64791e00658b279a75",
+    "implementation_hashes": {
+      "rag/policy.py": "aa457ac407850016412a9299084d54bdadf5fe75565ce1dcdbbc4b5b1c4ecc5a",
+      "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+      "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916"
+    },
+    "interpretation": "Current software regression suite passed after the case-context personal-image policy change; this does not establish independent retrieval performance, attachment handling, clinical validity, or acceptance for medical use."
+  },
+  "open_acceptance_gates": [
+    "independent specialist review",
+    "new blind evaluation set with locked protocol",
+    "citation-entailment validation",
+    "independent image cohort with rights, patient-level provenance and checkpoint-overlap audit",
+    "clinical safety review"
+  ],
+  "answer_ready": false,
+  "embedding_model": {
+    "id": "intfloat/multilingual-e5-small",
+    "revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+    "sha256": "7a77d5da5ee721c7c740e4082447d3026b6521d3eac5edb93edb6aa88f03b7d7"
+  },
+  "evaluation_findings": {
+    "expansion_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/expansion_dev.json",
+      "sha256": "94362c9e79b65f1df71498bd96d7121ca8a813e081e085de69bb59a561d59979",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "a753fbc6d63f4816c7ebe3ee58524ca699a9b7c3f6557d7a216a31996874a134",
+      "question_counts": {
+        "answerable": 22,
+        "negative": 3
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.6833333333333333,
+        "evidence_precision_at_k": 0.20000000000000007,
+        "evidence_recall_at_k": 0.9772727272727273,
+        "evidence_ndcg_at_k": 0.7526947334499013,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "22 positive/3 negative; query wording and routing were viewed/tuned on this development set. In-sample only; flat gold lists do not define alternative evidence groups."
+    },
+    "viewed_v2_regression": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/v2_test_regression.json",
+      "sha256": "f705cdde5665f52dba05abdab185f5908776a7634c709691212cbf62492a6929",
+      "dataset_path": "rag/data/evaluation_v2.json",
+      "dataset_sha256": "e2713ad7000cb016eb151bd0d0540cc1371b7d9c17ccd8a0f2f4bf6f30eb03c9",
+      "question_counts": {
+        "answerable": 8,
+        "negative": 6
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.7333333333333334,
+        "evidence_precision_at_k": 0.19999999999999998,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.7983566009043177,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "8 positive/6 negative; previously viewed and route-adjusted. Regression only, not held-out validation."
+    },
+    "strict_lexical_expansion_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/expansion_dev_strict.json",
+      "sha256": "b2734d3b2f764e996c904ff6c1cc51ef9e0714c043a4a26155f08f729a8f52fd",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "a753fbc6d63f4816c7ebe3ee58524ca699a9b7c3f6557d7a216a31996874a134",
+      "question_counts": {
+        "answerable": 22,
+        "negative": 3
+      },
+      "metrics": {
+        "recall_at_k": 0.045454545454545456,
+        "mrr_at_k": 0.022727272727272728,
+        "evidence_precision_at_k": 0.009090909090909092,
+        "evidence_recall_at_k": 0.045454545454545456,
+        "evidence_ndcg_at_k": 0.02867862516233898,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.9545454545454546,
+        "routing_accuracy": 0.16
+      },
+      "interpretation": "Only 1/22 positive cases passes current lexical verification; 21/22 positives abstain. Lexical coverage is not entailment."
+    },
+    "ofd_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/osteofibrous_dysplasia_dev.json",
+      "sha256": "17f838f66bc4dfa2caa95be3d386d3ff8e24fc04e94c40bbadf258a0af6f6580",
+      "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "dataset_sha256": "b5a25bcff7c906c10655248b3ead9b839635ef12b2e6913efe15f0d253cbc3ed",
+      "question_counts": {
+        "answerable": 5,
+        "negative": 2
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.7,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.7785578521428744,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "strict_report": {
+        "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/osteofibrous_dysplasia_dev_strict.json",
+        "sha256": "665a836d310de0aad2d44313d9810322224a40c9d81571db1ae1c0768b88339a",
+        "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+        "dataset_sha256": "b5a25bcff7c906c10655248b3ead9b839635ef12b2e6913efe15f0d253cbc3ed",
+        "question_counts": {
+          "answerable": 5,
+          "negative": 2
+        },
+        "metrics": {
+          "recall_at_k": 0.2,
+          "mrr_at_k": 0.2,
+          "evidence_precision_at_k": 0.04,
+          "evidence_recall_at_k": 0.2,
+          "evidence_ndcg_at_k": 0.2,
+          "negative_abstention": 1.0,
+          "positive_abstention": 0.8,
+          "routing_accuracy": 0.42857142857142855
+        }
+      },
+      "interpretation": "Five positive/two policy-negative agent-authored in-sample cases; strict lexical check passes 1/5 positives. Narrative review is not a guideline or dataset-label definition."
+    },
+    "nci_osteochondroma_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/nci_osteochondroma_dev.json",
+      "sha256": "0fb2051efa4cd0477bf12033fb70072c7985284b75e569df4a006e41e467c165",
+      "dataset_path": "rag/data/evaluation_nci_osteochondroma_dev_20261028.json",
+      "dataset_sha256": "4da093159c5b66d6a17a3bc18bc81c1e4176917d6c8d059fff60bf0fb87af64b",
+      "question_counts": {
+        "answerable": 1,
+        "negative": 1
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 1.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "Two agent-authored in-sample probes: general definition retrieved; unsupported BTXRD mapping abstains. Not validation."
+    },
+    "image_routing_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_case_context/image_routing_dev.json",
+      "sha256": "06c187b9ff0ec0aaf0856e6cb5b6a3c2d6988facb5bd78d4bbfd564165fbc4dc",
+      "dataset_path": "rag/data/evaluation_image_routing_dev_20261028.json",
+      "dataset_sha256": "d2cef8209dfa92c59f6427b39d870534f20461624fcb541314ab09f1abb8ef70",
+      "question_counts": {
+        "answerable": 0,
+        "negative": 30
+      },
+      "metrics": {
+        "recall_at_k": null,
+        "mrr_at_k": null,
+        "evidence_precision_at_k": null,
+        "evidence_recall_at_k": null,
+        "evidence_ndcg_at_k": null,
+        "negative_abstention": 1.0,
+        "positive_abstention": null,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "30 agent-authored in-sample negative text probes; all route to specialist-assessment abstention. Expanded after compositional inspection found case-context misses. Does not inspect uploaded image pixels or attachment metadata."
+    }
+  },
+  "cohort_candidates": [
+    {
+      "study": "eBioMedicine 2020",
+      "cohort": "2,899 images / 1,356 patients; external test 639 images / 291 patients from two centers",
+      "reference_standard": "histopathology; internal CV grouped by patient ID",
+      "endpoint": "benign / intermediate / malignant",
+      "availability": "not downloadable; reasonable request only",
+      "status": "candidate to request; access, rights, manifest and checkpoint overlap are unverified",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7689511/"
+    },
+    {
+      "study": "Li et al., Insights into Imaging 2026",
+      "cohort": "471 Ruijin patients; one representative radiograph per patient",
+      "reference_standard": "pathology confirmed per paper; third-reader consensus described for region annotation disagreements, not clearly diagnostic labels",
+      "endpoint": "benign / non-benign",
+      "availability": "reasonable request only",
+      "status": "Paper reports Ruijin did not contribute to BTXRD and is geographically distinct, supporting source-level independence; data, rights, patient manifest and image-level checkpoint-overlap audit remain unavailable/unverified.",
+      "source": "https://link.springer.com/article/10.1186/s13244-026-02271-y"
+    }
+  ],
+  "data_review": {
+    "source_review": "docs/reference/stage11_online_evidence_review_20261028.md",
+    "reviewer_packet": "docs/reference/STAGE11_REVIEWER_PACKET_VI.md",
+    "external_cohort_checklist": "docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md",
+    "independent_review_protocol": "docs/reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md",
+    "acceptance_gate_template": "docs/reference/stage11_acceptance_gate_template_20261028.csv",
+    "blind_label_template": "docs/reference/stage11_blind_label_template_20261028.csv",
+    "reporting_standards_reviewed": [
+      {
+        "name": "CLAIM 2024 Update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11304031/",
+        "application": "Patient-level partitioning, reference standard, annotation/adjudication, and explicit internal versus external testing are recorded as image-cohort gate requirements; CLAIM does not validate this text-retrieval system."
+      },
+      {
+        "name": "DECIDE-AI",
+        "url": "https://www.bmj.com/content/377/bmj-2022-070904",
+        "application": "Reserved for any later live clinical-workflow evaluation; offline retrieval metrics do not satisfy this scope."
+      }
+    ],
+    "note": "Official primary literature and reporting guidance are documented. No external patient-level image dataset has been accessed or authorized."
+  },
+  "technical_followups": [
+    "Rerun the full suite after the latest personal-image policy patch before treating the working tree as regression-verified.",
+    "Add attachment metadata-aware policy handling only when the retrieval/API input contract includes attachments; text-only probes do not validate uploaded images.",
+    "Keep lexical evidence verification opt-in; its current positive recall is inadequate and lexical coverage does not establish citation entailment."
+  ]
+}

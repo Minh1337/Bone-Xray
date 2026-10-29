@@ -37,8 +37,9 @@ BoneScope là ứng dụng chạy cục bộ trên Windows để:
   và Git LFS cho model.
 - **Đã xác minh kỹ thuật:** môi trường Python 3.11.9, PyTorch 2.6.0 + CUDA 12.4,
   RTX 3050 Laptop 4 GB, 3 ca mẫu chạy đạt kiểm tra lặp lại.
-- **Đã có bản đầu:** kho hiện 13 nguồn (12 trang NCI và một bài CC BY 4.0), 439 đoạn sau sửa trích xuất; embeddings và vector index cục bộ đã dựng lại. Hybrid vocabulary v2 bổ sung cách gọi nang xương đơn độc và truy vấn cỡ mẫu/kết quả; cần kiểm định độc lập.
-  Giai đoạn 11 còn vướng kết quả retrieval và xử lý câu ngoài phạm vi.
+**Trạng thái mới nhất GĐ11 (29/10/2026):** corpus text-only có **22 nguồn/794 chunk**, index 794×384; bundle hiện hành có integrity audit PASS trên 10 evaluation datasets và deterministic replay PASS 16/16, không có preflight mismatch. Full software regression gần nhất **87 passed/132 subtests**, một cảnh báo deprecation. Dev ABC route cải thiện Recall@5 0.955→1.000, MRR 0.644→0.689; thay đổi in-sample, không phải independent validation. Sau cập nhật corpus metric đổi ở 4/16 reports, gồm giảm ở expansion dev và V2 test đã xem; không tune config trên test. G4 đã sàng lọc 15 cohort leads, chưa có cohort đủ điều kiện; C12–C15 đều NOT ELIGIBLE / NOT EVALUABLE. C15 IIEST là bộ hỗn hợp 217 ảnh, trong đó 69 ảnh được mô tả là cancer, nhưng package/quyền/reference standard/overlap chưa xác minh. Tất cả 7 acceptance gates OPEN; `answer_ready=false`. Xem [project status](PROJECT_STATUS_VI.md), [progress/G4 register QA](STAGE11_PROGRESS_2026-10-29.md), [fresh audit](reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json), [fresh replay](reference/stage11_replay_20261029_workspace_recheck_v1.json), [latest full regression record](reference/stage11_test_run_20261029_postdocs_full.json) và [online source review](reference/stage11_online_evidence_review_20261028.md).
+  Giai đoạn 11 còn vướng citation entailment được chấm bởi reviewer, blind labels/adjudication, cohort có quyền và overlap clearance, cùng các sign-off intended-use, safety, privacy/security và regulatory.
+  Regulatory/privacy scope đã được cập nhật bằng nguồn FDA (final CDS guidance 29/01/2026) và Government Vietnam AI Law 134/2025/QH15, Decree 142/2026/NĐ-CP, Decision 33/2026/QĐ-TTg; chưa có kết luận phân loại BoneScope. Static privacy/security review yêu cầu giữ local-only và dữ liệu tổng hợp/không định danh đến khi có phê duyệt.
 - **Chưa được tuyên bố:** notebook parity đầy đủ, accuracy lâm sàng, xác suất đã hiệu
   chuẩn, chẩn đoán y khoa, triển khai public có xác thực hoặc chatbot/LLM đã nghiệm thu.
 - **Cần phát triển tiếp:** độ phủ nguồn, chất lượng retrieval, chatbot có citation,
@@ -749,17 +750,28 @@ nguồn trích dẫn.
 
 ### Completion Note — Giai đoạn 11
 
-```text
-[COMPLETION NOTE — GĐ11]
-Ngày/giờ:
-Embedding model/version:
-Vector store:
-Index version/checksum:
-Top-k/threshold:
-Kết quả retrieval evaluation:
-Truy xuất citation có thể tái lập: Có/Không
-Vấn đề:
-```
+> Các số liệu trong những mục ghi ngày 28/10 trở về trước là snapshot lịch sử. Trạng thái hiện hành ngày 29/10/2026, corpus/hash và quy trình nghiệm thu nằm ở [bàn giao GĐ11](STAGE11_HANDOFF_VI.md) và [verification summary v8](reference/stage11_verification_summary_20261029_evidence_neutral_v8.json).
+
+> **Trạng thái kỹ thuật hiện hành — 29/10/2026:** corpus text-only có 22 nguồn/794 chunk, index 794×384; embedding model/revision được pin trong audit. Bundle mới nhất có 16 report, integrity audit PASS trên 10 evaluation datasets và deterministic replay PASS 16/16, không preflight mismatch. Regression phần mềm được ghi nhận là **87 passed/132 subtests**, một deprecation warning. Các retrieval/dev số liệu đều in-sample hoặc đã xem: corpus growth đổi metric ở 4/16 report; ABC route được cải thiện tiếp trên dev đã xem. Kết quả không chứng minh citation entailment hay hiệu lực lâm sàng. G4 đã rà 15 cohort leads, chưa có cohort đủ điều kiện; C15 IIEST là tập hỗn hợp nhỏ, chưa xác minh package, quyền, nhãn hoặc overlap. Stage 11 **chưa nghiệm thu**, `answer_ready=false`, còn 7/7 acceptance gates mở; không bật sinh câu trả lời y khoa. Xem [fresh audit](reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json), [fresh replay](reference/stage11_replay_20261029_workspace_recheck_v1.json), [latest test record](reference/stage11_test_run_20261029_postdocs_full.json), [progress note](STAGE11_PROGRESS_2026-10-29.md), [reviewer packet](reference/STAGE11_REVIEWER_PACKET_VI.md), [intended-use lock template](reference/STAGE11_INTENDED_USE_LOCK_TEMPLATE_VI.md), [safety guide](reference/STAGE11_SAFETY_REVIEW_GUIDE_VI.md), [privacy/security worksheet](reference/STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md) và [quy trình độc lập](reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md).
+
+- Ngày rà soát hiện hành: **29/10/2026** (các số liệu bên dưới có nhãn lịch sử vẫn giữ ngày snapshot gốc).
+- Embedding: `intfloat/multilingual-e5-small`, revision `8d923955b027282ba975c0a4c825486c9ca4c490`, chạy cục bộ.
+- Vector store: NumPy; current index schema 2, **794 × 384**, top-k mặc định 5; không dùng cosine threshold như ngưỡng an toàn.
+- Current audit fingerprints: corpus SHA-256 `4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec`; source lock `dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5`; index manifest `751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe`; retrieval config `6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64`; embedding weights SHA-256 `7a77d5da5ee721c7c740e4082447d3026b6521d3eac5edb93edb6aa88f03b7d7`. Source: [current integrity audit](reference/stage11_integrity_audit_20261029_cureus_abcrouting_v1.json).
+- Historical v8 dev expansion and V2 metrics below are snapshots from an earlier corpus/config; they are not current holdout results. Current change/provenance is recorded separately in the versioned bundle, audit and replay.
+- Tại snapshot lịch sử 13 nguồn/439 chunk, provenance/citation kỹ thuật có thể tái lập qua source, section, URL và hash; audit offline PASS trong `docs/reference/stage11_integrity_audit_20261028.json`. Trạng thái hiện tại: 22 nguồn/794 chunk; xem [audit mới nhất](reference/stage11_integrity_audit_20261029_cureus_abcrouting_v1.json). Audit không kiểm chứng entailment hay độ đúng y khoa.
+- Snapshot kiểm thử đầu ngày 28/10, trước hai lần bổ sung tiếp theo: **48 passed, 40 subtests passed**. Tại thời điểm overview-route được thêm, full suite đạt **59 passed, 45 subtests passed**, một cảnh báo Starlette. Đây là số liệu lịch sử, không phải suite của working tree hiện hành.
+- Vấn đề còn lại: các bộ câu hỏi do AI soạn/đã xem; kiểm tra từ vựng không xác minh entailment và từng từ chối nhầm nhiều câu dương; thiếu reviewer chuyên môn độc lập, test mù mới, và kiểm định false acceptance/false refusal. Một số nhãn vẫn thiếu nguồn.
+- **Trạng thái: INCOMPLETE/BLOCKED cho sinh câu trả lời y khoa.** `answer_ready` vẫn `false`; không mở chatbot trước khi hoàn tất rà soát độc lập và tiêu chí đánh giá đã định trước. Xem [handoff Giai đoạn 11](STAGE11_HANDOFF_VI.md).
+
+### Bổ sung nguồn và tái chạy — 28/10/2026
+
+> Snapshot lịch sử trước khi ingest review X-quang chi/Bone-RADS và thêm soft source preference; xem trạng thái hiện hành ở đầu tài liệu và `STAGE11_HANDOFF_VI.md`.
+
+- Snapshot khi ghi mục này: **17 nguồn / 629 chunk**, hash `2303e099d8926cc5b7ba29bb37a70e8cad017489400318967b0e6b5381cc630b`; index `629 × 384`, manifest `2864b5747b43433d3e66f284222a678bcf23472e0fee9bb72e74815cba15b1a2`.
+- Dev expansion (18 dương/3 âm): Recall@5 16/18, MRR 0,556, negative abstention 3/3, false refusal 0/18, routing 21/21. Rerank đạt 14/18 nên vẫn opt-in. V2 regression đã xem: baseline 7/8; rerank 8/8; không phải test độc lập.
+- Snapshot full suite sau overview-route: **59 passed, 45 subtests passed**, một cảnh báo Starlette. Audit PASS chỉ kiểm tra artifact/provenance; suite này chưa chạy lại sau thay đổi parser/index/policy ngày 28/10.
+- Vẫn thiếu reviewer độc lập, tập mù mới và citation entailment; `answer_ready=false`.
 
 ---
 
@@ -791,6 +803,7 @@ Giữ metadata chuẩn 22 trường mà predictor yêu cầu: age, gender, các 
 - Không chia ngẫu nhiên từng ảnh. Ưu tiên patient/lesion ID; nếu không có, tìm bản sao trùng bằng hash và perceptual hash rồi nhóm theo nguồn/center.
 - BTXRD chính là nguồn được ghi trong config checkpoint hiện tại (`/kaggle/input/.../btxrd-dataset`). Checkpoint chỉ lưu `split_signature`, không có ID ảnh train/validation/test. Vì vậy toàn bộ BTXRD hiện được gắn `independent_of_checkpoint_training=false`, `partition=unassigned`; kết quả trên đó chỉ là phát triển/tái lập, không phải external validation.
 - Để đánh giá ảnh “chụp bên ngoài”, cần một tập khác có quyền sử dụng, nhãn tham chiếu được chuyên gia xác nhận và không trùng bệnh nhân/ảnh huấn luyện. Không coi ảnh tải từ web không rõ nhãn là ground truth.
+- Rà soát nguồn trực tuyến ngày 28/10/2026 chưa tìm được tập công khai độc lập thỏa các điều kiện trên. Cohort 471 bệnh nhân trong nghiên cứu 2026 là candidate ưu tiên để xin quyền: bài mô tả pathology-confirmed, một ảnh đại diện/bệnh nhân và hai reader độc lập; third-reader consensus áp dụng cho bất đồng vùng annotation, không được xác nhận là adjudication nhãn chẩn đoán. Endpoint chỉ benign/non-benign và dữ liệu chỉ chia sẻ theo yêu cầu. Bài eBioMedicine 2020 có external test 291 bệnh nhân/639 ảnh từ hai trung tâm (tổng nghiên cứu 1.356 bệnh nhân/2.899 ảnh), nhãn mô bệnh học và patient-level split; ảnh chỉ theo yêu cầu. Với cả hai cần xác nhận quyền, ethics, patient-level manifest, endpoint mapping và overlap với checkpoint trước khi cân nhắc; không có dữ liệu/quyền nào đã được xác nhận tại workspace. Bản Hugging Face của BTXRD là mirror của cùng dataset, không phải cohort ngoài; metadata license hiển thị không nhất quán. Xem [ghi chú nguồn Stage 11](reference/stage11_online_evidence_review_20261028.md) và [checklist thẩm định cohort](reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md).
 - Báo cáo phải có confusion matrix, precision/recall/F1 theo lớp, macro-F1, top-1/top-3, calibration và phân tầng theo center/view; công bố số ca bỏ do nhãn/metadata lỗi. Không xem softmax là xác suất đã hiệu chuẩn.
 
 ### Tiêu chí nghiệm thu Giai đoạn 11A

@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "run_id": "stage11_partial_answerability_evaluator_20261029",
+  "run_started_at_utc_approx": "2026-10-29T02:33:00Z",
+  "workspace": "BONESCOPE",
+  "commands": [
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_evaluation.py -q",
+      "exit_code": 0,
+      "passed": 11,
+      "duration_seconds": 0.39
+    },
+    {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+      "exit_code": 0,
+      "passed": 79,
+      "failed": 0,
+      "subtests_passed": 127,
+      "duration_seconds": 2.49,
+      "warnings": [
+        "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal instead."
+      ]
+    }
+  ],
+  "environment": {
+    "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "pytest": "9.1.1"
+  },
+  "implementation_sha256": {
+    "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+    "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546"
+  },
+  "compatibility_replay": "docs/reference/stage11_legacy_report_compatibility_20261029.json",
+  "compatibility_replay_result": "PASS 16/16; all report fields match after excluding only created_at and implementation_sha256.evaluate.py, whose difference is expected after evaluator change.",
+  "strict_historical_replay": "docs/reference/stage11_replay_20261029_partial_answerability_evaluator.json",
+  "strict_historical_replay_result": "Preflight stopped before replay because the historical manifest records the prior evaluate.py SHA-256; no report comparison was attempted. Historical bundle was not changed.",
+  "scope": "CLI evaluation/reporting only; no serving or routing production policy changed. No clinical validation, blind evaluation or gate sign-off is represented by this record.",
+  "feature_checks": [
+    "disjoint fully/partially/in-scope-unanswerable/out-of-scope populations",
+    "fail-closed for mixed/malformed/unhashable labels and inconsistent statuses, including labels outside selected split",
+    "fully answerable labels require explicit gold evidence or source+section",
+    "legacy metrics preserved for unlabeled datasets"
+  ]
+}

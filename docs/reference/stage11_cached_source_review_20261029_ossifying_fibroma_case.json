@@ -1,0 +1,47 @@
+{
+  "reviewed_at_utc": "2026-10-28T17:22:45.432272+00:00",
+  "retrieval_decision": "cached_for_source_review_only_not_registered_or_ingested",
+  "source": {
+    "title": "A Case of an Ossifying Fibroma of the Mandible Suspected as a Static Bone Cavity",
+    "pmcid": "PMC11370983",
+    "doi": "10.7759/cureus.66104",
+    "publisher": "Cureus",
+    "article_date": "2024-08-03",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11370983/",
+    "download_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=PMC11370983"
+  },
+  "license": {
+    "statement": "Creative Commons Attribution License CC-BY 4.0",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "verified_in_article_jats": true
+  },
+  "cache": {
+    "path": "rag/source_cache/ossifying-fibroma-mandible-case-2024.xml",
+    "bytes": 42853,
+    "sha256": "d82f42d5ea2424eb83d9da910ac4f41ab1c661634286338d34c8ffce7c8931c6"
+  },
+  "parser": {
+    "name": "rag.build_corpus.extract_jats_blocks",
+    "status": "PASS",
+    "input_root": "pmc-articleset",
+    "accepted_article_count": 1,
+    "pmcid": "PMC11370983",
+    "doi": "10.7759/cureus.66104",
+    "text_blocks": 23,
+    "headings": 5,
+    "paragraphs": 18,
+    "figures_tables_captions_references_included": false
+  },
+  "disposition": {
+    "registered_in_sources_json": false,
+    "ingested_into_corpus": false,
+    "reason": "Single mandibular ossifying-fibroma case does not establish long-bone osteofibrous dysplasia or the BTXRD osteofibroma class mapping. Preserve unverified_dataset_label_mapping abstention.",
+    "image_assets_cached": false
+  },
+  "existing_cache_preserved": {
+    "path": "rag/source_cache/osteofibrous-dysplasia-review-2024.xml",
+    "pmcid": "PMC10967096",
+    "overwritten": false
+  },
+  "provenance_note": "Downloaded in Chrome Save As from NCBI EFetch at the user-authorized destination directory. Parser was run locally; the article was not added to retrieval."
+}

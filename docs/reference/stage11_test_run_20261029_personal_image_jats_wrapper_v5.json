@@ -1,0 +1,144 @@
+{
+  "created_at_utc": "2026-10-28T17:52:21.222724+00:00",
+  "command": ".venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "working_directory": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+  "exit_code": 0,
+  "status": "PASS",
+  "collected": 73,
+  "passed": 73,
+  "failed": 0,
+  "subtests_passed": 120,
+  "python": "3.11.9",
+  "pytest": "9.1.1",
+  "warnings": [
+    "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal instead."
+  ],
+  "implementation_hashes": {
+    "rag/policy.py": "73601669e0720549f2d27194991019a7b30fec1cde0612723474d18673e48310",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/audit.py": "a6f7475e50e8fa984bf76d356cb33e9646a656711db183b9de47f31076f54c4a",
+    "rag/replay_reports.py": "a6f4a539a8bef58315276eef73e9eb06b7201dda7aa1a07712eed9088a6b36c9",
+    "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "rag/build_corpus.py": "c78602be9c9e839e9dca96834b7064bc2b900fbb495ec3e809291b6143b3f31f",
+    "rag/build_evaluation_bundle.py": "b9acfa268befa68398827b0b51edfa4530fb926ebf5bc9bc530966920c1382f8"
+  },
+  "test_file_hashes": {
+    "rag/tests/test_retrieval.py": "04600f5d9d304e0e1c466f38be19812096fddacde9ad8082b8bdd69a083551f7",
+    "rag/tests/test_corpus.py": "12cb43286b2227c2825ec0868c374d75b9499d6734f5bfc0495c065c58d162fd",
+    "rag/tests/test_audit.py": "ebb54a802adf2693c2b1c87631718a2beab9f0022c794f889effee4b693bf07a",
+    "rag/tests/test_evaluation.py": "9edd849021e2575a21bef0cc9c370f9f5f88ddae1899ea5128d7b642c5c5bdb7",
+    "rag/tests/test_evidence.py": "c6e6ec82834259c55c4f35a09a097b805b7f452402899bd40dff6ded169c540e",
+    "api_tests/test_api.py": "5e3ede7c63c79938def8eb1d04d595d1d780036a68688fb4080019102c08da99",
+    "api_tests/test_case_api.py": "b8547db40956371e274a7e18a7df67dfc9bd12eb5c08519ce82921ccf2074bf5",
+    "tests/test_validation.py": "021b1e0e25320040f7cad188c8c0bc72964032340a80f362618514d4f959c1a9",
+    "ui_tests/test_ui_routes.py": "00585825226ae799ebb9c953b7d53e4a26b434fe79a1a16575f5ab2e6be1fca9"
+  },
+  "bundle": {
+    "path": "docs/reference/stage11_policy_rerun_20261029_personal_image_jats_wrapper_v5",
+    "manifest_sha256": "a2f3bded96761f87c5e44184239205c4080a1bb49406533a69a4fef9968d890c",
+    "comparison_sha256": "323044b59a11bacc6fdb4799c31506e2861610787a1c3da79d53dc40c3d73533",
+    "reports": 16,
+    "changed_report": "image_routing_dev.json",
+    "image_routing_questions": 46,
+    "previous_image_routing_questions": 41,
+    "other_reports_metrics_unchanged": 15
+  },
+  "audit": {
+    "path": "docs/reference/stage11_integrity_audit_20261029_personal_image_jats_wrapper_v5.json",
+    "status": "PASS",
+    "sha256": "41530677119a4388592a75b93adb93193e8e91098d2740793960277ef4177d37",
+    "source_count": 21,
+    "chunk_count": 759,
+    "datasets": 9,
+    "reports": 16,
+    "errors": []
+  },
+  "replay": {
+    "path": "docs/reference/stage11_replay_20261029_personal_image_jats_wrapper_v5.json",
+    "status": "PASS",
+    "sha256": "e286ef97b91b4a8dfbe9902ef15cab83a1b4639222614e1460aa1eb73f4191a0",
+    "reports_matched": 16,
+    "reports_total": 16,
+    "preflight_mismatches": []
+  },
+  "image_routing_dev": {
+    "path": "rag/data/evaluation_image_routing_dev_20261028.json",
+    "sha256": "95b81c5d8d80332bab05bb7647a629592de7b5b22c6ab0ab971ae5a2980a6d48",
+    "questions": 46,
+    "routing_accuracy": 1.0,
+    "negative_abstention": 1.0,
+    "all_statuses_match": true,
+    "in_sample": true
+  },
+  "personal_image_edge_probes": {
+    "path": "docs/reference/stage11_personal_image_routing_edge_probes_20261029_v3.json",
+    "sha256": "9f3404e2ec2c9e689a16715dea6b38c4dbcd9da5e67587efae68c7451e0f240d",
+    "record": {
+      "created_at_utc": "2026-10-28T17:52:21.202720+00:00",
+      "scope": "in-sample policy regression; text-only; no medical images processed",
+      "provenance": "Five prompts were discovered by agent-authored boundary probes after inspecting policy behavior. They and the controls are not blind, independent, representative, or specialist-adjudicated.",
+      "image_cases": [
+        {
+          "id": "img42",
+          "question": "Ảnh MRI bệnh nhân tôi gửi cho thấy gì?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img43",
+          "question": "Đây là phim của con tôi, bác sĩ nói gì?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img44",
+          "question": "Can you review a scan for a patient I treated last year?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img45",
+          "question": "What does the X-ray show for a patient I consult on?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        },
+        {
+          "id": "img46",
+          "question": "This MRI was taken at our clinic. What abnormalities are visible?",
+          "expected_status": "insufficient_evidence",
+          "actual_status": "insufficient_evidence",
+          "reason": "image_requires_specialist_assessment",
+          "match": true
+        }
+      ],
+      "education_controls": [
+        {
+          "question": "In a published bone tumor case report, what did the patient's X-ray show?",
+          "actual_status": null,
+          "reason": null,
+          "match": true
+        },
+        {
+          "question": "This MRI was taken at our clinic. How are MRI features of GCT described in general?",
+          "actual_status": null,
+          "reason": null,
+          "match": true
+        }
+      ],
+      "personal_cases_passed": 5,
+      "personal_cases_total": 5,
+      "education_controls_passed": 2,
+      "education_controls_total": 2,
+      "image_routing_dev_questions": 46
+    }
+  },
+  "scope_note": "Software and artifact integrity evidence only; no clinical validity, specialist review, blind evaluation, image attachment handling, or independent acceptance is claimed."
+}

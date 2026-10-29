@@ -1,0 +1,22 @@
+{
+  "created_at_utc": "2026-10-29T07:38:14.269643+00:00",
+  "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "exit_code": 0,
+  "status": "PASS",
+  "passed": 85,
+  "subtests_passed": 130,
+  "failed": 0,
+  "warnings": [
+    "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias."
+  ],
+  "scope": "Software regression only; not clinical validation or independent acceptance.",
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+  "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+  "test_code_sha256": {
+    "rag/build_corpus.py": "3384ca78818626048629eeab64a5f4357ec1bb288ded93acfdb377adaeb8c812",
+    "rag/audit.py": "fc50be91990a9b6f3c89e6d493275e3fbb59ef8ba48acb3dfbc2d4c669a32468",
+    "rag/tests/test_corpus.py": "8b207b4bdc8f23ad87f897884e9189d199094a615203c5a7b5d03014c4b68561",
+    "rag/tests/test_audit.py": "5adba0c7c9dd2f7d617569785a1be44945882350a441d1212c2ad7863051818e"
+  }
+}

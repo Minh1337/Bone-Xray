@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "corpus_sha256": "552eb6b313ca472dc92e5a20280dbf02a39d74091439a895099127c6b96c8dfb",
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
   "config_sha256_at_freeze": "bbf94ecf32ad470efb2ff6f6823950a8c5ee0b0ccd07cae6a901e5b67525246f",
-  "provenance": "Agent-authored development cases based on the newly added CC BY 4.0 cohort. Targeted to Vietnamese/English query coverage and routing; not independent expert validation; do not describe as a held-out test set.",
+  "provenance": "Agent-authored development cases based on CC BY 4.0 sources: unicameral and aneurysmal bone cyst reviews, the UK British Sarcoma Group consensus guideline, and a 2026 intraosseous knee tumour imaging review. Targeted to bilingual retrieval; not independently reviewed. Added 4 agent-authored development questions for the licensed 2025 appendicular radiography review; not independently reviewed. Added 4 agent-authored questions on the CC BY 4.0 Society of Skeletal Radiology Bone-RADS white paper; not independently reviewed.",
   "questions": [
     {
       "id": "c01",
@@ -101,6 +101,126 @@
       "evidence_quote": "A BMA/DBM injection strategy avoided an open procedure in 78% of patients"
     },
     {
+      "id": "c10",
+      "split": "dev",
+      "question_vi": "Trên MRI, đặc điểm hình ảnh nào của aneurysmal bone cyst được nêu trong tổng quan?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0001",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Abstract",
+          "text_sha256": "f5e28080e762c344f7222fa0087b8adc8db7d9cf86bbd43564b4ece9a5c5e10d"
+        }
+      ],
+      "evidence_quote": "fluid-fluid levels that are apparent on MRI"
+    },
+    {
+      "id": "c11",
+      "split": "dev",
+      "question_vi": "Các chẩn đoán phân biệt chính của nang xương phình mạch ở trẻ em theo bài tổng quan là gì?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0001",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Abstract",
+          "text_sha256": "f5e28080e762c344f7222fa0087b8adc8db7d9cf86bbd43564b4ece9a5c5e10d"
+        }
+      ],
+      "evidence_quote": "telangiectatic osteosarcoma and unicameral bone cyst (UBC) are the main differential diagnoses of an ABC"
+    },
+    {
+      "id": "c12",
+      "split": "dev",
+      "question_vi": "Nếu chẩn đoán nang xương phình mạch còn nghi ngờ, tổng quan nêu cần xác nhận bằng loại bằng chứng nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0013",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Biopsy",
+          "text_sha256": "8feedd0be6c5eae1cbfd7fb69f8591a23a5a23d3ee19a76134e5f45f6a0b37d5"
+        }
+      ],
+      "evidence_quote": "If there is doubt in the diagnosis, a tissue diagnosis is necessary."
+    },
+    {
+      "id": "c13",
+      "split": "dev",
+      "question_vi": "Theo đồng thuận BSG áp dụng tại UK, người nghi ngờ primary malignant bone tumour cần được chuyển đến đâu, và khi nào nên chuyển so với sinh thiết?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0013",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Soft tissue swelling",
+          "text_sha256": "07ceb90bbff043d1c4b7aa56a90d22a3bd1474815b5165a62b52312d8db67a59"
+        }
+      ],
+      "evidence_quote": "Patients with suspected PMBT should be referred to a commissioned bone sarcoma centre on an urgent cancer pathway. Patients should be referred before biopsy"
+    },
+    {
+      "id": "c14",
+      "split": "dev",
+      "question_vi": "Theo hướng dẫn BSG của UK, phim X-quang bình thường có loại trừ primary malignant bone tumour không?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0013",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Soft tissue swelling",
+          "text_sha256": "07ceb90bbff043d1c4b7aa56a90d22a3bd1474815b5165a62b52312d8db67a59"
+        }
+      ],
+      "evidence_quote": "A normal X-ray does not exclude PMBT, and an urgent MRI may be required."
+    },
+    {
+      "id": "c15",
+      "split": "dev",
+      "question_vi": "Which intraosseous lesions does the review include as identifiable on routine knee MRI?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0001",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Abstract",
+          "text_sha256": "a16ff10bec3d0c7c4a66a8675644c80fc91ccf3bcc3cc9e00b1462bf013ac06d"
+        }
+      ],
+      "evidence_quote": "We have included lesions that we expect will be identifiable on routine knee MRI examinations."
+    },
+    {
+      "id": "c16",
+      "split": "dev",
+      "question_vi": "Theo review, giant cell tumour of bone thường gặp ở những vị trí nào quanh đầu gối?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0002",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Introduction",
+          "text_sha256": "a86c1cfc0fce6c3da2cf7a1ec525c3b332edbb3aa408bfd5fbd8d025215e5435"
+        }
+      ],
+      "evidence_quote": "The distal femur and proximal tibia are the commonest locations for giant cell tumour of bone"
+    },
+    {
+      "id": "c17",
+      "split": "dev",
+      "question_vi": "In the knee review, what MRI feature is typical of an ABC, and what may a significant solid component suggest?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0022",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Aneurysmal bone cyst (ABC)",
+          "text_sha256": "66de206664812dd004608098df9f43fe1c2cec4aa899239bce3cea685a190d5e"
+        }
+      ],
+      "evidence_quote": "Thin septal enhancement is typical in ABCs (Fig. 16); a significant solid component suggests another primary lesion with ABC-like change"
+    },
+    {
       "id": "n01",
       "split": "dev",
       "question_vi": "Nang xương đơn độc có thể chữa khỏi bằng curcumin không?",
@@ -123,6 +243,127 @@
       "expected_status": "insufficient_evidence",
       "evidence": [],
       "expected_behavior": "insufficient_evidence"
+    },
+    {
+      "id": "c18",
+      "split": "dev",
+      "question_vi": "Theo tổng quan, những đặc điểm X-quang nào cùng thông tin người bệnh giúp thu hẹp chẩn đoán phân biệt?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0001",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Abstract",
+          "text_sha256": "19579eaf57d9c50f7b6c138655512565ddcb1d21557530e5ee4e4c5cb281aa7b"
+        }
+      ],
+      "evidence_quote": "Combined with patient age, clinical symptoms and biology, and lesion features including location, solitary versus multiplicity, density, margin (transitional zone evaluated with Lodwick-Madewell grading score), and, if present, the type of periosteal reaction and matrix mineralization can narrow the differential diagnosis or offer a likely diagnosis."
+    },
+    {
+      "id": "c19",
+      "split": "dev",
+      "question_vi": "Which transverse locations within a bone are used to classify a bone lesion in the review?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0014",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Transverse location (central, eccentric, intracortical, or juxtacortical)",
+          "text_sha256": "55de7d5c0f9f8e1dd6b547c07ade82fdcc9f69d9ad93c0d5332a7630e0db6a36"
+        }
+      ],
+      "evidence_quote": "Bone lesion can also be subdivided based on the transverse location with a bone as central intramedullary, eccentric intramedullary, intracortical, or juxtacortical"
+    },
+    {
+      "id": "c20",
+      "split": "dev",
+      "question_vi": "How do the specific bone and the longitudinal and transverse location help in evaluating a bone lesion?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0009",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Lesion location",
+          "text_sha256": "34d6232c80f2a399f89be9bcf6721a0f4f02481a556fead969aef0e794b7fcc9"
+        }
+      ],
+      "evidence_quote": "The specific bone of involvement, type of bone (flat versus long), and longitudinal and transverse location within a long bone all help to narrow down the list of likely entities."
+    },
+    {
+      "id": "c21",
+      "split": "dev",
+      "question_vi": "What does the review say about solitary versus multifocal primary bone lesions?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0015",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Solitary versus multiple lesions",
+          "text_sha256": "8ec361d3a29dbdcd127b14c6bb46af9dea22fb98d3de66b05fdcd846d6da7f8c"
+        }
+      ],
+      "evidence_quote": "Most primary bone lesions will be solitary; however, patients presenting with polyostotic (multifocal) bone lesions have a more limited differential diagnosis"
+    },
+    {
+      "id": "c22",
+      "split": "dev",
+      "question_vi": "According to the Bone-RADS white paper, what patient population and imaging context do the algorithms address?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0001",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Abstract",
+          "text_sha256": "d587d47124288e7a9ce6d62775248759108a0f32cd5a75fbc6625ac2c477051d"
+        }
+      ],
+      "evidence_quote": "The purpose of this article is to present algorithms for the diagnostic management of solitary bone lesions incidentally encountered on computed tomography (CT) and magnetic resonance (MRI) in adults."
+    },
+    {
+      "id": "c23",
+      "split": "dev",
+      "question_vi": "What are the four possible Bone-RADS management recommendations?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0001",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Abstract",
+          "text_sha256": "d587d47124288e7a9ce6d62775248759108a0f32cd5a75fbc6625ac2c477051d"
+        }
+      ],
+      "evidence_quote": "Bone-RADS1, leave alone; Bone-RADS2, perform different imaging modality; Bone-RADS3, perform follow-up imaging; Bone-RADS4, biopsy and/or oncologic referral"
+    },
+    {
+      "id": "c24",
+      "split": "dev",
+      "question_vi": "What do the Bone-RADS authors say should take precedence over their flowcharts?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0073",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Controversies",
+          "text_sha256": "31821021418124c65799185e44cc5e13cf0d3f75d0325fae21c23adcd5fa0055"
+        }
+      ],
+      "evidence_quote": "these flowcharts should never override expert opinion"
+    },
+    {
+      "id": "c25",
+      "split": "dev",
+      "question_vi": "Why did the authors limit their Bone-RADS scope to solitary lesions?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0005",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Scope: Development of Bone-RADS",
+          "text_sha256": "8f65f5fa116c81f7179e9f69b2d05912c684948800dc069c00e04b54365d5c39"
+        }
+      ],
+      "evidence_quote": "We limited our scope to solitary lesions because patients with multiple lesions often have metastatic disease or systemic conditions that typically require biopsy and/or oncologic referral."
     }
-  ]
+  ],
+  "revalidation_note_20261028": "Corpus expanded with a verified CC BY 4.0 synovial chondromatosis review; existing gold entries and query text were not changed. Evidence keys were rechecked against the rebuilt corpus; these previously viewed sets remain regression/development only."
 }

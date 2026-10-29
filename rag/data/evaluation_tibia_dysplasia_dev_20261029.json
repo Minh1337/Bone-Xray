@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "config_sha256_at_freeze": "c8f45d1af962c5b78a57096db2b219f66bd85168fdaf094daec7c7e083533aed",
+  "provenance": "Three agent-authored development probes created after ingesting the cached CC BY 4.0 tibial lesion narrative review. Questions and exact gold chunks were derived from that same source; this is in-sample retrieval diagnostics only, not independent, blind, clinically adjudicated, or validation evidence. No blind set was accessed or used for tuning.",
+  "source_id": "tibia-lesions-dysplasia-2025",
+  "source_payload_sha256": "c1df65ed09b9fb0d80ec11eb91b75b8db77e31d8a705922b51e19d929950e572",
+  "questions": [
+    {
+      "id": "tibia_ofd_radiograph",
+      "split": "dev",
+      "question_vi": "Theo review về tổn thương xương chày, đặc điểm X-quang thường gặp của osteofibrous dysplasia là gì?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "tibia-lesions-dysplasia-2025:0013",
+          "source_id": "tibia-lesions-dysplasia-2025",
+          "section": "Adamantinoma, osteofibrous dysplasia and differentiated adamantinoma",
+          "text_sha256": "16f67970d17d6694341da9b2be2ba317e20aa70383a83e3b3a10edbc26331703"
+        }
+      ]
+    },
+    {
+      "id": "tibia_ofd_histology",
+      "split": "dev",
+      "question_vi": "Theo bài, mô bệnh học của osteofibrous dysplasia khác adamantinoma như thế nào?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "tibia-lesions-dysplasia-2025:0014",
+          "source_id": "tibia-lesions-dysplasia-2025",
+          "section": "Adamantinoma, osteofibrous dysplasia and differentiated adamantinoma",
+          "text_sha256": "a98bfb161aa16c18d67292ccfb6b46e85697845fe168aa6c12a75233c5eda6eb"
+        }
+      ]
+    },
+    {
+      "id": "tibia_adamantinoma_ct",
+      "split": "dev",
+      "question_vi": "Theo review, CT có thể giúp nhận diện những đặc điểm nào của adamantinoma ở xương chày?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "tibia-lesions-dysplasia-2025:0012",
+          "source_id": "tibia-lesions-dysplasia-2025",
+          "section": "Adamantinoma, osteofibrous dysplasia and differentiated adamantinoma",
+          "text_sha256": "98114b03bce53a3347c0997207580e7fde3f53eabea01cbf928de944df05a3aa"
+        }
+      ]
+    }
+  ]
+}

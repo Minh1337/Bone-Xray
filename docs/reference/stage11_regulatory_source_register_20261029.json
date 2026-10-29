@@ -1,0 +1,136 @@
+{
+  "record_id": "stage11-regulatory-source-register-20261029-v1",
+  "review_date": "2026-10-29",
+  "scope": "Official-source metadata and limited topic screening for conditional Vietnam jurisdiction; supports reviewer triage only and is not legal advice, system classification, compliance assessment, or authorization.",
+  "rules": "Use the official signed text and current consolidated text; resolve each source against intended use, deployment date, provider/deployer role, product/function, and any amendments. Status is as of review_date.",
+  "sources": [
+    {
+      "source_id": "VN-AI-LAW-134-2025",
+      "instrument": "Luật Trí tuệ nhân tạo 134/2025/QH15",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=216334&pageid=27160&typegr=",
+      "signed_text": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2025/12/luat134.signed.pdf",
+      "issued": "2025-12-10",
+      "effective": "2026-03-01",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official registry title, issue date, effective date, signed attachment.",
+      "review_question": "Map AI-system role, risk classification, transparency, incident and other relevant duties after function/intended use and operating role are fixed.",
+      "limits": "No interpretation of application to BoneScope."
+    },
+    {
+      "source_id": "VN-AI-DECREE-142-2026",
+      "instrument": "Nghị định 142/2026/NĐ-CP (AI Law implementation)",
+      "official_record": "https://vanban.chinhphu.vn/?docid=218029&orggroupid=2&pageid=27160",
+      "signed_text": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/4/142-2026-ndcp.signed.pdf",
+      "issued": "2026-04-30",
+      "effective": "2026-05-01",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official registry title and dates; signed PDF is linked. Limited text query covered Arts. 8–9 and system classification distinction.",
+      "review_question": "Read full Arts. 8–9, exceptions, classification notice/assessment and roles; verify whether any conditions apply to each actual system function.",
+      "limits": "Full provision-by-provision legal review incomplete; no BoneScope classification."
+    },
+    {
+      "source_id": "VN-AI-DECISION-33-2026",
+      "instrument": "Quyết định 33/2026/QĐ-TTg: high-risk AI system list",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=218658&orggroupid=3&pageid=27160",
+      "signed_text": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/7/33-qdttg.signed.pdf",
+      "government_summary": "https://baochinhphu.vn/danh-muc-he-thong-tri-tue-nhan-tao-co-rui-ro-cao-102260702152849868.htm",
+      "issued": "2026-06-30",
+      "effective": "2026-08-15",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official metadata and Government summary; summary identifies two surgery/robot entries in healthcare and transition date for listed systems already operating before effective date. Signed annex must be reviewed against every relevant entry and conformity column.",
+      "review_question": "Compare actual intended function/integration/workflow to signed list; verify entry conditions, conformity route and transition dates with Vietnamese counsel.",
+      "limits": "Not a complete annex interpretation; not a finding that other healthcare AI is excluded or that BoneScope is listed."
+    },
+    {
+      "source_id": "VN-PDP-LAW-91-2025",
+      "instrument": "Luật Bảo vệ dữ liệu cá nhân 91/2025/QH15",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=214590&pageid=27160&typegroup=",
+      "issued": "2025-06-26",
+      "effective": "2026-01-01",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official registry dates. Government summary under Decree 356 identifies health status as sensitive personal data.",
+      "review_question": "Establish roles, purpose/legal basis, categories, notices/rights, retention, security, processor/transfer and assessment obligations for actual data flows.",
+      "limits": "No processing basis, patient-data authority or application determination."
+    },
+    {
+      "source_id": "VN-PDP-DECREE-356-2025",
+      "instrument": "Nghị định 356/2025/NĐ-CP (PDP Law implementation)",
+      "official_record": "https://vanban.chinhphu.vn/?classid=0&docid=216387&pageid=27160",
+      "signed_text": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/01/356-nd.signed.pdf",
+      "issued": "2025-12-31",
+      "effective": "2026-01-01",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official metadata and signed-text Article 42: Decree 13/2023/NĐ-CP expires when Decree 356 takes effect.",
+      "review_question": "Use Decree 356 and current implementing forms/text; check amendments and requirements by processing role/data flow.",
+      "limits": "No full article-by-article assessment; Decree 13 is historical, not current at review date."
+    },
+    {
+      "source_id": "VN-CYBER-PDP-SANCTIONS-330-2026",
+      "instrument": "Nghị định 330/2026/NĐ-CP: administrative sanctions on cybersecurity and personal data protection",
+      "official_record": "https://vanban.chinhphu.vn/?classid=0&docid=219266&pageid=27160",
+      "issued": "2026-08-19",
+      "effective": "2026-08-19",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official registry title and dates.",
+      "review_question": "Counsel to assess any relevant duties/offenses and incident-response implications.",
+      "limits": "Penalty instrument; not a control-design or compliance checklist."
+    },
+    {
+      "source_id": "VN-DATA-LAW-60-2024",
+      "instrument": "Luật Dữ liệu 60/2024/QH15",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=212488&pageid=27160",
+      "issued": "2024-11-30",
+      "effective": "2025-07-01",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official registry title and dates.",
+      "review_question": "Counsel to map any creation, storage, use, sharing, cross-border, and sectoral interaction obligations; separate dataset rights from data-law obligations.",
+      "limits": "No detailed interpretation."
+    },
+    {
+      "source_id": "VN-DATA-SANCTIONS-363-2026",
+      "instrument": "Nghị định 363/2026/NĐ-CP: administrative sanctions in data sector",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=219598&pageid=27160",
+      "issued": "2026-09-19",
+      "effective": "2026-11-11",
+      "status_at_review": "PUBLISHED_NOT_YET_EFFECTIVE",
+      "verified": "Official registry title, issue/effective dates and signed-PDF attachment metadata; full signed PDF (~21.6 MB) was not parsed by the web document extractor.",
+      "review_question": "Read signed text and update assessment before/after effective date if data processing is planned.",
+      "limits": "Future effective as at review date; no clause-level reading or application finding. Reviewer must read the signed text."
+    },
+    {
+      "source_id": "VN-PDP-CYBER-AMENDMENT-392-2026",
+      "instrument": "Nghị định 392/2026/NĐ-CP (omnibus security/order administrative procedure and business-condition amendments)",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=220055&pageid=27160&typegroupid=4",
+      "signed_text": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/10/392_2026_nd-cp_20102026-signed.signed.pdf",
+      "issued": "2026-10-20",
+      "effective": "2026-11-15",
+      "status_at_review": "PUBLISHED_NOT_YET_EFFECTIVE",
+      "verified": "Official registry title, issue/effective dates and signed-PDF attachment metadata; full signed PDF (~20.0 MB) was not parsed by the web document extractor.",
+      "review_question": "Counsel to read the complete signed text and determine any amendment relevant to BoneScope before a post-effective-date decision.",
+      "limits": "Do not infer detailed effect from title/third-party summaries. Reviewer must read the signed text before an applicability finding."
+    },
+    {
+      "source_id": "VN-MED-DEV-CONSOLIDATION-08-2026",
+      "instrument": "08/VBHN-BYT: consolidated medical-device management text",
+      "official_record": "https://vanban.chinhphu.vn/?classid=0&docid=217131&pageid=27160",
+      "issued": "2026-03-06",
+      "status_at_review": "PUBLISHED; CHECK LATER AMENDMENTS",
+      "verified": "Official registry title/date.",
+      "review_question": "Use as a navigation aid only; identify amendments after March 2026, including Circular 24, before legal review.",
+      "limits": "Predates Circular 24 effective 2026-07-01."
+    },
+    {
+      "source_id": "VN-MED-DEVICE-CIRCULAR-24-2026",
+      "instrument": "Thông tư 24/2026/TT-BYT: risk determination and management for medical-device products and amendments to Circular 05/2022",
+      "official_record": "https://vanban.chinhphu.vn/?classid=1&docid=218703&pageid=27160",
+      "signed_text": "https://datafiles.chinhphu.vn/cpp/files/vbpq/2026/6/24-byt.signed.pdf",
+      "issued": "2026-06-30",
+      "effective": "2026-07-01",
+      "status_at_review": "IN_FORCE",
+      "verified": "Official registry title, issue and effective dates.",
+      "review_question": "If medical-device law may apply, read signed text with amended Decree 98/2021 framework and assess software function/intended purpose with specialist.",
+      "limits": "No medical-device classification for BoneScope."
+    }
+  ],
+  "overall_conclusion": "Source register improves traceability only. G7 remains OPEN; no jurisdiction is selected, no product classification/pathway/legal opinion is recorded, and no source entry should be treated as a determination."
+}

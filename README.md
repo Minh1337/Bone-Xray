@@ -139,34 +139,44 @@ Lệnh kiểm thử hiện tại:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Lần chạy ngày 27/10/2026 đạt **36 passed, 28 subtests passed** (một cảnh báo deprecated của Starlette).
+Regression phần mềm gần nhất ngày 29/10/2026: **87 passed / 132 subtests**, một cảnh báo deprecation Starlette; xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json). Đây là regression code, không phải xác nhận lâm sàng hay độc lập. Corpus mới nhất 22 nguồn/794 chunk; audit provenance PASS trên 10 evaluation datasets và deterministic replay PASS 16/16, không preflight mismatch; [fresh audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json) và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json). So sánh sau corpus growth đổi metric ở 4/16 report, gồm expansion dev và V2 đã xem; route ABC được thử tiếp trên dev in-sample. Chưa có reviewer-labeled blind set hoặc citation-entailment adjudication; Stage 11 chưa nghiệm thu, `answer_ready=false`. Xem [project status](docs/PROJECT_STATUS_VI.md), [báo cáo](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) và [checkpoint](docs/STAGE11_CHECKPOINT_LATEST.md).
 
 ---
 
-## 📊 Tiến Độ Dự Án — Cập nhật 27/10/2026
+## 📊 Tiến Độ Dự Án — Cập nhật 29/10/2026
+
+### Mốc đồng bộ repository — 29/10/2026
+
+- Đã chuẩn bị đồng bộ toàn bộ source, tài liệu và artifact dữ liệu hợp lệ trong
+  workspace lên nhánh `main`.
+- Các snapshot/patch sinh tự động trong `checkpoints/` được giữ cục bộ và bỏ qua
+  bởi Git vì có file ZIP khoảng 133 MiB, vượt giới hạn 100 MB/file của GitHub.
+- Trạng thái kỹ thuật không thay đổi sau lần đồng bộ: full regression **87
+  passed / 132 subtests**, corpus **22 nguồn/794 chunk**, audit PASS, replay
+  **16/16**, bảy acceptance gates còn OPEN và `answer_ready=false`.
 
 ### Đã hoàn thành
 
 - Hoàn thiện pipeline phân tích ảnh X-quang 10 lớp bằng model cục bộ.
 - Hoàn thiện API FastAPI, giao diện web, quản lý ca SQLite, lịch sử, nhận xét,
   hiệu chỉnh nhãn độc lập và dashboard.
-- Hoàn thiện kho RAG gồm **13 nguồn (12 NCI và 1 CC BY 4.0) và 439 đoạn văn** có URL, section,
-  thời điểm truy xuất và mã băm để truy vết citation.
+- Mở rộng kho RAG lên **22 nguồn/794 đoạn**: 13 mục NCI và 9 nguồn ngoài NCI; provenance/license/scope được ghi theo nguồn. G4 đã sàng lọc 15 leads; C12–C15 chưa đủ điều kiện đánh giá ảnh. C15 IIEST là bộ hỗn hợp 217 ảnh với 69 cancer-labelled, chưa xác minh package/quyền/reference standard/overlap. Xem [cohort register](docs/reference/stage11_external_cohort_screening_register_20261029.csv), [C14 screen](docs/reference/stage11_frontiers_11case_cohort_screen_20261029.json) và [C15 screen](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json).
+  Mỗi chunk mang nguồn, license, scope, section và hash.
 - Hoàn thiện hybrid retrieval local, routing câu hỏi, đánh giá recall/MRR,
   concept rerank và các thử nghiệm kiểm tra evidence.
 - Đồng bộ tài liệu cài đặt/chạy trên máy mới và cấu trúc repository.
 
-### Kết quả kiểm thử gần nhất
+### Kết quả đo gần nhất và trạng thái kiểm thử
 
-- Toàn bộ test (27/10/2026): **36 passed, 28 subtests passed**.
+- Full suite mới nhất được ghi nhận: **87 passed/132 subtests**, một cảnh báo deprecation Starlette. Đây là regression phần mềm, không phải kiểm định retrieval độc lập hay lâm sàng. Xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json) và [record lịch sử](docs/reference/stage11_test_run_20261028.json).
 - API parity với baseline local trên model thật: **3/3 ca đạt**, sai lệch score tối đa 0; metadata thiếu/ảnh hỏng bị từ chối đúng. Notebook parity chưa được xác minh.
-- Hybrid retrieval mặc định: **8/10** câu regression đúng nguồn/mục,
-  **6/8** câu V2 dev và **7/8** câu V2 test đúng đoạn.
-- Concept rerank thử nghiệm: **10/10** câu regression, **8/8** V2 dev,
-  **8/8** V2 test và **9/10** V3 stress đúng đoạn.
-- `--verify-evidence` chưa đạt vì từ chối nhầm nhiều câu có đáp án; không bật
-  mặc định.
-- API parity với model thật đã đạt trên 3 ca; notebook parity chưa được xác minh.
+- Audit integrity/provenance offline hiện tại: **PASS**, 22 nguồn/794 đoạn, index `794 × 384`; deterministic replay **16/16 PASS**. Đây không phải
+  xác nhận y khoa hay citation entailment.
+- Historical v8 expansion dev (22 dương/3 âm, agent-authored/đã xem) đạt Recall@5 22/22 trước corpus growth; không phải holdout. Corpus growth làm metric đổi trên một số report. Sau đó, ABC route được thử trên dev riêng đã xem: Recall@5 0.955→1.000, MRR 0.644→0.689, abstention âm 3/3; kết quả in-sample, xem [experiment record](docs/reference/stage11_cureus_abc_route_dev_experiment_20261029.json).
+- Historical V2 regression đã xem đạt hybrid Recall@5 8/8, MRR 0.733 sau route chondrosarcoma đã chỉnh theo lỗi đã thấy; concept rerank cũng đạt 8/8, MRR 0.938. Các số này là lịch sử/in-sample; corpus growth sau đó làm một số V2 report đổi metric. Rerank vẫn opt-in vì dev giảm 22/22→19/22.
+- Policy image-routing dev: abstain đúng lý do **51/51**; 16 false negative định tuyến ảnh cá nhân phát hiện qua nhiều vòng đã được sửa, 5/5 probe cá nhân mới abstain và 2/2 câu giáo dục đối chứng vẫn qua policy. Bộ tự soạn/in-sample, không đại diện; API retrieval chỉ nhận văn bản, chưa kiểm tra metadata hay pixel ảnh đính kèm. Xem [report và provenance](docs/reference/stage11_policy_rerun_20261029_personal_image_jats_wrapper_v7/image_routing_dev.json).
+- Historical v8 `--verify-evidence` chưa đạt: abstain nhầm 21/22 câu dương trên dev và 8/8 trên
+  V2 đã xem; negative abstention lần lượt 3/3 và 6/6. Không bật mặc định.
 
 ### Trạng thái hiện tại
 
@@ -176,16 +186,15 @@ giao diện hội thoại. Các chế độ evidence vẫn trả `answer_ready: 
 
 ### Việc cần làm tiếp theo
 
-1. Kiểm định retrieval/rerank trên tập dữ liệu độc lập và bổ sung nguồn cho các
-   nhãn còn thiếu như `simple bone cyst`, `osteofibroma` và
-   `synovial osteochondroma`.
-2. Khởi động ứng dụng và chạy `06_verify_api.bat`/`verify_api.py` với model thật.
-3. Chỉ bắt đầu giai đoạn 12 sau khi có cơ chế đủ bằng chứng, citation và từ chối
-   an toàn; sau đó mới xây chatbot tiếng Việt local.
-4. Đánh giá toàn diện, bảo mật và đóng gói bàn giao ở giai đoạn 13.
+1. Người rà soát chuyên môn độc lập xác nhận answerability, acceptable evidence,
+   span, citation entailment và ngưỡng pass; dùng [quy trình thẩm định](docs/reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md).
+2. Đóng băng một tập mù mới và đo false acceptance/refusal, retrieval, routing,
+   citation và bất đồng reviewer; không tune trên kết quả mù.
+3. Với kiểm định ảnh G4, chưa có cohort đủ điều kiện: register hiện có 15 leads, cần quyền ảnh/data-use, reference standard, manifest bệnh nhân/ảnh và audit overlap trước mọi external test. C12 TCIA sai modality/disease/endpoint; C13 Gitto chưa có ảnh trong Zenodo; C14 Frontiers thiếu nhóm âm và license; C15 IIEST là bộ ảnh hỗn hợp, chưa rõ package/quyền/reference standard/overlap. Không tải hoặc dùng chúng làm evaluation. Xem [cohort register](docs/reference/stage11_external_cohort_screening_register_20261029.csv), [C15 screen](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json) và [due diligence](docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md).
+4. Chỉ xem xét giai đoạn 12 sau khi cổng evidence và rà soát độc lập được nghiệm thu.
+5. Hoàn thành đánh giá toàn diện, bảo mật và đóng gói bàn giao ở giai đoạn 13.
 
-Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md) và
-[STAGE11_HANDOFF_VI.md](docs/STAGE11_HANDOFF_VI.md).
+Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md), [báo cáo Giai đoạn 11 ngày 29/10/2026](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md), [STAGE11_HANDOFF_VI.md](docs/STAGE11_HANDOFF_VI.md), [reviewer packet](docs/reference/STAGE11_REVIEWER_PACKET_VI.md), [intended-use lock template](docs/reference/STAGE11_INTENDED_USE_LOCK_TEMPLATE_VI.md), [safety hazard-analysis guide](docs/reference/STAGE11_SAFETY_REVIEW_GUIDE_VI.md), [privacy/security closeout worksheet](docs/reference/STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md), [online evidence/regulatory review](docs/reference/stage11_online_evidence_review_20261028.md) và [static privacy/security review](docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md).
 
 ---
 
@@ -194,7 +203,7 @@ Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md) và
 - [x] **Bước 1 — 4:** Kiểm kê mô hình, kiểm tra suy luận độc lập, API phân loại 10 lớp.
 - [x] **Bước 5:** Quản lý ca bệnh, CSDL SQLite, Lịch sử, Nhận xét, Hiệu chỉnh & Dashboard.
 - [x] **Giai đoạn 10:** Kho nguồn NCI và bộ câu hỏi tiếng Việt ban đầu.
-- [ ] **Giai đoạn 11:** Đã có corpus 439 đoạn, hybrid retrieval v2, routing, rerank thử nghiệm và đánh giá evidence; chưa đạt để dùng làm nền trả lời y khoa.
+- [ ] **Giai đoạn 11:** Corpus 794 đoạn/22 nguồn, hybrid retrieval, source routing/preferences, evidence evaluator, audit/replay và regression; chưa nghiệm thu vì thiếu reviewer độc lập, tập mù, citation-entailment review và sign-off G1–G7.
 - [x] **Giai đoạn 11A:** Đã tải và lập manifest BTXRD (3.746 ảnh, 10 lớp, 22 metadata, checksum và duplicate audit); do checkpoint hiện tại huấn luyện trên BTXRD nên chưa dùng làm kiểm định độc lập.
 - [ ] **Giai đoạn 12:** Chatbot tiếng Việt có trích dẫn nguồn và kiểm thử an toàn.
 - [ ] **Giai đoạn 13:** Đánh giá toàn diện, bảo mật và đóng gói bàn giao.
@@ -203,9 +212,9 @@ Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. 
 
 Để tiếp tục phát triển, đọc [trạng thái dự án và ghi chú bàn giao](docs/PROJECT_STATUS_VI.md) trước. Trang này tổng hợp các thay đổi đã làm, bằng chứng kiểm thử và việc còn mở.
 
-Điểm tiếp tục hiện tại: [giai đoạn 11](docs/STAGE11_HANDOFF_VI.md). Từ vựng hybrid v2 đã giúp bộ dev riêng tìm 6/6 bằng chứng, nhưng chưa được kiểm định độc lập. Corpus hiện 439 đoạn; `answer_ready` vẫn luôn false. Chưa có chatbot.
+Điểm tiếp tục hiện tại: [Giai đoạn 11 handoff](docs/STAGE11_HANDOFF_VI.md) và [progress note](docs/STAGE11_PROGRESS_2026-10-29.md). Corpus hiện 794 đoạn/22 nguồn; audit PASS, replay 16/16. Dev/V2 đã xem, không phải kiểm định độc lập. G4 đã rà soát 15 cohort candidates; chưa có cohort đủ điều kiện. [C14](docs/reference/stage11_frontiers_11case_cohort_screen_20261029.json) · [C15](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json). Bảy acceptance gates còn OPEN; `answer_ready=false`; chưa có chatbot. Xem [online evidence review](docs/reference/stage11_online_evidence_review_20261028.md).
 
-Rerank thử nghiệm (`--rerank-concepts`) đạt 10/10 câu cũ, 8/8 trên V2 dev/test đã xem và 9/10 trên V3 stress; cần kiểm định độc lập. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Cả hai chế độ vẫn trả `answer_ready: false`. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
+Rerank thử nghiệm (`--rerank-concepts`) cho kết quả khác nhau theo tập: giảm dev từ 22/22 xuống 19/22; trên V2 đã xem, hybrid và rerank đều 8/8 (MRR 0,733 và 0,938). Giữ opt-in vì route V2 đã được tune theo p13 và dev giảm. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Mọi chế độ vẫn trả `answer_ready: false`. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
 
 Tạo chỉ mục cục bộ: `python rag/build_index.py --download-model` (lần đầu), sau đó `python rag/build_index.py`; đo bằng `python rag/evaluate.py`. Xem [hướng dẫn truy xuất](docs/guides/README_RAG_INDEX_VI.md).
 

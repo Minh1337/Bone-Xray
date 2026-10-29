@@ -1,0 +1,28 @@
+{
+  "created_at_utc": "2026-10-29T07:55:12.996141+00:00",
+  "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "exit_code": 0,
+  "status": "PASS",
+  "passed": 86,
+  "subtests_passed": 132,
+  "failed": 0,
+  "warnings": [
+    "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias."
+  ],
+  "scope": "Software regression only; not clinical validation or independent acceptance.",
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+  "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+  "retrieval_config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+  "test_code_sha256": {
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+    "rag/tests/test_retrieval.py": "f76704b08004f128b54668893962450cd2a02d148881f54903bda2cb9d393407",
+    "rag/tests/test_evidence.py": "4bf9e47051899dbc0d19045eb4c1a90795c6fa337dd5a37e9d0e1fc7446d46be",
+    "rag/tests/test_audit.py": "5adba0c7c9dd2f7d617569785a1be44945882350a441d1212c2ad7863051818e"
+  },
+  "evaluation_bundle_manifest_sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c",
+  "audit_artifact_sha256": "8d7dca23ec92d3d842d440cfd7eaef86f1738124b4b81b242ae01b3031ff0440",
+  "replay_artifact_sha256": "580860b79a304fbda33edd7e1a5e33962c09f2cbb4e6e1f877828b08cde9ddb9"
+}

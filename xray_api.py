@@ -103,7 +103,7 @@ def create_app(loader=load_real):
         app.state.predictor = None
 
     app = FastAPI(title='Bone X-ray API', version='0.1.0', lifespan=lifespan,
-                  description='Local coursework demo. Scores are model outputs, not calibrated clinical probabilities.')
+                  description='Local coursework demo. Scores are softmax outputs and are not calibrated for clinical use.')
 
     @app.get('/health')
     def health():
@@ -173,7 +173,9 @@ def create_app(loader=load_real):
                 seconds = perf_counter() - start
                 ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
                 prediction_id = secrets.token_urlsafe(32)
-                record = {'image_filename': Path(file.filename or 'image').name,
+                # Do not persist an uploader-supplied filename: it may contain
+                # patient identifiers. Keep only a generic label and validated suffix.
+                record = {'image_filename': 'uploaded-image' + suffix,
                           'image_sha256': image_hash.hexdigest(), 'metadata': meta,
                           'scores': scores, 'top1': ranked[0][0],
                           'top1_score': ranked[0][1], 'prediction_seconds': seconds,
@@ -195,7 +197,8 @@ def create_app(loader=load_real):
                         'model_sha256': app.state.info['sha256']['best_model.pt'],
                         'device': app.state.info['device'], 'api_version': '0.1.0',
                         'prediction_id': prediction_id,
-                        'notice': 'For coursework/research. Model scores are not calibrated disease probabilities.'}
+                        'notice': ('For coursework and research only; not for diagnosis, screening, triage, or treatment decisions. '
+                                   'Scores are normalized softmax outputs, are not calibrated for clinical use, and must not be interpreted as disease probabilities.')}
         finally:
             file.file.close()
             guard.release()

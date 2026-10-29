@@ -1,0 +1,16 @@
+{
+  "created_at_utc": "2026-10-28T17:03:42.926164+00:00",
+  "command": "rag.build_corpus.build(offline=True) with DATA/CACHE pointing to registered workspace and OUTPUT/LOCK redirected to a temporary directory",
+  "status": "PASS",
+  "sources": 21,
+  "chunks": 759,
+  "rebuild_corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "tracked_corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "corpus_bytes_identical": true,
+  "rebuild_source_lock_sha256": "3d4c64b8117a0bb5b1c546dcba90d1029a2100e335132c3b00ea130959f44e30",
+  "tracked_source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+  "source_lock_bytes_identical": false,
+  "source_lock_structurally_identical": true,
+  "canonical_json_sha256_equal": true,
+  "scope": "Rebuild outputs were written only to a temporary directory; tracked corpus and lock were not modified."
+}

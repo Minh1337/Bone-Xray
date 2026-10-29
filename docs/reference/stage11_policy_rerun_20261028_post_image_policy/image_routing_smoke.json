@@ -1,0 +1,103 @@
+{
+  "provenance": "Agent-authored local routing smoke evidence; development only, not clinical validation.",
+  "personal_image_queries": [
+    {
+      "query": "What does this radiograph show?",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "insufficient_evidence",
+        "image_requires_specialist_assessment"
+      ]
+    },
+    {
+      "query": "What does this attached image show?",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "insufficient_evidence",
+        "image_requires_specialist_assessment"
+      ]
+    },
+    {
+      "query": "Interpret this image of a bone lesion.",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "insufficient_evidence",
+        "image_requires_specialist_assessment"
+      ]
+    },
+    {
+      "query": "Read this scan and tell me the tumor type.",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "insufficient_evidence",
+        "image_requires_specialist_assessment"
+      ]
+    },
+    {
+      "query": "Nhận xét phim này giúp tôi.",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "insufficient_evidence",
+        "image_requires_specialist_assessment"
+      ]
+    },
+    {
+      "query": "X-quang này cho thấy u gì?",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        null,
+        null
+      ]
+    },
+    {
+      "query": "Từ ảnh này có thể chẩn đoán u xương gì?",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        null,
+        null
+      ]
+    },
+    {
+      "query": "Đọc ảnh này giúp tôi.",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "insufficient_evidence",
+        "image_requires_specialist_assessment"
+      ]
+    },
+    {
+      "query": "Phim này gợi ý bệnh gì?",
+      "expected": "insufficient_evidence/image_requires_specialist_assessment",
+      "actual": [
+        "out_of_scope",
+        "outside_bone_tumor_corpus"
+      ]
+    }
+  ],
+  "educational_controls": [
+    {
+      "query": "What are typical radiographic features of osteosarcoma?",
+      "expected": "in_scope",
+      "actual": [
+        null,
+        null
+      ]
+    },
+    {
+      "query": "Theo tổng quan, những đặc điểm X-quang nào giúp thu hẹp chẩn đoán phân biệt?",
+      "expected": "in_scope",
+      "actual": [
+        null,
+        null
+      ]
+    },
+    {
+      "query": "How is a suspected bone sarcoma diagnosed?",
+      "expected": "in_scope",
+      "actual": [
+        null,
+        null
+      ]
+    }
+  ]
+}

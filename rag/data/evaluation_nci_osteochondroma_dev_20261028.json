@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "config_sha256_at_freeze": "0ca97861114eadbe6376c7f7be7fcf24e5f767cf24b6561c85404aa8a35025a3",
+  "provenance": "Two agent-authored, in-sample development probes added after NCI glossary ingestion. One tests retrieval of the patient-facing general definition; one tests abstention on an unsupported BTXRD class mapping. Wording and source are known to the system; not independent, blind, or clinically adjudicated.",
+  "questions": [
+    {
+      "id": "ncioc01",
+      "split": "dev",
+      "question_vi": "Theo từ điển NCI, osteochondroma là gì?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "nci-osteochondroma-definition:0001",
+          "source_id": "nci-osteochondroma-definition",
+          "section": "osteochondroma",
+          "text_sha256": "edabd8a836d6097659ac2e8dbf8abef7147dee578163896ee413b5ebe43a6949"
+        }
+      ]
+    },
+    {
+      "id": "ncioc02",
+      "split": "dev",
+      "question_vi": "Nhãn osteochondroma trong BTXRD có đồng nghĩa với osteochondroma theo NCI không?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    }
+  ]
+}

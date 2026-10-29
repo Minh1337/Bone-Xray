@@ -1,0 +1,1659 @@
+{
+  "created_at_utc": "2026-10-29T08:21:56.532559+07:00",
+  "project": "BoneScope Stage 11 RAG",
+  "status": "technically_in_progress_not_independently_accepted",
+  "snapshot": "evidence_neutral_phrase_regression_bundle_v8_20261029",
+  "scope_note": "Bundle v8 rebuilt from v7 after adding neutral approximation cues. One in-sample strict OFD report improves from 1/5 to 2/5 positive queries; the other 15 report metrics are unchanged. Strict lexical filtering remains unsuitable for default use; no entailment or independent clinical validity is demonstrated; all seven gates remain open and answer_ready=false.",
+  "corpus": {
+    "sources": 21,
+    "chunks": 759,
+    "vector_shape": [
+      759,
+      384
+    ],
+    "sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+    "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+    "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+    "retrieval_config_sha256": "c8f45d1af962c5b78a57096db2b219f66bd85168fdaf094daec7c7e083533aed",
+    "evidence_config_sha256": "bffd40b2dddf2cc4881232902f9f2ed1f21b82967fe246d71c672f8488ce2aa6"
+  },
+  "ofd_source": {
+    "id": "osteofibrous-dysplasia-review-2024",
+    "pmcid": "PMC10967096",
+    "doi": "10.1186/s13018-024-04682-3",
+    "license": "CC BY 4.0",
+    "cache_path": "rag/source_cache/osteofibrous-dysplasia-review-2024.xml",
+    "bytes": 143385,
+    "sha256": "be017ab4d7546064180d5b00aece02264bb8d969d367c00233efd7b9a5ab1c7c",
+    "parser_status": "PASS",
+    "parser_blocks": 54,
+    "corpus_chunks": 29,
+    "explicit_cc_by_4_statement_in_payload": true,
+    "parser_chunk_hashes_match_corpus": true,
+    "administrative_sections_excluded": true,
+    "images_and_third_party_material": "Images are not included in the JATS corpus; linked figure assets and any material with separate credit lines require separate rights review."
+  },
+  "latest_bundle": {
+    "directory": "docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8/",
+    "report_count": 16,
+    "manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+    "comparison_sha256": "0a17d20f89f2ed14424157034f3d913b3a2ceaf315feffe1c79a5a35afd69cf1",
+    "metrics_changed_reports": 1,
+    "reports_compared": 16,
+    "changed_report": "osteofibrous_dysplasia_dev_strict.json",
+    "other_reports_metrics_unchanged": 15,
+    "strict_lexical_regression": {
+      "positive_questions": 40,
+      "lexically_passed_positive": 4,
+      "positive_abstention_count": 36,
+      "positive_acceptance_fraction": 0.1,
+      "negative_questions": 14,
+      "negative_abstention_count": 14,
+      "negative_abstention_fraction": 1.0,
+      "reports": [
+        {
+          "report": "expansion_dev_strict.json",
+          "positive_questions": 22,
+          "lexically_passed_positive": 1,
+          "positive_abstention": 0.9545454545454546,
+          "recall_at_k": 0.045454545454545456,
+          "negative_questions": 3,
+          "negative_abstention": 1.0
+        },
+        {
+          "report": "osteofibrous_dysplasia_dev_strict.json",
+          "positive_questions": 5,
+          "lexically_passed_positive": 2,
+          "positive_abstention": 0.6,
+          "recall_at_k": 0.4,
+          "negative_questions": 2,
+          "negative_abstention": 1.0
+        },
+        {
+          "report": "synovial_source_dev_strict.json",
+          "positive_questions": 4,
+          "lexically_passed_positive": 0,
+          "positive_abstention": 1.0,
+          "recall_at_k": 0.0,
+          "negative_questions": 2,
+          "negative_abstention": 1.0
+        },
+        {
+          "report": "synovial_synonym_dev_strict.json",
+          "positive_questions": 1,
+          "lexically_passed_positive": 1,
+          "positive_abstention": 0.0,
+          "recall_at_k": 1.0,
+          "negative_questions": 1,
+          "negative_abstention": 1.0
+        },
+        {
+          "report": "v2_test_strict.json",
+          "positive_questions": 8,
+          "lexically_passed_positive": 0,
+          "positive_abstention": 1.0,
+          "recall_at_k": 0.0,
+          "negative_questions": 6,
+          "negative_abstention": 1.0
+        }
+      ],
+      "interpretation": "Agent-authored/in-sample regression data; lexical passage is not entailment or factual correctness."
+    }
+  },
+  "replay": {
+    "status": "PASS",
+    "reports_matched": 16,
+    "reports_total": 16,
+    "manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+    "report_sha256": "27f23f24cb8022083634ec0279df6aa42418db2255f388aefbdb78e617937e13",
+    "command": ".\\.venv\\Scripts\\python.exe -m rag.replay_reports --bundle docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8 --output docs/reference/stage11_replay_20261029_evidence_neutral_v8.json",
+    "default_bundle": "docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8",
+    "implementation_sha256": "1b5c664e608a987bd47fb8f97822ee1c00789a80f05ac53f752de1f14872bf1b",
+    "path": "docs/reference/stage11_replay_20261029_evidence_neutral_v8.json",
+    "report_artifacts_checked": 16,
+    "preflight_mismatches": []
+  },
+  "audit": {
+    "status": "PASS",
+    "scope": "artifact_integrity_and_provenance_only_not_medical_validity",
+    "source_caches_checked": 21,
+    "source_cache_missing": 0,
+    "datasets_checked": 9,
+    "reports_checked": 16,
+    "comparison_checked": true,
+    "manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+    "sha256": "303e4f5eb7799d2e81c464ba0a175618ba60b7c0dff39c6bae4b245b5220b047",
+    "implementation_sha256": "59ad34c9be30186b27e52820e170e974a533ca0c74aaec80a54077997ae9d70b",
+    "command": ".\\.venv\\Scripts\\python.exe -m rag.audit --report-dir docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8 --output docs/reference/stage11_integrity_audit_20261029_evidence_neutral_v8.json",
+    "default_report_directory": "docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8",
+    "path": "docs/reference/stage11_integrity_audit_20261029_evidence_neutral_v8.json",
+    "errors": []
+  },
+  "policy_probe": {
+    "dataset": "docs/reference/stage11_personal_image_outcome_probes_v2_20261028.json",
+    "dataset_sha256": "c062ba6d3a03c2f50874e351362a794e927643c979c2466b2122cc819240b478",
+    "negative_cases": 33,
+    "abstained": 33,
+    "routing_accuracy": 1.0,
+    "provenance": "Cumulative agent-authored development probes. The latest six wording variants were discovered and fixed in-sample; the total is not blind, independent or representative. Text-only: no attached pixels or attachment metadata processed.",
+    "control_cases": {
+      "general_education_in_scope": 18,
+      "general_education_total": 18,
+      "individual_case_image_misses_fixed": 33
+    },
+    "latest_probe_record": "docs/reference/stage11_personal_image_routing_edge_probes_20261029_v5.json",
+    "latest_probe_record_sha256": "963530a38e128b6b905076f0f3e6cdfc173302b2ee061ee9b278500bbec65b12",
+    "image_routing_dataset": {
+      "path": "rag/data/evaluation_image_routing_dev_20261028.json",
+      "sha256": "6f4bfe614023cba57ef11eec42fd1209e4c01256150d265344dd60162287659d",
+      "question_count": 51,
+      "status_matches": 51,
+      "routing_accuracy": 1.0,
+      "negative_abstention": 1.0,
+      "provenance": "Agent-authored Vietnamese/English policy development probes. The 2026-10-29 extension from 30 to 36 followed direct policy inspection that found patient-in-clinic, patient-seen, semicolon-linked image, case-from-clinic, person-treated, and person-under-care misses. Query wording informed policy changes on this same dataset; fully in-sample and not independent, blind, clinically adjudicated, or representative. The 2026-10-29 extension from 36 to 41 follows a second policy-boundary review for cross-sentence image references, implicit clinical image ownership, hospital/service patient context, and caregiver wording. These five additions are agent-authored, fully in-sample development probes, not independent or clinically adjudicated. A further 2026-10-29 wording audit extended the development set from 41 to 46 after finding five misses involving Vietnamese patient-image ownership, child film wording, past treatment/consultation wording, and image acquisition followed by a separate sentence. This extension is in-sample and agent-authored, not independent or clinically adjudicated. The v7 extension from 46 to 51 adds five agent-authored personal-image wording probes, remains fully in-sample, and has no independent or specialist adjudication."
+    }
+  },
+  "code_hashes": {
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/build_evaluation_bundle.py": "b9acfa268befa68398827b0b51edfa4530fb926ebf5bc9bc530966920c1382f8",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/audit.py": "59ad34c9be30186b27e52820e170e974a533ca0c74aaec80a54077997ae9d70b",
+    "rag/replay_reports.py": "1b5c664e608a987bd47fb8f97822ee1c00789a80f05ac53f752de1f14872bf1b",
+    "rag/build_corpus.py": "c78602be9c9e839e9dca96834b7064bc2b900fbb495ec3e809291b6143b3f31f",
+    "tools/analyze_evidence_coverage.py": "a30810119049a83b902d4f29fcfbc657a93a87d272c4b3fb2389d0f1023b1997",
+    "rag/data/evidence_config.json": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+    "tools/compare_evidence_unknown_term_policy.py": "725f520526be8d4641be5501a7cd86f7b028bf9c26e29d63ce578d8e399ce69a",
+    "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+    "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546"
+  },
+  "tests": {
+    "status": "PASS",
+    "collected": 79,
+    "passed": 79,
+    "failed": 0,
+    "subtests_passed": 127,
+    "warnings": [
+      "Starlette TestClient AnyIO BlockingPortal deprecation warning"
+    ],
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+    "run_record": "docs/reference/stage11_test_run_20261029_partial_answerability_evaluator.json",
+    "implementation_hashes": {
+      "xray_api.py": "f7e9da3a00389fb3a903d71581e4993c672cb752c98650be36b84298a63cc9e9",
+      "xray_web/index.html": "fa2d4d877309320d866a031728ed97188f97f5ce641a9a1c493695724708418b",
+      "xray_web/app.js": "12974b38112ec4601e4c375efae68185308121e6bb1a86db8d9fba855d1a7331",
+      "xray_web/history.html": "6c6c2c91754852ec55dd7713ae292da86231918eb0295b15b8f26f95f9e5b2d8",
+      "xray_web/case_detail.html": "9e98f979f379680b63527d5d9a6d2520bf61ec72f7cc0fe34f293f434ee431b4",
+      "rag/audit.py": "59ad34c9be30186b27e52820e170e974a533ca0c74aaec80a54077997ae9d70b",
+      "rag/replay_reports.py": "1b5c664e608a987bd47fb8f97822ee1c00789a80f05ac53f752de1f14872bf1b",
+      "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+      "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+      "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+      "rag/evidence.py": "d8ec53d3767118962caab11c6c1dc41569b0ce3e88af117c279e0e32bf2c06c8",
+      "rag/build_corpus.py": "c78602be9c9e839e9dca96834b7064bc2b900fbb495ec3e809291b6143b3f31f",
+      "rag/build_evaluation_bundle.py": "b9acfa268befa68398827b0b51edfa4530fb926ebf5bc9bc530966920c1382f8",
+      "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546"
+    },
+    "targeted_regression": {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_corpus.py -q",
+      "passed": 20,
+      "subtests_passed": 12,
+      "exit_code": 0,
+      "coverage": "Parses the saved NCBI EFetch pmc-articleset wrapper containing exactly one article; rejects empty and multi-article wrappers."
+    },
+    "interpretation": "Full software regression after strict three-level answerability/status validation, separate population metrics, complete-dataset schema validation, and evidence-gold requirement for fully answerable rows; 11 evaluator tests and 79 full-suite tests/127 subtests pass. Synthetic fixtures only; no reviewer-labeled or blind set, and this is not independent retrieval or clinical validation.",
+    "run_record_sha256": "e83a149f2b59460d9e656cd5682127ce5dc528501602c97956ea5307e9f7f424",
+    "targeted_evidence_group_regression": {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_evaluation.py -q",
+      "passed": 6,
+      "exit_code": 0,
+      "coverage": "Alternative acceptable evidence groups are selected independently; completion rank and MRR are computed against a complete accepted group."
+    },
+    "targeted_label_mapping_regression": {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_retrieval.py -q",
+      "passed": 13,
+      "subtests_passed": 73,
+      "exit_code": 0,
+      "coverage": "Adds five English BTXRD label-definition/mapping probes for osteofibroma and synovial osteochondroma; expected reason is unverified_dataset_label_mapping."
+    },
+    "test_file_hashes": {
+      "api_tests/test_api.py": "5e3ede7c63c79938def8eb1d04d595d1d780036a68688fb4080019102c08da99",
+      "api_tests/test_case_api.py": "b8547db40956371e274a7e18a7df67dfc9bd12eb5c08519ce82921ccf2074bf5",
+      "rag/tests/test_audit.py": "ebb54a802adf2693c2b1c87631718a2beab9f0022c794f889effee4b693bf07a",
+      "rag/tests/test_corpus.py": "12cb43286b2227c2825ec0868c374d75b9499d6734f5bfc0495c065c58d162fd",
+      "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546",
+      "rag/tests/test_evidence.py": "4bf9e47051899dbc0d19045eb4c1a90795c6fa337dd5a37e9d0e1fc7446d46be",
+      "rag/tests/test_retrieval.py": "38994374a45851697feace6df109af71320781c302392257673efa23dddfdde0",
+      "tests/test_validation.py": "021b1e0e25320040f7cad188c8c0bc72964032340a80f362618514d4f959c1a9",
+      "ui_tests/test_ui_routes.py": "00585825226ae799ebb9c953b7d53e4a26b434fe79a1a16575f5ab2e6be1fca9"
+    },
+    "cached_source_parser_check": {
+      "record": "docs/reference/stage11_cached_source_review_20261029_ossifying_fibroma_case.json",
+      "record_sha256": "d9c77152dea824f5adaa7b748113750321d3f468ed22f9a34a78dec8dce5150b",
+      "xml_sha256": "d82f42d5ea2424eb83d9da910ac4f41ab1c661634286338d34c8ffce7c8931c6",
+      "status": "PASS"
+    },
+    "evaluation_image_routing_dev": {
+      "path": "rag/data/evaluation_image_routing_dev_20261028.json",
+      "sha256": "6f4bfe614023cba57ef11eec42fd1209e4c01256150d265344dd60162287659d",
+      "questions": 51,
+      "status_matches": 51,
+      "routing_accuracy": 1.0,
+      "negative_abstention": 1.0,
+      "provenance": "Agent-authored and used to discover/fix policy gaps; in-sample and not blind/independent/representative."
+    },
+    "personal_image_probe_record": {
+      "path": "docs/reference/stage11_personal_image_routing_edge_probes_20261029_v5.json",
+      "sha256": "963530a38e128b6b905076f0f3e6cdfc173302b2ee061ee9b278500bbec65b12",
+      "personal_cases_passed": 5,
+      "personal_cases_total": 5,
+      "education_controls_passed": 2,
+      "education_controls_total": 2,
+      "provenance": "Agent-authored prompts inspected during policy-boundary work. These probes and controls are not blind, independent, representative, or specialist-adjudicated.",
+      "dataset_questions": 51
+    },
+    "targeted_final_regression": {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_retrieval.py rag/tests/test_corpus.py -q",
+      "passed": 34,
+      "subtests_passed": 95,
+      "exit_code": 0,
+      "coverage": "Final focused rerun for personal-image case/context policy and bare/PMC-wrapped JATS parsing."
+    },
+    "targeted_personal_image_regression": {
+      "command": ".\\.venv\\Scripts\\python.exe -m unittest rag.tests.test_retrieval -q",
+      "passed": 16,
+      "exit_code": 0,
+      "coverage": "Bilingual patient-sent, clinician-reviewed, service-owned and caregiver image phrasing; cross-sentence specific-patient follow-up with general-education controls."
+    },
+    "partial_answerability_regression": {
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_evaluation.py -q",
+      "passed": 11,
+      "exit_code": 0,
+      "record": "docs/reference/stage11_test_run_20261029_partial_answerability_evaluator.json"
+    },
+    "legacy_report_compatibility": {
+      "path": "docs/reference/stage11_legacy_report_compatibility_20261029.json",
+      "sha256": "ce1a5b6e8ac80ed6adab30f7d1368af5d4073998fd421acc76dcf9e5b8ae5f73",
+      "status": "PASS",
+      "reports_checked": 16,
+      "reports_match_except_expected_evaluator_hash": 16,
+      "other_preflight_mismatches": [],
+      "ignored_fields": [
+        "created_at",
+        "implementation_sha256.evaluate.py"
+      ],
+      "current_evaluator_sha256": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e"
+    },
+    "strict_historical_replay_attempt": {
+      "path": "docs/reference/stage11_replay_20261029_partial_answerability_evaluator.json",
+      "status": "preflight_blocked_expected_code_hash_change",
+      "reports_checked": 0,
+      "detail": "The historical bundle binds the prior evaluator SHA; its immutable artifacts were not modified. Compatibility replay checked all 16 outputs separately."
+    }
+  },
+  "open_acceptance_gates": [
+    "independent specialist review",
+    "new blind evaluation set with locked protocol",
+    "citation-entailment validation",
+    "independent image cohort with rights, patient-level provenance and checkpoint-overlap audit",
+    "clinical safety review",
+    "privacy/security and health-data governance review before any real-patient-data use or deployment",
+    "image-level rights-chain verification for BTXRD upstream Radiopaedia/MedPix materials before any redistribution, commercial use or derivative image reuse"
+  ],
+  "answer_ready": false,
+  "embedding_model": {
+    "id": "intfloat/multilingual-e5-small",
+    "revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+    "sha256": "7a77d5da5ee721c7c740e4082447d3026b6521d3eac5edb93edb6aa88f03b7d7"
+  },
+  "evaluation_findings": {
+    "expansion_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_exact_cc_license_validation/expansion_dev.json",
+      "sha256": "13ecdc31cd6274b55fbbaa6ce1cb56b4d5129f88aab53af66133f651b9909ce3",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "a753fbc6d63f4816c7ebe3ee58524ca699a9b7c3f6557d7a216a31996874a134",
+      "question_counts": {
+        "answerable": 22,
+        "negative": 3
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.6833333333333333,
+        "evidence_precision_at_k": 0.20000000000000007,
+        "evidence_recall_at_k": 0.9772727272727273,
+        "evidence_ndcg_at_k": 0.7526947334499013,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "22 positive/3 negative; query wording and routing were viewed/tuned on this development set. In-sample only; flat gold lists do not define alternative evidence groups."
+    },
+    "viewed_v2_regression": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_exact_cc_license_validation/v2_test_regression.json",
+      "sha256": "aa4a9e991de14dbf8d4bc4c2c27570aad057798e338128fd1ccb6fe85730476a",
+      "dataset_path": "rag/data/evaluation_v2.json",
+      "dataset_sha256": "e2713ad7000cb016eb151bd0d0540cc1371b7d9c17ccd8a0f2f4bf6f30eb03c9",
+      "question_counts": {
+        "answerable": 8,
+        "negative": 6
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.7333333333333334,
+        "evidence_precision_at_k": 0.19999999999999998,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.7983566009043177,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "8 positive/6 negative; previously viewed and route-adjusted. Regression only, not held-out validation."
+    },
+    "strict_lexical_expansion_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_exact_cc_license_validation/expansion_dev_strict.json",
+      "sha256": "2adcf2677a968bd1d8d62fe2c9c623e0316e7935780c7739d930e309a253ffa0",
+      "dataset_path": "rag/data/evaluation_expansion_dev_v1.json",
+      "dataset_sha256": "a753fbc6d63f4816c7ebe3ee58524ca699a9b7c3f6557d7a216a31996874a134",
+      "question_counts": {
+        "answerable": 22,
+        "negative": 3
+      },
+      "metrics": {
+        "recall_at_k": 0.045454545454545456,
+        "mrr_at_k": 0.022727272727272728,
+        "evidence_precision_at_k": 0.009090909090909092,
+        "evidence_recall_at_k": 0.045454545454545456,
+        "evidence_ndcg_at_k": 0.02867862516233898,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.9545454545454546,
+        "routing_accuracy": 0.16
+      },
+      "interpretation": "Only 1/22 positive cases passes current lexical verification; 21/22 positives abstain. Lexical coverage is not entailment."
+    },
+    "ofd_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_exact_cc_license_validation/osteofibrous_dysplasia_dev.json",
+      "sha256": "0d6b5071b2563017b71814ca3e741caa2738594c306749b644a1ca38f9ca14a6",
+      "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "dataset_sha256": "b5a25bcff7c906c10655248b3ead9b839635ef12b2e6913efe15f0d253cbc3ed",
+      "question_counts": {
+        "answerable": 5,
+        "negative": 2
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 0.7,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 0.7785578521428744,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "strict_report": {
+        "path": "docs/reference/stage11_policy_rerun_20261028_post_offline_license_guard/osteofibrous_dysplasia_dev_strict.json",
+        "sha256": "f3ca9c1e9fa62580bb9f113538c94dcdeec00f8c404f8ffbf6c3e6d561b74aa8",
+        "dataset_path": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+        "dataset_sha256": "b5a25bcff7c906c10655248b3ead9b839635ef12b2e6913efe15f0d253cbc3ed",
+        "question_counts": {
+          "answerable": 5,
+          "negative": 2
+        },
+        "metrics": {
+          "recall_at_k": 0.2,
+          "mrr_at_k": 0.2,
+          "evidence_precision_at_k": 0.04,
+          "evidence_recall_at_k": 0.2,
+          "evidence_ndcg_at_k": 0.2,
+          "negative_abstention": 1.0,
+          "positive_abstention": 0.8,
+          "routing_accuracy": 0.42857142857142855
+        }
+      },
+      "interpretation": "Five positive/two policy-negative agent-authored in-sample cases; strict lexical check passes 1/5 positives. Narrative review is not a guideline or dataset-label definition."
+    },
+    "nci_osteochondroma_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_exact_cc_license_validation/nci_osteochondroma_dev.json",
+      "sha256": "68fd3fb4b09eb2159fe6f1663d9e6919387b0ac75df1425f2f426e717c149a50",
+      "dataset_path": "rag/data/evaluation_nci_osteochondroma_dev_20261028.json",
+      "dataset_sha256": "4da093159c5b66d6a17a3bc18bc81c1e4176917d6c8d059fff60bf0fb87af64b",
+      "question_counts": {
+        "answerable": 1,
+        "negative": 1
+      },
+      "metrics": {
+        "recall_at_k": 1.0,
+        "mrr_at_k": 1.0,
+        "evidence_precision_at_k": 0.2,
+        "evidence_recall_at_k": 1.0,
+        "evidence_ndcg_at_k": 1.0,
+        "negative_abstention": 1.0,
+        "positive_abstention": 0.0,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "Two agent-authored in-sample probes: general definition retrieved; unsupported BTXRD mapping abstains. Not validation."
+    },
+    "image_routing_dev": {
+      "path": "docs/reference/stage11_policy_rerun_20261029_personal_image_jats_wrapper_v2/image_routing_dev.json",
+      "sha256": "0665fc260eeb79de6faa5211c5ef3050d7aafdb5798c0685355efb468e76c467",
+      "dataset_path": "rag/data/evaluation_image_routing_dev_20261028.json",
+      "dataset_sha256": "a4f834dab5d85618d3eef450c0c02105a31b7d7ee9b43fd836dd22a99baaa57d",
+      "question_counts": {
+        "answerable": 0,
+        "negative": 36
+      },
+      "metrics": {
+        "recall_at_k": null,
+        "mrr_at_k": null,
+        "evidence_precision_at_k": null,
+        "evidence_recall_at_k": null,
+        "evidence_ndcg_at_k": null,
+        "negative_abstention": 1.0,
+        "positive_abstention": null,
+        "routing_accuracy": 1.0
+      },
+      "interpretation": "36 agent-authored in-sample negative text probes; all route to specialist-assessment abstention. Six new case-ownership/semicolon edge phrasings exposed the prior gap; four separate general-education controls remain unit regressions, not negative rows in this dataset. Does not inspect uploaded image pixels or attachment metadata."
+    }
+  },
+  "cohort_candidates": [
+    {
+      "study": "Song et al., Cancer Imaging 2024",
+      "cohort": "1,305 pathology-confirmed patients across two centers; independent center-level test set 262 patients, X-rays available for 233",
+      "reference_standard": "Two radiologists independently reviewed histopathology diagnoses and assigned benign/intermediate/malignant under WHO 2020",
+      "endpoint": "Benign / intermediate / malignant; multimodal study, not the current ten-subtype endpoint",
+      "availability": "No public image package or patient manifest located; article says no datasets were generated or analysed despite reporting cohorts, so access statement needs clarification",
+      "status": "Candidate to request; paper's external split does not prove independence from the BoneScope checkpoint, BTXRD, or pretraining; shares authors/Guangzhou institutional network with Xie et al. 2024, so overlap between the two cohorts must be clarified. Article CC BY 4.0 does not license patient images",
+      "source": "https://link.springer.com/article/10.1186/s40644-024-00784-7"
+    },
+    {
+      "study": "eBioMedicine 2020",
+      "cohort": "2,899 images / 1,356 patients; external test 639 images / 291 patients from two centers",
+      "reference_standard": "histopathology; internal CV grouped by patient ID",
+      "endpoint": "benign / intermediate / malignant",
+      "availability": "not downloadable; reasonable request only",
+      "status": "candidate to request; access, rights, manifest and checkpoint overlap are unverified",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7689511/"
+    },
+    {
+      "study": "Li et al., Insights into Imaging 2026",
+      "cohort": "471 Ruijin patients; one representative radiograph per patient",
+      "reference_standard": "pathology confirmed per paper; third-reader consensus described for region annotation disagreements, not clearly diagnostic labels",
+      "endpoint": "benign / non-benign",
+      "availability": "reasonable request only",
+      "status": "Paper reports Ruijin did not contribute to BTXRD and is geographically distinct, supporting source-level independence; data, rights, patient manifest and image-level checkpoint-overlap audit remain unavailable/unverified.",
+      "source": "https://link.springer.com/article/10.1186/s13244-026-02271-y"
+    },
+    {
+      "study": "DeepTIRP multicenter study, primary article 2024/2025",
+      "cohort": "1,044 development patients; internal test 354; validation 171; external 423; three Chinese hospitals; bone tumors and infections",
+      "reference_standard": "Primary bone tumors classified per WHO 2020; infections confirmed by histology and/or culture; ROI annotation by two radiologists",
+      "endpoint": "Tumor versus infection / broader tumor-infection classification; not the current ten-subtype endpoint",
+      "availability": "Restricted Zenodo files; request for noncommercial academic use under formal MTA and institutional review; article cites DOI 10.5281/zenodo.13858807 while matching-title Zenodo record found is 10.5281/zenodo.13858808",
+      "status": "High-priority request candidate only. DOI mismatch, data rights, license, patient-level manifest, split IDs and checkpoint/pretraining overlap unresolved; no files accessed",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11904180/"
+    },
+    {
+      "study": "von Schacky et al., RSNA Radiology 2021 / European Radiology 2022",
+      "cohort": "2021: Munich 934 internal and Freiburg 111 external; 2022: Munich 880 and Freiburg 96; related 2024 metadata paper: 804 patients / 1,785 radiographs, 2000-2020",
+      "reference_standard": "Histopathology; radiologist review reported in the 2022 study",
+      "endpoint": "Binary benign versus malignant, suitable only for a separately specified binary evaluation",
+      "availability": "No public image package or data-access route found in reviewed article/repository pages; model code repository does not include images",
+      "status": "Potentially related cohort family, exact overlap unverified. Do not sum cohort counts or treat as independent external data; article licenses do not establish image rights",
+      "source": "https://pubs.rsna.org/doi/10.1148/radiol.2021204531; https://link.springer.com/article/10.1007/s00330-022-08764-w; https://link.springer.com/article/10.1186/s12891-024-07934-9"
+    },
+    {
+      "study": "SNUH-BoneTumor dataset described in SKELEX, npj Digital Medicine 2026",
+      "cohort": "19,757 anatomically cropped radiographs; count is images, not patients",
+      "reference_standard": "Image-level annotations by a board-certified orthopedic oncologist; pathology when available, otherwise radiographic findings and clinical history with CT/MRI support; authors acknowledge label heterogeneity",
+      "endpoint": "Multiple musculoskeletal labels including bone tumor; not a verified fit to the ten-class BoneScope endpoint",
+      "availability": "Reasonable request; case-by-case institutional, privacy and IP review",
+      "status": "Request candidate only. Used in SKELEX tumor-classifier training, so not external for that checkpoint; BoneScope overlap and image-use rights are unverified",
+      "source": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13526867/"
+    },
+    {
+      "study": "Xie et al., European Journal of Radiology 2024",
+      "cohort": "878 pathology-confirmed patients from two centers; 638 train, 77 validation, 80 internal test, 83 external test",
+      "reference_standard": "Pathology-confirmed primary bone tumors",
+      "endpoint": "Five broad histological groups; not the current ten-subtype endpoint",
+      "availability": "No public image package or accessible data-use terms located in reviewed sources",
+      "status": "Request candidate only. Shares authors and Guangzhou institutional network with Song et al. 2024; possible cohort overlap is unproven and must be resolved before treating as an independent source. Rights, patient-level manifest, external center independence and BoneScope checkpoint/pretraining overlap unverified",
+      "source": "https://doi.org/10.1016/j.ejrad.2024.111496"
+    },
+    {
+      "study": "Shao et al. and Xu et al., Guangdong/Sun Yat-sen knee radiograph studies 2024",
+      "cohort": "Shao: 333 pathology-confirmed patients, osteolytic osteosarcoma vs GCT, 54 external across three centers; Xu: 687 tumor patients + 1,988 normal participants, external 56 tumor + 145 normal",
+      "reference_standard": "Shao: postoperative pathology for both labels; Xu: tumor labels based on histopathology or radiography with CT/MRI/clinical follow-up; normal controls reviewed by senior radiologists",
+      "endpoint": "Shao narrow two-class OS-vs-GCT; Xu knee tumor detection/tumor-vs-normal; neither is the general ten-subtype endpoint",
+      "availability": "Both studies say data are available/shared on reasonable request",
+      "status": "Request as one potentially related four-center cohort family until custodians resolve shared centers/patients. Image rights, patient-level manifests and BoneScope checkpoint/pretraining overlap unverified",
+      "source": "https://link.springer.com/article/10.1186/s13244-024-01610-1; https://qims.amegroups.org/article/view/126412/html"
+    },
+    {
+      "study": "Yamana et al., Bone & Joint Research 2025",
+      "cohort": "642 biopsy/resection-confirmed cases across three Kyushu hospitals; 1,129 radiographs; 40 diagnoses",
+      "reference_standard": "Pathology diagnosis by experienced musculoskeletal pathologists; intermediate types grouped with malignant for the binary task",
+      "endpoint": "Broad benign/malignant classification and detection; not the ten-subtype BoneScope endpoint",
+      "availability": "Other researchers may request data; no image package, manifest, image rights grant, or data-use terms verified",
+      "status": "Request-only candidate. Main evaluation is random five-fold case-level CV within the source cohort; reader comparison uses a selected subset and is not independent external testing. Article CC BY-NC-ND 4.0 does not itself license patient images. Need rights, patient/image manifest, checkpoint/pretraining overlap audit, and confirmation of any separately held locked external set.",
+      "source": "https://boneandjoint.org.uk/article/10.1302/2046-3758.149.BJR-2024-0505.R1/pdf; https://pmc.ncbi.nlm.nih.gov/articles/PMC12401592/"
+    },
+    {
+      "study": "Huang, Yao, Li et al., Journal of Clinical Radiology 2024, 43(10):1782-1786",
+      "cohort": "Official issue abstract: 2,127 cases from six facilities (2013-2022); sex/age/location and X-ray/CT/MRI; model uses a subset of X-rays.",
+      "reference_standard": "Abstract says patients diagnosed with primary bone tumors; histopathology, label adjudication and case-level reference standard are not specified in the accessible abstract.",
+      "endpoint": "Binary benign/malignant X-ray classification; test average AUC 0.8499 per abstract; no transfer to BoneScope.",
+      "availability": "Abstract calls database open-source, but no direct data portal, image-specific license, access terms or patient/image manifest verified.",
+      "status": "Literature lead only, not eligible or established independent. Yao Shunhan and Huang Yuanxiang are coauthors on BTXRD; BTXRD Center 1 has a Guangxi collection period (2013-07 to 2023-07) overlapping the reported 2013-2022 database. This is a priority lineage question, not proof of case/image overlap or independence. Require data-controller confirmation, rights, reference standard, patient-level split and checkpoint/BTXRD overlap audit.",
+      "source": "https://www.lcfsxzz.com/CN/Y2024/V43/I10",
+      "related_source": "https://www.nature.com/articles/s41597-024-04311-y.pdf",
+      "accessed": false,
+      "images_downloaded": false,
+      "registered": false,
+      "ingested": false
+    }
+  ],
+  "data_review": {
+    "source_review": "docs/reference/stage11_online_evidence_review_20261028.md",
+    "source_review_updated_at": "2026-10-29T04:29:16Z",
+    "source_review_sha256": "efbe0f96bc2cd9f30e8eb6636abc151bb4b094fdd1fbb56af9fa31e489c2fa64",
+    "reviewer_packet": "docs/reference/STAGE11_REVIEWER_PACKET_VI.md",
+    "external_cohort_checklist": "docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md",
+    "independent_review_protocol": "docs/reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md",
+    "acceptance_gate_template": "docs/reference/stage11_acceptance_gate_template_20261028.csv",
+    "blind_label_template": "docs/reference/stage11_blind_label_template_20261028.csv",
+    "policy_case_context_review": "docs/reference/stage11_policy_case_context_review_20261028.md",
+    "reporting_standards_reviewed": [
+      {
+        "name": "CLAIM 2024 Update",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11304031/",
+        "application": "2024 44-item reporting guideline for medical-imaging AI studies, including dataset/reference-standard/annotation/partition and internal/external testing details. Consider for a separate BoneScope image-classifier study; select alongside TRIPOD+AI and/or STARD-AI by prespecified aim/design. The 2024 scope excludes radiomics/pathomics. Not a risk-of-bias, validation, retrieval-only RAG or Stage 11 acceptance tool."
+      },
+      {
+        "name": "DECIDE-AI",
+        "url": "https://www.bmj.com/content/377/bmj-2022-070904",
+        "application": "Reporting guideline for early-stage, small-scale live clinical evaluation of AI decision-support: 27 items (17 AI-specific and 10 generic). Reserved for a future live clinical-workflow study; offline retrieval metrics do not satisfy this scope."
+      },
+      {
+        "name": "FDA Clinical Decision Support Software guidance and FAQ",
+        "url": "https://www.fda.gov/medical-devices/software-medical-device-samd/clinical-decision-support-software-frequently-asked-questions-faqs",
+        "application": "Scope note: image analysis does not meet the non-device CDS image-analysis criterion; this alone does not establish device status. Any future use needs a qualified, function- and jurisdiction-specific review."
+      },
+      {
+        "name": "NIST AI Risk Management Framework",
+        "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+        "application": "Voluntary risk-management reference, currently under revision; it is not regulatory approval or clinical validation."
+      },
+      {
+        "name": "WHO Ethics and governance of AI for health",
+        "url": "https://www.who.int/publications/i/item/9789240029200",
+        "application": "Health-AI ethics, human-rights, governance and accountability guidance; it does not certify this project."
+      },
+      {
+        "name": "Vietnam medical-device framework: 08/VBHN-BYT and Circular 24/2026/TT-BYT",
+        "url": "https://vanban.chinhphu.vn/?classid=0&docid=217131&pageid=27160",
+        "application": "Conditional jurisdictional lead only. Consolidated Decree 98 text includes software with specified intended medical purposes; Circular 24/2026 is effective 2026-07-01. No classification or pathway determination for BoneScope is made."
+      },
+      {
+        "name": "Vietnam personal and health data governance: Law 91/2025/QH15, Decree 356/2025/NĐ-CP, Decree 102/2025/NĐ-CP",
+        "url": "https://vanban.chinhphu.vn/?classid=1&docid=214590&pageid=27160&typegroup=",
+        "application": "Conditional privacy/data-governance review lead before any use of real or identifiable patient information; no legal conclusion or claim of patient-data processing in the current prototype."
+      },
+      {
+        "name": "MI-CLEAR-LLM 2025 update",
+        "url": "https://www.kjronline.org/DOIx.php?id=10.3348/kjr.2025.1522",
+        "application": "Eight reporting categories for healthcare LLM accuracy studies, including model/access/input/adaptation, prompt optimization/execution, stochasticity and test-set independence. Use for future generator/LLM accuracy work; not retrieval relevance, evidence entailment, abstention validation or approval."
+      },
+      {
+        "name": "FLAIR (Framework for LLM Assessment in Radiology), Radiology 2026",
+        "url": "https://doi.org/10.1148/radiol.250913",
+        "application": "Published 2026 radiology-specific LLM reporting checklist (32 items in six categories); complementary aid for future in-scope generator/radiology studies, not a retrieval-only metric or validation. The authors note the search strategy may have missed prior work and that periodic updates may be needed; recheck current version/scope."
+      },
+      {
+        "name": "TRIPOD+AI",
+        "url": "https://www.bmj.com/content/385/bmj-2023-078378",
+        "application": "2024 reporting guideline for studies developing, evaluating/validating, or updating clinical prediction models using regression or machine learning; 27 main items and 52 subitems. Select alongside STARD-AI only when prespecified study aims/design warrant both. Not a quality appraisal, clinical-validity certification, retrieval-only RAG checklist, or Stage 11 acceptance evidence."
+      },
+      {
+        "name": "TRIPOD-LLM",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12104976/",
+        "application": "Published 2025 reporting guideline for LLM studies in biomedical/healthcare: 19 main items and 50 subitems; 14 main items/32 subitems apply across designs/tasks, with the remainder modular by research design and LLM task. Use only for an in-scope future LLM study; not a retrieval-only RAG quality/acceptance checklist."
+      },
+      {
+        "name": "CHART",
+        "url": "https://doi.org/10.1136/bmjmed-2025-001632",
+        "application": "Published 2025 reporting guideline for studies evaluating generative chatbots that summarize clinical evidence or provide health advice: 12 items and 39 subitems. Applicable only to future studies in that chatbot-health-advice scope; not to current retrieval-only RAG."
+      },
+      {
+        "name": "SPIRIT 2025",
+        "url": "https://www.bmj.com/content/389/bmj-2024-081477",
+        "application": "Current core protocol reporting guideline (34 items; supersedes SPIRIT 2013). Consider only for a future clinical trial protocol; not a conduct manual or Stage 11 acceptance evidence."
+      },
+      {
+        "name": "CONSORT 2025",
+        "url": "https://www.bmj.com/content/389/bmj-2024-081123",
+        "application": "Current core randomized-trial results reporting guideline (30 items; supersedes CONSORT 2010). Consider only for a future clinical trial report; not a conduct manual or Stage 11 acceptance evidence."
+      },
+      {
+        "name": "SPIRIT-AI",
+        "url": "https://www.bmj.com/content/370/bmj.m3210",
+        "application": "2020 AI-specific protocol extension (15 items: 12 extensions and 3 elaborations) for eligible clinical-trial protocols. The official SPIRIT–CONSORT directory presently lists SPIRIT-AI under SPIRIT 2013 and separately identifies extensions based on SPIRIT 2025. A future trial methodologist must reconcile with current core and journal requirements."
+      },
+      {
+        "name": "CONSORT-AI",
+        "url": "https://www.bmj.com/content/370/bmj.m3164",
+        "application": "2020 AI-specific trial-reporting extension/elaboration (14 items) for eligible AI intervention trials; the BMJ statement describes these as additions to CONSORT 2010. Reconcile with CONSORT 2025 core and journal instructions; do not infer directory listing or automatic harmonization. No trial is in current Stage 11 scope."
+      },
+      {
+        "name": "STARD-AI",
+        "url": "https://www.nature.com/articles/s41591-025-03953-8",
+        "application": "Published 2025 reporting guideline for diagnostic-accuracy studies of AI index tests against a reference standard (40 checklist items); use for a future prespecified classifier or diagnostic-output study in scope. The 2026 author correction changes steering-committee listing, not the checklist. Not for current retrieval-only RAG, risk-of-bias appraisal, validation certification or gate closure."
+      },
+      {
+        "name": "SPIRIT-C 2026",
+        "url": "https://www.bmj.com/content/392/bmj-2025-085062",
+        "application": "2026 extension adding 17 protocol-reporting items for randomized trials involving children/adolescents aged 0–19; use alongside SPIRIT 2025 only for an in-scope paediatric RCT. Not current retrieval-only evaluation or conduct/acceptance evidence."
+      },
+      {
+        "name": "CONSORT-C 2026",
+        "url": "https://www.bmj.com/content/392/bmj-2025-085061",
+        "application": "2026 extension adding 13 results-reporting items for randomized trials involving children/adolescents aged 0–19; use alongside CONSORT 2025 only for an in-scope paediatric RCT. Not current retrieval-only evaluation or conduct/acceptance evidence."
+      },
+      {
+        "name": "GAMER",
+        "url": "https://ebm.bmj.com/content/30/6/390.full",
+        "application": "2025 nine-item reporting guideline for use of generative AI in any phase of medical research or manuscript preparation. It reports tool use/role; it does not assess performance or clinical validity of the AI system being studied and does not replace design-specific reporting guidance or retrieval-only RAG evaluation."
+      },
+      {
+        "name": "CLAIM 2026 Explanation, Elaboration and Examples",
+        "url": "https://doi.org/10.1148/ryai.260835",
+        "application": "Companion explanation/elaboration and illustrative examples for the 44-item CLAIM 2024 Update. Helps reviewers interpret the existing items; it is not a new checklist or revision, appraisal, validation, or Stage 11 acceptance gate."
+      }
+    ],
+    "note": "No new patient-level image data accessed. OFD/adamantinoma source triage reveals heterogeneous terminology and short/small cohort evidence; no claims, BTXRD class mapping, or clinical rule were added to the corpus.",
+    "personal_image_outcome_policy_review": "docs/reference/stage11_policy_case_context_review_20261028.md",
+    "personal_image_outcome_probes": "docs/reference/stage11_personal_image_outcome_probes_v2_20261028.json",
+    "online_evidence_review_sha256": "efbe0f96bc2cd9f30e8eb6636abc151bb4b094fdd1fbb56af9fa31e489c2fa64",
+    "additional_2026_btxrd_reuse_review": {
+      "article": "https://www.mdpi.com/2227-9059/14/2/299",
+      "source_dataset": "https://figshare.com/articles/dataset/A_Radiograph_Dataset_for_the_Classification_Localization_and_Segmentation_of_Primary_Bone_Tumors/27865398",
+      "disposition": "same BTXRD lineage; not independent or a new external cohort; image-level split due missing patient IDs; not ingested into the clinical disease corpus",
+      "record": "docs/reference/stage11_online_evidence_review_20261028.md"
+    },
+    "image_rights_chain_template": "docs/reference/stage11_image_rights_chain_template_20261028.csv",
+    "latest_continuation_replay": {
+      "path": "docs/reference/stage11_replay_20261028_continuation.json",
+      "sha256": "915c47d15105c10297c47e66a24842cce315df3f2ea04044481cd463670c1b0c",
+      "status": "PASS",
+      "preflight_mismatches": [],
+      "reports_matched": 16,
+      "reports_total": 16,
+      "manifest_sha256": "5d38921a426c77707363f93328b45ad28a8f97f2db9e5404ba979fd3b4617955"
+    },
+    "latest_continuation_integrity_audit": {
+      "path": "docs/reference/stage11_integrity_audit_20261028_continuation.json",
+      "sha256": "6d25b904c2088b6c88bcfe9205a243efeacce28265d37b671d140a2ae6e60053",
+      "status": "PASS",
+      "scope": "artifact_integrity_and_provenance_only_not_medical_validity",
+      "source_cache_checked": 21,
+      "source_cache_missing": 0,
+      "datasets_checked": 9,
+      "reports_checked": 16,
+      "errors": []
+    },
+    "source_registry": {
+      "path": "rag/data/sources.json",
+      "sha256": "742d20ddc4d91ade7b5e7b52bedc8f756eb811132b23648dd8a3e606ac2e5b8a",
+      "source_count": 21,
+      "nci_text_policy_entries": 13,
+      "explicit_policy_url": true
+    },
+    "additional_screened_dataset_exclusions": [
+      {
+        "name": "BoneMet (ICLR 2025)",
+        "reason": "Murine breast-cancer bone-metastasis dataset; serial rotational X-rays/CT and animal-level labels, not human primary bone tumor cohort; repository states CC BY-NC 4.0",
+        "sources": [
+          "https://proceedings.iclr.cc/paper_files/paper/2025/file/25dbf5a09fbf2553739a04645d3dfb2c-Paper-Conference.pdf",
+          "https://github.com/BoneMet/BoneMet"
+        ],
+        "downloaded": false
+      }
+    ],
+    "license_parser_validation": {
+      "status": "PASS",
+      "coverage": [
+        "BioC/JATS BY-NC/BY-ND/BY-SA statements rejected",
+        "JATS restricted href rejected despite generic CC BY text",
+        "JATS canonical CC BY 4.0 href/text accepted",
+        "restricted terms in URL or statement override canonical CC BY URL"
+      ],
+      "test_file": "rag/tests/test_corpus.py",
+      "test_record": "docs/reference/stage11_test_run_20261028_exact_cc_license_validation.json",
+      "references": [
+        "https://creativecommons.org/licenses/by/4.0/deed.en",
+        "https://creativecommons.org/licenses/by-nc/4.0/legalcode.en",
+        "https://creativecommons.org/licenses/by-nd/4.0/",
+        "https://creativecommons.org/share-your-work/cc-licenses/"
+      ],
+      "scope": "License identity guard for registered text payloads only; no grant for figures, third-party content or patient images."
+    },
+    "label_nomenclature_screen": {
+      "label": "BTXRD osteofibroma",
+      "disposition": "No source ingested. A CC BY 4.0 mandibular ossifying-fibroma case was cached and parser-checked, then screened out of long-bone class mapping. Preserve unverified_dataset_label_mapping abstention pending specialist adjudication.",
+      "sources": [
+        "https://whobluebooks.iarc.who.int/structures/soft-tissue-and-bone-tumours/",
+        "https://publications.iarc.who.int/Book-And-Report-Series/Who-Classification-Of-Tumours/Soft-Tissue-And-Bone-Tumours-2020",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3151475/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC11370983/"
+      ],
+      "screen_record": "docs/reference/stage11_online_evidence_review_20261028.md",
+      "images_downloaded": false,
+      "mapping_abstention_regression": "rag/tests/test_retrieval.py; five new English probes, expected unverified_dataset_label_mapping",
+      "cached_case_record": "docs/reference/stage11_cached_source_review_20261029_ossifying_fibroma_case.json"
+    },
+    "governance_artifact_hashes": {
+      "reviewer_packet": {
+        "path": "docs/reference/STAGE11_REVIEWER_PACKET_VI.md",
+        "sha256": "135048bfa21981d65ccd16fdec517b006846e551865e4039158e96b624a794fa"
+      },
+      "independent_review_protocol": {
+        "path": "docs/reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md",
+        "sha256": "0c3f69dec70cd8c36efe33f89499113705e7db7e329962b8036b9d83f4d23bf0"
+      },
+      "local_privacy_security_review": {
+        "path": "docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md",
+        "sha256": "492e996e1b35a8edac976bc759b2a11c365330d5d32fb310373d47daf92086ef"
+      },
+      "continuation_notes": {
+        "path": "docs/reference/STAGE11_CONTINUATION_NOTES_20261029.md",
+        "sha256": "23f0aaf0902ae9d89336903346f13fe95307e358dfd4df76641b0fd484fd7671"
+      },
+      "project_status": {
+        "path": "docs/PROJECT_STATUS_VI.md",
+        "sha256": "b9a63ffdfdecebeabd1f5042fd726a90f40f3e13a6b31b4d6cecac291e4b2a1e"
+      },
+      "handoff": {
+        "path": "docs/STAGE11_HANDOFF_VI.md",
+        "sha256": "092d79642a19ada6b09a4c168bd641b0e7dbef9f9011f82a2e9fa666a5a890fe"
+      },
+      "roadmap": {
+        "path": "docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md",
+        "sha256": "6b509e9a912f812666bda64531a3ef610f5d2b4ba79c9eea7babbda256909811"
+      },
+      "readme": {
+        "path": "README.md",
+        "sha256": "9c5aa90afb5c77feb6be388bf316d36d32afa26e1d3af47bfad386a3b4874593"
+      },
+      "readme_vi": {
+        "path": "README_VI.md",
+        "sha256": "adf71892b0891396556b718037efdf00a6d70b766b54b8f914ca35671c51bf03"
+      },
+      "external_cohort_checklist": {
+        "path": "docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md",
+        "sha256": "94038188241a8fbc5f30730d9a71660a796cdc3d32736276933f4eadaf085265"
+      },
+      "online_evidence_review": {
+        "path": "docs/reference/stage11_online_evidence_review_20261028.md",
+        "sha256": "efbe0f96bc2cd9f30e8eb6636abc151bb4b094fdd1fbb56af9fa31e489c2fa64"
+      },
+      "blind_label_template": {
+        "path": "docs/reference/stage11_blind_label_template_20261028.csv",
+        "sha256": "a61d7b3abdabdf9b6623db6e78981e7de33643a2aae4eb6f41854eae226e61b3"
+      },
+      "rag_index_guide": {
+        "path": "docs/guides/README_RAG_INDEX_VI.md",
+        "sha256": "65f7ba077e9aad1d29e6f03947250a1e18021d990930be1ab3dbd7ab2580e2e7"
+      },
+      "evidence_check_design": {
+        "path": "docs/reference/EVIDENCE_CHECK_DESIGN_VI.md",
+        "sha256": "058e30a40c318a4751a1f0d40c92d820bfc5aebf2eabedca1f5671ba0804cac3"
+      },
+      "acceptance_gate_template": {
+        "path": "docs/reference/stage11_acceptance_gate_template_20261028.csv",
+        "sha256": "73325cc67daf8063d977ba200694bf49b5e40d4adae9e2da2be40acd8025ec05"
+      },
+      "reviewer_declaration_template": {
+        "path": "docs/reference/STAGE11_REVIEWER_DECLARATION_TEMPLATE_VI.md",
+        "sha256": "aa5ab8cb3fdd3f6f5bc64d338a0e7b3171b939a6bfa1021fbc67678910efc30c"
+      },
+      "adjudication_log_template": {
+        "path": "docs/reference/stage11_adjudication_log_template_20261029.csv",
+        "sha256": "b88baa17a64f16da780a2a23665c9adddca476ec02e6e273a9143c76dbdd5acd"
+      },
+      "blind_sampling_manifest_template": {
+        "path": "docs/reference/stage11_blind_sampling_manifest_template_20261029.csv",
+        "sha256": "442b53f6f4b27c75535a83bf501ce184c617f833c6d6f0fcd5ed457b6fb7592e"
+      },
+      "blind_sampling_plan_template": {
+        "path": "docs/reference/stage11_blind_sampling_plan_template_20261029.json",
+        "sha256": "7cea520866967c8eed3111d5adc22f55321df90d968787cfcc76600bfcd8a26f"
+      },
+      "intended_use_lock_template": {
+        "path": "docs/reference/STAGE11_INTENDED_USE_LOCK_TEMPLATE_VI.md",
+        "sha256": "f725bd02c07827b330d9636d70792e4281e0f59a00ae7022500087f6578721f9"
+      },
+      "privacy_security_gate_template": {
+        "path": "docs/reference/STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md",
+        "sha256": "2f323572d7889d485929a11f76e68f51857b67118e9d8dcfe397336e0fc1bd7a"
+      },
+      "privacy_security_review": {
+        "path": "docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md",
+        "sha256": "492e996e1b35a8edac976bc759b2a11c365330d5d32fb310373d47daf92086ef"
+      },
+      "safety_review_guide": {
+        "path": "docs/reference/STAGE11_SAFETY_REVIEW_GUIDE_VI.md",
+        "sha256": "9bf3606b43473509861d40157f03945fa21a01080444997a1a086e927d892ccd"
+      },
+      "safety_hazard_analysis_template": {
+        "path": "docs/reference/stage11_safety_hazard_analysis_template_20261029.csv",
+        "sha256": "6f0036177c41915b4acdd5e98f774a379bd11c7793d0c5551fa90de66ba7f000"
+      },
+      "source_review": {
+        "path": "docs/reference/stage11_online_evidence_review_20261028.md",
+        "sha256": "efbe0f96bc2cd9f30e8eb6636abc151bb4b094fdd1fbb56af9fa31e489c2fa64"
+      },
+      "docs_index": {
+        "path": "docs/README.md",
+        "sha256": "ab99a8168d2ece6f8c2c8e9798e9cb404abf6e55f753cdb7d051299afee68e39"
+      },
+      "stage11_current_report": {
+        "path": "docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md",
+        "sha256": "778c58f6f1e04063f40fd455a5f79ffab785252352b0dd42cb23a5edc6c95cd2"
+      },
+      "partial_evaluator_test_record": {
+        "path": "docs/reference/stage11_test_run_20261029_partial_answerability_evaluator.json",
+        "sha256": "e83a149f2b59460d9e656cd5682127ce5dc528501602c97956ea5307e9f7f424"
+      },
+      "legacy_report_compatibility": {
+        "path": "docs/reference/stage11_legacy_report_compatibility_20261029.json",
+        "sha256": "ce1a5b6e8ac80ed6adab30f7d1368af5d4073998fd421acc76dcf9e5b8ae5f73"
+      },
+      "strict_replay_preflight_record": {
+        "path": "docs/reference/stage11_replay_20261029_partial_answerability_evaluator.json",
+        "sha256": "771af155cc64c45571a91842e9cbba9248694f211f12c09081ba9dde78db4398"
+      },
+      "stard_ai_reporting_crosswalk": {
+        "path": "docs/reference/STAGE11_STARD_AI_REPORTING_CROSSWALK_VI.md",
+        "sha256": "4528094445303795fa2dcb2f721c57082bea9dd1b22448c55947ebfbc29dd734"
+      },
+      "stard_ai_checklist_template": {
+        "path": "docs/reference/stage11_stard_ai_reporting_checklist_template_20261029.csv",
+        "sha256": "8a849e54209f4c3a219b7454b8150737a08aaaad2f198ec050b38d297783a56f"
+      },
+      "regulatory_applicability_review": {
+        "path": "docs/reference/STAGE11_REGULATORY_APPLICABILITY_REVIEW_VI.md",
+        "sha256": "4c0ecf8d1004ef10924fa052b7d4646d9f58b32588e2fa0f1e4686dac292102f"
+      },
+      "reporting_crosswalk": {
+        "path": "docs/reference/STAGE11_STARD_AI_REPORTING_CROSSWALK_VI.md",
+        "sha256": "4528094445303795fa2dcb2f721c57082bea9dd1b22448c55947ebfbc29dd734"
+      },
+      "current_stage11_report": {
+        "path": "docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md",
+        "sha256": "778c58f6f1e04063f40fd455a5f79ffab785252352b0dd42cb23a5edc6c95cd2"
+      }
+    },
+    "new_exploratory_cohort_screen": {
+      "screened_at": "2026-10-29",
+      "article": "https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2026.1926330/full",
+      "repository": "https://github.com/yasirhafeez840/Dr_Shahabuddin_Siddiqui",
+      "cases": 11,
+      "benign": 7,
+      "malignant": 4,
+      "normal": 0,
+      "reference_and_annotation": "Contributor-supplied labels and masks; article reports no study-team re-annotation/adjudication.",
+      "reported_outcome": "Tumour detected 11/11 and subtype correct 9/11; descriptive selected case series only.",
+      "limitations": [
+        "No normal cases; specificity/false-positive behaviour cannot be estimated.",
+        "Selected small series; article does not present it as representative external validation.",
+        "Repository page reviewed showed no data license; citation request alone does not establish image reuse permission.",
+        "Patient-level provenance, rights, independent reference standard, and overlap with BoneScope/BTXRD/checkpoint/pretraining not verified."
+      ],
+      "disposition": "not_eligible_for_external_test_pending_rights_manifest_reference_standard_adjudication_and_overlap_audit",
+      "dataset_accessed": false,
+      "images_downloaded": false,
+      "registered": false,
+      "ingested": false,
+      "record": "docs/reference/stage11_online_evidence_review_20261028.md"
+    },
+    "methodological_evidence_reviewed": [
+      {
+        "name": "Multi-step retrieval and reasoning improves radiology question answering with large language models (RaR, 2025)",
+        "url": "https://www.nature.com/articles/s41746-025-02250-5",
+        "application": "Methodological evidence only: assess retrieval relevance, answer-context consistency/entailment, and factual correctness as separate dimensions. The study reports residual incorrect answers despite relevant context; its metrics do not transfer to BoneScope and do not close any acceptance gate."
+      }
+    ],
+    "targeted_cohort_search_refresh": {
+      "checked_at": "2026-10-29",
+      "search_scope": "Targeted search for open/reusable independent primary-bone-tumour radiograph cohorts; primary-source follow-up on BTXRD/Frontiers 2026 and DeepTIRP.",
+      "result": "No new publicly reusable patient-level independent cohort with adequate reference standard surfaced. Frontiers 2026 uses BTXRD with image-level 750 test split; its 11-case external series is tumour-positive only and explicitly exploratory without study-team reannotation/adjudication. DeepTIRP has 423 external patients for a tumor-versus-infection endpoint but Zenodo data are restricted, request/MTA/IRB required, article DOI 13858807 differs from matching-title Zenodo record 13858808, and visible license absent. Keep as permission request candidate only; no dataset accessed. Official issue-index abstract for Huang/Yao/Li 2024 now confirms 2,127 cases from six facilities (2013-2022), multimodality inputs and binary X-ray model AUC 0.8499. Yao Shunhan and Huang Yuanxiang also author the BTXRD descriptor, with overlapping Guangxi collection windows; this elevates lineage clarification priority without proving case/image overlap. No portal, data-specific reuse license or patient-level manifest verified; lead only.",
+      "primary_sources": [
+        "https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2026.1926330/full",
+        "https://www.nature.com/articles/s41698-025-00855-3",
+        "https://zenodo.org/records/13858808",
+        "https://www.lcfsxzz.com/CN/Y2024/V43/I10",
+        "https://www.nature.com/articles/s41597-024-04311-y.pdf"
+      ],
+      "data_accessed": false,
+      "images_downloaded": false,
+      "registered": false
+    },
+    "followup_sources_not_ingested": [
+      {
+        "title": "Osteofibrous dysplasia (OFD) and adamantinoma: A comprehensive review and updates",
+        "doi": "10.14670/HH-18-950",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/40539236/",
+        "screen_result": "PubMed abstract labels article CC BY; publisher full-text endpoint returned 502, so article-level payload/license not independently rechecked.",
+        "disposition": "metadata/abstract only; no cache or ingestion"
+      },
+      {
+        "title": "Osteofibrous dysplasia, osteofibrous dysplasia-like adamantinoma, and adamantinoma: A Single-center retrospective analysis",
+        "doi": "10.1016/j.jbo.2025.100700",
+        "pmcid": "PMC12271915",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12271915/",
+        "screen_result": "50-case single-center retrospective cohort; JATS identifies CC BY-NC-ND 4.0.",
+        "disposition": "not eligible under CC BY 4.0-only corpus policy; no cache or ingestion"
+      },
+      {
+        "title": "Treatment and Management of Osteofibrous Dysplasia Like Adamantinoma - A Single Institution Experience",
+        "doi": "10.1016/j.jposna.2026.100341",
+        "pmcid": "PMC13015733",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13015733/",
+        "screen_result": "59 historical single-center records; article identifies CC BY-NC-ND 4.0; multiple sample/follow-up limitations.",
+        "disposition": "not eligible under CC BY 4.0-only corpus policy; no cache or ingestion"
+      },
+      {
+        "title": "Clinicopathological analysis of osteofibrous dysplasia and adamantinoma: A single institution experience",
+        "doi": "10.1016/j.anndiagpath.2026.152618",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/41653544/",
+        "screen_result": "58 tumors reviewed; 12/58 diagnoses modified; radiology concordance and limited follow-up described in abstract; PubMed states Elsevier copyright/all rights reserved.",
+        "disposition": "abstract-level reviewer lead only; no cache or ingestion"
+      },
+      {
+        "title": "Clinical Pathological Features and Cytokeratin Expression Patterns of Osteofibrous Dysplasia in Children",
+        "doi": "10.1080/15513815.2026.2683413",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42266005/",
+        "screen_result": "Abstract reports 49 pediatric pathology-confirmed cases; full text and reuse license not verified.",
+        "disposition": "abstract-level reviewer lead only; no cache or ingestion"
+      },
+      {
+        "title": "Genomic Characterization of Classic Adamantinoma, Osteofibrous Dysplasia, and Osteofibrous Dysplasia-like Adamantinoma",
+        "doi": "10.1016/j.modpat.2026.101033",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42379271/",
+        "screen_result": "10-case genomic study; publisher page requests rights/content; no open reuse license verified.",
+        "disposition": "abstract-level specialist lead only; no cache or ingestion"
+      },
+      {
+        "title": "Osteofibrous Dysplasia and Adamantinoma",
+        "organization": "AAOS OrthoInfo",
+        "url": "https://www.orthoinfo.org/diseases--conditions/osteofibrous-dysplasia-and-adamantinoma/",
+        "screen_result": "English patient-education page reviewed; AAOS copyright/all rights reserved; page warns translations may not be medically reviewed.",
+        "disposition": "external education context only; no cache or ingestion"
+      },
+      {
+        "title": "Large Language Model Empowers Automatic Evaluation of Bone Tumor Risk Stratification and Management System: A Feasibility Study Based on Public Databases",
+        "url": "https://www.lcfsxzz.com/EN/Y2026/V45/I4/666",
+        "screen_result": "Publisher English abstract reports 511 selected cases from Eurorad, Radiopaedia and Skeletal Radiology (search cutoff 2025-09-30); DeepSeek-R1-0528 prompted using patient data and radiology descriptions to output; pathology diagnoses were collected, but abstract does not clarify whether pathology entered the prompt; pixel input also not stated Bone-RADS plus diagnoses. Sensitivity 0.876, specificity 0.699, AUC 0.788; direct histology correct 306, differential list correct 84, none correct 121; abstract reports 41/275 benign-malignant mismatch among directly correct cases after Bone-RADS 0/5 exclusions. Pixel input, rights, blinding and training contamination not verified.",
+        "disposition": "future generative risk-output hazard lead only; no dataset/images accessed or ingested; not evidence for current retrieval-only RAG"
+      },
+      {
+        "title": "Enhancing Radiologists’ Diagnostic Performance for Primary Bone Tumors Using Structured Report-Driven Assistance From Multiple Large Language Models",
+        "url": "https://www.kjronline.org/DOIx.php?id=10.3348/kjr.2026.0593",
+        "screen_result": "Official full text reviewed. 217 reader-evaluation cases, three MSK radiologists; text-structured report-driven four-LLM assistance; reported accuracy improvement and experience-related acceptance of incorrect suggestions; single center, selected pathology-confirmed cases and no external validation. CC BY-NC 4.0 article license does not establish image/data reuse rights.",
+        "disposition": "future human-factors/automation-bias hazard literature only; no data/images accessed, requested or ingested; not current retrieval-RAG evidence or external cohort"
+      },
+      {
+        "title": "Minimum Reporting Items for Clear Evaluation of Accuracy Reports of Large Language Models in Healthcare (MI-CLEAR-LLM): 2025 Updates",
+        "url": "https://www.kjronline.org/DOIx.php?id=10.3348/kjr.2025.1522",
+        "screen_result": "Publisher full text confirms updated minimum reporting scope for LLM accuracy studies, eight categories, includes API/self-managed models and test-data independence. CC BY-NC 4.0 article.",
+        "disposition": "reporting guidance only for future LLM/generator study; not current retrieval-only metric checklist or validation"
+      },
+      {
+        "title": "Guidelines for Reporting Studies on Large Language Models in Radiology: An International Delphi Expert Survey (FLAIR)",
+        "url": "https://doi.org/10.1148/radiol.250913",
+        "screen_result": "Publisher full text reports 32-item/6-category consensus checklist, systematic review plus four-round Delphi of 20 experts; radiology-specific input, reporting style, ethics, workflow and risk items; article CC BY 4.0.",
+        "disposition": "reporting guidance for future LLM radiology study; no substitute for retrieval/entailment validation, STARD-AI diagnostic accuracy, human factors or gate acceptance"
+      },
+      {
+        "title": "Zhao Y, Miao Y, Guo R, Luo Y, Wang H, Wu Y. Evaluation Methods for Inference-Time Retrieval-Augmented and Graph Retrieval-Augmented Large Language Models in Health Care: Scoping Review. Journal of Medical Internet Research. 2026;28:e90046.",
+        "doi": "10.2196/90046",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13432247/",
+        "screen_result": "Full-text PRISMA-ScR/PRISMA-S-informed 157-study review, searched through 2026-05-14; systematic taxonomy of retrieval, evidence linkage, citation/source, safety, human evaluation and setting. Eligibility requires generative RAG/GraphRAG; retrieval-only excluded. CC BY 4.0.",
+        "disposition": "methodological rationale only; no BoneScope benchmark/performance inference; no data/images accessed"
+      },
+      {
+        "title": "Yang R et al. Retrieval-augmented generation in medicine: A scoping review of technical implementations, clinical applications, and ethical considerations. Cell Reports Medicine. 2026; DOI 10.1016/j.xcrm.2026.102927.",
+        "doi": "10.1016/j.xcrm.2026.102927",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/42476143/",
+        "screen_result": "Publisher/PubMed abstract plus publisher-indexed full text reviewed. Scoping review of 251 medical generative RAG studies; 244 screened plus 7 manually added; search through 2025-07-01; 7/251 bias, 24/251 safety, 6/251 low-resource; not a full rerun and excludes retrieval-only.",
+        "disposition": "methodological/context rationale only; no BoneScope benchmark or threshold; not ingested into corpus."
+      }
+    ],
+    "reproducibility_artifacts": {
+      "evidence_verifier_diagnostic": {
+        "path": "docs/reference/stage11_evidence_verifier_miss_analysis_20261029.json",
+        "sha256": "a4f844e10ceb71feee6e4d4dca4bc514c6eb7951ed4b3b0580f146ce4d0cae83",
+        "scope": "gold reference chunks only; no retrieval run, no independent review, no entailment"
+      },
+      "diagnostic_script": {
+        "path": "tools/analyze_evidence_coverage.py",
+        "sha256": "a30810119049a83b902d4f29fcfbc657a93a87d272c4b3fb2389d0f1023b1997"
+      },
+      "evidence_design_note": {
+        "path": "docs/reference/EVIDENCE_CHECK_DESIGN_VI.md",
+        "sha256": "058e30a40c318a4751a1f0d40c92d820bfc5aebf2eabedca1f5671ba0804cac3"
+      },
+      "evidence_verifier_diagnostic_v2": {
+        "path": "docs/reference/stage11_evidence_verifier_miss_analysis_20261029_v2.json",
+        "sha256": "aceba81b1c74414203a60335f910c36057b1da59c3c240dc9d42e2aede15f62d",
+        "scope": "5 agent-authored OFD dev reference chunks; 2/5 lexically covered; not retrieval or entailment"
+      },
+      "evidence_verifier_actual_retrieval_v2": {
+        "path": "docs/reference/stage11_evidence_verifier_ofd_actual_retrieval_20261029_v2.json",
+        "sha256": "a5edf299b93b004c0981cf1da2facc28271aa0552aeb4be6ddd30cc69b0fa8f0",
+        "scope": "hybrid evaluator with strict lexical checker; in-sample OFD dev; frozen evidence config mismatch; not entailment"
+      },
+      "strict_evidence_bundle_v8": {
+        "path": "docs/reference/stage11_evidence_neutral_bundle_v8_record_20261029.json",
+        "sha256": "25ff4b65d14e906367c0c86367750b7f419f6c03074455d38081d96041efab2b",
+        "scope": "16-report rebuild, integrity audit and deterministic replay; lexical regression only, not independent validation"
+      },
+      "unknown_token_gate_experiment": {
+        "path": "docs/reference/stage11_evidence_unknown_token_gate_experiment_20261029_v3.json",
+        "sha256": "5b1770a1ee2ba565152d9ff2d7933926cb77dbab73b6b5644724c3d0e49c604f",
+        "scope": "in-memory require_known_query_terms override; includes per-question evidence_check diagnostics; five strict in-sample datasets; production config unchanged; not entailment"
+      },
+      "unknown_token_gate_experiment_v1": {
+        "path": "docs/reference/stage11_evidence_unknown_token_gate_experiment_20261029.json",
+        "sha256": "c9e418f6f1137cb597913e8d1c1293c58f127da7bf85cc8fb833b0522ecb0b98",
+        "scope": "initial exploratory run; superseded by later path-guarded reports"
+      },
+      "unknown_token_gate_experiment_v2": {
+        "path": "docs/reference/stage11_evidence_unknown_token_gate_experiment_20261029_v2.json",
+        "sha256": "ce7b5dac6fa4ff45df7897d0b036701ce91a6b48f278ee408c388fd3925d33f5",
+        "scope": "same metrics before per-question missing-term diagnostics"
+      },
+      "unknown_token_remaining_gap_analysis": {
+        "path": "docs/reference/stage11_evidence_unknown_token_remaining_gap_analysis_20261029.json",
+        "sha256": "59eab8e940b6d9f0632be91969a6808a56c7f51a715fc79b8138ae63244e057b",
+        "scope": "best_missing term counts for 21 positive abstentions under in-memory unknown-token gate experiment; one best candidate/query; diagnostic only"
+      }
+    },
+    "blind_label_template_sha256": "a61d7b3abdabdf9b6623db6e78981e7de33643a2aae4eb6f41854eae226e61b3",
+    "ofd_adamantinoma_source_triage": {
+      "path": "docs/reference/stage11_ofd_adamantinoma_source_triage_20261029.json",
+      "sha256": "7bc413a609e4c6729c7718844bd6f7a4da071e19479c3034491bcc31c8bc43cb",
+      "sources": 7,
+      "online_review_path": "docs/reference/stage11_online_evidence_review_20261028.md",
+      "scope": "metadata/abstract/full-text source and reuse-rights triage only; no patient-level dataset access, no corpus ingestion, no clinical reference standard",
+      "checked_at_utc": "2026-10-29T01:47:44Z"
+    },
+    "new_bone_tumor_vlm_rag_study": {
+      "citation": "Shi Y, Tong ZC. Diagnostic Performance of a Locally Deployed Vision Language Model for Bone Tumor Diagnosis Using Smartphone-Captured Images: Exploratory Retrospective Study. JMIR AI. 2026;5:e99757.",
+      "published": "2026-09-21",
+      "doi": "10.2196/99757",
+      "pmcid": "PMC13639421",
+      "url": "https://ai.jmir.org/2026/1/e99757",
+      "design": "Single-center exploratory 2x2 evaluation: one Qwen3-VL 32B Thinking Q4 checkpoint, persona x RAG; 42 biopsy-confirmed tumor/tumor-like cases; smartphone screen-captured X-ray/CT/MRI, 3-5 slices per case selected by one specialist.",
+      "reported_result": "Radiologist-persona top-1 was 12/42 (29%, 95% CI 16%-45%) without RAG vs 6/42 (14%, 95% CI 5%-29%) with RAG (McNemar P=.03); orthopedic-oncologist persona had no significant top-1/top-3 change as reported.",
+      "reported_limitations": [
+        "Exploratory, single center, small cohort and single model.",
+        "No clean-image control or blinded human comparator.",
+        "One specialist selected slices without blinded independent adjudication.",
+        "Subgroup comparisons were not corrected for multiplicity; p values nominal.",
+        "Cohort mixes modalities and contains tumor/tumor-like cases only; not an eligible external test for BoneScope X-ray classifier."
+      ],
+      "data_rights": "Article states CC BY 4.0. It lists five appendices of original input images, but also says the complete generated/analyzed dataset is not public because of privacy and institutional health-data protection and may be shared on reasonable request subject to institutional/ethics approval. File-level image rights, data-use authority, de-identification, provenance and checkpoint overlap are not verified for BoneScope.",
+      "disposition": "Risk-identification literature only; do not transfer performance or thresholds to BoneScope; no download, registration or ingestion. Any future request/reuse requires custodian review, rights/privacy authority, manifest, endpoint mapping and overlap clearance.",
+      "verification_basis": "Official JMIR article landing page, abstract, methods, limitations, data availability, supplementary-file list and license. Reviewed 2026-10-29."
+    },
+    "bone_rads_llm_followup": {
+      "screened_at": "2026-10-29",
+      "article": "Large Language Model Empowers Automatic Evaluation of Bone Tumor Risk Stratification and Management System: A Feasibility Study Based on Public Databases",
+      "publisher_record": "https://www.lcfsxzz.com/EN/Y2026/V45/I4/666",
+      "publisher_record_zh": "https://www.lcfsxzz.com/CN/Y2026/V45/I4/666",
+      "abstract_visible_method": "Publisher-indexed abstract states DeepSeek-R1-0528 was evaluated using age, sex, clinical history, radiological descriptions and pathology diagnoses, with outputs including Bone-RADS, a definitive diagnosis and three differential diagnoses.",
+      "unverified": "Whether pathology labels were included in the LLM prompt; whether image pixels were provided; image/case rights; exact test/reader protocol and blinding; training-data contamination/memorization; case-level overlap with BTXRD/other BoneScope data; prospective/external validation.",
+      "stage_disposition": "Future generative risk-category/diagnosis hazard literature only; public-source selected cases, not a BoneScope independent cohort or performance estimate, and not retrieval-only RAG evidence.",
+      "data_accessed": false,
+      "images_downloaded": false,
+      "registered": false,
+      "ingested": false,
+      "case_count": 511,
+      "case_sources": [
+        "Eurorad",
+        "Radiopaedia",
+        "Skeletal Radiology"
+      ],
+      "case_search_cutoff": "2025-09-30",
+      "reported_inputs": "The abstract says age, sex, clinical history, radiological descriptions and pathology diagnoses were collected, and the LLM was prompted based on patient data and radiological descriptions. It does not clarify whether pathology diagnoses were withheld from the prompt or whether pixel images were input.",
+      "reported_outputs": "Bone-RADS classification, one definitive diagnosis and three differential diagnoses using DeepSeek-R1-0528.",
+      "reported_metrics": {
+        "bone_rads_benign_malignant_sensitivity": 0.876,
+        "sensitivity_95ci": [
+          0.829,
+          0.924
+        ],
+        "specificity": 0.699,
+        "specificity_95ci": [
+          0.644,
+          0.754
+        ],
+        "auc": 0.788,
+        "auc_95ci": [
+          0.751,
+          0.824
+        ],
+        "direct_histology_diagnosis_correct": 306,
+        "differential_list_contains_correct_diagnosis": 84,
+        "no_correct_diagnosis_in_list": 121,
+        "benign_malignant_mismatch_among_directly_correct_after_reported_exclusions": "41/275 (14.91%); Bone-RADS 0 and 5 excluded per abstract"
+      }
+    },
+    "kjr_2026_reader_assistance_followup": {
+      "citation": "Kim DK et al. Enhancing Radiologists’ Diagnostic Performance for Primary Bone Tumors Using Structured Report-Driven Assistance From Multiple Large Language Models. Korean Journal of Radiology. 2026. doi:10.3348/kjr.2026.0593.",
+      "url": "https://www.kjronline.org/DOIx.php?id=10.3348/kjr.2026.0593",
+      "open_access_license": "CC BY-NC 4.0 for article text; not evidence of image or patient-dataset reuse rights.",
+      "design": "Retrospective single-center Seoul St. Mary’s Hospital; 525 pathologically confirmed primary bone tumor cases screened (Jan 2019-Jan 2026), 293 excluded; 15 prompt-development cases and 217 reader-evaluation cases; three MSK radiologists with 17, 6, and 1 years experience.",
+      "workflow": "Readers first interpreted images and produced structured text reports plus ranked Top-3. After six-week washout and newly randomized order they re-read cases; four-LLM pipeline received final structured report and clinical complaint, not image pixels in the described pipeline. Radiologists reviewed suggestions and made final diagnosis while viewing images.",
+      "reported_results": {
+        "reader_top1_unassisted_assisted": "57.1% to 72.0%",
+        "reader_top3_unassisted_assisted": "81.1% to 90.9%",
+        "adjusted_p": "<0.001 for both",
+        "top1_gain_pp_most_to_least_experienced": [
+          6.5,
+          14.3,
+          24.0
+        ],
+        "standalone_ensemble_top1_range": "56.7%-62.2%",
+        "standalone_ensemble_top3_range": "85.3%-86.6%"
+      },
+      "human_factors": "Less-experienced reader more often accepted incorrect suggestions; most-experienced reader rejected incorrect suggestions more often but also rejected correct suggestions more often. Authors describe top-1 harm including clinically concerning malignant/intermediate-to-benign downgrades; harm and second-look effects merit prespecified review.",
+      "limitations": [
+        "Single center and no external validation.",
+        "Only three readers; reader-specific effect exploratory.",
+        "Retrospective biopsy/pathology-confirmed enriched challenging cohort; metastases and many typical benign lesions excluded.",
+        "Potential second-look effect after repeated reading.",
+        "Structured reports were human-generated; text translation can omit image detail and routine free-text generalization is unknown.",
+        "Data available from corresponding author on reasonable request; no dataset/images accessed or requested here."
+      ],
+      "stage_disposition": "Future generated-differential human-factors/automation-bias hazard literature only. Not an image-VLM study, not a retrieval-only RAG evaluation, not a BoneScope estimate, and not an eligible external cohort. No BoneScope acceptance threshold inferred.",
+      "verified_from": "Official publisher full text, abstract, methods, results, discussion, limitations, and data-availability statement; reviewed 2026-10-29.",
+      "data_accessed": false,
+      "images_downloaded": false,
+      "dataset_requested": false,
+      "ingested": false,
+      "reported_human_harm": {
+        "top1_harm_cases": 20,
+        "malignant_or_intermediate_to_benign_downgrades": 8,
+        "reader_with_least_experience_harm_events": 11,
+        "reader_with_least_experience_harm_event_share": "55.0% of reported Top-1 harm cases",
+        "top3_harm_cases": 4,
+        "top3_malignant_to_benign_shifts": 0
+      },
+      "reported_low_frequency_subgroup": {
+        "cases": "64/217 (29.5%)",
+        "gemini_top1_high_vs_low": "68.6% vs 49.0%",
+        "gemini_top3_high_vs_low": "93.2% vs 65.6%",
+        "note": "Exploratory article results; not a BoneScope estimate or acceptance threshold."
+      },
+      "models": [
+        "GPT-5.4",
+        "Gemini 3.1 Pro",
+        "Claude Opus 4.6",
+        "Llama 4 Maverick"
+      ],
+      "model_settings": "Temperature 0.0; vendor-default reasoning settings. First three queried by official APIs; Llama 4 Maverick through Together AI per publisher methods.",
+      "reader_blinding_and_order": "Unassisted session first; 6-week washout; assisted cases newly randomized. Diagnosis codes and prior-report windows hidden in PACS; nonreading MSK radiologist prepared initial-study worklist and supplied chief complaint to both readers and LLMs.",
+      "interface": "All per-model Top-3/rationales and weighted-rank aggregate displayed together; weighted ranks 2.0/1.5/1.0.",
+      "privacy_limit": "Main text states third-party platform data-governance/privacy are in Supplementary Methods; supplement not reviewed in this screen, so no conclusion about provider safeguards or terms."
+    },
+    "healthcare_rag_evaluation_scoping_review": {
+      "citation": "Zhao Y, Miao Y, Guo R, Luo Y, Wang H, Wu Y. Evaluation Methods for Inference-Time Retrieval-Augmented and Graph Retrieval-Augmented Large Language Models in Health Care: Scoping Review. Journal of Medical Internet Research. 2026;28:e90046.",
+      "doi": "10.2196/90046",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13432247/",
+      "published": "2026-08-03",
+      "search_cutoff": "2026-05-14",
+      "protocol": "PRISMA-ScR/PRISMA-S informed scoping review; OSF registry MTF5X registered before screening/data charting.",
+      "eligible_studies": 157,
+      "eligibility_scope": "Implemented health care inference-time RAG/GraphRAG systems with generative outputs and at least one evaluation component; retrieval-only systems excluded.",
+      "reported_coverage": {
+        "offline_only": "140/157 (89.2%)",
+        "independent_retrieval_layer": "47/157 (29.9%)",
+        "grounding_faithfulness": "41/157 (26.1%)",
+        "fine_grained_evidence_verification": "22/157 (14.0%)",
+        "citation_source_correctness": "12/157 (7.6%)",
+        "contradiction_handling": "9/157 (5.7%)",
+        "formal_safety": "45/157 (28.7%)",
+        "human_evaluation": "94/157 (59.9%)",
+        "interrater_reliability_among_human_evaluation": "26/94 (27.7%)"
+      },
+      "interpretive_caveat": "Descriptive coverage in a scoped eligible literature sample; not pooled system quality, compliance rate, benchmark, or validated checklist. Denominators differ by construct. Authors label their setting-based synthesis as practice-oriented, not empirically validated.",
+      "stage_disposition": "Methodological rationale for keeping retrieval, claim/evidence linkage, factuality, source correctness and formal safety as distinct review domains; not evidence/benchmark for BoneScope. Because review eligibility requires generation, do not claim it directly evaluates current retrieval-only implementation.",
+      "accessed_data_or_images": false
+    },
+    "medical_rag_scoping_review_251": {
+      "citation": "Yang R et al. Retrieval-augmented generation in medicine: A scoping review of technical implementations, clinical applications, and ethical considerations. Cell Reports Medicine. 2026; DOI 10.1016/j.xcrm.2026.102927.",
+      "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/42476143/",
+      "doi_url": "https://doi.org/10.1016/j.xcrm.2026.102927",
+      "publication_date": "2026-07-20",
+      "search_scope": "PubMed/Embase/Web of Science/Scopus, 2017 through 2025-07-01; 244 records met inclusion after screening and seven additional papers were manually added during revision, total 251; the paper says this was not a full database-search rerun.",
+      "eligibility_boundary": "Explicit query-driven retrieval from external knowledge integrated into LLM generation; does not include retrieval-only systems.",
+      "reported_counts": {
+        "explicit_bias_evaluation": "7/251 (2.79%)",
+        "safety_addressed": "24/251 (9.56%)",
+        "low_resource_settings": "6/251 (2.39%)"
+      },
+      "abstract_scope": "Human evaluation was described as focusing on accuracy, completeness, relevance and fluency, with insufficient attention to bias/safety; review calls for clinical validation and cross-linguistic adaptation.",
+      "caveat": "Descriptive scoping-review coverage, not a quality estimate, safety rate, validated checklist, threshold or direct assessment of BoneScope.",
+      "disposition": "Use as contextual rationale for language-stratified, bias and safety review; no BoneScope metric or acceptance threshold inferred; not current retrieval-only evidence.",
+      "patient_data_or_images_accessed": false
+    },
+    "regulatory_applicability_review": {
+      "path": "docs/reference/STAGE11_REGULATORY_APPLICABILITY_REVIEW_VI.md",
+      "checked_at_utc": "2026-10-29T03:42:00Z",
+      "current_cybersecurity_guidance": "FDA February 2026 final guidance supersedes June 2025 final guidance; QMSR effective 2026-02-02.",
+      "gmlp": "IMDRF N88 FINAL:2025 (10 principles).",
+      "fda_ai_lifecycle_status": "FDA January 2025 AI lifecycle guidance remains draft / not for implementation.",
+      "boneScope_determination": "none; intended use and jurisdiction unsigned; qualified regulatory reviewer required.",
+      "gate_effect": "does not close regulatory, privacy/security, intended-use or clinical acceptance gates."
+    },
+    "ofd_payload_validation": {
+      "path": "rag/source_cache/osteofibrous-dysplasia-review-2024.xml",
+      "checked_at_utc": "2026-10-29T03:37:00Z",
+      "bytes": 143385,
+      "sha256": "be017ab4d7546064180d5b00aece02264bb8d969d367c00233efd7b9a5ab1c7c",
+      "article": "Osteofibrous dysplasia: a narrative review",
+      "pmcid": "PMC10967096",
+      "pmid": "38539216",
+      "doi": "10.1186/s13018-024-04682-3",
+      "license": "CC BY 4.0 (verified in JATS payload)",
+      "parser": "rag.build_corpus.extract_jats_blocks + chunks_for",
+      "parser_blocks": 54,
+      "parser_headings": 22,
+      "reproduced_corpus_chunks": 29,
+      "chunk_ids_source_hashes_and_text_hashes_match": true,
+      "administrative_reference_sections_excluded": true,
+      "disposition": "The approved destination file was already present and was preserved; no network re-download or corpus change in this checkpoint."
+    },
+    "current_implementation_static_check": {
+      "checked_at_utc": "2026-10-29T03:38:10Z",
+      "evaluator": "Three-level answerability schema present; label population all-or-none; expected-status mapping validated; fully answerable item requires exact evidence or source+section; code scan only, no tests run.",
+      "retrieval_output": "rag/retrieval.py result includes answer_ready=false (literal); repository scan found no answer_ready=true assignment or answer-generation API in scoped application/RAG sources.",
+      "interpretation": "Implementation capability only; no independent labels, blind run, adjudication, clinical evidence or gate closure is implied."
+    },
+    "tripod_ai_scope": {
+      "source_status": "Published reporting guidelines; primary articles reviewed 2026-10-29",
+      "tripod_ai": "27 main items; 52 subitems; prediction-model development/evaluation/updating",
+      "tripod_llm": "19 main items; 50 subitems; 14 main/32 subitems common across designs and tasks, remaining items modular by research design/LLM task",
+      "stard_ai": "Diagnostic-accuracy studies of an AI index test compared with a reference standard",
+      "selection": "Choose by prespecified aim and study design; multiple checklists may be relevant where study scopes overlap.",
+      "current_bonescope_scope": "None of these reporting checklists evaluates current retrieval-only RAG relevance/entailment/abstention or certifies safety, clinical validity, regulatory status, or acceptance.",
+      "sources": [
+        "https://www.bmj.com/content/385/bmj-2023-078378",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12104976/",
+        "https://www.nature.com/articles/s41591-025-03953-8",
+        "https://www.bmj.com/content/377/bmj-2022-070904",
+        "https://doi.org/10.1136/bmjmed-2025-001632",
+        "https://doi.org/10.1136/bmj-2024-083305"
+      ],
+      "decide_ai": "27 items (17 AI-specific, 10 generic); only early-stage live clinical evaluation",
+      "chart": "12 items; 39 subitems; studies evaluating generative chatbots summarizing clinical evidence or providing health advice"
+    },
+    "trial_reporting_scope_review": {
+      "checked_at_utc": "2026-10-29T04:14:19Z",
+      "url": "https://www.consort-spirit.org/extensions/interventions/non-pharmacologic-treatment-interventions",
+      "observation": "Official extension directory explicitly lists SPIRIT-AI under SPIRIT 2013 and separates extensions based on SPIRIT 2025. The BMJ CONSORT-AI 2020 statement describes its 14 items as additions to CONSORT 2010; do not attribute that listing to the directory. The directory says its list is not exhaustive.",
+      "disposition": "For any future eligible trial, use current 2025 core and have trial methodologist reconcile AI-specific extension items with current core and journal instructions. No trial is in current BoneScope scope; this is reporting guidance only."
+    },
+    "pediatric_trial_reporting_extensions": {
+      "checked_at_utc": "2026-10-29T04:14:19Z",
+      "protocol_url": "https://www.bmj.com/content/392/bmj-2025-085062",
+      "results_url": "https://www.bmj.com/content/392/bmj-2025-085061",
+      "scope": "Randomized trials involving participants aged 0-19 years; SPIRIT-C 2026 adds 17 protocol items to SPIRIT 2025 and CONSORT-C 2026 adds 13 report items to CONSORT 2025.",
+      "application": "Consider for a future in-scope paediatric trial; if AI intervention is included, review overlap with SPIRIT-AI/CONSORT-AI and current journal instructions. Not applicable to current retrieval-only system."
+    },
+    "gamer_reporting_scope_review": {
+      "checked_at_utc": "2026-10-29T04:14:19Z",
+      "url": "https://ebm.bmj.com/content/30/6/390.full",
+      "equator_url": "https://www.equator-network.org/reporting-guidelines/reporting-guideline-for-the-use-of-generative-artificial-intelligence-tools-in-medical-research-the-gamer-statement/index.html",
+      "scope": "Nine-item guidance to report generative-AI use across phases of medical research/manuscript preparation.",
+      "disposition": "Use only as disclosure of research/manuscript use; not AI-model performance evaluation, study-design substitute, RAG metric, or Stage 11 gate. No compliance declaration made for this internal report."
+    },
+    "flair_reporting_scope_review": {
+      "checked_at_utc": "2026-10-29T04:14:19Z",
+      "url": "https://doi.org/10.1148/radiol.250913",
+      "observation": "The primary paper notes the targeted radiology search terms may have omitted some prior works and that periodic checklist updates may be needed as the field changes.",
+      "disposition": "Use as a 2026 radiology-specific reporting aid and verify current version at protocol lock; not exhaustive coverage, risk-of-bias appraisal, validation or Stage 11 acceptance."
+    },
+    "restricted_image_cohort_lead": {
+      "study": "Zimbalist et al., Detecting bone lesions in X-ray under diverse acquisition conditions (Journal of Medical Imaging, 2024)",
+      "article": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10950029/",
+      "doi": "10.1117/1.JMI.11.2.024502",
+      "institutional_author_copy": "https://www.weizmann.ac.il/math/yonina/sites/math.yonina/files/Zimbalist_et_al_Detecting_bone_lesions_JMI-23135GR_2024_0.pdf",
+      "site_and_period": "Single center, Rambam Health Care Campus, 2003-2018",
+      "radiographs": 1421,
+      "normal": 973,
+      "abnormal": 448,
+      "benign_within_abnormal": 137,
+      "malignant_within_abnormal": 311,
+      "age_range_years": [
+        5,
+        40
+      ],
+      "original_study_split": "80/20 split, reported as patient-disjoint within the original study; this does not establish independence from BoneScope checkpoint/pretraining",
+      "access": "Upon request only; not a public image download",
+      "reference_process": "Paper describes review by two senior radiologists and one radiology resident; exact endpoint-specific reference standard/adjudication remains for specialist review",
+      "potential_endpoint": "Normal/abnormal or benign/malignant binary analysis after protocol and reviewer approval; not the current 10-subtype taxonomy",
+      "unresolved": [
+        "data-use authority/DUA",
+        "image-specific reuse rights",
+        "patient/image manifest and stable hashes",
+        "label/reference-standard adjudication details",
+        "overlap with BoneScope checkpoint/training and pretraining"
+      ],
+      "disposition": "Restricted-access literature lead only; not eligible external test and not independent validation evidence",
+      "downloaded": false,
+      "contacted": false,
+      "next_step": "Candidate-specific preflight in the cohort due-diligence checklist: confirm scope/labels without images; obtain authority/DUA/image-rights/privacy approvals; only then consider controlled transfer, patient/image manifest/hash and checkpoint/pretraining overlap audit.",
+      "screened_at_utc": "2026-10-29T04:29:16Z"
+    }
+  },
+  "technical_followups": [
+    "Keep lexical evidence verification opt-in; current positive recall is inadequate and lexical coverage does not establish citation entailment.",
+    "Keep answer_ready=false. Seven listed gates are open across the combined Stage 11/11A scope; record applicability against frozen intended use. Image-cohort and upstream-image-rights gates govern image-model evaluation/reuse and image-dependent claims. Text-only RAG readiness remains open pending independent retrieval/evidence review, any future generated-answer entailment evidence, and applicable safety/privacy decisions.",
+    "Policy catches 33/33 agent-authored personal-image wording probes while 18/18 education controls stay in scope; these are in-sample text-only probes, not an accuracy estimate or attachment test.",
+    {
+      "local_privacy_security_review": "docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md",
+      "status": "static source review only; keep local-only with synthetic/non-identifiable data; no code changed"
+    },
+    "Optional EvidenceVerifier remains disabled. v2 diagnostic on five agent-authored OFD reference chunks covers 2/5; actual hybrid dev retrieval recall is 2/5 with 3/5 positive abstentions and 2/2 negative abstentions. Frozen config mismatches; this is not entailment. See docs/reference/stage11_evidence_verifier_miss_analysis_20261029_v2.json and docs/reference/stage11_evidence_verifier_ofd_actual_retrieval_20261029_v2.json.",
+    "Unknown-token sensitivity experiment improves candidate positive coverage 4/40→19/40 while retaining 14/14 negative abstention on the viewed sets, but 21/40 positives still abstain and unknown qualifiers may matter. Do not relax production gate without specialist-reviewed multilingual labels.",
+    "Unknown-token gate v3 exposes per-question remaining missing literals/concepts (e.g. tissue, symptoms, tests, don, cyst, cohort); these are diagnostics only and require specialist-reviewed translation/qualifier mapping before any lexicon changes.",
+    {
+      "evaluator_schema_current": "rag/evaluate.py currently implements all-or-none reviewer answerability labels (answerable / partially_answerable / unanswerable), validates expected-status compatibility, and requires evidence/source-section gold for fully answerable items. This supersedes the earlier binary-evaluator gap note. The schema and synthetic regression do not constitute independent reviewer labels, blind evaluation, adjudication, or acceptance thresholds; no such evaluation is currently available."
+    }
+  ],
+  "last_reverified_at_utc": "2026-10-29T04:15:57Z",
+  "ui_score_presentation": {
+    "status": "UPDATED_AND_REGRESSION_TESTED",
+    "score_type": "normalized 10-class softmax output from inference.py",
+    "display": "0–1, rounded to four decimal places in analysis, history and case detail",
+    "payload_changed": false,
+    "notice": "For coursework/research only; not for diagnosis, screening, triage, or treatment decisions; uncalibrated for clinical use and not to be interpreted as a disease probability.",
+    "implementation_hashes": {
+      "xray_api.py": "f7e9da3a00389fb3a903d71581e4993c672cb752c98650be36b84298a63cc9e9",
+      "xray_web/index.html": "fa2d4d877309320d866a031728ed97188f97f5ce641a9a1c493695724708418b",
+      "xray_web/app.js": "12974b38112ec4601e4c375efae68185308121e6bb1a86db8d9fba855d1a7331",
+      "xray_web/history.html": "6c6c2c91754852ec55dd7713ae292da86231918eb0295b15b8f26f95f9e5b2d8",
+      "xray_web/case_detail.html": "9e98f979f379680b63527d5d9a6d2520bf61ec72f7cc0fe34f293f434ee431b4",
+      "docs/guides/README_UI_VI.md": "3306d5521e4d117d24b1123d13800c267d0fd10b7fd6ca4b584a90926c17d548"
+    },
+    "limitations": [
+      "No calibration study",
+      "No clinical validation",
+      "Does not change the model/checkpoint or make it clinically usable"
+    ]
+  },
+  "audit_hardening": {
+    "change": "Validate comparison schema, snapshot, report order/path alignment, previous/current dataset hashes and question counts, current metadata, and that each changed metric truly differs and matches its current manifest value.",
+    "scope": "Artifact consistency only; previous metric values cannot be independently authenticated without the prior snapshot.",
+    "verification": "Current audit PASS: comparison_checked=true, 9 datasets, 21 source caches, 16 frozen reports; deterministic replay PASS 16/16 with no preflight mismatches."
+  },
+  "tamper_resistance_checks": {
+    "status": "PASS",
+    "audit_case": "Changed question_count_current and recomputed comparison manifest hash; audit rejected current-metadata mismatch.",
+    "replay_case": "Changed frozen report metadata without changing its manifest hash; replay rejected report_hash_mismatch before model loading.",
+    "record": "docs/reference/stage11_tamper_checks_20261028_exact_cc_license_validation.json",
+    "record_sha256": "f9292da291ef1ede431a993930d75e19c7f4fd842aaa55dae50ea402b4f08a7b",
+    "scope": "Isolated temporary copies of the current bundle only."
+  },
+  "offline_rebuild": {
+    "created_at_utc": "2026-10-29T00:24:47.194358+07:00",
+    "command": "rag.build_corpus.build(offline=True) with output and lock redirected to a temporary directory",
+    "status": "PASS",
+    "sources": 21,
+    "chunks": 759,
+    "rebuild_corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+    "tracked_corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+    "corpus_bytes_identical": true,
+    "rebuild_source_lock_sha256": "3d4c64b8117a0bb5b1c546dcba90d1029a2100e335132c3b00ea130959f44e30",
+    "tracked_source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+    "source_lock_bytes_identical": false,
+    "source_lock_structurally_identical": true,
+    "cached_unregistered_case_excluded": true,
+    "scope": "All build outputs redirected to a temporary directory; tracked corpus and source lock were not modified.",
+    "path": "docs/reference/stage11_offline_rebuild_20261029_personal_image_jats_wrapper.json",
+    "record_sha256": "889c762010fe3657c8ed8519070eb1c9b16e54f522c05e4201417445a1983660"
+  },
+  "cached_source_review": {
+    "path": "docs/reference/stage11_cached_source_review_20261029_ossifying_fibroma_case.json",
+    "sha256": "d9c77152dea824f5adaa7b748113750321d3f468ed22f9a34a78dec8dce5150b",
+    "source_cache_sha256": "d82f42d5ea2424eb83d9da910ac4f41ab1c661634286338d34c8ffce7c8931c6",
+    "registered": false,
+    "ingested": false
+  },
+  "gct_policy_smokecheck": {
+    "path": "docs/reference/stage11_gct_policy_smokecheck_20261029.json",
+    "sha256": "c575efad5cc31fb85b1a26a97296bec1cc2179cf43768472164328acd37c197f",
+    "purpose": "manual diagnostic, not evaluation",
+    "findings": [
+      "two general GCT/MRI questions route to retrieval; all outputs keep answer_ready=false",
+      "pituitary GCT query is out-of-scope",
+      "herbal cure claim is insufficient_evidence",
+      "one of three top hits for one general GCT/MRI query came from an unrelated synovial review; retain as a reviewer-labeled ranking question, not a scored failure"
+    ]
+  },
+  "local_privacy_security_review": {
+    "path": "docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md",
+    "status": "static_source_review_complete_not_penetration_test_or_approval",
+    "reviewed_files": [
+      "xray_api.py",
+      "case_api.py",
+      "database.py",
+      "xray_ui.py",
+      "05_start_api.bat",
+      "docs/guides/README_FASTAPI_VI.md"
+    ],
+    "conclusions": [
+      "documented launcher binds to 127.0.0.1",
+      "upload pixels are temporary and not stored in SQLite by reviewed code",
+      "case endpoints have no authentication or per-user authorization",
+      "SQLite/WAL has no configured encryption or retention policy",
+      "secure deletion and host/backup controls were not verified"
+    ],
+    "gate": "keep local-only with synthetic/non-identifiable data until independent privacy/security and legal review; no code changed"
+  },
+  "acceptance_gate_register": {
+    "path": "docs/reference/STAGE11_REVIEWER_PACKET_VI.md#acceptance-gate-closeout-register",
+    "gates_total": 7,
+    "gates_open": 7,
+    "status": "not_independently_accepted",
+    "answer_ready": false,
+    "note": "Technical integrity/replay/software evidence does not close independent clinical, blind-evaluation, entailment, image-cohort, safety, privacy/security, or upstream-image-rights gates. Record applicability against frozen intended use; image-cohort and upstream-image-rights gates govern image-model evaluation/reuse and image-dependent claims."
+  },
+  "regulatory_scope_source_check": {
+    "path": "docs/reference/stage11_online_evidence_review_20261028.md",
+    "checked_at_utc": "2026-10-29T02:06:21Z",
+    "new_primary_sources": [
+      {
+        "jurisdiction": "United States",
+        "document": "FDA Clinical Decision Support Software final guidance",
+        "issued": "2026-01-29",
+        "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-decision-support-software",
+        "signed_pdf_url": "https://www.fda.gov/media/109618/download"
+      },
+      {
+        "jurisdiction": "United States",
+        "document": "FDA Content of Premarket Submissions for Device Software Functions, final guidance",
+        "issued": "2023-06-14",
+        "supersedes": "Guidance for the Content of Premarket Submissions for Software Contained in Medical Devices (May 2005)",
+        "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/content-premarket-submissions-device-software-functions",
+        "signed_pdf_url": "https://www.fda.gov/media/153781/download",
+        "scope_note": "Nonbinding method reference for relevant device-software submissions; not a BoneScope regulatory determination."
+      },
+      {
+        "jurisdiction": "United States",
+        "document": "FDA Digital Health Policy Navigator Step 6",
+        "url": "https://www.fda.gov/medical-devices/digital-health-center-excellence/step-6-software-function-intended-provide-clinical-decision-support"
+      },
+      {
+        "jurisdiction": "Vietnam",
+        "document": "Law 134/2025/QH15 on Artificial Intelligence",
+        "effective": "2026-03-01",
+        "url": "https://vanban.chinhphu.vn/?classid=1&docid=216334&pageid=27160&typegr="
+      },
+      {
+        "jurisdiction": "Vietnam",
+        "document": "Decree 142/2026/NĐ-CP implementing the Artificial Intelligence Law",
+        "issued": "2026-04-30",
+        "effective": "2026-05-01",
+        "url": "https://vanban.chinhphu.vn/?docid=218029&orggroupid=2&pageid=27160"
+      },
+      {
+        "jurisdiction": "Vietnam",
+        "document": "Decision 33/2026/QĐ-TTg issuing the list of high-risk AI systems",
+        "issued": "2026-06-30",
+        "effective": "2026-08-15",
+        "url": "https://vanban.chinhphu.vn/?classid=1&docid=218658&pageid=27160&typegroupid=5",
+        "official_gazette_url": "https://congbao.chinhphu.vn/van-ban/quyet-dinh-so-33-2026-qd-ttg-469951.htm"
+      }
+    ],
+    "interpretation": "Official Government metadata and FDA guidance were refreshed as jurisdictional review leads only; no legal interpretation, assessment of the annex, or BoneScope risk classification.",
+    "recheck_2026_10_29": {
+      "primary_source_metadata_reconfirmed": true,
+      "sources": [
+        {
+          "jurisdiction": "United States",
+          "document": "FDA Clinical Decision Support Software final guidance (January 2026)",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/clinical-decision-support-software"
+        },
+        {
+          "jurisdiction": "United States",
+          "document": "FDA Digital Health Policy Navigator Step 6 (medical-image analysis)",
+          "url": "https://www.fda.gov/medical-devices/digital-health-center-excellence/step-6-software-function-intended-provide-clinical-decision-support"
+        },
+        {
+          "jurisdiction": "Vietnam",
+          "document": "08/VBHN-BYT consolidated medical-device text (2026-03-06)",
+          "url": "https://vanban.chinhphu.vn/?classid=0&docid=217131&pageid=27160"
+        },
+        {
+          "jurisdiction": "Vietnam",
+          "document": "Circular 24/2026/TT-BYT (effective 2026-07-01)",
+          "url": "https://vanban.chinhphu.vn/?classid=0&docid=218703&pageid=27160"
+        },
+        {
+          "jurisdiction": "Vietnam",
+          "document": "Personal Data Protection Law 91/2025/QH15 (effective 2026-01-01)",
+          "url": "https://vanban.chinhphu.vn/?classid=1&docid=214590&pageid=27160&typegroup="
+        },
+        {
+          "jurisdiction": "Vietnam",
+          "document": "Decree 356/2025/NĐ-CP (effective 2026-01-01)",
+          "url": "https://vanban.chinhphu.vn/?classid=1&docid=216387&pageid=27160"
+        },
+        {
+          "jurisdiction": "Vietnam",
+          "document": "Decree 102/2025/NĐ-CP on health-data management (effective 2025-07-01)",
+          "url": "https://vanban.chinhphu.vn/?classid=1&docid=213607&pageid=27160"
+        },
+        {
+          "jurisdiction": "United States",
+          "document": "FDA Applying Human Factors and Usability Engineering to Medical Devices, final (August 2026)",
+          "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/applying-human-factors-and-usability-engineering-medical-devices"
+        },
+        {
+          "jurisdiction": "United States",
+          "document": "FDA Content of Premarket Submissions for Device Software Functions, final guidance (2023-06-14; supersedes May 2005 guidance)",
+          "url": "https://www.fda.gov/media/153781/download",
+          "official_guidance_page": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/content-premarket-submissions-device-software-functions",
+          "scope_note": "Nonbinding recommendations for relevant device-software premarket submissions; cited as a method reference only, not a BoneScope regulatory determination."
+        },
+        {
+          "jurisdiction": "United States",
+          "document": "FDA recognized consensus standard record: ISO 14971:2019",
+          "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfStandards/detail.cfm?standard__identification_no=41349"
+        },
+        {
+          "jurisdiction": "International",
+          "document": "WHO AI-related health research ethics review and oversight report, 2026-07-21",
+          "url": "https://www.who.int/publications/i/item/9789240124073"
+        }
+      ],
+      "disposition": "Primary-source review confirmed the FDA June 2023 device-software submission guidance supersedes the May 2005 guidance. The reviewer method guide and online evidence note now cite the current official 2023 PDF and scope it as nonbinding method context only. No legal conclusion, BoneScope risk classification, intended use, or gate status changed; qualified jurisdiction-specific review remains open.",
+      "cybersecurity_ai_lifecycle_refresh": {
+        "checked_at_utc": "2026-10-29T03:42:00Z",
+        "source_status_refresh": "Official FDA source page now identifies the February 2026 final cybersecurity guidance and states it supersedes June 2025; official PDF history notes QMSR alignment and effective date 2026-02-02. No BoneScope applicability or classification determination.",
+        "sources": [
+          {
+            "jurisdiction": "United States",
+            "document": "FDA Cybersecurity in Medical Devices: Quality Management System Considerations and Content of Premarket Submissions",
+            "issued": "2026-02",
+            "status": "final; supersedes 2025-06 final",
+            "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/cybersecurity-medical-devices-quality-management-system-considerations-and-content-premarket",
+            "pdf": "https://www.fda.gov/media/119933/download"
+          },
+          {
+            "jurisdiction": "International technical consensus",
+            "document": "IMDRF GMLP N88 FINAL:2025",
+            "issued": "2025-01-29",
+            "status": "final; 10 guiding principles",
+            "url": "https://www.imdrf.org/documents/good-machine-learning-practice-medical-device-development-guiding-principles"
+          },
+          {
+            "jurisdiction": "United States",
+            "document": "FDA AI-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations",
+            "issued": "2025-01-07",
+            "status": "draft; not for implementation",
+            "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/artificial-intelligence-enabled-device-software-functions-lifecycle-management-and-marketing"
+          },
+          {
+            "jurisdiction": "United States",
+            "document": "FDA Marketing Submission Recommendations for a PCCP for AI-Enabled Device Software Functions",
+            "issued": "2025-08-18",
+            "status": "final; scoped to marketing submissions",
+            "url": "https://www.fda.gov/media/166704/download"
+          }
+        ],
+        "interpretation": "Status/source refresh only. Reviewer checklist prepared in docs/reference/STAGE11_REGULATORY_APPLICABILITY_REVIEW_VI.md; intended use and jurisdiction remain unsigned, and no regulatory classification, pathway, compliance, or approval is inferred."
+      }
+    }
+  },
+  "documentation_validation": {
+    "checked_at_utc": "2026-10-29T04:32:44Z",
+    "markdown_files_scanned": 30,
+    "local_links_checked": 434,
+    "heading_anchors_checked": 22,
+    "broken_local_links": 0,
+    "docs_json_files_scanned": 591,
+    "json_parse_errors": 0,
+    "stage11_csv_templates_checked": 7,
+    "non_rectangular_csv": 0,
+    "git_diff_check": "PASS (exit 0; LF/CRLF advisories only)",
+    "pytest_rerun": false,
+    "latest_full_suite_record": "docs/reference/stage11_test_run_20261029_partial_answerability_evaluator.json",
+    "note": "Documentation-only validation: 30 Markdown files, 434 local links, 22 heading anchors, 0 broken; 591 docs JSON files parse with 0 errors; 7 Stage 11 CSV templates, 0 nonrectangular; 35 governance artifact hashes synchronized. No tests rerun. Seven acceptance gates remain open; answer_ready=false."
+  },
+  "session_checkpoint": {
+    "recorded_at_local": "2026-10-29T11:32:00+07:00",
+    "usage_last_read_percent_used": 67,
+    "target_percent_remaining": 10,
+    "schedule_request": "One-time continuation at 2026-10-29 13:30 Asia/Bangkok on current thread",
+    "schedule_state": "one_time_heartbeat_create_failed_no_future_runs; prior suggested card rendered but activation not verified; do not duplicate",
+    "workspace_root": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+    "test_run_this_checkpoint": false,
+    "completion_state": "not_independently_accepted; 7 acceptance gates open; answer_ready=false",
+    "status_note": "Corrected stale v8 follow-up saying partial answerability unsupported; current evaluator has 3-level schema. Static source scan found retrieval output hard-codes answer_ready=false and no answer-generation endpoint. No independent reviewer labels/blind evaluation, so gates remain open. Current QA 28 Markdown/421 links/21 anchors/0 broken; 591 JSON; 7 CSV rectangular; 33 hashes synchronized; tests not rerun.",
+    "usage_remaining_percent": 34,
+    "usage_last_read_percent": 66
+  },
+  "document_artifact_review": {
+    "path": "docs/reports/Bao_cao_tien_do.docx",
+    "version": "1.7",
+    "dated": "2026-10-27",
+    "modified_this_checkpoint": false,
+    "render_status": "BLOCKED: packaged renderer could not resolve soffice.exe; no bundled LibreOffice executable was present in loaded runtime",
+    "index_disposition": "docs/README.md now labels it a historical snapshot and points to 2026-10-29 project status/handoff",
+    "current_markdown_report": "docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md",
+    "current_markdown_report_sha256": "778c58f6f1e04063f40fd455a5f79ffab785252352b0dd42cb23a5edc6c95cd2",
+    "current_markdown_report_render_status": "Markdown source created and indexed; local-link and JSON QA completed; no separate paginated rendering required."
+  }
+}

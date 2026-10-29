@@ -1,0 +1,92 @@
+{
+  "template_id": "bonescope_stage11_blind_sampling_plan",
+  "template_version": "1.0.0",
+  "status": "UNLOCKED_TEMPLATE_NOT_A_COMPLETED_PLAN",
+  "study_scope": {
+    "protocol_version": null,
+    "intended_use_statement_hash_sha256": null,
+    "evaluation_question": null,
+    "system_snapshot_hashes": {
+      "corpus": null,
+      "source_lock": null,
+      "retrieval_config": null,
+      "evidence_config": null,
+      "index_manifest": null,
+      "embedding_model_revision": null,
+      "code_commit_or_tree": null
+    },
+    "reviewer_rubric_hash_sha256": null,
+    "acceptance_gate_worksheet_hash_sha256": null
+  },
+  "sampling_frame": {
+    "frame_id": null,
+    "frame_version": null,
+    "frame_sha256": null,
+    "eligible_unit_definition": null,
+    "frame_unit_count": null,
+    "source_period_or_snapshot": null,
+    "inclusion_criteria": [],
+    "exclusion_criteria": [],
+    "deduplication_and_near_duplicate_method": null,
+    "overlap_audit_scope": [],
+    "overlap_audit_record_path_and_sha256": null,
+    "known_frame_gaps": []
+  },
+  "design": {
+    "design_type": null,
+    "sampling_unit": null,
+    "primary_independence_cluster": null,
+    "nested_cluster_hierarchy": [],
+    "strata_and_predeclared_targets": [],
+    "rare_group_enrichment": null,
+    "selection_probability_and_weight_method": null,
+    "target_denominators_and_cluster_counts": [],
+    "sample_size_precision_or_decision_basis": null,
+    "stopping_rule": null,
+    "replacement_rule": null,
+    "missing_or_unavailable_item_handling": null,
+    "outcome_blind_replacement_commitment": "Do not replace items based on observed retrieval outputs, labels, or whether an item makes a metric pass; apply only the pre-locked eligibility/missingness rule.",
+    "early_stop_rule": null,
+    "translation_and_locale_review_provenance": null,
+    "paired_language_variant_cluster_rule": "If parallel translations or paraphrases share the same intent/evidence assertion, assign the same opaque query_family_cluster_id and do not count them as independent sampling units."
+  },
+  "randomization_and_reproducibility": {
+    "random_generator_and_version": null,
+    "seed_storage_location_access_controlled": null,
+    "seed_commitment_sha256_before_draw": null,
+    "selection_script_path_version_and_sha256": null,
+    "tie_breaking_rule": null,
+    "draw_timestamp_utc": null
+  },
+  "blinding_and_separation": {
+    "custodian_role_and_independence": null,
+    "opaque_id_generation_method": null,
+    "reviewers_blinded_to": [],
+    "analysts_blinded_to": [],
+    "mapping_storage_and_access_controls": null,
+    "label_file_distribution_and_hash_procedure": null,
+    "unblinding_authority_and_prerequisites": null,
+    "emergency_unblinding_authority_and_incident_record": null
+  },
+  "data_protection": {
+    "patient_or_direct_identifier_data_permitted": false,
+    "permitted_data_fields": [],
+    "storage_location_and_access_group": null,
+    "retention_and_deletion_rule": null,
+    "ethics_or_data_authority_reference_if_applicable": null
+  },
+  "deviations": [],
+  "lock_record": {
+    "locked_at_utc": null,
+    "evaluation_lead_signature_or_approved_attestation": null,
+    "independent_reviewer_signatures_or_attestations": [],
+    "final_plan_sha256_after_lock": null
+  },
+  "notes": [
+    "Complete and hash this plan before sampling or exposing retrieval outputs.",
+    "Do not place patient identifiers, clinical narratives, labels, query text, or gold answers in this plan.",
+    "For convenience or expert-enriched samples, do not invent selection probabilities or claim population prevalence.",
+    "Record all post-lock deviations; a material change requires a new plan version and, if results were exposed, a new blind evaluation."
+  ],
+  "record_type": "pre_registration_template"
+}

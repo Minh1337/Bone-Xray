@@ -1,0 +1,36 @@
+{
+  "record_id": "stage11-tcia-qin-sarcoma-screen-20261029",
+  "review_date": "2026-10-29",
+  "candidate_id": "C12",
+  "dataset": "TCIA QIN-SARCOMA",
+  "doi": "10.7937/K9/TCIA.2016.fXL9sESs",
+  "primary_source": "https://www.cancerimagingarchive.net/collection/qin-sarcoma/",
+  "source_claims": {
+    "access": "The collection-specific page states it became public in April 2026.",
+    "license": "CC BY 4.0, as listed for the MR/DICOM image collection.",
+    "subjects": 15,
+    "studies": 38,
+    "images": 46614,
+    "modality": "DCE-MRI",
+    "disease_scope": "Soft-tissue sarcoma",
+    "endpoint": "Longitudinal response to preoperative chemoradiation"
+  },
+  "discrepancy": "TCIA browse-collections and legacy wiki listings still show Limited; the current collection-specific page explicitly states public since April 2026 and lists CC BY 4.0. Preserve discrepancy and recheck if access state changes.",
+  "bonescope_disposition": "NOT ELIGIBLE / NOT EVALUABLE",
+  "rationale": [
+    "MRI does not match the BoneScope primary bone-tumor radiograph task.",
+    "Soft-tissue sarcoma does not match the intended primary bone-tumor disease scope.",
+    "Treatment-response imaging does not match the diagnostic classification endpoint.",
+    "No patient/image overlap or checkpoint/pretraining audit was performed."
+  ],
+  "actions": {
+    "data_downloaded": false,
+    "added_to_source_registry": false,
+    "added_to_corpus_or_index": false,
+    "used_for_evaluation": false
+  },
+  "additional_sources": [
+    "https://www.cancerimagingarchive.net/browse-collections/",
+    "https://wiki.cancerimagingarchive.net/display/Public/QIN-SARCOMA"
+  ]
+}

@@ -7,7 +7,7 @@
 <div class="connection"><span id="health" role="status">Đang kiểm tra kết nối…</span><button type="button" id="reconnect" class="quiet">Kiểm tra lại</button></div></header>
 <main>
 <section class="intro"><div><p class="eyebrow">PHÂN TÍCH ẢNH / BẢN THỬ NGHIỆM</p><h1>Từ ảnh chụp đến<br><em>kết quả phân loại.</em></h1><p>Tải ảnh, xác nhận thông tin và xem các lớp mà mô hình dự đoán.</p></div><div class="scope"><span class="scope-mark">01</span><p>Phân loại u xương<small>10 lớp · Ảnh và metadata</small></p></div></section>
-<div class="notice">Dùng cho học tập và nghiên cứu. Kết quả mô hình không thay thế chẩn đoán; điểm dự đoán chưa phải xác suất mắc bệnh đã được kiểm chứng.</div>
+<div class="notice" role="note">Bản thử nghiệm học tập/nghiên cứu. Không dùng cho chẩn đoán, sàng lọc, phân loại cấp cứu hay quyết định điều trị. Điểm softmax (0–1) chưa hiệu chuẩn cho lâm sàng; không diễn giải là xác suất mắc bệnh.</div>
 <div class="workspace">
 <form id="analysis-form"><fieldset id="inputs">
 <section class="card"><div class="section-title"><span class="step">01</span><div><h2>Ảnh X-quang</h2><p>Chọn ảnh gốc tương ứng với metadata.</p></div></div>
@@ -27,10 +27,10 @@
 <div id="message" role="alert" hidden></div>
 <div id="empty-result" class="empty-result"><span class="result-symbol">◎</span><h3>Sẵn sàng khi bạn hoàn tất</h3><p>Chọn ảnh và nhập đầy đủ thông tin ở bên trái để bắt đầu.</p></div>
 <div id="loading" hidden><div class="spinner"></div><h3>Đang phân tích ảnh…</h3><p>Yêu cầu đầu tiên có thể mất lâu hơn do làm nóng mô hình.</p></div>
-<div id="result" hidden><p class="eyebrow">LỚP CÓ ĐIỂM CAO NHẤT</p><h3 id="top-label" class="top-label"></h3><div class="main-score"><span id="top-score"></span><small>điểm dự đoán</small></div><div id="top-three"></div><div class="result-meta"><span>Thời gian xử lý<strong id="duration"></strong></span><span>Thiết bị<strong id="device"></strong></span></div><p class="hint">Thời gian trên gồm tiền xử lý và suy luận; chưa gồm tải ảnh và toàn bộ lượt gọi HTTP.</p><details><summary>Xem điểm của cả 10 lớp</summary><table><thead><tr><th>Lớp</th><th>Điểm</th></tr></thead><tbody id="all-scores"></tbody></table></details>
+<div id="result" hidden><p class="eyebrow">LỚP CÓ ĐIỂM CAO NHẤT</p><h3 id="top-label" class="top-label"></h3><div class="main-score"><span id="top-score"></span><small>điểm softmax (0–1)</small></div><div id="top-three"></div><div class="result-meta"><span>Thời gian xử lý<strong id="duration"></strong></span><span>Thiết bị<strong id="device"></strong></span></div><p class="hint">Thời gian trên gồm tiền xử lý và suy luận; chưa gồm tải ảnh và toàn bộ lượt gọi HTTP.</p><details><summary>Xem điểm softmax của cả 10 lớp</summary><table><thead><tr><th>Lớp</th><th>Điểm softmax (0–1)</th></tr></thead><tbody id="all-scores"></tbody></table></details>
 <div class="save-actions"><button type="button" id="save-case" class="primary full">💾 Lưu ca vào lịch sử</button><button type="button" id="download" class="secondary full">Tải kết quả JSON</button></div>
 <div id="save-message" class="save-message" hidden></div>
 </div>
 </section><div class="side-note"><h3>Thông tin cho bước hiện tại</h3><p>Ảnh được xử lý qua API trên máy bạn. Bạn có thể lưu ca vào SQLite để xem lại ở Lịch sử.</p><p>RAG hiện chỉ là pipeline retrieval thử nghiệm, chưa có chatbot trong giao diện và chưa dùng để trả lời y khoa.</p><p>Thay ảnh hoặc metadata sẽ xóa kết quả cũ để tránh nhầm ca. Tải JSON nếu cần giữ kết quả.</p></div></aside>
 </div><footer>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang<span>Giao diện 0.2.0</span></footer>
-</main><script src="/ui-assets/app.js" defer></script></body></html>
+</main><script src="/ui-assets/app.js?v=3" defer></script></body></html>

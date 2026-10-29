@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "audit_mutation": "question_count_current changed and comparison hash recomputed",
+  "audit_rejected": true,
+  "audit_errors": [
+    "evaluation_comparison_current_metadata_mismatch:evidence_v3_viewed.json"
+  ],
+  "replay_mutation": "frozen report metadata changed without updating manifest report hash",
+  "replay_rejected": true,
+  "replay_preflight_mismatches": [
+    "report_hash_mismatch:evidence_v3_viewed.json"
+  ],
+  "scope": "temporary copies of current bundle only"
+}

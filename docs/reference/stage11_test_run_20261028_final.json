@@ -1,0 +1,30 @@
+{
+  "created_at_utc": "2026-10-28T16:15:04.638167+00:00",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "working_directory": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+  "exit_code": 0,
+  "status": "PASS",
+  "collected": 66,
+  "passed": 66,
+  "failed": 0,
+  "subtests_passed": 79,
+  "python": "3.11.9",
+  "pytest": "9.1.1",
+  "warnings": [
+    "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal"
+  ],
+  "implementation_hashes": {
+    "xray_api.py": "f7e9da3a00389fb3a903d71581e4993c672cb752c98650be36b84298a63cc9e9",
+    "xray_web/index.html": "fa2d4d877309320d866a031728ed97188f97f5ce641a9a1c493695724708418b",
+    "xray_web/app.js": "12974b38112ec4601e4c375efae68185308121e6bb1a86db8d9fba855d1a7331",
+    "xray_web/history.html": "6c6c2c91754852ec55dd7713ae292da86231918eb0295b15b8f26f95f9e5b2d8",
+    "xray_web/case_detail.html": "9e98f979f379680b63527d5d9a6d2520bf61ec72f7cc0fe34f293f434ee431b4",
+    "docs/guides/README_UI_VI.md": "3306d5521e4d117d24b1123d13800c267d0fd10b7fd6ca4b584a90926c17d548",
+    "docs/STAGE11_HANDOFF_VI.md": "3040ed3c343cccc0c3884d6d171fda1d0977732b2e3f8ce330066c4c681b86e4"
+  },
+  "source_cache": {
+    "path": "rag/source_cache/osteofibrous-dysplasia-review-2024.xml",
+    "sha256": "be017ab4d7546064180d5b00aece02264bb8d969d367c00233efd7b9a5ab1c7c"
+  },
+  "scope_note": "Full software regression suite after clarifying normalized softmax score presentation and non-clinical-use notices. No change to model outputs or API score schema. This is software regression evidence only, not independent retrieval or clinical validation."
+}

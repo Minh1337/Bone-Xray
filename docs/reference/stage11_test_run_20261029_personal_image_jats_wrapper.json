@@ -1,0 +1,89 @@
+{
+  "created_at_utc": "2026-10-28T17:23:00.338761+00:00",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "working_directory": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+  "exit_code": 0,
+  "status": "PASS",
+  "collected": 71,
+  "passed": 71,
+  "failed": 0,
+  "subtests_passed": 102,
+  "python": "3.11.9",
+  "pytest": "9.1.1",
+  "warnings": [
+    "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal"
+  ],
+  "implementation_hashes": {
+    "xray_api.py": "f7e9da3a00389fb3a903d71581e4993c672cb752c98650be36b84298a63cc9e9",
+    "xray_web/index.html": "fa2d4d877309320d866a031728ed97188f97f5ce641a9a1c493695724708418b",
+    "xray_web/app.js": "12974b38112ec4601e4c375efae68185308121e6bb1a86db8d9fba855d1a7331",
+    "xray_web/history.html": "6c6c2c91754852ec55dd7713ae292da86231918eb0295b15b8f26f95f9e5b2d8",
+    "xray_web/case_detail.html": "9e98f979f379680b63527d5d9a6d2520bf61ec72f7cc0fe34f293f434ee431b4",
+    "rag/audit.py": "3edc481f7360d28ab86659c0a3d0b992e4dab11106545125527fa57914784007",
+    "rag/replay_reports.py": "6d8c5eb7776009aa83581e482808f63294605ac27276ed87306142bd86c381e6",
+    "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/policy.py": "37d81e3fde4659e783c9cb8ea14a66382758a12181f3f7e33726b484f0f8179d",
+    "rag/evidence.py": "d8ec53d3767118962caab11c6c1dc41569b0ce3e88af117c279e0e32bf2c06c8",
+    "rag/build_corpus.py": "c78602be9c9e839e9dca96834b7064bc2b900fbb495ec3e809291b6143b3f31f",
+    "rag/build_evaluation_bundle.py": "b9acfa268befa68398827b0b51edfa4530fb926ebf5bc9bc530966920c1382f8"
+  },
+  "source_cache": {
+    "path": "rag/source_cache/ossifying-fibroma-mandible-case-2024.xml",
+    "sha256": "d82f42d5ea2424eb83d9da910ac4f41ab1c661634286338d34c8ffce7c8931c6",
+    "parser_status": "PASS",
+    "registered_or_ingested": false
+  },
+  "scope_note": "Full software regression after JATS EFetch single-article wrapper support and personal-case image routing guard. New probes are agent-authored/in-sample/text-only. No independent retrieval or clinical validation is implied.",
+  "test_file_hashes": {
+    "api_tests/test_api.py": "5e3ede7c63c79938def8eb1d04d595d1d780036a68688fb4080019102c08da99",
+    "api_tests/test_case_api.py": "b8547db40956371e274a7e18a7df67dfc9bd12eb5c08519ce82921ccf2074bf5",
+    "rag/tests/test_audit.py": "ebb54a802adf2693c2b1c87631718a2beab9f0022c794f889effee4b693bf07a",
+    "rag/tests/test_corpus.py": "12cb43286b2227c2825ec0868c374d75b9499d6734f5bfc0495c065c58d162fd",
+    "rag/tests/test_evaluation.py": "9edd849021e2575a21bef0cc9c370f9f5f88ddae1899ea5128d7b642c5c5bdb7",
+    "rag/tests/test_evidence.py": "c6e6ec82834259c55c4f35a09a097b805b7f452402899bd40dff6ded169c540e",
+    "rag/tests/test_retrieval.py": "76cf1721a915468f738c1a79811b74b73ba1182b72f329e958d3f373b725737d",
+    "tests/test_validation.py": "021b1e0e25320040f7cad188c8c0bc72964032340a80f362618514d4f959c1a9",
+    "ui_tests/test_ui_routes.py": "00585825226ae799ebb9c953b7d53e4a26b434fe79a1a16575f5ab2e6be1fca9"
+  },
+  "targeted_regression": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_corpus.py -q",
+    "passed": 20,
+    "subtests_passed": 12,
+    "exit_code": 0,
+    "coverage": "JATS bare article and PMC article-set wrapper; rejects empty and multi-article wrappers."
+  },
+  "targeted_personal_image_regression": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_retrieval.py -q",
+    "passed": 14,
+    "subtests_passed": 83,
+    "exit_code": 0,
+    "coverage": "Six new personal-case image wording misses fixed; four education controls stay in scope."
+  },
+  "personal_image_probe_record": {
+    "path": "docs/reference/stage11_personal_image_routing_edge_probes_20261029.json",
+    "sha256": "e5edd9ec787247aee058d6625fe328a4063e91f9e99603f13184b04dd4322b7f",
+    "personal_cases_passed": 6,
+    "personal_cases_total": 6,
+    "education_controls_passed": 4,
+    "education_controls_total": 4,
+    "provenance": "Agent-authored, discovered and fixed in-sample; not blind, independent, representative, or specialist-reviewed.",
+    "dataset_questions": 36
+  },
+  "evaluation_image_routing_dev": {
+    "path": "rag/data/evaluation_image_routing_dev_20261028.json",
+    "sha256": "a4f834dab5d85618d3eef450c0c02105a31b7d7ee9b43fd836dd22a99baaa57d",
+    "questions": 36,
+    "status_matches": 36,
+    "routing_accuracy": 1.0,
+    "negative_abstention": 1.0,
+    "provenance": "Agent-authored and used to discover/fix policy gaps; in-sample and not blind/independent/representative."
+  },
+  "targeted_final_regression": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_retrieval.py rag/tests/test_corpus.py -q",
+    "passed": 34,
+    "subtests_passed": 95,
+    "exit_code": 0,
+    "coverage": "Final focused rerun for personal-image case/context policy and bare/PMC-wrapped JATS parsing."
+  }
+}

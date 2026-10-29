@@ -45,7 +45,7 @@ class CaseApiTests(unittest.TestCase):
         metadata.update(age=30, gender='M')
         prediction = self.client.post('/predict',
             data={'metadata': json.dumps(metadata)},
-            files={'file': ('test_case.png', self.image, 'image/png')})
+            files={'file': ('patient-identifier-123.png', self.image, 'image/png')})
         self.assertEqual(prediction.status_code, 200)
         token = prediction.json()['prediction_id']
 
@@ -64,7 +64,7 @@ class CaseApiTests(unittest.TestCase):
         cases = self.client.get('/cases').json()
         self.assertEqual(cases['total'], 1)
         case_id = cases['cases'][0]['id']
-        self.assertEqual(self.client.get(f'/cases/{case_id}').json()['image_filename'], 'test_case.png')
+        self.assertEqual(self.client.get(f'/cases/{case_id}').json()['image_filename'], 'uploaded-image.png')
 
         comment = self.client.post(f'/cases/{case_id}/comments', json={'content': '<img src=x onerror=alert(1)>'})
         self.assertEqual(comment.status_code, 200)

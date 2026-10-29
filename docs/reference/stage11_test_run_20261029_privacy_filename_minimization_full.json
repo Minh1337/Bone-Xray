@@ -1,0 +1,25 @@
+{
+  "created_at_utc": "2026-10-29T07:59:32.732232+00:00",
+  "change": "Minimize uploader filename persistence for newly created cases.",
+  "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "exit_code": 0,
+  "status": "PASS",
+  "passed": 86,
+  "subtests_passed": 132,
+  "failed": 0,
+  "warnings": [
+    "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias."
+  ],
+  "scope": "Software regression and test-only filename minimization evidence; no runtime host assessment or privacy/security approval.",
+  "control": {
+    "behavior": "New prediction records store uploaded-image plus the already-validated extension; original uploader-supplied filename is not persisted in the pending case record.",
+    "test": "API integration test uploads patient-identifier-123.png and verifies the saved record contains uploaded-image.png.",
+    "legacy_data": "No database was read or migrated. Existing records, backups/WAL and any prior filenames are not altered or assessed."
+  },
+  "code_sha256": {
+    "xray_api.py": "419588122efe254fadf43ab10922ddbeae0b27ee515bceaa89721ec4a73df21c",
+    "database.py": "57e7d5cad8534374f20a046953c74c7b649c3f1e48613a51f5e15c040c134996",
+    "api_tests/test_api.py": "5e3ede7c63c79938def8eb1d04d595d1d780036a68688fb4080019102c08da99",
+    "api_tests/test_case_api.py": "706ca708f3595e6e76673c3f3a20e98d897000a2a7cd3fff028c3a36116ea5e0"
+  }
+}

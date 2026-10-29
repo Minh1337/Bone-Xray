@@ -1,0 +1,439 @@
+{
+  "created_at_utc": "2026-10-28T09:06:25.382627+00:00",
+  "project": "BoneScope Stage 11 RAG",
+  "status": "technically_in_progress_not_independently_accepted",
+  "corpus": {
+    "sources": 21,
+    "chunks": 759,
+    "vector_shape": [
+      759,
+      384
+    ],
+    "sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+    "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+    "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+    "retrieval_config_sha256": "d3d1a2488c482f47bea9835a0fefc90ce990ab3ddc53c9f5ac9d9c5f6bc7d787",
+    "evidence_config_sha256": "bffd40b2dddf2cc4881232902f9f2ed1f21b82967fe246d71c672f8488ce2aa6"
+  },
+  "audit": {
+    "status": "PASS",
+    "scope": "artifact_integrity_and_provenance_only_not_medical_validity",
+    "errors": [],
+    "source_count": 21,
+    "chunk_count": 759,
+    "vector_shape": [
+      759,
+      384
+    ],
+    "implementation_sha256": "05812a3011df49db4ce541481bbf429cd937e9ebdfc8c09911022aba09b056b2",
+    "evaluation_sets_checked": [
+      "evaluation_questions.json",
+      "evaluation_v2.json",
+      "evaluation_expansion_dev_v1.json",
+      "evaluation_evidence_v3.json",
+      "evaluation_synovial_chondromatosis_dev_20261028.json",
+      "evaluation_synovial_synonym_dev_20261028.json",
+      "evaluation_image_routing_dev_20261028.json",
+      "evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "evaluation_nci_osteochondroma_dev_20261028.json"
+    ],
+    "evaluation_reports_checked_count": 16,
+    "evaluation_report_manifest_sha256": "42d376517511aa475193279b3b5546808728924f0132eeddde209fcbba93391f",
+    "report_sha256": "ba1307587641aa3ca9946745ec5dc2c3cc68807a8c0ef097da5bf63993b9e467",
+    "source_cache_checked_count": 21,
+    "source_cache_missing_count": 0,
+    "source_cache_mismatch_count": 0,
+    "evaluation_dataset_hashes_checked_count": 9,
+    "evaluation_comparison_checked": true,
+    "note": "Artifact integrity/provenance PASS only; 21 cached sources match, 9 evidence datasets and 16 evaluation reports verified. Does not establish medical validity."
+  },
+  "tests": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+    "status": "historical_pre_latest_policy_change_not_current",
+    "passed": 66,
+    "subtests_passed": 61,
+    "warnings": [
+      "Starlette TestClient AnyIO BlockingPortal deprecation"
+    ],
+    "route_regression": "rag.tests.test_retrieval.RetrievalTests.test_overview_route_prefers_abstract_and_preserves_global_and_caller_filters",
+    "previous_snapshot_passed": 59,
+    "previous_snapshot_subtests_passed": 45,
+    "current_snapshot": "Historical full suite result predates the latest personal-image policy update; see superseding summary.",
+    "record": "docs/reference/stage11_test_run_20261028.json",
+    "record_sha256": "dd44e0f40f3b08eaf71a499bbcad04d6451c061a47b95e403ab6170ef9e3125a"
+  },
+  "evaluations": {
+    "development_tuned_in_sample": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/expansion_dev.json",
+      "positive": 22,
+      "negative": 3,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.6833333333333333,
+      "evidence_precision": 0.20000000000000007,
+      "evidence_recall": 0.9772727272727273,
+      "evidence_ndcg": 0.7526947334499013,
+      "negative_abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "concept_rerank_report": "stage11_policy_rerun_20261028_post_ofd/expansion_dev_concept_rerank.json",
+      "concept_rerank_recall_at_5": 0.8636363636363636,
+      "frozen_config_matches": false,
+      "concept_rerank_mrr_at_5": 0.5734848484848484
+    },
+    "viewed_v2_regression_not_independent": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/v2_test_regression.json",
+      "positive": 8,
+      "negative": 6,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.7333333333333334,
+      "negative_abstention": 1.0,
+      "concept_rerank_report": "stage11_policy_rerun_20261028_post_ofd/v2_test_concept_rerank.json",
+      "concept_rerank_recall_at_5": 1.0,
+      "concept_rerank_mrr_at_5": 0.9375,
+      "frozen_config_matches": false,
+      "evidence_ndcg": 0.7358566009043177,
+      "routing_change": "NCI chondrosarcoma route now reserves three source chunks; p13 retrieved at rank 3. Tuned on viewed V2; not independent validation."
+    },
+    "strict_evidence_not_usable": {
+      "dev_report": "stage11_policy_rerun_20261028_post_ofd/expansion_dev_strict.json",
+      "dev_recall_at_5": 0.045454545454545456,
+      "dev_positive_abstention": 0.9545454545454546,
+      "v2_report": "stage11_policy_rerun_20261028_post_ofd/v2_test_strict.json",
+      "v2_recall_at_5": 0.0,
+      "v2_positive_abstention": 1.0,
+      "frozen_config_matches_dev": false,
+      "frozen_config_matches_v2": false,
+      "synovial_source_strict_report": "stage11_policy_rerun_20261028_post_ofd/synovial_source_dev_strict.json",
+      "synovial_source_recall_at_5": 0.0,
+      "synovial_source_positive_abstention": 1.0,
+      "synovial_synonym_strict_report": "stage11_policy_rerun_20261028_post_ofd/synovial_synonym_dev_strict.json",
+      "synovial_synonym_positive_recall_at_5": 1.0,
+      "synovial_synonym_positive_abstention": 0.0,
+      "note": "one synonym positive passes strict lexical filtering; n=1 and does not establish entailment"
+    },
+    "synovial_source_specific_in_sample": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/synovial_source_dev.json",
+      "dataset": "rag/data/evaluation_synovial_chondromatosis_dev_20261028.json",
+      "positive": 4,
+      "negative": 2,
+      "recall_at_5": 1.0,
+      "mrr_at_5": 0.5416666666666666,
+      "negative_abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "prior_mrr_before_synonym_tuning": 0.5083333333333333,
+      "strict_report": "stage11_policy_rerun_20261028_post_ofd/synovial_source_dev_strict.json",
+      "strict_recall_at_5": 0.0,
+      "strict_positive_abstention": 1.0,
+      "provenance": "agent-authored, viewed and tuned in-sample; not holdout or independent clinical validation"
+    },
+    "synovial_synonym_policy_dev_in_sample": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/synovial_synonym_dev.json",
+      "dataset": "rag/data/evaluation_synovial_synonym_dev_20261028.json",
+      "positive": 1,
+      "negative": 1,
+      "recall_at_5": 1.0,
+      "positive_rank": 1,
+      "negative_abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "strict_positive_recall_at_5": 1.0,
+      "strict_positive_abstention": 0.0,
+      "provenance": "agent-authored, viewed in-sample; not independent, blind, or clinically adjudicated",
+      "strict_report": "stage11_policy_rerun_20261028_post_ofd/synovial_synonym_dev_strict.json"
+    },
+    "legacy_regression_viewed": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/legacy_all.json",
+      "positive": 10,
+      "negative": 2,
+      "recall_at_5": 0.8,
+      "mrr_at_5": 0.6666666666666666,
+      "negative_abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "provenance": "legacy regression, viewed; not independent"
+    },
+    "evidence_v3_viewed_not_independent": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/evidence_v3_viewed.json",
+      "positive": 10,
+      "negative": 10,
+      "recall_at_5": 0.8,
+      "mrr_at_5": 0.5333333333333333,
+      "negative_abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "evidence_precision_at_5": 0.16,
+      "evidence_recall_at_5": 0.8,
+      "evidence_ndcg_at_5": 0.602371901428583,
+      "provenance": "viewed and used previously; regression only"
+    },
+    "image_routing_policy_dev_in_sample": {
+      "report": "stage11_policy_rerun_20261028_post_ofd/image_routing_dev.json",
+      "dataset": "rag/data/evaluation_image_routing_dev_20261028.json",
+      "queries": 24,
+      "expected_status": "insufficient_evidence",
+      "abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "reason": "image_requires_specialist_assessment",
+      "smoke_report": "stage11_policy_rerun_20261028_post_image_policy_compositional/image_routing_smoke.json",
+      "personal_image_smoke": {
+        "correct_reason": 24,
+        "denominator": 24
+      },
+      "educational_controls_in_scope": {
+        "correct": 3,
+        "denominator": 3
+      },
+      "provenance": "Agent-authored development probes, viewed; not independent, blind, clinically adjudicated, or representative."
+    },
+    "osteofibrous_dysplasia_in_sample": {
+      "dataset": "rag/data/evaluation_osteofibrous_dysplasia_dev_20261028.json",
+      "questions": 7,
+      "positive": 5,
+      "negative": 2,
+      "ordinary_recall_at_5": 1.0,
+      "ordinary_mrr_at_5": 0.7,
+      "negative_abstention": 1.0,
+      "routing_accuracy": 1.0,
+      "strict_recall_at_5": 0.2,
+      "strict_positive_abstention": 0.8,
+      "strict_routing_accuracy": 0.42857142857142855,
+      "provenance": "agent-authored, after viewing source and exploratory retrieval; tuned in-sample, not independently adjudicated"
+    }
+  },
+  "acceptance_gates": {
+    "independent_clinical_review": "not_done",
+    "new_blind_dataset": "not_done",
+    "citation_entailment_review": "not_done",
+    "answer_ready": false
+  },
+  "caveat": "All development, image-routing probes, and V2 reports have been viewed; source-specific synonym tuning is in-sample. Image policy probes are self-authored and nonrepresentative; the retrieval API receives text only and does not inspect attachment metadata or pixels. Table exclusion changed corpus and index; all shown reports are current reruns but still not independent. Metrics do not establish clinical validity, entailment, or independent acceptance.",
+  "review_preparation": {
+    "reviewer_packet": "STAGE11_REVIEWER_PACKET_VI.md",
+    "blank_annotation_template": "stage11_blind_label_template_20261028.csv",
+    "acceptance_gate_template": "stage11_acceptance_gate_template_20261028.csv",
+    "template_numeric_thresholds_filled": false,
+    "template_contains_queries": false,
+    "independent_reviewer_engaged": false,
+    "blind_dataset_completed": false
+  },
+  "online_source_review": {
+    "report": "stage11_online_evidence_review_20261028.md",
+    "report_sha256": "b5715e582e946652e3dd5f5d307effe0d963c7ec974383b6f1d2d354ba30bf90",
+    "reviewed_registry_sources": 20,
+    "nci_text_policy_sources": 12,
+    "non_nci_cc_by_4_0_sources": 8,
+    "scope": "license_and_provenance_review_only_not_clinical_validation",
+    "taxonomy_gaps": {
+      "osteofibroma": "BTXRD class name; WHO ICD-O-3.1 lists Osteofibroma under ossifying fibroma M-9262/0 as a nomenclature/coding alias, but BTXRD's applied definition and per-case diagnosis are unverified; retain source label and provenance, do not silently relabel cases or infer pathology pending original protocol/specialist review",
+      "synovial_osteochondroma": "Synovial chondromatosis review ingested under verified CC BY 4.0 and its synonym synovial osteochondromatosis is supported for the canonical entity; BTXRD label synovial osteochondroma remains unadjudicated and unsupported as an automatic mapping."
+    },
+    "dataset_taxonomy_note": "The original BTXRD paper lists both class names and describes multi-center inputs with differing confirmation pathways; class name presence alone does not establish uniform histopathology confirmation.",
+    "synovial_review_payload_sha256": "13b37e87aba2bac5f29c4cde583a99e9a0bc6ce62c02fb4787068f6ada04d8b8",
+    "taxonomy_references_not_ingested": {
+      "synovial_osteochondroma": {
+        "source": "SAGE Acta Radiologica Open 2016 case report",
+        "license": "CC BY-NC 3.0",
+        "use": "terminology review only; not ingested; does not establish BTXRD class-level mapping"
+      },
+      "osteofibroma": {
+        "source": "NCBI rodent bone-tumour nomenclature review",
+        "use": "context only; not a human BTXRD subtype definition; not ingested"
+      },
+      "osteofibroma_icdo_alias": {
+        "source": "WHO ICD-O-3.1 morphology list (M-9262/0 Ossifying fibroma includes Osteofibroma); WHO overview states ICD-O-3.2 is current revision",
+        "use": "terminology/coding relationship reviewed; not ingested; does not establish BTXRD author intent or image-level pathology"
+      },
+      "osteofibrous_dysplasia_review_2024": {
+        "source": "Liu et al., Osteofibrous dysplasia: a narrative review, Journal of Orthopaedic Surgery and Research (2024), DOI 10.1186/s13018-024-04682-3",
+        "license": "CC BY 4.0 verified on publisher page",
+        "use": "historical terminology and long-bone OFD context reviewed; not ingested because workspace fetch could not retrieve/preserve/hash the full-text payload; not a BTXRD label definition"
+      },
+      "ossifying_fibroma_74_cases_review": {
+        "source": "Clinical, Radiological and Histopathological Review of 74 Ossifying Fibromas (2023)",
+        "license": "CC BY 4.0",
+        "use": "not ingested; jaw/craniofacial scope is not the BTXRD long-bone label context"
+      },
+      "osteochondroma": {
+        "source": "NCI Dictionary of Cancer Terms entry and first-party Glossary API specification",
+        "use": "general definition reviewed, not ingested; cached HTML is a JavaScript shell and no exact API term payload was preserved and hashed"
+      }
+    },
+    "external_image_dataset_search": {
+      "status": "no_verified_public_independent_cohort_found",
+      "primary_candidate": {
+        "source": "Li et al., Insights into Imaging (2026), DOI 10.1186/s13244-026-02271-y",
+        "cohort": "471 internal patients from one center; 1,867 external patients are BTXRD; other datasets are shared on reasonable request",
+        "availability": "not obtained; no license, patient-level provenance, or checkpoint-overlap assessment verified",
+        "use": "follow-up lead only; not a benchmark dataset"
+      },
+      "mirror_excluded": {
+        "source": "MedOtter/BTXRD Hugging Face dataset card",
+        "reason": "same Figshare BTXRD source and image count; not independent; license statements on the card conflict"
+      },
+      "decision": "no public external cohort verified; neither request-only candidate is available or permission-cleared; do not claim external image validation",
+      "additional_candidate": {
+        "source": "Deep learning-based classification of primary bone tumors on radiographs: A preliminary study, eBioMedicine (2020), DOI 10.1016/j.ebiom.2020.103121",
+        "cohort": "2,899 radiographs from 1,356 histopathology-confirmed patients across five centers; reported external test included 291 patients",
+        "availability": "not downloadable; authors say available on reasonable request; no dataset reuse license or access verified",
+        "endpoint_fit": "benign/intermediate/malignant, not directly compatible with BoneScope 10-class labels; requires expert endpoint mapping",
+        "use": "follow-up lead only; not a benchmark dataset"
+      },
+      "screened_not_eligible": [
+        {
+          "source": "IIEST small mixed bone radiograph set, described as 217 images including 69 bone tumor images",
+          "reason": "too small for defensible evaluation; per-image reference standard, patient IDs, license and overlap not verified"
+        },
+        {
+          "source": "Bone-Cancer Assessment and Destruction Pattern Analysis in Long-Bone X-ray Image (2019), 150 images",
+          "reason": "mixed sources from websites/TCIA; labels based on clinical findings/comments; item-level rights, provenance and expert reference standard not verified"
+        },
+        {
+          "source": "Bone-CNN (Biomedicines 2026), 884 radiographs",
+          "reason": "paper states the images come from Yao et al. Figshare BTXRD, already used by checkpoint; image-level 70/20/10 split due to absent patient IDs; not an independent external cohort"
+        },
+        {
+          "source": "VinDr-SpineXR, PhysioNet v1.0.0",
+          "reason": "10,466 images/5,000 studies with radiologist annotations but spine-anomaly endpoint, not bone-tumor taxonomy; restricted health-data license and DUA required"
+        }
+      ]
+    },
+    "rag_evaluation_literature": {
+      "source": "Zhao et al., JMIR 2026, DOI 10.2196/90046",
+      "sample": 157,
+      "reported_independent_retrieval_evaluation": "47/157 (29.9%)",
+      "reported_fine_grained_evidence_verification": "22/157 (14.0%)",
+      "reported_interrater_reliability_among_human_evaluations": "26/94 (27.7%)",
+      "use": "supports separating retrieval, evidence/citation support, human agreement, safety, and deployment setting; descriptive prevalence is not an acceptance threshold",
+      "additional_review": {
+        "source": "Yang et al., Cell Reports Medicine 2026, DOI 10.1016/j.xcrm.2026.102927",
+        "included_studies": 251,
+        "reported_caveat": "automated metrics emphasize generation/task performance; human ratings emphasize accuracy/completeness/relevance/fluency, with less attention to bias and safety",
+        "scope": "methodological context only; scoping review is not an acceptance standard and is not ingested in corpus"
+      }
+    },
+    "osteofibrous_dysplasia_review_payload_sha256": "be017ab4d7546064180d5b00aece02264bb8d969d367c00233efd7b9a5ab1c7c",
+    "current_source_addition": "NCI Cancer.gov Patient glossary osteochondroma, term ID 723860; reuse policy recorded; not a BTXRD label mapping."
+  },
+  "documents": {
+    "reviewer_packet": {
+      "path": "docs/reference/STAGE11_REVIEWER_PACKET_VI.md",
+      "sha256": "cfd474aa87a4f33b511b97e9e2003187eafdaecceeb9b30415f97b5dbb76d167"
+    },
+    "acceptance_gate_template": {
+      "path": "docs/reference/stage11_acceptance_gate_template_20261028.csv",
+      "sha256": "1a35651893a9202f8606b6606d43bd9c234dbf80add7616ee97f5c11fe754dd9"
+    },
+    "handoff": {
+      "path": "docs/STAGE11_HANDOFF_VI.md",
+      "sha256": "fc16990d7ff67877754b5450fd5ce7f263ee7e0b80d693a47ada2cdf279c1f3b"
+    },
+    "online_evidence_review": {
+      "path": "docs/reference/stage11_online_evidence_review_20261028.md",
+      "sha256": "dd33c04844b6eb5900afeaa7a919393cc32f195c7254af94439ea0aca1ea6197"
+    },
+    "audit": {
+      "path": "docs/reference/stage11_integrity_audit_20261028.json",
+      "sha256": "b007d55453ccac4f98a4e8ec6a1cffa0da1895ec2f45e17a0c100066b3598b1e"
+    },
+    "completion_rank_correction": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_evidence_semantics/completion_rank_correction.md",
+      "sha256": "60a4e468c4eeb9faa1a46b0d0bebb52a83b5e895b610e8d7eda32be5398170fa"
+    },
+    "review_protocol": {
+      "path": "docs/reference/STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md",
+      "sha256": "d5bd151489bfc1f2a3d721c40e464af29f89f2e43cb9a03149decc9f423417cb"
+    },
+    "external_cohort_checklist": {
+      "path": "docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md",
+      "sha256": "5db6a2745fd66d6d41e1b4c90b1a5124f0939f8e16ebf53d8e5b375eb71a3455"
+    },
+    "evaluation_bundle": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_ofd/manifest.json",
+      "sha256": "174c650455e7304e6d3227df03ae82e5ffa0bf4782209da03e8ef391ed23e327"
+    },
+    "evaluation_comparison": {
+      "path": "docs/reference/stage11_policy_rerun_20261028_post_ofd/comparison.json",
+      "sha256": "20ce900efe21f7ec8b85172aa5a73a9fdcefef2e58a6b94980cb9e7f531c947f"
+    },
+    "replay": {
+      "path": "docs/reference/stage11_replay_20261028.json",
+      "sha256": "d82c8a2be15a4c7d47106ae85f051f52bab6b2563dafb9b608b34e2584b46887"
+    },
+    "test_run": {
+      "path": "docs/reference/stage11_test_run_20261028.json",
+      "sha256": "c51836b11a3ea87a60c5525d68792c67fdd4ea1345643b7795efda37a56a2780"
+    },
+    "evaluation_nci_osteochondroma_dev": {
+      "path": "rag/data/evaluation_nci_osteochondroma_dev_20261028.json",
+      "sha256": "fed75547b7191767c98f429ab6d2d4ddf595fc510e62d341e2c91d742cd24462"
+    },
+    "nci_glossary_dev_dataset": {
+      "path": "rag/data/evaluation_nci_osteochondroma_dev_20261028.json",
+      "sha256": "fed75547b7191767c98f429ab6d2d4ddf595fc510e62d341e2c91d742cd24462"
+    },
+    "test_record_sha256": "db29746092a3341a241e6de2a745372f20fbb918337852e39849f7b7a7303f9e"
+  },
+  "evidence_group_metrics": {
+    "reports": "stage11_policy_rerun_20261028_post_ofd",
+    "manifest": "stage11_policy_rerun_20261028_post_ofd/manifest.json",
+    "explicit_evidence_group_questions": 0,
+    "current_datasets_use_explicit_alternative_groups": false,
+    "legacy_evidence_list_completion": {
+      "expansion_dev": {
+        "questions": 22,
+        "all_listed_chunks_in_top5": 21,
+        "rate": 0.9545454545454546,
+        "mrr": 0.6606060606060606
+      },
+      "viewed_v2_regression": {
+        "questions": 8,
+        "all_listed_chunks_in_top5": 7,
+        "rate": 0.875,
+        "mrr": 0.6916666666666667
+      },
+      "strict_expansion_dev": {
+        "all_listed_chunks_in_top5": 1,
+        "rate": 0.045454545454545456
+      },
+      "strict_viewed_v2": {
+        "all_listed_chunks_in_top5": 0,
+        "rate": 0.0
+      }
+    },
+    "interpretation": "Legacy flat evidence lists do not specify whether listed chunks are conjunctive requirements or acceptable alternatives. List completion is diagnostic coverage only. Explicit evidence_groups are needed for group-completion metrics.",
+    "evaluator_sha256": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "metric_comparison": "stage11_policy_rerun_20261028_post_ofd/comparison.json",
+    "retrieval_routing_and_standard_evidence_metrics_unchanged": false,
+    "completion_rank_off_by_one_corrected": true,
+    "baseline_non_image_reports_compared": 12,
+    "metric_comparison_sha256": "45f4be763d561235a36f3bfd90b8d3fe21b7f26b8ef02d521cec21848d1ce8d4",
+    "completion_rank_correction_sha256": "60a4e468c4eeb9faa1a46b0d0bebb52a83b5e895b610e8d7eda32be5398170fa",
+    "comparison_scope": "13 shared report configurations; corpus/source locks changed, so comparison is descriptive and not causal"
+  },
+  "last_updated_at_utc": "2026-10-28T09:10:46.117556+00:00",
+  "current_evaluation_snapshot": {
+    "directory": "docs/reference/stage11_policy_rerun_20261028_post_ofd",
+    "manifest_sha256": "42d376517511aa475193279b3b5546808728924f0132eeddde209fcbba93391f",
+    "report_count": 16,
+    "limitations": "in-sample dev, viewed V2 regression; strict lexical check is not entailment",
+    "comparison_sha256": "52aadac77154746fdead45c8e65bcf7d705edb9487a14df8496efe4dec06102a"
+  },
+  "replay": {
+    "status": "PASS",
+    "reports_matched": 16,
+    "reports_total": 16,
+    "comparison": "full report content excluding created_at",
+    "command": ".\\.venv\\Scripts\\python.exe rag/replay_reports.py --output docs/reference/stage11_replay_20261028.json",
+    "implementation_sha256": "cbd8a8e57ce56fa4d289d6782c691d7f2db5deecd788132771d0b1ed393e4263",
+    "report_sha256": "dd11ea44fe5cc1b4a23de9fda1eb54a1dd30df77b2d7275dc623ee8a51e6011f",
+    "scope": "technical reproducibility only; not independent medical validation",
+    "manifest_sha256": "42d376517511aa475193279b3b5546808728924f0132eeddde209fcbba93391f"
+  },
+  "nci_glossary_probe": {
+    "report": "stage11_policy_rerun_20261028_post_ofd/nci_osteochondroma_dev.json",
+    "dataset": "rag/data/evaluation_nci_osteochondroma_dev_20261028.json",
+    "report_sha256": "867715fe6592b100868c2847d8d90353d1cf30097b66adfdcc6411433f22ed97",
+    "dataset_sha256": "fed75547b7191767c98f429ab6d2d4ddf595fc510e62d341e2c91d742cd24462",
+    "positive_recall_at_5": 1.0,
+    "negative_abstention": 1.0,
+    "question_count": 2,
+    "provenance": "agent-authored in-sample regression probe; not independent, blind or entailment validation"
+  },
+  "snapshot_status": "SUPERSEDED: see stage11_verification_summary_20261028_post_case_context_sentence_scope.json"
+}

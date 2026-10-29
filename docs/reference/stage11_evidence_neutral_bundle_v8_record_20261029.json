@@ -1,0 +1,94 @@
+{
+  "created_at_utc": "2026-10-29T01:21:56.532559+00:00",
+  "status": "PASS",
+  "base_bundle": "docs/reference/stage11_policy_rerun_20261029_personal_image_jats_wrapper_v7",
+  "bundle": "docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8",
+  "build_command": ".venv\\Scripts\\python.exe -m rag.build_evaluation_bundle --base docs/reference/stage11_policy_rerun_20261029_personal_image_jats_wrapper_v7 --output docs/reference/stage11_policy_rerun_20261029_evidence_neutral_v8",
+  "reports": 16,
+  "manifest_sha256": "2871ad8cc5b27f9dafa328123139a1b72624a7befaf61b7c4627cf0a0bff1f4a",
+  "comparison_sha256": "0a17d20f89f2ed14424157034f3d913b3a2ceaf315feffe1c79a5a35afd69cf1",
+  "changed_metric_reports": [
+    "osteofibrous_dysplasia_dev_strict.json"
+  ],
+  "unchanged_metric_reports": 15,
+  "strict_summary": {
+    "positive_questions": 40,
+    "lexically_passed_positive": 4,
+    "positive_abstention_count": 36,
+    "positive_acceptance_fraction": 0.1,
+    "negative_questions": 14,
+    "negative_abstention_count": 14,
+    "negative_abstention_fraction": 1.0,
+    "reports": [
+      {
+        "report": "expansion_dev_strict.json",
+        "positive_questions": 22,
+        "lexically_passed_positive": 1,
+        "positive_abstention": 0.9545454545454546,
+        "recall_at_k": 0.045454545454545456,
+        "negative_questions": 3,
+        "negative_abstention": 1.0
+      },
+      {
+        "report": "osteofibrous_dysplasia_dev_strict.json",
+        "positive_questions": 5,
+        "lexically_passed_positive": 2,
+        "positive_abstention": 0.6,
+        "recall_at_k": 0.4,
+        "negative_questions": 2,
+        "negative_abstention": 1.0
+      },
+      {
+        "report": "synovial_source_dev_strict.json",
+        "positive_questions": 4,
+        "lexically_passed_positive": 0,
+        "positive_abstention": 1.0,
+        "recall_at_k": 0.0,
+        "negative_questions": 2,
+        "negative_abstention": 1.0
+      },
+      {
+        "report": "synovial_synonym_dev_strict.json",
+        "positive_questions": 1,
+        "lexically_passed_positive": 1,
+        "positive_abstention": 0.0,
+        "recall_at_k": 1.0,
+        "negative_questions": 1,
+        "negative_abstention": 1.0
+      },
+      {
+        "report": "v2_test_strict.json",
+        "positive_questions": 8,
+        "lexically_passed_positive": 0,
+        "positive_abstention": 1.0,
+        "recall_at_k": 0.0,
+        "negative_questions": 6,
+        "negative_abstention": 1.0
+      }
+    ],
+    "interpretation": "Agent-authored/in-sample regression data; lexical passage is not entailment or factual correctness."
+  },
+  "audit": {
+    "path": "docs/reference/stage11_integrity_audit_20261029_evidence_neutral_v8.json",
+    "status": "PASS",
+    "sha256": "303e4f5eb7799d2e81c464ba0a175618ba60b7c0dff39c6bae4b245b5220b047",
+    "scope": "artifact_integrity_and_provenance_only_not_medical_validity",
+    "sources": 21,
+    "chunks": 759,
+    "datasets": 9,
+    "reports": 16,
+    "errors": []
+  },
+  "replay": {
+    "path": "docs/reference/stage11_replay_20261029_evidence_neutral_v8.json",
+    "status": "PASS",
+    "sha256": "27f23f24cb8022083634ec0279df6aa42418db2255f388aefbdb78e617937e13",
+    "reports_matched": 16,
+    "preflight_mismatches": []
+  },
+  "dataset_accessed": false,
+  "clinical_validity_claimed": false,
+  "independent_acceptance_claimed": false,
+  "answer_ready": false,
+  "acceptance_gates_open": 7
+}

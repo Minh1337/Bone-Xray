@@ -1,0 +1,33 @@
+{
+  "record_id": "stage11-iiest-69case-cohort-screen-20261029",
+  "review_date": "2026-10-29",
+  "candidate_id": "C15",
+  "cohort": "IIEST Yadav and Rathor 2020 small bone-X-ray set",
+  "primary_source": {
+    "url": "https://doi.org/10.1109/PARC49193.2020.236611",
+    "citation": "D. P. Yadav and S. Rathor, Bone Fracture Detection and Classification using Deep Learning Approach, 2020 International Conference on Power Electronics & IoT Applications in Renewable Energy and its Control (PARC), 2020, pp. 282-285.",
+    "evidence_url": "https://www.nature.com/articles/s41597-024-04311-y",
+    "evidence_note": "The BTXRD dataset paper's review table and text describe the IIEST set as 217 2D X-rays: 49 healthy, 99 fractured, and 69 cancerous. It notes the small size."
+  },
+  "screen": {
+    "reported_total_images": 217,
+    "reported_cancer_label_images": 69,
+    "reported_other_images": "49 healthy and 99 fractured",
+    "potential_endpoint": "At most a small broad cancer-vs-noncancer screen; do not assume class definitions or reference-standard compatibility.",
+    "access_status": "No verifiable official image package or image-level manifest located in this review.",
+    "rights_status": "Dataset-level license and per-image reuse rights were not verified. Article publication/access terms do not by themselves grant rights to underlying images.",
+    "reference_standard_status": "The source checked here is a brief conference dataset description cited by the BTXRD paper; label provenance and independent diagnostic adjudication are not established.",
+    "independence_status": "Single-institution source is described. Image-level overlap with BTXRD sources or the BoneScope checkpoint/pretraining cannot be audited without a manifest.",
+    "images_downloaded": false,
+    "images_accessed": false,
+    "added_to_corpus_or_evaluation": false,
+    "disposition": "NOT ELIGIBLE / NOT EVALUABLE"
+  },
+  "decision_rationale": [
+    "Only 69 cancer-labelled images are described, and the set also contains fracture images; the full set is not a tumor-specific cohort.",
+    "No verified downloadable package, per-image rights grant, or patient/image manifest was found.",
+    "The diagnostic reference standard and label adjudication are not sufficiently characterized for an external validation claim.",
+    "Potential overlap with BTXRD and BoneScope training/pretraining is unresolved."
+  ],
+  "limitations": "Literature screening only. This record does not establish that the images are currently accessible, licensed for reuse, independent, or clinically suitable."
+}

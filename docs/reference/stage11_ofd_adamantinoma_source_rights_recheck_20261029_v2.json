@@ -1,0 +1,95 @@
+{
+  "artifact": "stage11_ofd_adamantinoma_source_rights_recheck",
+  "reviewed_date": "2026-10-29",
+  "purpose": "Official-source recheck of recent OFD/adamantinoma literature for text-only corpus eligibility and evidence-scope disposition.",
+  "method": "Checked PubMed/PMC article records and publisher full-text/license pages where reachable. No article payloads or images were downloaded or cached during this recheck.",
+  "current_corpus_unchanged": true,
+  "candidates": [
+    {
+      "id": "jayan_rekhi_review_2026_issue",
+      "title": "Osteofibrous dysplasia (OFD) and adamantinoma: A comprehensive review and updates",
+      "authors": [
+        "Radhika Jayan",
+        "Bharat Rekhi"
+      ],
+      "doi": "10.14670/HH-18-950",
+      "pmid": "40539236",
+      "official_sources": [
+        "https://pubmed.ncbi.nlm.nih.gov/40539236/",
+        "https://www.hh.um.es/Abstracts/Vol_41/41_1/41_1_11.htm"
+      ],
+      "observed_metadata": "PubMed lists Histology and Histopathology 2026;41(1):11-23, epub 2025-06-13, free article; states © The Author(s) 2025 and Creative Commons CC-BY International License. Abstract describes review scope across OFD clinical/radiological/pathological features and adamantinoma spectrum/differential.",
+      "access_check": "PubMed full-text link points to the publisher; retrieval of that endpoint returned HTTP 502 in this check. PubMed does not specify a license version in the displayed statement; no publisher payload or article-level XML was inspected.",
+      "disposition": "Follow-up lead only. Do not cache or ingest until full text and exact applicable license version are verified. Do not map review terminology to BTXRD labels."
+    },
+    {
+      "id": "chen_retrospective_2025",
+      "title": "Osteofibrous dysplasia, osteofibrous dysplasia-like adamantinoma, and adamantinoma: A single-center retrospective analysis",
+      "authors": [
+        "Wei Chen",
+        "Qinglin Jin",
+        "Shaohua Du",
+        "Shuangwu Dai",
+        "Changhe Hou",
+        "Zixiong Lei",
+        "Lin Zhong",
+        "Qingzhu Wei",
+        "Haomiao Li"
+      ],
+      "doi": "10.1016/j.jbo.2025.100700",
+      "pmcid": "PMC12271915",
+      "official_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC12271915/",
+        "https://www.sciencedirect.com/science/article/pii/S2212137425000417"
+      ],
+      "observed_metadata": "Journal of Bone Oncology 2025;53:100700. PMC article identifies CC BY-NC-ND 4.0. The publisher record describes a single-center retrospective series of 50 patients across OFD, OFD-AD, and adamantinoma.",
+      "disposition": "Do not cache or ingest under the project CC BY 4.0 text-ingestion allowlist; retain the existing reviewer lead only. Small, selected cohort; not a reference standard for the project."
+    },
+    {
+      "id": "ramkumar_retrospective_2026",
+      "title": "Treatment and Management of Osteofibrous Dysplasia Like Adamantinoma – A Single Institution Experience",
+      "authors": [
+        "Dipak B Ramkumar",
+        "Niveditta Ramkumar",
+        "Sean P Kelly",
+        "Georges Basile",
+        "Nelson Merchan",
+        "Mark C Gebhardt",
+        "Megan E Anderson"
+      ],
+      "doi": "10.1016/j.jposna.2026.100341",
+      "pmcid": "PMC13015733",
+      "pmid": "41890885",
+      "official_sources": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC13015733/",
+        "https://www.sciencedirect.com/science/article/pii/S2768276526000209"
+      ],
+      "observed_metadata": "Journal of the Pediatric Orthopaedic Society of North America 2026;15:100341. PMC article identifies CC BY-NC-ND. The retrospective chart review spans 1958-2016 and reports 59 patients, including small OFDLA and adamantinoma groups.",
+      "disposition": "Do not cache or ingest under the project CC BY 4.0 text-ingestion allowlist; retain as a reviewer lead only. Historical classifications and small subgroups limit generalization."
+    },
+    {
+      "id": "li_case_report_2022",
+      "title": "Osteofibrous dysplasia-like adamantinoma: A case report and literature review",
+      "authors": [
+        "Jian-Wei Li",
+        "Li Miao",
+        "Zhi-Gang Zhao",
+        "Li Yang",
+        "Zhi Shi",
+        "Meng Li"
+      ],
+      "doi": "10.3389/fonc.2022.967294",
+      "official_sources": [
+        "https://www.frontiersin.org/journals/oncology/articles/10.3389/fonc.2022.967294/full"
+      ],
+      "observed_metadata": "Frontiers in Oncology 2022;12:967294. Publisher page states Creative Commons Attribution (CC BY). Case report and literature review with imaging and histopathology context.",
+      "disposition": "Rights appear compatible for text-only reuse subject to article-level/third-party checks, but no corpus change in this pass: existing OFD review and tibial multimodal review already cover the topic; a single case report is not independent cohort evidence. Reconsider only if a documented retrieval gap warrants it."
+    }
+  ],
+  "limitations": [
+    "License screening is not legal advice.",
+    "No third-party figure rights were assessed; no images are authorized by this review.",
+    "These sources do not provide independent validation labels for BoneScope.",
+    "No changes were made to source registry, source cache, corpus, vector index, or evaluation gold."
+  ]
+}

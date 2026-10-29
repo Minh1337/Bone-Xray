@@ -1,0 +1,43 @@
+{
+  "created_at_utc": "2026-10-28T09:58:05Z",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest",
+  "working_directory": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE",
+  "exit_code": 0,
+  "status": "PASS",
+  "collected": 66,
+  "passed": 66,
+  "failed": 0,
+  "subtests": null,
+  "python": "3.11.9",
+  "pytest": "9.1.1",
+  "warnings": [
+    "Starlette TestClient: anyio.abc.BlockingPortal alias is deprecated; use anyio.from_thread.BlockingPortal"
+  ],
+  "corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+  "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+  "retrieval_config_sha256": "d3d1a2488c482f47bea9835a0fefc90ce990ab3ddc53c9f5ac9d9c5f6bc7d787",
+  "implementation_hashes": {
+    "rag/policy.py": "aa457ac407850016412a9299084d54bdadf5fe75565ce1dcdbbc4b5b1c4ecc5a",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "rag/audit.py": "772975a91b96f5005152789ed817e4c343c06d2fa9744cb9c493bc1266ab3fda",
+    "rag/tests/test_retrieval.py": "72c616774a3ee281c063661ae9cc637692d3ffd07b68aff929e002e49753e749",
+    "rag/tests/test_evaluation.py": "98b2c772a8f902d2c4c65d4f57308bd47795fe80e935449256869a12524aa031",
+    "rag/tests/test_audit.py": "ebb54a802adf2693c2b1c87631718a2beab9f0022c794f889effee4b693bf07a"
+  },
+  "targeted_regression": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest rag/tests/test_retrieval.py -q",
+    "passed": 13,
+    "subtests_passed": 55,
+    "exit_code": 0
+  },
+  "policy_probe_dataset": {
+    "path": "rag/data/evaluation_image_routing_dev_20261028.json",
+    "sha256": "d2cef8209dfa92c59f6427b39d870534f20461624fcb541314ab09f1abb8ef70",
+    "cases": 30,
+    "correct_abstentions": 30,
+    "provenance": "Agent-authored, directly inspected and policy-tuned in-sample development probes; not independent or representative."
+  },
+  "scope_note": "Full existing project test suite after the case-context policy change. PASS is software regression evidence only; it is not independent retrieval evaluation, clinical validation, image-attachment handling, or acceptance for medical use."
+}

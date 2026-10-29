@@ -1,0 +1,39 @@
+{
+  "record_id": "stage11-frontiers-11case-cohort-screen-20261029-v1",
+  "review_date": "2026-10-29",
+  "candidate_id": "C14",
+  "study": "Comparative evaluation of explainable vision models for bone tumour detection on radiographs (Frontiers in Digital Health, 2026), exploratory external case series",
+  "sources": [
+    "https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2026.1926330/full",
+    "https://github.com/yasirhafeez840/Dr_Shahabuddin_Siddiqui"
+  ],
+  "primary_article_observations": {
+    "cases": 11,
+    "benign": 7,
+    "malignant": 4,
+    "normal_or_negative": 0,
+    "images": "Radiographs with contributor-provided binary masks",
+    "labels_and_masks": "Used as supplied; no additional re-annotation or adjudication by study team",
+    "study_disposition": "Article calls this exploratory and says it is not representative external validation; specificity/false-positive behaviour cannot be estimated."
+  },
+  "repository_observations": {
+    "public_repository_page": true,
+    "readme_lists_11_case_pairs": true,
+    "dataset_license_displayed": false,
+    "image_files_downloaded_or_accessed": false
+  },
+  "bonescope_disposition": "NOT ELIGIBLE / NOT EVALUABLE",
+  "rationale": [
+    "No normal/negative cases; cannot assess specificity or false-positive behaviour.",
+    "Only 11 selected tumor-positive cases; article itself treats the series as exploratory rather than representative external validation.",
+    "Repository page does not display a dataset license; no per-image rights grant or DUA verified.",
+    "Labels and masks were not independently re-annotated/adjudicated by the article study team.",
+    "No stable patient-level manifest or BoneScope checkpoint/pretraining overlap audit is available."
+  ],
+  "actions": {
+    "data_downloaded": false,
+    "images_accessed": false,
+    "added_to_source_registry_or_corpus": false,
+    "used_for_evaluation": false
+  }
+}

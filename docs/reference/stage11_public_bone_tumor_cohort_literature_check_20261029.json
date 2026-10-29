@@ -1,0 +1,123 @@
+{
+  "record_id": "stage11-public-bone-tumor-cohort-literature-check-20261029-v1",
+  "review_date": "2026-10-29",
+  "scope": "Primary-source search for publicly accessible external primary-bone-tumor radiograph cohorts beyond already screened candidates.",
+  "sources": [
+    {
+      "url": "https://www.mdpi.com/2227-9059/14/2/299",
+      "type": "publisher_article",
+      "observation": "Bone-CNN article states it uses Yao et al. Figshare dataset; reports original collection as 884 anonymised radiographs and nine histology-confirmed tumor classes."
+    },
+    {
+      "url": "https://www.nature.com/articles/s41597-024-04311-y",
+      "type": "primary_dataset_paper",
+      "observation": "Yao et al. BTXRD dataset paper describes 3,746 images in total, including normal and tumor images; it is the Figshare collection cited by Bone-CNN."
+    },
+    {
+      "url": "https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2026.1926330/full",
+      "type": "publisher_article",
+      "observation": "Article reports use of BTXRD and an external clinical case series of 11 anonymised radiographs with masks; describes the series as exploratory and not an independent validation cohort."
+    },
+    {
+      "url": "https://github.com/yasirhafeez840/Dr_Shahabuddin_Siddiqui",
+      "type": "linked_repository",
+      "observation": "README lists 11 case pairs: 7 benign and 4 malignant, with masks; repository page does not display a data license."
+    },
+    {
+      "url": "https://doi.org/10.1109/PARC49193.2020.236611",
+      "type": "primary_conference_paper",
+      "observation": "IIEST Yadav & Rathor 2020 is cited as a small bone-X-ray dataset; BTXRD paper reports 217 images, including 69 cancer-labelled, 99 fractured, and 49 healthy images. No verified image package, dataset license, adjudication details, or patient/image manifest was found in this review."
+    },
+    {
+      "url": "https://www.nature.com/articles/s41467-025-62385-7",
+      "type": "primary_publisher_article",
+      "observation": "RadFM 2025 states MedPix data require review of the official license and a download request; it says Radiopaedia data are subject to licensing restrictions and requires approval from Radiopaedia licensing before the authors provide the detailed download link. This makes source-level rights/terms for BTXRD Center 2/3 an open provenance question even though the BTXRD Figshare record is listed CC BY 4.0."
+    },
+    {
+      "url": "https://openi.nlm.nih.gov/contactus",
+      "type": "official_NLM_terms_page",
+      "observation": "NLM states MedPix images and case materials were contributed by many individuals and curated for personal use and local teaching; for other uses, users should contact the original contributor for additional permission."
+    }
+  ],
+  "assessment": {
+    "new_eligible_independent_cohort_found": false,
+    "bone_cnn_is_independent_of_btxrd": false,
+    "reported_image_count_discrepancy": "Bone-CNN reports 884 original images while the cited Yao BTXRD data paper reports 3,746 total images. Same cited Figshare lineage; without an image manifest or author clarification, do not treat 884 as a separate cohort or infer exact subset mapping.",
+    "frontiers_11_case_series_gaps": [
+      "no normal/negative group for specificity or false-positive estimation",
+      "repository has no displayed data license",
+      "no independent diagnostic adjudication established in the reviewed article",
+      "patient-level manifest and overlap clearance unavailable"
+    ],
+    "disposition": "NO NEW ELIGIBLE COHORT; G4 REMAINS OPEN",
+    "data_downloaded": false,
+    "images_accessed": false,
+    "added_to_corpus_or_evaluation": false,
+    "additional_search_result": "No additional eligible independently accessible primary-bone-tumor radiograph cohort was identified. IIEST is an additional small mixed cancer/fracture/healthy lead (C15) with no verified image package, reuse rights, reference-standard detail, or overlap manifest; recent modeling papers reuse BTXRD or describe request-only cohorts already tracked. Focused repository-portal searches (Zenodo, Figshare, Mendeley Data, Kaggle) added no eligible cohort; C11 restricted Zenodo and C15 IIEST remain individually tracked.",
+    "btxrd_upstream_rights_chain_gap": "BTXRD includes images sourced from Radiopaedia and MedPix, and Yao et al. state compliance with their terms. A separate 2025 publisher data statement describes request/approval restrictions for those source collections. Preserve dataset-level Figshare license evidence, but require image/source-level provenance and rights-chain clarification before asserting that all upstream images are covered for every BoneScope use or redistribution. Official NLM guidance separately states MedPix material is for personal/local teaching and asks users to seek contributor permission for other uses."
+  },
+  "limitations": "Literature screening only; does not establish rights, dataset availability, patient-level independence, or clinical validity.",
+  "frontiers_11_case_series_candidate_id": "C14",
+  "candidate_register_status": "C14 Frontiers and C15 IIEST are recorded as NOT ELIGIBLE / NOT EVALUABLE; see their candidate-specific screen records.",
+  "additional_primary_source_hits": [
+    {
+      "url": "https://www.sciencedirect.com/science/article/pii/S1746809425013990",
+      "doi": "10.1016/j.bspc.2025.108888",
+      "finding": "The 2026 attention-model study uses the same 3,746-image BTXRD dataset; it does not report a distinct external image cohort."
+    },
+    {
+      "url": "https://www.nature.com/articles/s41746-026-02826-9",
+      "finding": "The 2026 SKELEX article describes BTXRD Centers 2/3 as external evaluation sets for its own model. These are source centers within BTXRD, not a new BoneScope-independent cohort; original BTXRD data lack patient/examination IDs adequate to establish patient-level separation."
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13526867/",
+      "finding": "PMC full text for SKELEX reports external evaluation using BTXRD Centers 2 and 3; existing C08 SNUH-BoneTumor is the same 19,757-image request-only resource, not a newly released cohort."
+    },
+    {
+      "url": "https://www.nature.com/articles/s41597-024-04311-y",
+      "finding": "The BTXRD primary dataset paper identifies IIEST as a separate small dataset but describes it as only 69 bone-tumor images among 217 mixed healthy/fracture/cancer images; not an eligible independent BoneScope validation cohort without rights, label/reference-standard, package, and overlap verification.",
+      "candidate_id": "C15"
+    },
+    {
+      "url": "https://www.nature.com/articles/s41467-025-62385-7",
+      "finding": "RadFM publisher data statement describes licensing restrictions for MedPix and Radiopaedia image reuse, with request/approval pathways. Because BTXRD includes both sources and a dataset-level CC BY 4.0 record, this project still needs source/image-level rights-chain evidence or clarification; do not assume the archive license alone proves upstream rights or expand redistributive uses.",
+      "implication": "G4 rights-chain action for BoneScope training/evaluation data; does not create a new cohort candidate."
+    },
+    {
+      "url": "https://openi.nlm.nih.gov/contactus",
+      "finding": "Official NLM Open-i guidance says MedPix contributor images/case material are for personal and local institutional teaching; other purposes require contacting the contributor for permission.",
+      "implication": "Supports preserving image-level MedPix rights grants in the BTXRD/BoneScope rights chain; not a legal determination about the Figshare record."
+    }
+  ],
+  "iiest_candidate_id": "C15",
+  "repository_portal_scan": {
+    "review_date": "2026-10-29",
+    "portals_searched": [
+      "Zenodo",
+      "Figshare",
+      "Mendeley Data",
+      "Kaggle"
+    ],
+    "findings": [
+      {
+        "portal": "Zenodo",
+        "finding": "The focused primary-bone-tumor radiograph result was the already-screened Tu et al. record C11; Zenodo page identifies 10.1 GB files as restricted and displays no license."
+      },
+      {
+        "portal": "Figshare",
+        "finding": "The focused search returned BTXRD and papers reusing that collection; no distinct eligible independent tumor-radiograph collection was verified."
+      },
+      {
+        "portal": "Mendeley Data",
+        "finding": "No separately accessible primary-bone-tumor radiograph cohort with verifiable rights/provenance was confirmed in the focused results; knee osteoarthritis datasets are task-mismatched."
+      },
+      {
+        "portal": "Kaggle",
+        "finding": "Search results were mostly unverified reposts, task-mismatched bone/fracture/osteoporosis data, or sources without a clear upstream rights chain; none added as eligible."
+      }
+    ],
+    "new_eligible_cohort_found": false,
+    "downloads_or_image_access": false,
+    "limitations": "Search-engine portal scan is not exhaustive and does not establish absence of other datasets; candidate-specific page and source-paper review remains necessary."
+  }
+}

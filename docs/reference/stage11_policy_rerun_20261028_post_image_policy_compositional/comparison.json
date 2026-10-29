@@ -1,0 +1,135 @@
+{
+  "purpose": "Re-run all Stage 11 reports after correcting evidence-group/list completion ranks to report the last required chunk position (not position + 1).",
+  "comparison_base": "same reports before completion-rank correction",
+  "reproduction_reports": "stage11_policy_rerun_20261028_post_image_policy_compositional",
+  "report_count": 13,
+  "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+  "completion_rank_off_by_one_corrected": true,
+  "all_24_abstained": true,
+  "education_controls_in_scope": 3,
+  "caveat": "Legacy flat evidence lists do not define conjunction or alternative groups. Their full-list completion is diagnostic only; no current dataset has reviewer-authored evidence_groups. Image probes are self-authored development checks, not independent, blind, representative, or clinical validation.",
+  "reports": [
+    {
+      "path": "evidence_v3_viewed.json",
+      "dataset_sha256": "3c13b0185499b49d13da1b3213bd740ee9b0325079a4200ed1d052e51adefa78",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.8,
+      "legacy_evidence_list_completion_mrr": 0.5333333333333333,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored targeted bilingual stress suite frozen before first run of the concept checker. Not blind or independent clinical validation; some facts overlap earlier gold. Do not tune against these results and call them held-out."
+    },
+    {
+      "path": "expansion_dev.json",
+      "dataset_sha256": "fe40b7ee1f7f7cc420253ed9b1681c81b70c661fcdebd7600eabd7065edcfbd9",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.9545454545454546,
+      "legacy_evidence_list_completion_mrr": 0.6681818181818181,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored development cases based on CC BY 4.0 sources: unicameral and aneurysmal bone cyst reviews, the UK British Sarcoma Group consensus guideline, and a 2026 intraosseous knee tumour imaging review. Targeted to bilingual retrieval; not independently reviewed. Added 4 agent-authored development questions for the licensed 2025 appendicular radiography review; not independently reviewed. Added 4 agent-authored questions on the CC BY 4.0 Society of Skeletal Radiology Bone-RADS white paper; not independently reviewed."
+    },
+    {
+      "path": "expansion_dev_concept_rerank.json",
+      "dataset_sha256": "fe40b7ee1f7f7cc420253ed9b1681c81b70c661fcdebd7600eabd7065edcfbd9",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.8636363636363636,
+      "legacy_evidence_list_completion_mrr": 0.5984848484848485,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored development cases based on CC BY 4.0 sources: unicameral and aneurysmal bone cyst reviews, the UK British Sarcoma Group consensus guideline, and a 2026 intraosseous knee tumour imaging review. Targeted to bilingual retrieval; not independently reviewed. Added 4 agent-authored development questions for the licensed 2025 appendicular radiography review; not independently reviewed. Added 4 agent-authored questions on the CC BY 4.0 Society of Skeletal Radiology Bone-RADS white paper; not independently reviewed."
+    },
+    {
+      "path": "expansion_dev_strict.json",
+      "dataset_sha256": "fe40b7ee1f7f7cc420253ed9b1681c81b70c661fcdebd7600eabd7065edcfbd9",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.045454545454545456,
+      "legacy_evidence_list_completion_mrr": 0.022727272727272728,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored development cases based on CC BY 4.0 sources: unicameral and aneurysmal bone cyst reviews, the UK British Sarcoma Group consensus guideline, and a 2026 intraosseous knee tumour imaging review. Targeted to bilingual retrieval; not independently reviewed. Added 4 agent-authored development questions for the licensed 2025 appendicular radiography review; not independently reviewed. Added 4 agent-authored questions on the CC BY 4.0 Society of Skeletal Radiology Bone-RADS white paper; not independently reviewed."
+    },
+    {
+      "path": "image_routing_dev.json",
+      "dataset_sha256": "300f5cb0df71bf3ec2a4557fa5486b8d27d5f2a13ad9ca6c72573fcaafa215f9",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": null,
+      "legacy_evidence_list_completion_at_k": null,
+      "legacy_evidence_list_completion_mrr": null,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored Vietnamese/English policy development probes, expanded with adversarial paraphrases that vary attachment, upload, pointer, modality, and interpretation wording. Not independent, blind, clinically adjudicated, or representative.",
+      "comparison_note": "Expanded from 12 to 24 authored image probes; rates and routing reason are checked in the current report, not treated as an unchanged denominator."
+    },
+    {
+      "path": "legacy_all.json",
+      "dataset_sha256": "24dfd1b33b8d9ec63596b55b5584d9d0014d90e6e95975270a6ee06750e2d197",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": null,
+      "legacy_evidence_list_completion_mrr": null,
+      "evidence_group_completion_at_k": null,
+      "provenance": "legacy regression set"
+    },
+    {
+      "path": "synovial_source_dev.json",
+      "dataset_sha256": "90e735bc746fc6b7e24ab11031e86b5e207039764414f188a770bee513ad054f",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 1.0,
+      "legacy_evidence_list_completion_mrr": 0.5416666666666666,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Six agent-authored development queries created after inspecting the newly ingested CC BY 4.0 2026 narrative review; four positive evidence targets and two policy negatives. Deliberately in-sample routing regression only; not independent, blind, clinically adjudicated, or a validation set. The synonym-mapping negative preserves the distinction between the BTXRD class name and the canonical disease term."
+    },
+    {
+      "path": "synovial_source_dev_strict.json",
+      "dataset_sha256": "90e735bc746fc6b7e24ab11031e86b5e207039764414f188a770bee513ad054f",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.0,
+      "legacy_evidence_list_completion_mrr": 0.0,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Six agent-authored development queries created after inspecting the newly ingested CC BY 4.0 2026 narrative review; four positive evidence targets and two policy negatives. Deliberately in-sample routing regression only; not independent, blind, clinically adjudicated, or a validation set. The synonym-mapping negative preserves the distinction between the BTXRD class name and the canonical disease term."
+    },
+    {
+      "path": "synovial_synonym_dev.json",
+      "dataset_sha256": "4705972f96247c40d200d5d0831321daff95f730c148c2d18a5f75fec318fa20",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 1.0,
+      "legacy_evidence_list_completion_mrr": 1.0,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Two agent-authored, in-sample development checks added to verify the synonym explicitly used by the 2026 review while keeping the similarly named BTXRD class mapping unsupported. Not independent, blind, or clinically adjudicated."
+    },
+    {
+      "path": "synovial_synonym_dev_strict.json",
+      "dataset_sha256": "4705972f96247c40d200d5d0831321daff95f730c148c2d18a5f75fec318fa20",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 1.0,
+      "legacy_evidence_list_completion_mrr": 1.0,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Two agent-authored, in-sample development checks added to verify the synonym explicitly used by the 2026 review while keeping the similarly named BTXRD class mapping unsupported. Not independent, blind, or clinically adjudicated."
+    },
+    {
+      "path": "v2_test_concept_rerank.json",
+      "dataset_sha256": "90b0b9a1fa1010c5b542c1f415bc22b5dc08fe4b3a96afaafc3d161b9d6f51e4",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 1.0,
+      "legacy_evidence_list_completion_mrr": 0.875,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored; the dev split gold was updated on 2026-10-27 because the expanded corpus now contains supporting evidence for n04. Historical test split unchanged, but has been viewed. Entire dataset is a regression set, not independent expert validation or a held-out test."
+    },
+    {
+      "path": "v2_test_regression.json",
+      "dataset_sha256": "90b0b9a1fa1010c5b542c1f415bc22b5dc08fe4b3a96afaafc3d161b9d6f51e4",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.875,
+      "legacy_evidence_list_completion_mrr": 0.6916666666666667,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored; the dev split gold was updated on 2026-10-27 because the expanded corpus now contains supporting evidence for n04. Historical test split unchanged, but has been viewed. Entire dataset is a regression set, not independent expert validation or a held-out test."
+    },
+    {
+      "path": "v2_test_strict.json",
+      "dataset_sha256": "90b0b9a1fa1010c5b542c1f415bc22b5dc08fe4b3a96afaafc3d161b9d6f51e4",
+      "retrieval_routing_and_standard_evidence_metrics_unchanged": true,
+      "legacy_evidence_list_completion_at_k": 0.0,
+      "legacy_evidence_list_completion_mrr": 0.0,
+      "evidence_group_completion_at_k": null,
+      "provenance": "Agent-authored; the dev split gold was updated on 2026-10-27 because the expanded corpus now contains supporting evidence for n04. Historical test split unchanged, but has been viewed. Entire dataset is a regression set, not independent expert validation or a held-out test."
+    }
+  ],
+  "baseline_non_image_reports_compared": 12,
+  "baseline_non_image_standard_metrics_unchanged": true,
+  "completion_rank_note": "Corrected evidence-group and legacy evidence-list completion ranks from prefix length + 1 to prefix length; this changes completion MRR only, not retrieval/routing or standard evidence P/R/nDCG.",
+  "superseded_snapshot_correction_notice": "../stage11_policy_rerun_20261028_post_evidence_semantics/completion_rank_correction.md"
+}

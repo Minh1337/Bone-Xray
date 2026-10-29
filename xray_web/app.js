@@ -91,13 +91,13 @@ function validateResult(d){
  return ranked;
 }
 function render(d,ranked){
- const pct=v=>(v*100).toLocaleString('vi-VN',{minimumFractionDigits:2,maximumFractionDigits:2})+'%';
+ const score=v=>v.toLocaleString('vi-VN',{minimumFractionDigits:4,maximumFractionDigits:4});
  $('empty-result').hidden=true;$('result').hidden=false;$('result-subtitle').textContent=`Ảnh: ${selectedFile.name}`;
- $('top-label').textContent=d.top1;$('top-score').textContent=pct(ranked[0][1]);
+ $('top-label').textContent=d.top1;$('top-score').textContent=score(ranked[0][1]);
  $('top-three').replaceChildren();
- ranked.slice(0,3).forEach(([k,v],i)=>{const row=document.createElement('div');row.className='rank';const header=document.createElement('div');header.className='rank-heading';const name=document.createElement('span');name.textContent=`${String(i+1).padStart(2,'0')}  ${k}`;const score=document.createElement('strong');score.textContent=pct(v);header.append(name,score);const bar=document.createElement('div');bar.className='bar';const fill=document.createElement('span');fill.style.width=(v*100)+'%';bar.append(fill);row.append(header,bar);$('top-three').append(row);});
+ ranked.slice(0,3).forEach(([k,v],i)=>{const row=document.createElement('div');row.className='rank';const header=document.createElement('div');header.className='rank-heading';const name=document.createElement('span');name.textContent=`${String(i+1).padStart(2,'0')}  ${k}`;const scoreText=document.createElement('strong');scoreText.textContent=score(v);header.append(name,scoreText);const bar=document.createElement('div');bar.className='bar';const fill=document.createElement('span');fill.style.width=(v*100)+'%';bar.append(fill);row.append(header,bar);$('top-three').append(row);});
  $('duration').textContent=d.prediction_seconds.toFixed(3)+' giây';$('device').textContent=d.device==='cuda'?'GPU / CUDA':String(d.device).toUpperCase();
- $('all-scores').replaceChildren();ranked.forEach(([k,v])=>{const tr=document.createElement('tr');for(const text of [k,pct(v)]){const td=document.createElement('td');td.textContent=text;tr.append(td);}$('all-scores').append(tr);});
+ $('all-scores').replaceChildren();ranked.forEach(([k,v])=>{const tr=document.createElement('tr');for(const text of [k,score(v)]){const td=document.createElement('td');td.textContent=text;tr.append(td);}$('all-scores').append(tr);});
  // Reset save button
  caseSaved=false;
  $('save-case').disabled=false;

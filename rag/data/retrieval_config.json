@@ -2,10 +2,92 @@
   "version": "hybrid-v2",
   "description": "Agent-authored bilingual retrieval vocabulary; review before medical use. Expansion is keyword matching, not a medical answer or full translation.",
   "rrf_constant": 60,
-  "rrf_weights": {"original_dense": 2.0, "expanded_dense": 1.0, "lexical": 1.0},
+  "rrf_weights": {
+    "original_dense": 2.0,
+    "expanded_dense": 1.0,
+    "lexical": 1.0
+  },
   "candidate_limit": 80,
   "bm25_k1": 1.5,
   "bm25_b": 0.75,
+  "overview_cues": [
+    "theo tong quan",
+    "according to the overview",
+    "overview of the review",
+    "review abstract",
+    "article abstract"
+  ],
+  "source_routes": [
+    {
+      "source_id": "open-orthopaedics-unicameral-cyst",
+      "terms": [
+        "simple bone cyst",
+        "unicameral bone cyst",
+        "nang xuong don thuan",
+        "nang xuong don doc",
+        "nang xuong don gian"
+      ]
+    },
+    {
+      "source_id": "knee-intraosseous-tumours-2026",
+      "terms": [
+        "routine knee mri",
+        "knee review",
+        "in the knee review",
+        "quanh dau goi"
+      ]
+    },
+    {
+      "source_id": "appendicular-bone-lesion-radiography-2025",
+      "terms": [
+        "radiographic features",
+        "radiographic feature",
+        "dac diem x quang",
+        "x ray features",
+        "x-ray features",
+        "x quang nao",
+        "radiographic appearance"
+      ]
+    },
+    {
+      "source_id": "ssr-bone-rads-2022",
+      "terms": [
+        "bone rads",
+        "bone-rads"
+      ]
+    },
+    {
+      "source_id": "synovial-chondromatosis-review-2026",
+      "terms": [
+        "synovial chondromatosis",
+        "synovial chondromatosis review",
+        "synovial osteochondromatosis"
+      ]
+    },
+    {
+      "source_id": "osteofibrous-dysplasia-review-2024",
+      "terms": [
+        "osteofibrous dysplasia",
+        "osteofibrous dysplasia review"
+      ]
+    },
+    {
+      "source_id": "nci-chondrosarcoma",
+      "terms": [
+        "chondrosarcoma",
+        "chondrosarcomas"
+      ],
+      "preferred_count": 3
+    },
+    {
+      "source_id": "cureus-aneurysmal-bone-cyst",
+      "terms": [
+        "aneurysmal bone cyst",
+        "nang xuong phinh mach"
+      ],
+      "preferred_count": 3
+    }
+  ],
   "expansions": {
     "ung thu xuong nguyen phat": "primary bone cancer",
     "ung thu di can den xuong": "metastatic secondary bone cancer",
@@ -21,6 +103,29 @@
     "nang xuong don doc": "unicameral bone cyst simple bone cyst",
     "nang xuong don thuan": "unicameral bone cyst simple bone cyst",
     "nang xuong don gian": "unicameral bone cyst simple bone cyst",
+    "nang xuong phinh mach": "aneurysmal bone cyst abc",
+    "aneurysmal bone cyst": "abc",
+    "nang xuong phinh mach con nghi ngo": "if doubt in diagnosis tissue diagnosis biopsy",
+    "giant cell tumour": "giant cell tumor",
+    "gct": "giant cell tumor giant cell tumour",
+    "intraosseous lesion": "bone lesion bone tumor",
+    "intraosseous lesions": "bone lesions bone tumors",
+    "routine knee mri": "intraosseous tumors knee MRI",
+    "thin septal enhancement": "aneurysmal bone cyst MRI",
+    "solid component": "ABC-like change primary lesion",
+    "typical of an abc": "thin septal enhancement aneurysmal bone cyst",
+    "significant solid component": "another primary lesion ABC-like change",
+    "abc": "aneurysmal bone cyst",
+    "x quang binh thuong": "normal x ray",
+    "x quang": "radiograph radiography bone lesion",
+    "dac diem x quang": "radiographic features bone lesion differential diagnosis",
+    "thong tin nguoi benh": "patient age clinical symptoms biology",
+    "thu hep chan doan phan biet": "narrow differential diagnosis",
+    "chan doan phan biet": "differential diagnosis",
+    "loai tru": "exclude rule out",
+    "primary malignant bone tumour": "pmbt",
+    "truoc khi sinh thiet": "before biopsy",
+    "chuyen den dau": "referred specialist centre",
     "xuong canh tay": "humerus upper arm",
     "simple bone cyst": "unicameral bone cyst",
     "unicameral bone cyst": "simple bone cyst",
@@ -71,16 +176,49 @@
     "yeu to nguy co": "risk factors",
     "tai phat": "recurrent recurrence",
     "khu tru": "localized",
-    "co phai ung thu": "cancer benign malignant"
+    "co phai ung thu": "cancer benign malignant",
+    "synovial chondromatosis": "synovial osteochondromatosis synovial cartilaginous nodules synovial membrane loose bodies",
+    "synovial osteochondromatosis": "synovial chondromatosis synovial cartilaginous nodules loose bodies"
   },
   "supported_terms": [
-    "bone", "sarcoma", "osteosarcoma", "ewing", "chordoma", "chondrosarcoma",
-    "chondromyxoid fibroma", "adamantinoma", "xuong", "u sun", "u sac song",
-    "biopsy", "sinh thiet", "osteochondroma", "giant cell tumor",
-    "unicameral bone cyst", "simple bone cyst", "nang xuong don doc"
+    "bone",
+    "x quang",
+    "radiograph",
+    "radiography",
+    "sarcoma",
+    "osteosarcoma",
+    "ewing",
+    "chordoma",
+    "chondrosarcoma",
+    "chondromyxoid fibroma",
+    "adamantinoma",
+    "xuong",
+    "u sun",
+    "u sac song",
+    "biopsy",
+    "sinh thiet",
+    "osteochondroma",
+    "giant cell tumor",
+    "unicameral bone cyst",
+    "simple bone cyst",
+    "nang xuong don doc",
+    "aneurysmal bone cyst",
+    "nang xuong phinh mach",
+    "abc",
+    "intraosseous",
+    "bone lesion",
+    "synovial chondromatosis",
+    "synovial osteochondromatosis",
+    "osteofibrous dysplasia",
+    "osteofibrous dysplasia-like adamantinoma",
+    "cortical destruction"
   ],
   "unsupported_terms": [
-    "osteofibroma", "synovial osteochondroma",
-    "multiple osteochondromas", "other bt", "other mt", "no tumor"
+    "osteofibroma",
+    "synovial osteochondroma",
+    "multiple osteochondromas",
+    "other bt",
+    "other mt",
+    "no tumor"
   ]
 }

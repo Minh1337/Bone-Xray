@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "config_sha256_at_freeze": "970f6075f39589842c5dd0dfc7c079e94b366def82c1a0eda6aaa6d1a9652970",
+  "provenance": "Two agent-authored, in-sample development checks added to verify the synonym explicitly used by the 2026 review while keeping the similarly named BTXRD class mapping unsupported. Not independent, blind, or clinically adjudicated.",
+  "source_id": "synovial-chondromatosis-review-2026",
+  "questions": [
+    {
+      "id": "sco01",
+      "split": "dev",
+      "question_vi": "What is synovial osteochondromatosis?",
+      "expected_status": "candidates_found",
+      "evidence": [
+        {
+          "chunk_id": "synovial-chondromatosis-review-2026:0003",
+          "source_id": "synovial-chondromatosis-review-2026",
+          "section": "1. Introduction",
+          "text_sha256": "ffca3ad04369b37cf57760dd91e8ede51a5064edde21de03876c71fa737240bc"
+        }
+      ]
+    },
+    {
+      "id": "sco02",
+      "split": "dev",
+      "question_vi": "Does the BTXRD class label “synovial osteochondroma” establish synovial chondromatosis?",
+      "expected_status": "insufficient_evidence",
+      "evidence": []
+    }
+  ]
+}

@@ -1,0 +1,2379 @@
+{
+  "answerable_count": 22,
+  "negative_count": 3,
+  "recall_at_k": 0.8636363636363636,
+  "mrr_at_k": 0.5734848484848484,
+  "negative_abstention": 1.0,
+  "positive_abstention": 0.0,
+  "negative_with_candidates_count": 0,
+  "negative_with_candidates_denominator": 3,
+  "positive_without_candidates_count": 0,
+  "positive_without_candidates_denominator": 22,
+  "routing_accuracy": 1.0,
+  "routing_confusion_matrix": {
+    "candidates_found": {
+      "candidates_found": 22
+    },
+    "insufficient_evidence": {
+      "insufficient_evidence": 2
+    },
+    "out_of_scope": {
+      "out_of_scope": 1
+    }
+  },
+  "evidence_question_count": 22,
+  "evidence_group_question_count": 0,
+  "evidence_alternative_group_count": 0,
+  "evidence_group_completion_at_k": null,
+  "evidence_group_completion_mrr": null,
+  "legacy_evidence_list_question_count": 22,
+  "legacy_evidence_list_completion_at_k": 0.8636363636363636,
+  "legacy_evidence_list_completion_mrr": 0.5734848484848484,
+  "evidence_precision_at_k": 0.17272727272727278,
+  "evidence_recall_at_k": 0.8636363636363636,
+  "evidence_ndcg_at_k": 0.6470017109230972,
+  "questions": [
+    {
+      "id": "c01",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "open-orthopaedics-unicameral-cyst",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "treatment"
+        ],
+        "literal_terms": [
+          "don"
+        ],
+        "unknown_terms": [
+          "nang",
+          "doc",
+          "tay",
+          "nghien",
+          "cuu"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:don"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0009",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "MATERIALS AND METHODS",
+          "text_sha256": "1c230a965b8b7fc74d501d33dd544972f8d49cfd733051b9b42a008272f5a1bb",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.791070818901062,
+          "ranking_score": 0.062224114683131077,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0016",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "ee776492d0b069e737759df9866f60cb01ba44a4e2eb5493dab285c586e735ea",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7825372815132141,
+          "ranking_score": 0.05618055555555556,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0010",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "MATERIALS AND METHODS",
+          "text_sha256": "b6ed7ff588d00da6df612c1ca6e6b733fb37cf451cb11ccaae7ab8793e465044",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7738214731216431,
+          "ranking_score": 0.04182733717617439,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0053",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment of Localized Osteosarcoma and UPS of Bone",
+          "text_sha256": "1f755f9189a6869e2ff92e080d7638a0a96e2c3fdcef3beeb40e6d4efd88bce0",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.7838369607925415,
+          "ranking_score": 0.04148550724637681,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0019",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "f355a0ddcbc4439fb3339ac930c2c20ac027bc193827a40deed21b5d554733b6",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7860780954360962,
+          "ranking_score": 0.040865384615384616,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c02",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "open-orthopaedics-unicameral-cyst",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "location",
+          "prevalence"
+        ],
+        "literal_terms": [
+          "don",
+          "ten"
+        ],
+        "unknown_terms": [
+          "nang",
+          "thuan",
+          "tieng",
+          "anh"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:don"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0004",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Giant cell tumour (GCT)",
+          "text_sha256": "2c8431ccd1e56b4954b8cae077804d35307037cef02226ec07a07cbf3a2a4f16",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.7583819031715393,
+          "ranking_score": 0.021135265700483092,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0006",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "INTRODUCTION",
+          "text_sha256": "71a9c3f9089eb0390555dfe4d1a08981fe2b5f3f35bc9845e952d8c56326c6d1",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7788445949554443,
+          "ranking_score": 0.06478053939714437,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0010",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Part of the appendicular skeleton",
+          "text_sha256": "3dc926d12dc6fbd93cd9d740eb11fe1ddac41a5858fcd51a72d3eba55127d79e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8022319674491882,
+          "ranking_score": 0.06379650063051703,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0021",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Aneurysmal bone cyst (ABC)",
+          "text_sha256": "40346383d7d399063b8170f95116cc961c34c7d6b331fa5a55d6dce1bf3bc13c",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.789813756942749,
+          "ranking_score": 0.05580808080808081,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0001",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Abstract",
+          "text_sha256": "f5e28080e762c344f7222fa0087b8adc8db7d9cf86bbd43564b4ece9a5c5e10d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915701/",
+          "score": 0.7828385233879089,
+          "ranking_score": 0.04968166383701188,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c03",
+      "split": "dev",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "open-orthopaedics-unicameral-cyst",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "pain"
+        ],
+        "literal_terms": [
+          "don"
+        ],
+        "unknown_terms": [
+          "nghien",
+          "cuu",
+          "nang",
+          "doc",
+          "tay"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:don"
+        ]
+      },
+      "gold_evidence_count": 2,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": false,
+      "evidence_list_completion_rank": null,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "evidence_ndcg_at_k": 0.0,
+      "retrieved": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0010",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "MATERIALS AND METHODS",
+          "text_sha256": "b6ed7ff588d00da6df612c1ca6e6b733fb37cf451cb11ccaae7ab8793e465044",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7750364542007446,
+          "ranking_score": 0.04442891915257427,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0060",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Rib tumours when presenting with a malignant pleural effusion",
+          "text_sha256": "a139b10385932c399f4936993938acb4ff4b2d46036847fbdf4896f80289d2d7",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.7847111225128174,
+          "ranking_score": 0.03364102564102564,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0006",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "INTRODUCTION",
+          "text_sha256": "71a9c3f9089eb0390555dfe4d1a08981fe2b5f3f35bc9845e952d8c56326c6d1",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7540201544761658,
+          "ranking_score": 0.03177805800756621,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0028",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Subchondral insufficiency fractures (SIF)",
+          "text_sha256": "4027532cd91b390ef57e8f6326d48ff6e6e587e9d2a4bf9150d8c40749e873cf",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.7807977795600891,
+          "ranking_score": 0.03118522705860185,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0008",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "MATERIALS AND METHODS",
+          "text_sha256": "bd5c8568ad8035812b1bb356a0f87e62431f9bf05d9c69a0734dc6b2aa2993e2",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.7899916768074036,
+          "ranking_score": 0.06306484750331093,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c04",
+      "split": "dev",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "open-orthopaedics-unicameral-cyst",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "tissue"
+        ],
+        "literal_terms": [
+          "don",
+          "bma",
+          "dbm"
+        ],
+        "unknown_terms": [
+          "nghien",
+          "cuu",
+          "nang",
+          "doc",
+          "chien",
+          "luoc",
+          "tiem",
+          "tranh",
+          "ty",
+          "le"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "tissue",
+          "literal:don"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": false,
+      "evidence_list_completion_rank": null,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "evidence_ndcg_at_k": 0.0,
+      "retrieved": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0007",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "INTRODUCTION",
+          "text_sha256": "efa5241c3385d93dd31476aa9a2fc61302447b127bbc71190abd5d7ee4f1fb57",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8467657566070557,
+          "ranking_score": 0.06332301578203217,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0019",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "f355a0ddcbc4439fb3339ac930c2c20ac027bc193827a40deed21b5d554733b6",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8456066846847534,
+          "ranking_score": 0.06283696274208608,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0016",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "ee776492d0b069e737759df9866f60cb01ba44a4e2eb5493dab285c586e735ea",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8388897180557251,
+          "ranking_score": 0.061567619776575,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0017",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "b1e04d9608bb5e17d0770426491445f883b52edaae4a0ffedbe8990e0724a905",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8405766487121582,
+          "ranking_score": 0.060687229437229435,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0015",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "ac7480fa751b9d632926d6dac5df683232ad0523645fcf1ccb3afe5801d028c2",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8310668468475342,
+          "ranking_score": 0.06046617009827523,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c05",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "open-orthopaedics-unicameral-cyst",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "treatment"
+        ],
+        "literal_terms": [
+          "simple",
+          "cyst",
+          "proximal",
+          "humerus",
+          "cohort",
+          "report"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:cyst",
+          "literal:cohort",
+          "literal:report"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0006",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "INTRODUCTION",
+          "text_sha256": "71a9c3f9089eb0390555dfe4d1a08981fe2b5f3f35bc9845e952d8c56326c6d1",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8824189901351929,
+          "ranking_score": 0.06426011264720942,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0001",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Background:",
+          "text_sha256": "57836975ee3f73638c509095aec49273f2c8fef1c12655695c5e51b7a1ee699d",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8733174204826355,
+          "ranking_score": 0.06308991554893195,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0016",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "ee776492d0b069e737759df9866f60cb01ba44a4e2eb5493dab285c586e735ea",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8701186180114746,
+          "ranking_score": 0.059482001755926245,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0020",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "f9106f0ada2f8ecf9799085de6bc59dd64ebe91a786e80d3f10f5d92af7ec3dd",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8824506402015686,
+          "ranking_score": 0.06384129063829451,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0008",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "MATERIALS AND METHODS",
+          "text_sha256": "bd5c8568ad8035812b1bb356a0f87e62431f9bf05d9c69a0734dc6b2aa2993e2",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8788055181503296,
+          "ranking_score": 0.06274801587301587,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c06",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "open-orthopaedics-unicameral-cyst",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "proportion",
+          "patients",
+          "proximal",
+          "humerus",
+          "unicameral",
+          "cyst",
+          "cohort",
+          "avoided",
+          "open",
+          "procedure"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "bone",
+          "literal:proportion",
+          "literal:unicameral",
+          "literal:cyst",
+          "literal:cohort"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0004",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Conclusion:",
+          "text_sha256": "c5343c86718913237a4d282f36fd60a4e4b24edcf3dee9bc409d42e772612d40",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8852337598800659,
+          "ranking_score": 0.06557377049180328,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0020",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "f9106f0ada2f8ecf9799085de6bc59dd64ebe91a786e80d3f10f5d92af7ec3dd",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8765668869018555,
+          "ranking_score": 0.06303457966764418,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0015",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "DISCUSSION",
+          "text_sha256": "ac7480fa751b9d632926d6dac5df683232ad0523645fcf1ccb3afe5801d028c2",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.8728021383285522,
+          "ranking_score": 0.06350006400409626,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "open-orthopaedics-unicameral-cyst:0001",
+          "source_id": "open-orthopaedics-unicameral-cyst",
+          "section": "Background:",
+          "text_sha256": "57836975ee3f73638c509095aec49273f2c8fef1c12655695c5e51b7a1ee699d",
+          "url": "https://openorthopaedicsjournal.com/VOLUME/11/PAGE/486/FULLTEXT/",
+          "score": 0.865739643573761,
+          "ranking_score": 0.06043956043956044,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0010",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Part of the appendicular skeleton",
+          "text_sha256": "3dc926d12dc6fbd93cd9d740eb11fe1ddac41a5858fcd51a72d3eba55127d79e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8279908895492554,
+          "ranking_score": 0.046449786287184665,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c10",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "mri",
+          "aneurysmal",
+          "cyst"
+        ],
+        "unknown_terms": [
+          "hinh",
+          "anh"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 4,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0001",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Abstract",
+          "text_sha256": "f5e28080e762c344f7222fa0087b8adc8db7d9cf86bbd43564b4ece9a5c5e10d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915701/",
+          "score": 0.8309013843536377,
+          "ranking_score": 0.05435924369747899,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0061",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Lesion assessment",
+          "text_sha256": "39a6baafa451eadc3bf388ae22ff804dcfb80ffbd561ee98c06d158717120528",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8277474641799927,
+          "ranking_score": 0.052477947834214445,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0022",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Solitary lucent lesion on CT",
+          "text_sha256": "e2bbe0091039b623213e8e97279e771fb9126f450d8abfe3d023768064018797",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8138748407363892,
+          "ranking_score": 0.03732303732303732,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0012",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Radiological characteristics",
+          "text_sha256": "a2e44ba8062d58cc258b5d5ef448693ea387400b5c352c523b5dea90633baed0",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10967096/",
+          "score": 0.8088220357894897,
+          "ranking_score": 0.03317901234567901,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0021",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Aneurysmal bone cyst (ABC)",
+          "text_sha256": "40346383d7d399063b8170f95116cc961c34c7d6b331fa5a55d6dce1bf3bc13c",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8462575674057007,
+          "ranking_score": 0.05989585617509729,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c11",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "diagnosis",
+          "bone",
+          "child"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "biet",
+          "chinh",
+          "nang",
+          "phinh",
+          "mach"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 4,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0001",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Abstract",
+          "text_sha256": "f5e28080e762c344f7222fa0087b8adc8db7d9cf86bbd43564b4ece9a5c5e10d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915701/",
+          "score": 0.8064141273498535,
+          "ranking_score": 0.059813912272928677,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0007",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Classification of bone sarcomas",
+          "text_sha256": "ccf3310439a5e8707f7de66d2f8306f8845d627d4370fb1a92d1b96a56538a2c",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8101025819778442,
+          "ranking_score": 0.03076923076923077,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0036",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Sclerotic bone lesions",
+          "text_sha256": "4e7647707932c096899b326a7ced5aa6e80c3ca446b439b2c291e009e7e4b503",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.7999694347381592,
+          "ranking_score": 0.027222924568057312,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-ewing-professional:0009",
+          "source_id": "nci-ewing-professional",
+          "section": "Clinical Presentation",
+          "text_sha256": "aba0f58d4b87f4333b18b39d9c07628dcbf9e0e4e451a8030030fd1cf6935416",
+          "url": "https://www.cancer.gov/types/bone/hp/ewing-treatment-pdq",
+          "score": 0.8028076887130737,
+          "ranking_score": 0.020618556701030927,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0062",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Diagnosis and discussion",
+          "text_sha256": "fcaf9c2900f85b7d87138580f2919b51b41259c672d3efde20dbedb509ffce7e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8103116154670715,
+          "ranking_score": 0.056583737864077666,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c12",
+      "split": "dev",
+      "answerable": true,
+      "rank": null,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "diagnosis",
+          "bone"
+        ],
+        "literal_terms": [],
+        "unknown_terms": [
+          "nang",
+          "phinh",
+          "mach",
+          "con",
+          "ngo",
+          "bang",
+          "loai",
+          "chung"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 34,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": false,
+      "evidence_list_completion_rank": null,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": 0.0,
+      "evidence_recall_at_k": 0.0,
+      "evidence_ndcg_at_k": 0.0,
+      "retrieved": [
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0013",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Soft tissue swelling",
+          "text_sha256": "07ceb90bbff043d1c4b7aa56a90d22a3bd1474815b5165a62b52312d8db67a59",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8130409121513367,
+          "ranking_score": 0.05569324292728548,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "synovial-chondromatosis-review-2026:0021",
+          "source_id": "synovial-chondromatosis-review-2026",
+          "section": "6.3.5. Synovial Chondrosarcoma",
+          "text_sha256": "ae4634fac587da304252d7e1accfee1f372d27b06f19c4d16490c7d83a0186f7",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13414048/",
+          "score": 0.8068668246269226,
+          "ranking_score": 0.04547940797940798,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0021",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Investigation",
+          "text_sha256": "6ca1238aca3da2f75292c6ce80eac2f0e16405126790922a11bb5eda12930230",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8005048632621765,
+          "ranking_score": 0.04488081174749458,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0014",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Biopsy",
+          "text_sha256": "a5bf44d3718cc4565a3c50424418846d1ea3ddc1bdd12050be93c0ccea8ae826",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915701/",
+          "score": 0.7994012832641602,
+          "ranking_score": 0.044100706057227795,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0032",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "T1 signal slightly higher than skeletal muscle or adjacent intervertebral disc",
+          "text_sha256": "200cbadd1e3c4daba33936e757dd7a469536e0bd4a148beb72af66cf6a5be876",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8140742778778076,
+          "ranking_score": 0.04274425287356322,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c13",
+      "split": "dev",
+      "answerable": true,
+      "rank": 3,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "primary",
+          "malignant",
+          "bone",
+          "biopsy"
+        ],
+        "literal_terms": [
+          "bsg",
+          "ap",
+          "uk",
+          "tumour"
+        ],
+        "unknown_terms": [
+          "dong",
+          "thuan",
+          "dung",
+          "ngo",
+          "chuyen"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "biopsy",
+          "literal:ap"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 3,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.5,
+      "retrieved": [
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0002",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Introduction",
+          "text_sha256": "08d6a372d93c400390dde09d953e58fbbda9dc359cb9d90ae37bd9af75df941a",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8483796119689941,
+          "ranking_score": 0.06384129063829452,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0001",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Abstract",
+          "text_sha256": "d10f10e41a53c20122a1181bea1ba9d9ce56c385fa5cf8ab64a476ff1a5fd1ad",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8476724624633789,
+          "ranking_score": 0.06335738949202104,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0013",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Soft tissue swelling",
+          "text_sha256": "07ceb90bbff043d1c4b7aa56a90d22a3bd1474815b5165a62b52312d8db67a59",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8374775648117065,
+          "ranking_score": 0.06303568926519747,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0003",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Introduction",
+          "text_sha256": "9064f96120f0314d99093b50b864861fc8fa44c0a570c68fdcea196a1e748c93",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8413839340209961,
+          "ranking_score": 0.059027777777777776,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0020",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Investigation",
+          "text_sha256": "e699bf693567335188b7a2f20bc6fe97a330545e91e06eeb0efb4feeadc4f3d9",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8359193205833435,
+          "ranking_score": 0.04826741293532338,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c14",
+      "split": "dev",
+      "answerable": true,
+      "rank": 3,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "primary",
+          "malignant",
+          "bone"
+        ],
+        "literal_terms": [
+          "bsg",
+          "uk",
+          "x",
+          "tumour"
+        ],
+        "unknown_terms": [
+          "huong",
+          "dan",
+          "phim",
+          "binh",
+          "loai",
+          "tru"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:x"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 3,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.5,
+      "retrieved": [
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0002",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Introduction",
+          "text_sha256": "08d6a372d93c400390dde09d953e58fbbda9dc359cb9d90ae37bd9af75df941a",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.837058961391449,
+          "ranking_score": 0.06400409626216078,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0001",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Abstract",
+          "text_sha256": "d10f10e41a53c20122a1181bea1ba9d9ce56c385fa5cf8ab64a476ff1a5fd1ad",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.832687497138977,
+          "ranking_score": 0.055918040293040296,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0013",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Soft tissue swelling",
+          "text_sha256": "07ceb90bbff043d1c4b7aa56a90d22a3bd1474815b5165a62b52312d8db67a59",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8367645740509033,
+          "ranking_score": 0.06426850662704708,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0003",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Introduction",
+          "text_sha256": "9064f96120f0314d99093b50b864861fc8fa44c0a570c68fdcea196a1e748c93",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8421062231063843,
+          "ranking_score": 0.06286377353174516,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0005",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Classification of bone sarcomas",
+          "text_sha256": "369590e042d6e98ce12cf855ebbb70a167e548e0410b1f92447a9ddcce01169e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8147909641265869,
+          "ranking_score": 0.03917383188779526,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c15",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "knee-intraosseous-tumours-2026",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [],
+        "literal_terms": [
+          "intraosseous",
+          "lesions",
+          "include",
+          "identifiable",
+          "routine",
+          "knee",
+          "mri"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:include",
+          "literal:identifiable"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0002",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Introduction",
+          "text_sha256": "a86c1cfc0fce6c3da2cf7a1ec525c3b332edbb3aa408bfd5fbd8d025215e5435",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8634984493255615,
+          "ranking_score": 0.06530936012691697,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0001",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Abstract",
+          "text_sha256": "a16ff10bec3d0c7c4a66a8675644c80fc91ccf3bcc3cc9e00b1462bf013ac06d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8417993187904358,
+          "ranking_score": 0.0635164584959667,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0002",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Introduction",
+          "text_sha256": "ddfc771a97c7c1062c067bc4906f4a60042289f0825864c7635be63c2c4e7884",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8605687022209167,
+          "ranking_score": 0.06161576949620428,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0043",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Diagnosis and discussion",
+          "text_sha256": "129544f48e7a4b6ed31c4647e94c99f8e170c6b367adf9d1fe0f8380e6b28d1f",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8547244071960449,
+          "ranking_score": 0.05522875816993464,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0023",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Cystic lesions",
+          "text_sha256": "1f9f643246b00a7ce3b8c6be09ed67eb245f36f018eede45428e0079e924654b",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8489721417427063,
+          "ranking_score": 0.05379129129129129,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c16",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "knee-intraosseous-tumours-2026",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "prevalence",
+          "location",
+          "pain"
+        ],
+        "literal_terms": [
+          "giant",
+          "cell",
+          "tumour"
+        ],
+        "unknown_terms": [
+          "quanh",
+          "goi"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "pain"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0002",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Introduction",
+          "text_sha256": "a86c1cfc0fce6c3da2cf7a1ec525c3b332edbb3aa408bfd5fbd8d025215e5435",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8497899770736694,
+          "ranking_score": 0.06504494976203068,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0037",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Conclusion",
+          "text_sha256": "52682c30f5a7f2d874cf00e469672a2b8ca80c726f51fb8354f79503db013d2c",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8290499448776245,
+          "ranking_score": 0.05628054740957967,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0001",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Abstract",
+          "text_sha256": "d10f10e41a53c20122a1181bea1ba9d9ce56c385fa5cf8ab64a476ff1a5fd1ad",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8267623782157898,
+          "ranking_score": 0.034221525600835946,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0060",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Rib tumours when presenting with a malignant pleural effusion",
+          "text_sha256": "a139b10385932c399f4936993938acb4ff4b2d46036847fbdf4896f80289d2d7",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.81546950340271,
+          "ranking_score": 0.03253392155783652,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0007",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Chondroblastoma (CB)",
+          "text_sha256": "7ab999d29ea9b607d82c9206ce1df5973f38618be4c6f2b7e64ea54dc2c18e2b",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8143047094345093,
+          "ranking_score": 0.023642611683848798,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c17",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "knee-intraosseous-tumours-2026",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [],
+        "literal_terms": [
+          "knee",
+          "mri",
+          "feature",
+          "abc",
+          "significant",
+          "solid",
+          "component",
+          "suggest"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:mri",
+          "literal:feature",
+          "literal:suggest"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0022",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Aneurysmal bone cyst (ABC)",
+          "text_sha256": "66de206664812dd004608098df9f43fe1c2cec4aa899239bce3cea685a190d5e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8502750992774963,
+          "ranking_score": 0.06453291699193339,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0034",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Brown tumour of hyperparathyroidism",
+          "text_sha256": "f90631bd37e4357e8c913f5bc9d1dbb0a224a512e84a8d459044ab5a35917e0f",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8290732502937317,
+          "ranking_score": 0.04532464718151529,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0007",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Chondroblastoma (CB)",
+          "text_sha256": "7ab999d29ea9b607d82c9206ce1df5973f38618be4c6f2b7e64ea54dc2c18e2b",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.859316349029541,
+          "ranking_score": 0.05842074592074592,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "knee-intraosseous-tumours-2026:0016",
+          "source_id": "knee-intraosseous-tumours-2026",
+          "section": "Chondrogenic tumours",
+          "text_sha256": "702fb625d7077a9f9a6e5f1ffa0ef5f07794042cc0dd9d84dcceb444319f8f41",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13309404/",
+          "score": 0.8407123684883118,
+          "ranking_score": 0.05122920988463078,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0025",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Cortical involvement and extra-osseous component",
+          "text_sha256": "cc8651465497a1a5845b3dc37304fd1b401343b496118a84053c2f446dc7e462",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8277381658554077,
+          "ranking_score": 0.029964617425917734,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "n01",
+      "split": "dev",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "unverified_alternative_medicine_claim",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": null,
+      "evidence_list_completion_rank": null,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n02",
+      "split": "dev",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "out_of_scope",
+      "status": "out_of_scope",
+      "reason": "individual_treatment_or_dose",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": null,
+      "evidence_list_completion_rank": null,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "n03",
+      "split": "dev",
+      "answerable": false,
+      "rank": null,
+      "expected_status": "insufficient_evidence",
+      "status": "insufficient_evidence",
+      "reason": "pricing_not_in_corpus",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 0,
+      "evidence_check": null,
+      "gold_evidence_count": 0,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": null,
+      "evidence_list_completion_rank": null,
+      "retrieved_gold_count": 0,
+      "evidence_precision_at_k": null,
+      "evidence_recall_at_k": null,
+      "evidence_ndcg_at_k": null,
+      "retrieved": []
+    },
+    {
+      "id": "c18",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "appendicular-bone-lesion-radiography-2025",
+      "preferred_section": "Abstract",
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "diagnosis"
+        ],
+        "literal_terms": [
+          "x"
+        ],
+        "unknown_terms": [
+          "thong",
+          "tin",
+          "thu",
+          "hep",
+          "biet"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 1,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0008",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Staging",
+          "text_sha256": "a3824fd73428399d728a4e419e0df5d6118201eb0b443f6efd61d003e2dac7e4",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10967096/",
+          "score": 0.7913107872009277,
+          "ranking_score": 0.029751172015867293,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0001",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Abstract",
+          "text_sha256": "19579eaf57d9c50f7b6c138655512565ddcb1d21557530e5ee4e4c5cb281aa7b",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.7505130767822266,
+          "ranking_score": 0.05009207275993713,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0019",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Mixed",
+          "text_sha256": "9fe63d2503ba8bad7311c84745c63557b2d04a6bdafe18c6c40e44d8ea9b88aa",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.7938728332519531,
+          "ranking_score": 0.06088206778744369,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0010",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Part of the appendicular skeleton",
+          "text_sha256": "3dc926d12dc6fbd93cd9d740eb11fe1ddac41a5858fcd51a72d3eba55127d79e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.7925153374671936,
+          "ranking_score": 0.05886652683157961,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0021",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Sclerotic/blastic",
+          "text_sha256": "b370a7b2e58d2f29bc7e72341714fb418c599dfe2f01de3566819f6516e7824e",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.7864642143249512,
+          "ranking_score": 0.058515774933685386,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c19",
+      "split": "dev",
+      "answerable": true,
+      "rank": 5,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "transverse",
+          "locations",
+          "within",
+          "used",
+          "classify",
+          "lesion"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:locations",
+          "literal:used",
+          "literal:classify"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 5,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.38685280723454163,
+      "retrieved": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0009",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Lesion location",
+          "text_sha256": "34d6232c80f2a399f89be9bcf6721a0f4f02481a556fead969aef0e794b7fcc9",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.862317681312561,
+          "ranking_score": 0.04813947436898257,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "cureus-aneurysmal-bone-cyst:0010",
+          "source_id": "cureus-aneurysmal-bone-cyst",
+          "section": "Investigation and diagnosis",
+          "text_sha256": "6817cf55c475371d87f1316d064c1efa4911c72a42eae1c737fbf32959983575",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10915701/",
+          "score": 0.8393144607543945,
+          "ranking_score": 0.03367289190718732,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0016",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Management options: Bone-RADS",
+          "text_sha256": "82369717afd10f266394e4823a7984f19e216ccd2de9dd0188163a2e77754ac6",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.83609938621521,
+          "ranking_score": 0.03089217557251908,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0020",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Pathological",
+          "text_sha256": "642ba1cc5ffd95ae68985e38cc1426a9ce385210ca1d4ebf7890a97a5a6c76f9",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10967096/",
+          "score": 0.8272348642349243,
+          "ranking_score": 0.015151515151515152,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0014",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Transverse location (central, eccentric, intracortical, or juxtacortical)",
+          "text_sha256": "55de7d5c0f9f8e1dd6b547c07ade82fdcc9f69d9ad93c0d5332a7630e0db6a36",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8878549337387085,
+          "ranking_score": 0.04865990111891751,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c20",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone",
+          "location"
+        ],
+        "literal_terms": [
+          "specific",
+          "longitudinal",
+          "transverse",
+          "help",
+          "evaluating",
+          "lesion"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:evaluating"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0009",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Lesion location",
+          "text_sha256": "34d6232c80f2a399f89be9bcf6721a0f4f02481a556fead969aef0e794b7fcc9",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8927590847015381,
+          "ranking_score": 0.04918032786885246,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0014",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Transverse location (central, eccentric, intracortical, or juxtacortical)",
+          "text_sha256": "55de7d5c0f9f8e1dd6b547c07ade82fdcc9f69d9ad93c0d5332a7630e0db6a36",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8858506083488464,
+          "ranking_score": 0.04838709677419355,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0042",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Conclusions",
+          "text_sha256": "d0fa87a76b10fbc0a87b054c17ac8aafe858fc4b8942c897f0db4189ab80505f",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8821662664413452,
+          "ranking_score": 0.047371031746031744,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0012",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Longitudinal location (epiphyseal, metaphyseal, or diaphyseal)",
+          "text_sha256": "0ea010d13fe3ed553fb496b01808d6ec7999d79ad3a858ae99beb7640853e772",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8746798038482666,
+          "ranking_score": 0.045284780578898225,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0028",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Assessment of lesion density",
+          "text_sha256": "86347b382f007b9938b790c7b6c7dedd76d5fb04a1ee89c4b6d9f6f50439e502",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8746205568313599,
+          "ranking_score": 0.043478260869565216,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c21",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": null,
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "primary",
+          "bone"
+        ],
+        "literal_terms": [
+          "solitary",
+          "multifocal",
+          "lesions"
+        ],
+        "unknown_terms": [
+          "say"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 2,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0016",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Solitary versus multiple lesions",
+          "text_sha256": "77a22f62277a9d9c0da7292d5a424bcce3a7ab94234f87c370384b62c0cfc8d3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8871466517448425,
+          "ranking_score": 0.04918032786885246,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0015",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Solitary versus multiple lesions",
+          "text_sha256": "8ec361d3a29dbdcd127b14c6bb46af9dea22fb98d3de66b05fdcd846d6da7f8c",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8771147727966309,
+          "ranking_score": 0.04787506400409626,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "appendicular-bone-lesion-radiography-2025:0001",
+          "source_id": "appendicular-bone-lesion-radiography-2025",
+          "section": "Abstract",
+          "text_sha256": "19579eaf57d9c50f7b6c138655512565ddcb1d21557530e5ee4e4c5cb281aa7b",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078366/",
+          "score": 0.8573133945465088,
+          "ranking_score": 0.045454545454545456,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0043",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Metastatic Osteosarcoma",
+          "text_sha256": "cb2f3e372362f8b655527d56a6e6f1f2c256ca6d41ffbc3769385035508de173",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8444733619689941,
+          "ranking_score": 0.04355362946912243,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "nci-osteosarcoma-professional:0083",
+          "source_id": "nci-osteosarcoma-professional",
+          "section": "Treatment Options for Bone Metastases With or Without Lung Metastases",
+          "text_sha256": "8add3a25c7ccc709552c2daaa10e5a7a63f4ed631ab2ffdf6858133b2f5b0f97",
+          "url": "https://www.cancer.gov/types/bone/hp/osteosarcoma-treatment-pdq",
+          "score": 0.8392688632011414,
+          "ranking_score": 0.04151404151404151,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c22",
+      "split": "dev",
+      "answerable": true,
+      "rank": 4,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "ssr-bone-rads-2022",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "rads",
+          "white",
+          "paper",
+          "patient",
+          "population",
+          "imaging",
+          "context",
+          "algorithms",
+          "address"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:white",
+          "literal:paper",
+          "literal:population",
+          "literal:context",
+          "literal:address"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 4,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.43067655807339306,
+      "retrieved": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0074",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Conclusion",
+          "text_sha256": "2e75d2005bc90e4333952df228452758f0146cb6be9bc3894d5444efbdf86ef3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8902047872543335,
+          "ranking_score": 0.04918032786885246,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0003",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Introduction",
+          "text_sha256": "541429b972bd4240ab06fbd459953e162d569dcfd97f6176cdccff1c62f04bb5",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8664510846138,
+          "ranking_score": 0.04787506400409626,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0002",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Introduction",
+          "text_sha256": "ddfc771a97c7c1062c067bc4906f4a60042289f0825864c7635be63c2c4e7884",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.838728666305542,
+          "ranking_score": 0.041592039800995025,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0001",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Abstract",
+          "text_sha256": "d587d47124288e7a9ce6d62775248759108a0f32cd5a75fbc6625ac2c477051d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8895156383514404,
+          "ranking_score": 0.04788306451612903,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0005",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Scope: Development of Bone-RADS",
+          "text_sha256": "8f65f5fa116c81f7179e9f69b2d05912c684948800dc069c00e04b54365d5c39",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8501164317131042,
+          "ranking_score": 0.045235361653272105,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c23",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "ssr-bone-rads-2022",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "four",
+          "possible",
+          "rads",
+          "management",
+          "recommendations"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 2,
+        "best_missing": []
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0014",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Management options: Bone-RADS",
+          "text_sha256": "8f5021412d5ecd8bf0ecb579b0e2528b1ef6e1f6636480da2170348e292e339a",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.9120519161224365,
+          "ranking_score": 0.04891591750396616,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0001",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Abstract",
+          "text_sha256": "d587d47124288e7a9ce6d62775248759108a0f32cd5a75fbc6625ac2c477051d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8962196707725525,
+          "ranking_score": 0.048651507139079855,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0074",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Conclusion",
+          "text_sha256": "2e75d2005bc90e4333952df228452758f0146cb6be9bc3894d5444efbdf86ef3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8850372433662415,
+          "ranking_score": 0.04623878536922015,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "osteofibrous-dysplasia-review-2024:0023",
+          "source_id": "osteofibrous-dysplasia-review-2024",
+          "section": "Treatment",
+          "text_sha256": "b484d922274c601846fd5dd552b022e670a551251151fed4ac4b16a366779611",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10967096/",
+          "score": 0.8629134893417358,
+          "ranking_score": 0.04455662862159789,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "bsg-bone-sarcoma-guidelines-2025:0001",
+          "source_id": "bsg-bone-sarcoma-guidelines-2025",
+          "section": "Abstract",
+          "text_sha256": "d10f10e41a53c20122a1181bea1ba9d9ce56c385fa5cf8ab64a476ff1a5fd1ad",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11723950/",
+          "score": 0.8573740720748901,
+          "ranking_score": 0.043794014084507046,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c24",
+      "split": "dev",
+      "answerable": true,
+      "rank": 1,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "ssr-bone-rads-2022",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "rads",
+          "authors",
+          "take",
+          "flowcharts"
+        ],
+        "unknown_terms": [
+          "say",
+          "precedence"
+        ],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:rads",
+          "literal:authors",
+          "literal:take"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 1,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 1.0,
+      "retrieved": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0073",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Controversies",
+          "text_sha256": "31821021418124c65799185e44cc5e13cf0d3f75d0325fae21c23adcd5fa0055",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8375033736228943,
+          "ranking_score": 0.04918032786885246,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0014",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Management options: Bone-RADS",
+          "text_sha256": "8f5021412d5ecd8bf0ecb579b0e2528b1ef6e1f6636480da2170348e292e339a",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8219203948974609,
+          "ranking_score": 0.04547511312217195,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0016",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Management options: Bone-RADS",
+          "text_sha256": "82369717afd10f266394e4823a7984f19e216ccd2de9dd0188163a2e77754ac6",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.7966947555541992,
+          "ranking_score": 0.042444821731748725,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0074",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Conclusion",
+          "text_sha256": "2e75d2005bc90e4333952df228452758f0146cb6be9bc3894d5444efbdf86ef3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8285309076309204,
+          "ranking_score": 0.04187344913151365,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0001",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Abstract",
+          "text_sha256": "d587d47124288e7a9ce6d62775248759108a0f32cd5a75fbc6625ac2c477051d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8273711204528809,
+          "ranking_score": 0.041746031746031746,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    },
+    {
+      "id": "c25",
+      "split": "dev",
+      "answerable": true,
+      "rank": 2,
+      "expected_status": "candidates_found",
+      "status": "candidates_found",
+      "reason": "concept_reranking_not_evidence_verification",
+      "status_match": true,
+      "preferred_source_id": "ssr-bone-rads-2022",
+      "preferred_section": null,
+      "hits": 5,
+      "evidence_check": {
+        "concepts": [
+          "bone"
+        ],
+        "literal_terms": [
+          "authors",
+          "limit",
+          "rads",
+          "scope",
+          "solitary",
+          "lesions"
+        ],
+        "unknown_terms": [],
+        "checker_version": "concept-coverage-v1-experimental",
+        "check_type": "lexical_coverage_not_entailment",
+        "candidate_count": 80,
+        "rerank_only": true,
+        "complete_candidate_count": 0,
+        "best_missing": [
+          "literal:authors",
+          "literal:limit",
+          "literal:scope"
+        ]
+      },
+      "gold_evidence_count": 1,
+      "explicit_evidence_groups": false,
+      "evidence_alternative_group_count": null,
+      "selected_evidence_group": null,
+      "complete_evidence_group_count": null,
+      "evidence_group_rank": null,
+      "evidence_list_complete": true,
+      "evidence_list_completion_rank": 2,
+      "retrieved_gold_count": 1,
+      "evidence_precision_at_k": 0.2,
+      "evidence_recall_at_k": 1.0,
+      "evidence_ndcg_at_k": 0.6309297535714575,
+      "retrieved": [
+        {
+          "chunk_id": "ssr-bone-rads-2022:0001",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Abstract",
+          "text_sha256": "d587d47124288e7a9ce6d62775248759108a0f32cd5a75fbc6625ac2c477051d",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8772680759429932,
+          "ranking_score": 0.048171500630517027,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0005",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Scope: Development of Bone-RADS",
+          "text_sha256": "8f65f5fa116c81f7179e9f69b2d05912c684948800dc069c00e04b54365d5c39",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8607571125030518,
+          "ranking_score": 0.047643442622950824,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0074",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Conclusion",
+          "text_sha256": "2e75d2005bc90e4333952df228452758f0146cb6be9bc3894d5444efbdf86ef3",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8605049848556519,
+          "ranking_score": 0.04592074592074592,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0002",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Introduction",
+          "text_sha256": "ddfc771a97c7c1062c067bc4906f4a60042289f0825864c7635be63c2c4e7884",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.863591194152832,
+          "ranking_score": 0.04563492063492063,
+          "retrieval_mode": "hybrid"
+        },
+        {
+          "chunk_id": "ssr-bone-rads-2022:0045",
+          "source_id": "ssr-bone-rads-2022",
+          "section": "Lesion assessment",
+          "text_sha256": "efe91eda5a318417ad544b9fca703a058c0e77435d33446feb223b3b4bf4b911",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9283187/",
+          "score": 0.8503351211547852,
+          "ranking_score": 0.04434349989184512,
+          "retrieval_mode": "hybrid"
+        }
+      ]
+    }
+  ],
+  "created_at": "2026-10-28T17:55:25.380654+00:00",
+  "corpus_sha256": "b34d318c136f591d3b417e39603141f7d7836b960bf72d75a547653529e48d9d",
+  "source_lock_sha256": "45bb28d3b1f1e4c4d0344785e36a7860816bea26bd20c7ab8a4ffb3c7daa6fa1",
+  "dataset_sha256": "a753fbc6d63f4816c7ebe3ee58524ca699a9b7c3f6557d7a216a31996874a134",
+  "config_sha256": "c8f45d1af962c5b78a57096db2b219f66bd85168fdaf094daec7c7e083533aed",
+  "implementation_sha256": {
+    "retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "lexical.py": "fd2cf6c2b4e1ed79ed4e36863ed014e21a1e7ca32335b30d8b0e7caa0997424b",
+    "policy.py": "4a258f2c62de84fe0c41e9081a4a2d910c3e381d184108eab638bbdaa3fc8eaa",
+    "evidence.py": "d8ec53d3767118962caab11c6c1dc41569b0ce3e88af117c279e0e32bf2c06c8",
+    "evaluate.py": "0b2f4375b1d257b4b41cd785e64af1320a7dd0080397c383cd1f08426e3ba916",
+    "build_corpus.py": "c78602be9c9e839e9dca96834b7064bc2b900fbb495ec3e809291b6143b3f31f",
+    "build_index.py": "c7470b6f961d7c935dfaa0bb87d2faf6b3ed3eaea1e5039b741b7c3b6f8522eb"
+  },
+  "model_revision": "8d923955b027282ba975c0a4c825486c9ca4c490",
+  "index_manifest_sha256": "ad75159115ef04c360fda64dcb0f31b977158a607f3298b83fa63cabdd900a31",
+  "mode": "hybrid",
+  "apply_policy": true,
+  "split": "all",
+  "verify_evidence": false,
+  "rerank_concepts": true,
+  "top_k": 5,
+  "min_score": null,
+  "gold_type": "chunk_id_source_section_text_hash",
+  "dataset_provenance": "Agent-authored development cases based on CC BY 4.0 sources: unicameral and aneurysmal bone cyst reviews, the UK British Sarcoma Group consensus guideline, and a 2026 intraosseous knee tumour imaging review. Targeted to bilingual retrieval; not independently reviewed. Added 4 agent-authored development questions for the licensed 2025 appendicular radiography review; not independently reviewed. Added 4 agent-authored questions on the CC BY 4.0 Society of Skeletal Radiology Bone-RADS white paper; not independently reviewed.",
+  "frozen_config_matches": false,
+  "evidence_config_sha256": "bffd40b2dddf2cc4881232902f9f2ed1f21b82967fe246d71c672f8488ce2aa6",
+  "frozen_evidence_config_matches": false
+}

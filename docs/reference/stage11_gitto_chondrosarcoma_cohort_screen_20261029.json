@@ -1,0 +1,42 @@
+{
+  "record_id": "stage11-gitto-chondrosarcoma-cohort-screen-20261029",
+  "review_date": "2026-10-29",
+  "candidate_id": "C13",
+  "study": "Gitto et al., EBioMedicine 2024; Zenodo 10663746",
+  "article_doi": "10.1016/j.ebiom.2024.105018",
+  "dataset_doi": "10.5281/zenodo.10663746",
+  "sources": [
+    "https://zenodo.org/records/10663746",
+    "https://www.sciencedirect.com/science/article/pii/S2352396424000537",
+    "https://pubmed.ncbi.nlm.nih.gov/38377797/"
+  ],
+  "study_summary": {
+    "patients": 150,
+    "reference_standard": "Post-surgical pathology",
+    "endpoint": "Atypical cartilaginous tumour versus high-grade chondrosarcoma of long bones",
+    "internal_temporal_test_n": 25,
+    "external_geographic_test_n": 30,
+    "input_modality": "Frontal plain radiographs",
+    "model_type_reported": "Radiomics plus SVM"
+  },
+  "released_artifact": {
+    "zenodo_file": "XR CBT radiomics - anonymous dataset_zenodo.xlsx",
+    "size_kb_approx": 12.8,
+    "raw_radiograph_images_present": false,
+    "dataset_license_visible_on_record": false,
+    "article_license": "CC BY-NC-ND 4.0"
+  },
+  "bonescope_disposition": "NOT ELIGIBLE / NOT EVALUABLE",
+  "rationale": [
+    "Zenodo exposes a small spreadsheet, not the radiograph images needed to evaluate BoneScope's image classifier.",
+    "The narrow ACT-versus-high-grade-chondrosarcoma task does not match the BoneScope taxonomy.",
+    "The dataset record does not show an explicit license; the article's CC BY-NC-ND license does not confer image rights.",
+    "No stable patient/image manifest or checkpoint/pretraining overlap audit is available in the reviewed records."
+  ],
+  "actions": {
+    "dataset_file_downloaded": false,
+    "images_accessed": false,
+    "added_to_source_registry_or_corpus": false,
+    "used_for_evaluation": false
+  }
+}

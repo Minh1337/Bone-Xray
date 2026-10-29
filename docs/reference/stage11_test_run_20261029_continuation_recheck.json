@@ -1,0 +1,23 @@
+{
+  "created_at_utc": "2026-10-29T06:57:09.119311+00:00",
+  "created_at_ict": "2026-10-29T13:57:09.119311+07:00",
+  "scope": "software regression only; not clinical validation or independent acceptance",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+  "exit_code": 0,
+  "result": {
+    "passed": 79,
+    "subtests_passed": 127,
+    "warnings": 1,
+    "warning": "Starlette TestClient uses deprecated anyio.abc.BlockingPortal alias"
+  },
+  "python": "3.11.9",
+  "implementation_sha256": {
+    "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546",
+    "rag/tests/test_evidence.py": "4bf9e47051899dbc0d19045eb4c1a90795c6fa337dd5a37e9d0e1fc7446d46be",
+    "rag/tests/test_retrieval.py": "38994374a45851697feace6df109af71320781c302392257673efa23dddfdde0",
+    "xray_api.py": "f7e9da3a00389fb3a903d71581e4993c672cb752c98650be36b84298a63cc9e9"
+  }
+}
