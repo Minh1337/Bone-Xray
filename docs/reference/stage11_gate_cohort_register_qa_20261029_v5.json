@@ -1,0 +1,214 @@
+{
+  "record_id": "stage11-gate-cohort-register-qa-20261029-v5",
+  "review_date": "2026-10-29",
+  "verification": "PASS",
+  "scope": "Fresh structural existence/hash check after updating G1 intended-use draft and G6 local data-flow review for the source-lookup demo. No qualified clinical, privacy, legal or safety sign-off.",
+  "gate_register": {
+    "path": "docs/reference/stage11_acceptance_gate_status_20261029.csv",
+    "sha256": "9fcdb60aa862d01f9817437d53bde8bb553760da3128df01bdbff2bd391dc6c7",
+    "rows": 7,
+    "all_open": true,
+    "prepared_artifact_references": 23,
+    "missing_references": [],
+    "per_gate": [
+      {
+        "gate_id": "G1",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "STAGE11_INTENDED_USE_LOCK_TEMPLATE_VI.md",
+            "exists": true,
+            "sha256": "f725bd02c07827b330d9636d70792e4281e0f59a00ae7022500087f6578721f9"
+          },
+          {
+            "path": "STAGE11_INTENDED_USE_DRAFT_FOR_OWNER_REVIEW_20261029.md",
+            "exists": true,
+            "sha256": "cc4e27dbac4236582c986fc56a6770daf2c42ff5166a8399771968370c4faa1c"
+          }
+        ]
+      },
+      {
+        "gate_id": "G2",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "STAGE11_INDEPENDENT_REVIEW_PROTOCOL_VI.md",
+            "exists": true,
+            "sha256": "990ae6069eedc49a35de4c27d0fd8db6582c1da1f2f34ce3a5b9c8db7668c510"
+          },
+          {
+            "path": "stage11_blind_sampling_plan_template_20261029.json",
+            "exists": true,
+            "sha256": "7cea520866967c8eed3111d5adc22f55321df90d968787cfcc76600bfcd8a26f"
+          }
+        ]
+      },
+      {
+        "gate_id": "G3",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "EVIDENCE_CHECK_DESIGN_VI.md",
+            "exists": true,
+            "sha256": "058e30a40c318a4751a1f0d40c92d820bfc5aebf2eabedca1f5671ba0804cac3"
+          },
+          {
+            "path": "STAGE11_REVIEWER_PACKET_VI.md",
+            "exists": true,
+            "sha256": "1313c63f2d34bfbafc82d75cd936f232b9e79f5baf38bc537facc8d960e7cf27"
+          },
+          {
+            "path": "stage11_retrieval_evidence_group_label_template_20261029.csv",
+            "exists": true,
+            "sha256": "d0e0405dd3dde522ea7b9bf1a3e10c34416dd4dfa610cc859e5b4c87338b75e3"
+          }
+        ]
+      },
+      {
+        "gate_id": "G4",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md",
+            "exists": true,
+            "sha256": "712676dc8164182754bce01c4bbb817b3e54c5db3c16b57430c111ebb9f7e641"
+          },
+          {
+            "path": "stage11_image_rights_chain_template_20261028.csv",
+            "exists": true,
+            "sha256": "94f53f39cc11e340cfa279632cdb707ad808a63bfcb0ac297ccc9dc1b72ced35"
+          },
+          {
+            "path": "stage11_external_cohort_screening_register_20261029.csv",
+            "exists": true,
+            "sha256": "f1310b86a486cd133568ac8d144314c1e6e52d2250b946e14d83728043355f4b"
+          },
+          {
+            "path": "stage11_tcia_qin_sarcoma_screen_20261029.json",
+            "exists": true,
+            "sha256": "875d2d52fa53c0ab075b50918bec8c86b40eb7014317c4becca4c8730666e394"
+          },
+          {
+            "path": "stage11_gitto_chondrosarcoma_cohort_screen_20261029.json",
+            "exists": true,
+            "sha256": "989231b432f0345816cf771754c1dae449d62a370fbb2abccbc0b9eb2c5b7e23"
+          },
+          {
+            "path": "stage11_frontiers_11case_cohort_screen_20261029.json",
+            "exists": true,
+            "sha256": "67571e05b1e3861a33deee1d3d255f67e08db72cc192694129c4351714912239"
+          },
+          {
+            "path": "stage11_iiest_69case_cohort_screen_20261029.json",
+            "exists": true,
+            "sha256": "54c537d08860fc3a7552bc5f50c49ee45a4862913de4a984d037d53a36d3f4b4"
+          },
+          {
+            "path": "stage11_public_bone_tumor_cohort_literature_check_20261029.json",
+            "exists": true,
+            "sha256": "1ab38ef3b8ad29524615078084bb1817387d8b56231f765e1bcbead436c2524e"
+          }
+        ]
+      },
+      {
+        "gate_id": "G5",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "STAGE11_SAFETY_REVIEW_GUIDE_VI.md",
+            "exists": true,
+            "sha256": "9bf3606b43473509861d40157f03945fa21a01080444997a1a086e927d892ccd"
+          },
+          {
+            "path": "stage11_safety_hazard_analysis_template_20261029.csv",
+            "exists": true,
+            "sha256": "6f0036177c41915b4acdd5e98f774a379bd11c7793d0c5551fa90de66ba7f000"
+          },
+          {
+            "path": "stage11_preliminary_hazard_scenarios_20261029.csv",
+            "exists": true,
+            "sha256": "f52d6c0c312a886e8d65dc70d808393c46429f226362611420becf3418386631"
+          }
+        ]
+      },
+      {
+        "gate_id": "G6",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md",
+            "exists": true,
+            "sha256": "8643b2143860581bb0b71e523d43396141f0a74ca0c101b4156c0ec880df0573"
+          },
+          {
+            "path": "STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md",
+            "exists": true,
+            "sha256": "2f323572d7889d485929a11f76e68f51857b67118e9d8dcfe397336e0fc1bd7a"
+          },
+          {
+            "path": "stage11_privacy_security_baseline_20261029.csv",
+            "exists": true,
+            "sha256": "6c5d55350e60d8c04ce16c3f5fc8b34ea42cddd190d3d8cec20fca657dda681e"
+          }
+        ]
+      },
+      {
+        "gate_id": "G7",
+        "status": "OPEN",
+        "prepared_artifacts": [
+          {
+            "path": "STAGE11_REGULATORY_APPLICABILITY_REVIEW_VI.md",
+            "exists": true,
+            "sha256": "9459ae73ddd3363c787ba18c6a4c73fbbadbaa8d66721b1c6ffe64428f3e763e"
+          },
+          {
+            "path": "stage11_regulatory_source_register_20261029.json",
+            "exists": true,
+            "sha256": "45106cb5d7a1396a0f9f901549b43643f9152e04beb371271262d75d3bbc8310"
+          }
+        ]
+      }
+    ]
+  },
+  "cohort_register": {
+    "path": "docs/reference/stage11_external_cohort_screening_register_20261029.csv",
+    "sha256": "f1310b86a486cd133568ac8d144314c1e6e52d2250b946e14d83728043355f4b",
+    "rows": 15,
+    "columns": 8,
+    "blank_cells": [],
+    "all_dispositions_not_eligible_or_not_evaluable": true
+  },
+  "conclusion": "PASS: all 7 gates OPEN; 23 prepared artifact references exist and were rehashed; 15 cohort leads remain a screening register, not eligible external evaluation.",
+  "cohort_screen_records": [
+    {
+      "candidate_id": "C12",
+      "path": "docs/reference/stage11_tcia_qin_sarcoma_screen_20261029.json",
+      "exists": true,
+      "sha256": "875d2d52fa53c0ab075b50918bec8c86b40eb7014317c4becca4c8730666e394"
+    },
+    {
+      "candidate_id": "C13",
+      "path": "docs/reference/stage11_gitto_chondrosarcoma_cohort_screen_20261029.json",
+      "exists": true,
+      "sha256": "989231b432f0345816cf771754c1dae449d62a370fbb2abccbc0b9eb2c5b7e23"
+    },
+    {
+      "candidate_id": "C14",
+      "path": "docs/reference/stage11_frontiers_11case_cohort_screen_20261029.json",
+      "exists": true,
+      "sha256": "67571e05b1e3861a33deee1d3d255f67e08db72cc192694129c4351714912239"
+    },
+    {
+      "candidate_id": "C15",
+      "path": "docs/reference/stage11_iiest_69case_cohort_screen_20261029.json",
+      "exists": true,
+      "sha256": "54c537d08860fc3a7552bc5f50c49ee45a4862913de4a984d037d53a36d3f4b4"
+    }
+  ],
+  "supporting_literature_screen": {
+    "path": "docs/reference/stage11_public_bone_tumor_cohort_literature_check_20261029.json",
+    "exists": true,
+    "sha256": "1ab38ef3b8ad29524615078084bb1817387d8b56231f765e1bcbead436c2524e"
+  },
+  "reviewed_at_ict": "2026-10-29T19:39:29.491831+07:00"
+}

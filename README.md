@@ -1,5 +1,7 @@
 # 🦴 BoneScope · Hệ Thống Hỗ Trợ Phân Tích X-Quang U Xương
 
+**Điểm tiếp quản Codex:** [START_HERE_NEXT_CODEX_VI.md](START_HERE_NEXT_CODEX_VI.md). Giai đoạn 11 tạm dừng theo yêu cầu ngày 29/10/2026; báo cáo, việc còn dở và bản sao lưu được ghi tại đó.
+
 > **Đồ án hệ thống hội thoại hỗ trợ phân tích ảnh X-quang u xương kết hợp mô hình học sâu và RAG.**  
 > Thiết kế để chạy hoàn toàn cục bộ (offline/local) trên Windows 10/11, hỗ trợ tăng tốc GPU (NVIDIA RTX/CUDA) hoặc CPU.
 
@@ -139,7 +141,7 @@ Lệnh kiểm thử hiện tại:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Regression phần mềm gần nhất ngày 29/10/2026: **87 passed / 132 subtests**, một cảnh báo deprecation Starlette; xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json). Đây là regression code, không phải xác nhận lâm sàng hay độc lập. Corpus mới nhất 22 nguồn/794 chunk; audit provenance PASS trên 10 evaluation datasets và deterministic replay PASS 16/16, không preflight mismatch; [fresh audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json) và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json). So sánh sau corpus growth đổi metric ở 4/16 report, gồm expansion dev và V2 đã xem; route ABC được thử tiếp trên dev in-sample. Chưa có reviewer-labeled blind set hoặc citation-entailment adjudication; Stage 11 chưa nghiệm thu, `answer_ready=false`. Xem [project status](docs/PROJECT_STATUS_VI.md), [báo cáo](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) và [checkpoint](docs/STAGE11_CHECKPOINT_LATEST.md).
+Regression phần mềm gần nhất ngày 29/10/2026: **92 passed / 132 subtests**, một cảnh báo deprecation Starlette; xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json). Đây là regression code, không phải xác nhận lâm sàng hay độc lập. Corpus mới nhất 22 nguồn/794 chunk; audit provenance PASS trên 10 evaluation datasets và deterministic replay PASS 16/16, không preflight mismatch; [fresh audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json) và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json). So sánh sau corpus growth đổi metric ở 4/16 report, gồm expansion dev và V2 đã xem; route ABC được thử tiếp trên dev in-sample. Chưa có reviewer-labeled blind set hoặc citation-entailment adjudication; Stage 11 chưa nghiệm thu, `answer_ready=false`. Xem [project status](docs/PROJECT_STATUS_VI.md), [báo cáo](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) và [checkpoint](docs/STAGE11_CHECKPOINT_LATEST.md).
 
 ---
 
@@ -151,9 +153,10 @@ Regression phần mềm gần nhất ngày 29/10/2026: **87 passed / 132 subtest
   workspace lên nhánh `main`.
 - Các snapshot/patch sinh tự động trong `checkpoints/` được giữ cục bộ và bỏ qua
   bởi Git vì có file ZIP khoảng 133 MiB, vượt giới hạn 100 MB/file của GitHub.
-- Trạng thái kỹ thuật không thay đổi sau lần đồng bộ: full regression **87
-  passed / 132 subtests**, corpus **22 nguồn/794 chunk**, audit PASS, replay
-  **16/16**, bảy acceptance gates còn OPEN và `answer_ready=false`.
+- Trạng thái kỹ thuật sau lần đồng bộ: full regression **92 passed / 132
+  subtests**, corpus **22 nguồn/794 chunk**, audit PASS, replay **16/16**,
+  demo tra cứu tài liệu local đã có smoke check, bảy acceptance gates còn OPEN
+  và `answer_ready=false`.
 
 ### Đã hoàn thành
 
@@ -164,11 +167,17 @@ Regression phần mềm gần nhất ngày 29/10/2026: **87 passed / 132 subtest
   Mỗi chunk mang nguồn, license, scope, section và hash.
 - Hoàn thiện hybrid retrieval local, routing câu hỏi, đánh giá recall/MRR,
   concept rerank và các thử nghiệm kiểm tra evidence.
+- Thêm demo tra cứu tài liệu học tập local tại `rag/demo_api.py` và
+  `rag/demo_web/`: chỉ bind loopback, có provenance/citation cho passage,
+  từ chối câu hỏi ngoài phạm vi hoặc cần ảnh, không lưu lịch sử và không dùng
+  để chẩn đoán. Bản demo có thể cấu hình tuỳ chọn Gemini để thử nghiệm sinh
+  câu trả lời, nhưng mọi đường trả về vẫn giữ `answer_ready=false` và chưa
+  được nghiệm thu.
 - Đồng bộ tài liệu cài đặt/chạy trên máy mới và cấu trúc repository.
 
 ### Kết quả đo gần nhất và trạng thái kiểm thử
 
-- Full suite mới nhất được ghi nhận: **87 passed/132 subtests**, một cảnh báo deprecation Starlette. Đây là regression phần mềm, không phải kiểm định retrieval độc lập hay lâm sàng. Xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json) và [record lịch sử](docs/reference/stage11_test_run_20261028.json).
+- Full suite mới nhất được ghi nhận: **92 passed/132 subtests**, một cảnh báo deprecation Starlette. Đây là regression phần mềm, không phải kiểm định retrieval độc lập hay lâm sàng. Xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json) và [record lịch sử](docs/reference/stage11_test_run_20261028.json).
 - API parity với baseline local trên model thật: **3/3 ca đạt**, sai lệch score tối đa 0; metadata thiếu/ảnh hỏng bị từ chối đúng. Notebook parity chưa được xác minh.
 - Audit integrity/provenance offline hiện tại: **PASS**, 22 nguồn/794 đoạn, index `794 × 384`; deterministic replay **16/16 PASS**. Đây không phải
   xác nhận y khoa hay citation entailment.
@@ -181,8 +190,10 @@ Regression phần mềm gần nhất ngày 29/10/2026: **87 passed / 132 subtest
 ### Trạng thái hiện tại
 
 **Giai đoạn 11 đang tiếp tục, chưa nghiệm thu để dùng làm nền trả lời y khoa.**
-RAG hiện chỉ cung cấp retrieval/evaluation CLI; chưa có chatbot, API chat hoặc
-giao diện hội thoại. Các chế độ evidence vẫn trả `answer_ready: false`.
+Đã có demo tra cứu tài liệu học tập local gồm API và giao diện hội thoại riêng;
+demo chỉ phục vụ research/education, không nhận ảnh hoặc ca bệnh, không lưu
+lịch sử và không thay thế đánh giá độc lập. Tầng sinh câu trả lời tuỳ chọn
+chưa được nghiệm thu; các đường demo vẫn trả `answer_ready: false`.
 
 ### Việc cần làm tiếp theo
 
@@ -212,7 +223,7 @@ Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. 
 
 Để tiếp tục phát triển, đọc [trạng thái dự án và ghi chú bàn giao](docs/PROJECT_STATUS_VI.md) trước. Trang này tổng hợp các thay đổi đã làm, bằng chứng kiểm thử và việc còn mở.
 
-Điểm tiếp tục hiện tại: [Giai đoạn 11 handoff](docs/STAGE11_HANDOFF_VI.md) và [progress note](docs/STAGE11_PROGRESS_2026-10-29.md). Corpus hiện 794 đoạn/22 nguồn; audit PASS, replay 16/16. Dev/V2 đã xem, không phải kiểm định độc lập. G4 đã rà soát 15 cohort candidates; chưa có cohort đủ điều kiện. [C14](docs/reference/stage11_frontiers_11case_cohort_screen_20261029.json) · [C15](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json). Bảy acceptance gates còn OPEN; `answer_ready=false`; chưa có chatbot. Xem [online evidence review](docs/reference/stage11_online_evidence_review_20261028.md).
+Điểm tiếp tục hiện tại: [Giai đoạn 11 handoff](docs/STAGE11_HANDOFF_VI.md) và [progress note](docs/STAGE11_PROGRESS_2026-10-29.md). Corpus hiện 794 đoạn/22 nguồn; audit PASS, replay 16/16. Dev/V2 đã xem, không phải kiểm định độc lập. G4 đã rà soát 15 cohort candidates; chưa có cohort đủ điều kiện. [C14](docs/reference/stage11_frontiers_11case_cohort_screen_20261029.json) · [C15](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json). Bảy acceptance gates còn OPEN; `answer_ready=false`; đã có demo tra cứu tài liệu local nhưng chưa có chatbot được nghiệm thu. Xem [online evidence review](docs/reference/stage11_online_evidence_review_20261028.md) và [mốc chatbot](docs/reference/STAGE11_CHATBOT_READINESS_VI.md).
 
 Rerank thử nghiệm (`--rerank-concepts`) cho kết quả khác nhau theo tập: giảm dev từ 22/22 xuống 19/22; trên V2 đã xem, hybrid và rerank đều 8/8 (MRR 0,733 và 0,938). Giữ opt-in vì route V2 đã được tune theo p13 và dev giảm. Bộ lọc `--verify-evidence` chặn nhầm nhiều câu có đáp án nên không bật mặc định. Mọi chế độ vẫn trả `answer_ready: false`. Kết quả chi tiết và điểm tiếp tục nằm trong file bàn giao trên.
 

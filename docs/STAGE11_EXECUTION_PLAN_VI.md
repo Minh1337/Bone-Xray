@@ -1,7 +1,11 @@
 # Kế hoạch thực thi Giai đoạn 11
 
+**Định hướng hiện hành theo người dùng:** [báo cáo học tập thực nghiệm, không cung cấp cho bác sĩ/người bệnh](reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md). Ưu tiên hoàn thiện retrieval/provenance/đánh giá kỹ thuật và báo cáo trung thực. [Bảng đối chiếu 7 bước kỹ thuật](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) nêu phần đã thực hiện và khoảng trống ngưỡng similarity, có [thăm dò 28 câu đã xem](reference/stage11_similarity_overlap_probe_20261029.json). Các công việc clinical release trong kế hoạch bên dưới chỉ áp dụng nếu intended use đổi; register G1–G7 vẫn OPEN cho tới khi phạm vi và điều kiện áp dụng được owner/reviewer quyết định. [Record và regression mới](reference/stage11_educational_scope_verification_20261029.json): 94 passed/132 subtests; structural QA 24/24 refs, 15 cohort leads, 0/7 gate CLOSED.
+
+**Tiếp tục theo yêu cầu người dùng ngày 29/10/2026.** Lệnh tạm dừng ghi dưới đây là snapshot lịch sử. [Mốc phát triển chatbot](reference/STAGE11_CHATBOT_READINESS_VI.md) tách prototype tra cứu nội bộ khỏi generator và diễn giải ca thực. Giữ 0/7 gate đóng, `answer_ready=false`.
+
 **Cập nhật:** 29/10/2026  
-**Trạng thái:** đang thực hiện; chuẩn bị kỹ thuật workspace ước lượng khoảng **85%**; nghiệm thu độc lập **0/7 cổng đóng**; `answer_ready=false`.
+**Trạng thái tại điểm dừng lịch sử:** tạm dừng theo yêu cầu người dùng ngày 29/10/2026; chuẩn bị kỹ thuật workspace lúc đó ước lượng khoảng **85%**; nghiệm thu độc lập **0/7 cổng đóng**; `answer_ready=false`. Người dùng đã yêu cầu tiếp tục sau đó; trạng thái hiện hành nằm ở hai đoạn đầu tài liệu. Xem [bàn giao cho Codex khác](../START_HERE_NEXT_CODEX_VI.md).
 
 ## Mục tiêu
 

@@ -2,6 +2,16 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "Run BoneScope chatbot demo",
+			"type": "shell",
+			"command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
+			"args": ["-m", "rag.demo_api"],
+			"options": {"cwd": "${workspaceFolder}"},
+			"isBackground": true,
+			"problemMatcher": [],
+			"presentation": {"reveal": "always", "panel": "dedicated", "clear": false}
+		},
+		{
 			"label": "Inspect Git status",
 			"type": "shell",
 			"command": "git",

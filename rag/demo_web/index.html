@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BoneScope · Tra cứu nguồn nội bộ</title>
+  <link rel="stylesheet" href="/assets/style.css">
+  <script src="/assets/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><p class="eyebrow"><span class="brand-mark">B</span> BONESCOPE <span class="badge">DEMO HỌC TẬP</span></p><h1>Trợ lý tra cứu tài liệu</h1>
+      <p>Đặt câu hỏi về nội dung tài liệu u xương. Trợ lý tìm các đoạn nguồn liên quan để bạn tự đọc.</p></header>
+    <section id="chat" aria-label="Cuộc trò chuyện">
+      <div class="chat-toolbar"><span><i class="status-dot"></i> Tra cứu cục bộ</span><button type="button" id="clear-chat" class="quiet-button">Cuộc trò chuyện mới</button></div>
+      <div id="messages" aria-live="polite" aria-relevant="additions"><p class="welcome">Xin chào! Tôi có thể giúp tìm thông tin trong kho tài liệu. Bạn có thể bắt đầu với:</p><div class="suggestions"><button type="button" class="suggestion">Tài liệu nói gì về osteochondroma?</button><button type="button" class="suggestion">Những cách sinh thiết nào được mô tả?</button></div></div>
+      <form id="question-form"><label for="question">Tin nhắn</label>
+        <textarea id="question" maxlength="1000" required rows="2" placeholder="Ví dụ: Tài liệu mô tả osteochondroma như thế nào?"></textarea>
+        <div class="composer-footer"><span>Enter để gửi · Shift+Enter xuống dòng</span><button type="submit" id="submit">Gửi câu hỏi</button></div></form>
+    </section>
+    <footer>Chỉ phục vụ thử nghiệm tra cứu tài liệu trên máy cục bộ. Không dùng để chẩn đoán, quyết định điều trị hoặc diễn giải ảnh/ca bệnh.</footer>
+  </main>
+</body>
+</html>

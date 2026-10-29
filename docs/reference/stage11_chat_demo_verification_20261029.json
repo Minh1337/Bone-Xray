@@ -1,0 +1,71 @@
+{
+  "record_id": "stage11-chat-demo-verification-20261029-v1",
+  "created_at_ict": "2026-10-29T19:32:29.248772+07:00",
+  "git_head": "51669886b4ac0d6002c899e7cf8bf1fa761ef8bc",
+  "scope": "Local text-only source lookup prototype. No generated answers, clinical validation, external cohort or acceptance closure.",
+  "verification": {
+    "full_regression": "89 passed, 132 subtests passed, 1 Starlette deprecation warning",
+    "javascript_syntax": "node --check rag/demo_web/app.js PASS",
+    "http_smoke": {
+      "GET /": 200,
+      "out_of_scope": {
+        "status_code": 200,
+        "passages": 0,
+        "answer_ready": false
+      },
+      "candidates_found": {
+        "status_code": 200,
+        "passages": 5,
+        "answer_ready": false
+      },
+      "personal_image": {
+        "status_code": 200,
+        "status": "insufficient_evidence",
+        "reason": "image_requires_specialist_assessment",
+        "passages": 0,
+        "answer_ready": false
+      }
+    },
+    "offline_audit": {
+      "path": "docs/reference/stage11_integrity_audit_20261029_chat_demo.json",
+      "sha256": "8d7dca23ec92d3d842d440cfd7eaef86f1738124b4b81b242ae01b3031ff0440",
+      "status": "PASS",
+      "sources": 22,
+      "chunks": 794,
+      "evaluation_sets": 10,
+      "vector_shape": [
+        794,
+        384
+      ]
+    },
+    "deterministic_replay": {
+      "path": "docs/reference/stage11_replay_20261029_chat_demo.json",
+      "sha256": "ad59f63a975296d00202969f98442755f3906cf2b474030b7ab196fd41ffc819",
+      "status": "PASS",
+      "reports_matching": 16,
+      "preflight_mismatches": 0
+    }
+  },
+  "implementation_and_input_sha256": {
+    "rag/demo_api.py": "9d8a97c54b24ed092d0afa58f8be601f8505dc1bb965ffbbd0d90d35e5b2af7b",
+    "rag/demo_web/index.html": "f9273ccd42133a2cc5abb6a7d6ffac5df4a5d3fd00795ce744fc53d1538a8c38",
+    "rag/demo_web/style.css": "bf8ddb038ee8abe3cc15731aa25ace93890b1ca52ff6332ab2bea234213ad024",
+    "rag/demo_web/app.js": "145193047ae3ac408a5fdc90c122ba033b972053afabddbe0f96fad97a57ac59",
+    "rag/tests/test_demo_api.py": "e902f372f28d77448967d888651f9799435a95dcc15ea282c7d48b7f959d9f88",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/data/corpus.jsonl": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "rag/data/retrieval_config.json": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "rag/index/manifest.json": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe"
+  },
+  "gate_status": {
+    "closed": 0,
+    "total": 7,
+    "answer_ready": false
+  },
+  "limits": [
+    "Smoke/unit and software regression are not independent clinical assessment",
+    "The UI renders unvalidated candidate passages, not answer claims",
+    "Research-only on loopback with no patient data or image upload"
+  ]
+}

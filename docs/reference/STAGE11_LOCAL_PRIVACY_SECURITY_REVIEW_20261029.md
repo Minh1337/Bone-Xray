@@ -1,5 +1,11 @@
 # Rà soát tĩnh luồng dữ liệu cục bộ — Giai đoạn 11
 
+## Phần bổ sung cho giao diện tra cứu nguồn local — 29/10/2026
+
+`rag/demo_api.py`/`rag/demo_web/` là dịch vụ riêng với API ảnh và SQLite. Một câu hỏi văn bản (tối đa 1.000 ký tự theo model `Query`) được gửi bằng POST `/api/query`; server dùng `rag.retrieval.retrieve()` và trả status/reason, tối đa năm đoạn văn bản kèm provenance. Không có trường upload ảnh, không có code ghi câu hỏi/kết quả vào SQLite hoặc file trong demo, và không có lệnh gửi tới model ngoài; embedding model được đọc từ `rag/models/e5-small` local. Phần demo giữ Retriever/model trong RAM cho đến khi dừng process. Đây là kiểm tra source và TestClient, **chưa phải kiểm toán host/network/logs**. Uvicorn có thể ghi access log và hệ điều hành có thể lưu dấu khác; cần xác minh thực tế trước khi xử lý dữ liệu nhạy cảm.
+
+Lệnh `python -m rag.demo_api` bind `127.0.0.1:8765`; `TrustedHostMiddleware` chỉ cho Host `localhost`/`127.0.0.1`, POST từ Origin khác bị từ chối và kết quả status/passages mâu thuẫn trả 503. Bộ test xác nhận cross-origin 403 và Host khác 400; smoke query trong scope trả candidate và `answer_ready=false`. Chúng không thay authentication, rate limiting, threat model, HTTP transport encryption, endpoint authorization hay đánh giá shared-host. Direct Uvicorn launch có thể đổi địa chỉ bind; cấm coi các kiểm soát này là điều kiện đủ để xử lý câu hỏi/ảnh người bệnh hoặc triển khai public. [Bản ghi kiểm chứng v3](stage11_chat_demo_verification_20261029_v3.json) · [mốc chatbot](STAGE11_CHATBOT_READINESS_VI.md).
+
 **Ngày:** 2026-10-29  
 **Trạng thái:** rà soát mã nguồn theo phạm vi hẹp; không phải pentest, kiểm định cấu hình máy chạy, rà soát pháp lý hay phê duyệt xử lý dữ liệu người bệnh.  
 **Kết luận:** chỉ giữ ứng dụng ở chế độ demo local với dữ liệu tổng hợp/không định danh. Cổng privacy/security của Giai đoạn 11 vẫn mở.

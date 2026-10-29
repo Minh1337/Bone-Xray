@@ -1,7 +1,21 @@
 {
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "name": "💬 BoneScope: Chatbot tra cứu tài liệu",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "uvicorn",
+            "args": ["rag.demo_api:app", "--host", "127.0.0.1", "--port", "8765"],
+            "cwd": "${workspaceFolder}",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "PYTHONUTF8": "1",
+                "HF_HUB_OFFLINE": "1"
+            },
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
         {
             "name": "🌐 BoneScope: API + UI (dev)",
             "type": "debugpy",

@@ -1,0 +1,76 @@
+{
+  "record_id": "stage11-resume-verification-20261029-v1",
+  "created_at_ict": "2026-10-29T19:29:12.395401+07:00",
+  "scope": "Read-only resume checks plus chatbot-readiness documentation. No production model/corpus/index/config/evaluation change and no independent clinical validation.",
+  "user_resumed": true,
+  "git_head": "51669886b4ac0d6002c899e7cf8bf1fa761ef8bc",
+  "commands": [
+    {
+      "command": "python -X utf8 checkpoints/20261029_pause_handoff/verify_resume_bundle.py",
+      "exit_code": 0,
+      "result": "PASS",
+      "source_files_verified": 841,
+      "asset_files_verified": 5649
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m rag.audit --report-dir docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+      "exit_code": 0,
+      "result": "PASS",
+      "sources": 22,
+      "chunks": 794,
+      "evaluation_sets": 10,
+      "reports": 16,
+      "index_shape": [
+        794,
+        384
+      ]
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m rag.replay_reports --bundle docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+      "exit_code": 0,
+      "result": "PASS",
+      "reports_matching": 16,
+      "reports_total": 16,
+      "preflight_mismatches": 0
+    },
+    {
+      "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+      "exit_code": 0,
+      "passed": 87,
+      "subtests_passed": 132,
+      "warnings": 1
+    }
+  ],
+  "code_and_data_fingerprints_rechecked": {
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/build_corpus.py": "3384ca78818626048629eeab64a5f4357ec1bb288ded93acfdb377adaeb8c812",
+    "rag/audit.py": "fc50be91990a9b6f3c89e6d493275e3fbb59ef8ba48acb3dfbc2d4c669a32468",
+    "rag/replay_reports.py": "1b5c664e608a987bd47fb8f97822ee1c00789a80f05ac53f752de1f14872bf1b",
+    "xray_api.py": "419588122efe254fadf43ab10922ddbeae0b27ee515bceaa89721ec4a73df21c",
+    "tools/create_project_checkpoint.py": "9f0b620404541bc26b53ec14bc41457a777279f38276f8e22093982a803c0568",
+    "tests/test_checkpoint_tool.py": "aabda633d8d8f353a736a3b7a00cea970827512a2466e8bfb96d1d6c73f4ea7e",
+    "rag/tests/test_corpus.py": "8b207b4bdc8f23ad87f897884e9189d199094a615203c5a7b5d03014c4b68561",
+    "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546",
+    "rag/tests/test_retrieval.py": "f76704b08004f128b54668893962450cd2a02d148881f54903bda2cb9d393407",
+    "rag/tests/test_evidence.py": "4bf9e47051899dbc0d19045eb4c1a90795c6fa337dd5a37e9d0e1fc7446d46be",
+    "api_tests/test_case_api.py": "706ca708f3595e6e76673c3f3a20e98d897000a2a7cd3fff028c3a36116ea5e0",
+    "rag/data/corpus.jsonl": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "rag/data/sources.json": "0a46ad718ee268e3f2011a12a85f77c49cb24f6ce129762211fb8457e8045760",
+    "rag/data/source_lock.json": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "rag/data/retrieval_config.json": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "rag/data/evidence_config.json": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+    "rag/index/manifest.json": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe"
+  },
+  "bundle_manifest_sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c",
+  "acceptance_gates_closed": 0,
+  "acceptance_gates_total": 7,
+  "answer_ready": false,
+  "chatbot_readiness": "docs/reference/STAGE11_CHATBOT_READINESS_VI.md",
+  "limitations": [
+    "software and artifact integrity checks are not independent clinical validation",
+    "chat UI/generator not yet implemented",
+    "G1-G7 all OPEN"
+  ]
+}

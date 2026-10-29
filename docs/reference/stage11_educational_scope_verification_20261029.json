@@ -1,0 +1,49 @@
+{
+  "record_id": "stage11-educational-scope-verification-20261029-v1",
+  "created_at_ict": "2026-10-29T19:45:22.545716+07:00",
+  "basis": "User clarified the project is an experimental coursework report and is not for clinicians or patients. This records intent, not signed G1 closure.",
+  "git_head": "51669886b4ac0d6002c899e7cf8bf1fa761ef8bc",
+  "scope": "Current state after scope documentation and reusable register verifier; no model/corpus/index/retrieval config changes.",
+  "checks": {
+    "full_regression": {
+      "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+      "exit_code": 0,
+      "passed": 94,
+      "subtests_passed": 132,
+      "warnings": 1
+    },
+    "register_verifier": {
+      "command": ".venv/Scripts/python.exe tools/verify_stage11_registers.py",
+      "exit_code": 0,
+      "status": "PASS",
+      "artifact_hashes": 24,
+      "cohort_rows": 15,
+      "gate_rows": 7
+    },
+    "prior_underlying_retrieval_audit": {
+      "path": "docs/reference/stage11_integrity_audit_20261029_chat_demo_hardened.json",
+      "status": "PASS",
+      "rerun_in_this_scope_turn": false
+    },
+    "prior_underlying_retrieval_replay": {
+      "path": "docs/reference/stage11_replay_20261029_chat_demo_hardened.json",
+      "status": "PASS",
+      "reports_matching": 16,
+      "rerun_in_this_scope_turn": false
+    }
+  },
+  "file_sha256": {
+    "STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md": "a0e32b454ea68b84b6f49c5b2ff9ed93f3136656a61d440512225fc8f5868a90",
+    "STAGE11_INTENDED_USE_DRAFT_FOR_OWNER_REVIEW_20261029.md": "f94bc377248746ee0109b9c6589222fcd426ac14fb2807b14cb6cd6a0e8604d1",
+    "stage11_acceptance_gate_status_20261029.csv": "7b9db4f305598ac18269e8f04f0ad0d91c2ebfce93e43dd1ca6bf2f928ded76e",
+    "stage11_gate_cohort_register_qa_20261029_v6.json": "442291914679a9d002f5ecca1e0c56d94a48ccfba29f860389dbed1fc2c1c2ac"
+  },
+  "implementation_sha256": {
+    "tools/verify_stage11_registers.py": "056c957ee922020835ee07337f688aa54bd13b962af8130c7780c82e66510bd0",
+    "tests/test_stage11_register_verifier.py": "fe0cc09c3ec85a2cf5c82f6f32e80bc9fd34986453a9be66ceb5416be8d89e00"
+  },
+  "acceptance_gates_closed": 0,
+  "acceptance_gates_total": 7,
+  "answer_ready": false,
+  "limitation": "Structural integrity and software tests do not provide owner/reviewer signatures or independent clinical validation."
+}

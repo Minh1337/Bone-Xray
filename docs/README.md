@@ -1,5 +1,7 @@
 # Tài liệu dự án BoneScope
 
+**Giai đoạn 11 đã được tiếp tục sau lần tạm dừng 29/10/2026:** bắt đầu tại [bàn giao cho Codex tiếp theo](../START_HERE_NEXT_CODEX_VI.md), gồm trạng thái hiện hành, việc còn mở, lệnh xác minh và backup source/model/data. [Bảng đối chiếu đề tài học tập](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) tách 7 bước kỹ thuật khỏi gate triển khai lâm sàng.
+
 **Bắt đầu tại [trạng thái và bàn giao hiện tại](PROJECT_STATUS_VI.md).** Tài liệu đó ghi những phần đã làm, bằng chứng kiểm tra, giới hạn và việc cần thực hiện tiếp.
 
 | Tài liệu | Nội dung |
@@ -7,6 +9,8 @@
 | [README tiếng Việt](../README_VI.md) | Cài đặt, khởi động, sử dụng và kiểm thử trên máy mới |
 | [Trạng thái dự án](PROJECT_STATUS_VI.md) | Điểm bàn giao, thay đổi gần đây, kiểm thử và thứ tự phát triển tiếp |
 | [Tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) | Điểm dừng, ca trượt, kết quả cuối và lệnh tái lập cho AI tiếp quản |
+| [Mốc và bản tra cứu chatbot nội bộ](reference/STAGE11_CHATBOT_READINESS_VI.md) | Cách chạy prototype local và điều kiện cho chatbot tạo câu trả lời |
+| [Phạm vi học tập do người dùng xác định](reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md) | Mục tiêu báo cáo thực nghiệm, giới hạn dùng và quyết định intended-use còn cần khóa |
 | [Hồ sơ review Stage 11](reference/STAGE11_REVIEWER_PACKET_VI.md) | 7 acceptance gates, intended-use, independent review và trạng thái open |
 | [Sàng lọc phạm vi quy định và quản lý AI](reference/STAGE11_REGULATORY_APPLICABILITY_REVIEW_VI.md) | Nguồn FDA/IMDRF/NIST cập nhật, phân biệt draft/final và checklist chuyển giao theo chức năng; không phải phân loại pháp lý |
 | [Crosswalk reporting guideline AI/y tế (trọng tâm STARD-AI)](reference/STAGE11_STARD_AI_REPORTING_CROSSWALK_VI.md) | Chọn checklist theo study aim/design, gồm diagnostic accuracy, LLM, trial theo nhóm tuổi/AI và disclosure GAMER; không dùng thay benchmark RAG retrieval-only |

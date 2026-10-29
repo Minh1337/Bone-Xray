@@ -1,5 +1,7 @@
 # Lộ trình thực hiện BoneScope cho AI
 
+**Phạm vi đề tài do người dùng xác định ngày 29/10/2026:** [báo cáo học tập có tính thực nghiệm](reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md), không cung cấp cho bác sĩ hoặc người bệnh. Completion Note Giai đoạn 11 cần đánh giá mục tiêu retrieval/provenance/tái lập và báo cáo trung thực của đề tài. Các cổng dự kiến cho claims/triển khai lâm sàng vẫn OPEN, nhưng không được dùng như tỷ lệ hoàn thành bản demo học tập hoặc tự đổi thành CLOSED/N/A khi chưa có quyết định phạm vi có thẩm quyền.
+
 **Trạng thái triển khai mới nhất:** xem [ghi chú bàn giao](PROJECT_STATUS_VI.md). Các mẫu Completion Note ở dưới là tiêu chí và biểu mẫu; kết quả thực tế của giai đoạn 10 và 11 được ghi trong tài liệu bàn giao và hướng dẫn RAG.
 
 > **Mục đích:** Tài liệu này là runbook dành cho các AI hoặc kỹ sư tiếp quản dự án

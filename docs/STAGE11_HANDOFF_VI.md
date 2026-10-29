@@ -1,5 +1,7 @@
 # Điểm tiếp tục giai đoạn 11
 
+**Điểm dừng hiện hành — 29/10/2026:** người dùng yêu cầu tạm ngưng goal và lưu mọi tiến trình. Đọc [bàn giao độc lập với chat](../START_HERE_NEXT_CODEX_VI.md), [JSON trạng thái/hash](reference/stage11_pause_handoff_20261029.json) và [checkpoint mới nhất](STAGE11_CHECKPOINT_LATEST.md). Các snapshot bên dưới là lịch sử; bundle hiện hành là `cureus_abcrouting_v1`. Không tiếp tục goal trước khi người dùng yêu cầu.
+
 ## Current handoff state — 29/10/2026
 
 - The historic v8 metrics remain a baseline; corpus-expanded continuation is recorded separately. Latest full regression, after current read-only audit/replay, is **87 passed / 132 subtests**, one Starlette deprecation warning. [Latest run record with hashes](reference/stage11_test_run_20261029_postdocs_full.json).

@@ -1,0 +1,248 @@
+{
+  "created_at_utc": "2026-10-29T12:52:44.423334+00:00",
+  "purpose": "descriptive viewed-set diagnostic; no threshold selected or deployed",
+  "dataset": "rag/data/evaluation_v2.json",
+  "dataset_sha256": "35be1063696b87edcdcc35b94aac7bdccb2d81118e58c994a96d51fbf6a65543",
+  "retrieval_sha256": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+  "config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+  "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+  "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+  "model_sha256": "7a77d5da5ee721c7c740e4082447d3026b6521d3eac5edb93edb6aa88f03b7d7",
+  "question_count": 28,
+  "expected_positive_count": 17,
+  "expected_negative_count": 11,
+  "positive_dense_top1_min": 0.8003267645835876,
+  "negative_dense_top1_max": 0.9086705446243286,
+  "score_overlap": true,
+  "observations": [
+    {
+      "id": "p01",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8003267645835876,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p02",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8013795018196106,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p03",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8138883113861084,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p04",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.85591059923172,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p05",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8424177765846252,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p06",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8276255130767822,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p07",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8548554182052612,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p08",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8449678421020508,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p09",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8028910160064697,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p10",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8430403470993042,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p11",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.87353515625,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p12",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8272825479507446,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p13",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8268675804138184,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p14",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.852920651435852,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p15",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8523744940757751,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "p16",
+      "split": "test",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8425284028053284,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "n01",
+      "split": "dev",
+      "expected_status": "out_of_scope",
+      "raw_dense_top1_score": 0.8498170375823975,
+      "policy_status": "out_of_scope",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n02",
+      "split": "dev",
+      "expected_status": "out_of_scope",
+      "raw_dense_top1_score": 0.8221865892410278,
+      "policy_status": "out_of_scope",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n03",
+      "split": "dev",
+      "expected_status": "out_of_scope",
+      "raw_dense_top1_score": 0.7138949632644653,
+      "policy_status": "out_of_scope",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n04",
+      "split": "dev",
+      "expected_status": "candidates_found",
+      "raw_dense_top1_score": 0.8522541522979736,
+      "policy_status": "candidates_found",
+      "policy_hit_count": 5
+    },
+    {
+      "id": "n05",
+      "split": "dev",
+      "expected_status": "insufficient_evidence",
+      "raw_dense_top1_score": 0.8388525247573853,
+      "policy_status": "insufficient_evidence",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n06",
+      "split": "dev",
+      "expected_status": "insufficient_evidence",
+      "raw_dense_top1_score": 0.7822691202163696,
+      "policy_status": "insufficient_evidence",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n07",
+      "split": "test",
+      "expected_status": "out_of_scope",
+      "raw_dense_top1_score": 0.9086705446243286,
+      "policy_status": "out_of_scope",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n08",
+      "split": "test",
+      "expected_status": "insufficient_evidence",
+      "raw_dense_top1_score": 0.8378429412841797,
+      "policy_status": "insufficient_evidence",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n09",
+      "split": "test",
+      "expected_status": "insufficient_evidence",
+      "raw_dense_top1_score": 0.8383641242980957,
+      "policy_status": "insufficient_evidence",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n10",
+      "split": "test",
+      "expected_status": "out_of_scope",
+      "raw_dense_top1_score": 0.783753514289856,
+      "policy_status": "out_of_scope",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n11",
+      "split": "test",
+      "expected_status": "insufficient_evidence",
+      "raw_dense_top1_score": 0.8368690013885498,
+      "policy_status": "insufficient_evidence",
+      "policy_hit_count": 0
+    },
+    {
+      "id": "n12",
+      "split": "test",
+      "expected_status": "insufficient_evidence",
+      "raw_dense_top1_score": 0.821863055229187,
+      "policy_status": "insufficient_evidence",
+      "policy_hit_count": 0
+    }
+  ],
+  "limitations": [
+    "Agent-authored and viewed dataset; not blind independent evaluation.",
+    "Raw dense cosine score differs from hybrid ranking_score and does not test citation support.",
+    "Policy routing can abstain independently of score; threshold-only classification is not deployed."
+  ]
+}

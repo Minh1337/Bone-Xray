@@ -1,6 +1,14 @@
 # Giai đoạn 11 — tiến độ và goal đang theo dõi
 
-**Cập nhật:** 29/10/2026. Goal Codex hiện hành: **Hoàn thiện Giai đoạn 11 BoneScope** (đang active). Goal đã lưu kế hoạch đầy đủ: rà soát nguồn có quyền; cải thiện retrieval/routing/evidence bằng benchmark dev tách biệt; regression/audit/replay; báo cáo, provenance và checkpoint; giữ `answer_ready=false` cho đến khi đủ chứng cứ và ký duyệt độc lập.
+**Người dùng đã chốt hướng dự án:** [báo cáo học tập thực nghiệm, không cung cấp cho bác sĩ/người bệnh](reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md). Ưu tiên hoàn thiện retrieval, provenance, thực nghiệm và báo cáo theo mục tiêu lộ trình; [bảng đối chiếu 7 bước kỹ thuật](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) cùng [thăm dò ngưỡng 28 câu](reference/stage11_similarity_overlap_probe_20261029.json) chỉ ra phần làm được và giới hạn score. Không lấy các gate lâm sàng làm tỷ lệ hoàn thành bản demo. Register vẫn 0/7 CLOSED đến khi owner/reviewer quyết định tiêu chí áp dụng và có bằng chứng.
+
+**Hồ sơ G1/G6 đã được cập nhật theo demo tra cứu local.** [QA v6](reference/stage11_gate_cohort_register_qa_20261029_v6.json) xác minh 24/24 prepared-artifact references hiện hữu và hash khớp, 15 cohort leads, 7 gate vẫn OPEN. [Privacy/security review](reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md) nêu rõ luồng văn bản và giới hạn kiểm tra hiện tại; chưa có reviewer phê duyệt.
+
+**Tiếp tục theo yêu cầu ngày 29/10/2026.** Checkpoint tạm dừng phía dưới là lịch sử; xem [mốc chatbot](reference/STAGE11_CHATBOT_READINESS_VI.md) và [bản ghi bản tra cứu nội bộ mới](reference/stage11_chat_demo_verification_20261029_v3.json). Regression mới nhất 92 passed/132 subtests. Audit PASS, replay 16/16 PASS của retrieval nền trước cải tiến cache demo, với fingerprint retrieval/data không đổi sau đó. Gate vẫn 0/7 OPEN và `answer_ready=false` cho đến khi có bằng chứng/duyệt thật.
+
+**TẠM DỪNG theo yêu cầu người dùng ngày 29/10/2026 (UTC+07).** Đã lưu điểm tiếp quản trong [START_HERE_NEXT_CODEX_VI.md](../START_HERE_NEXT_CODEX_VI.md) và [JSON bàn giao](reference/stage11_pause_handoff_20261029.json). Dùng [checkpoint bàn giao](STAGE11_CHECKPOINT_LATEST.md) để xác minh bản lưu. Các ghi chú tiến triển phía dưới là lịch sử, không phải lệnh chạy tiếp.
+
+**Cập nhật:** 29/10/2026. Goal Codex: **Hoàn thiện Giai đoạn 11 BoneScope** (tạm dừng theo yêu cầu). Kế hoạch được bảo lưu: rà soát nguồn có quyền; cải thiện retrieval/routing/evidence bằng benchmark dev tách biệt; regression/audit/replay; báo cáo, provenance và checkpoint; giữ `answer_ready=false` cho đến khi đủ chứng cứ và ký duyệt độc lập.
 
 ## Tiến độ
 

@@ -1,0 +1,13 @@
+{
+  "goal": {
+    "threadId": "01a18011-20f9-7d71-ad42-d4a72a224743",
+    "objective": "Hoàn thiện Giai đoạn 11 BoneScope: duy trì rà soát nguồn trực tuyến có quyền tái sử dụng; cải thiện retrieval/routing/evidence có thể kiểm chứng; hoàn thiện báo cáo, provenance và quy trình tái lập. Kế hoạch: (1) xác minh trạng thái repo/checkpoint và bảo toàn thay đổi; (2) giữ corpus nguồn có giấy phép và phạm vi rõ, rà soát nguồn mới chỉ từ primary/official sources; (3) kiểm tra và cải thiện retrieval, routing, evidence policy bằng benchmark dev riêng, ghi rõ in-sample và không tuning trên blind test; (4) chạy full regression, offline corpus/index audit, deterministic replay và ghi hash; (5) cập nhật báo cáo Stage 11, handoff, project status và checkpoint ZIP/hash; (6) theo dõi 7 acceptance gates: intended use, independent blind labels/adjudication, citation entailment, cohort/image rights/overlap, safety, privacy/security, legal/regulatory; giữ answer_ready=false đến khi có bằng chứng và reviewer có thẩm quyền. Tiến độ báo riêng: workspace preparation estimate (\\~85%, không phải nghiệm thu) và acceptance gates (0/7 closed); không tuyên bố độc lập khi chưa reviewer. Tiếp tục làm đến khi usage còn khoảng 10%, rồi lưu checkpoint và tổng hợp.\nTiến độ đến đâu rồi\nTại sao đã làm lâu thế rồi mà tiến độ vẫn như này:\nnghiệm thu vẫn **0/7 gate (0%)**, `answer_ready=false` &#x20;\nđược rồi hãy lưu lại rồi tạm thời dừng lại ở đây.",
+    "status": "blocked",
+    "tokensUsed": 2756953,
+    "timeUsedSeconds": 10049,
+    "createdAt": 1793256514,
+    "updatedAt": 1793267577
+  },
+  "remainingTokens": null,
+  "completionBudgetReport": null
+}

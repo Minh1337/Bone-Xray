@@ -1,0 +1,147 @@
+{
+  "record_id": "stage11-paused-handoff-20261029",
+  "recorded_at_ict": "2026-10-29T17:05:46.866647+07:00",
+  "requested_goal_status": "paused",
+  "reason": "User explicitly requested saving all progress for another Codex and temporarily pausing. No project development is authorized by opening the workspace alone.",
+  "entrypoint": "START_HERE_NEXT_CODEX_VI.md",
+  "goal_record_before_pause": "docs/reference/stage11_goal_at_pause_20261029.json",
+  "goal_transition_note": "Goal app state is separate from these files. The final status is set via update_goal after backup verification. The before-pause tool record preserves the objective and previous state.",
+  "git_head_at_save": "51669886b4ac0d6002c899e7cf8bf1fa761ef8bc",
+  "git_branch": "main",
+  "progress": {
+    "workspace_preparation_estimate_percent": 85,
+    "estimate_is_acceptance": false,
+    "acceptance_closed": 0,
+    "acceptance_total": 7,
+    "answer_ready": false
+  },
+  "current_bundle": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+  "current_bundle_manifest_sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c",
+  "current_corpus": {
+    "sources": 22,
+    "chunks": 794,
+    "index_shape": [
+      794,
+      384
+    ]
+  },
+  "latest_recorded_verification": {
+    "regression_passed": 87,
+    "subtests_passed": 132,
+    "failed": 0,
+    "audit": "PASS",
+    "replay_reports_matched": 16,
+    "replay_reports_total": 16,
+    "preflight_mismatches": 0,
+    "rerun_during_pause_save": false,
+    "scope": "Prior software/provenance evidence; not independent or clinical acceptance. Fingerprints rechecked during pause save."
+  },
+  "fingerprints_rechecked_against_regression": {
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/evaluate.py": "3cf9f3b4bf8e931b01523288851689b007e2c7404d9c35f8d7148e736515b85e",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/build_corpus.py": "3384ca78818626048629eeab64a5f4357ec1bb288ded93acfdb377adaeb8c812",
+    "rag/audit.py": "fc50be91990a9b6f3c89e6d493275e3fbb59ef8ba48acb3dfbc2d4c669a32468",
+    "rag/replay_reports.py": "1b5c664e608a987bd47fb8f97822ee1c00789a80f05ac53f752de1f14872bf1b",
+    "xray_api.py": "419588122efe254fadf43ab10922ddbeae0b27ee515bceaa89721ec4a73df21c",
+    "tools/create_project_checkpoint.py": "9f0b620404541bc26b53ec14bc41457a777279f38276f8e22093982a803c0568",
+    "tests/test_checkpoint_tool.py": "aabda633d8d8f353a736a3b7a00cea970827512a2466e8bfb96d1d6c73f4ea7e",
+    "rag/tests/test_corpus.py": "8b207b4bdc8f23ad87f897884e9189d199094a615203c5a7b5d03014c4b68561",
+    "rag/tests/test_evaluation.py": "a70943ed449e5f30063cb1ebfbacd30e76482d8e512a96926b1acdcb1a0a8546",
+    "rag/tests/test_retrieval.py": "f76704b08004f128b54668893962450cd2a02d148881f54903bda2cb9d393407",
+    "rag/tests/test_evidence.py": "4bf9e47051899dbc0d19045eb4c1a90795c6fa337dd5a37e9d0e1fc7446d46be",
+    "api_tests/test_case_api.py": "706ca708f3595e6e76673c3f3a20e98d897000a2a7cd3fff028c3a36116ea5e0",
+    "rag/data/corpus.jsonl": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "rag/data/sources.json": "0a46ad718ee268e3f2011a12a85f77c49cb24f6ce129762211fb8457e8045760",
+    "rag/data/source_lock.json": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "rag/data/retrieval_config.json": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "rag/data/evidence_config.json": "99c4fa46e59b78aed74f816abf03e034b32319c27884b27dce528b0c9a0e7fc9",
+    "rag/index/manifest.json": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe"
+  },
+  "evidence_records_sha256": {
+    "docs/reference/stage11_test_run_20261029_postdocs_full.json": "e9281903d42589495616fb2c3c46777f201b384fa682427740d79b30f36c386d",
+    "docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json": "8d7dca23ec92d3d842d440cfd7eaef86f1738124b4b81b242ae01b3031ff0440",
+    "docs/reference/stage11_replay_20261029_workspace_recheck_v1.json": "3766f9ae29c3d38be638c84379c4debd7e992746272fa68f32ea113ffbaaaff8",
+    "docs/reference/stage11_acceptance_gate_status_20261029.csv": "9fcdb60aa862d01f9817437d53bde8bb553760da3128df01bdbff2bd391dc6c7",
+    "docs/reference/stage11_external_cohort_screening_register_20261029.csv": "f1310b86a486cd133568ac8d144314c1e6e52d2250b946e14d83728043355f4b",
+    "docs/reference/STAGE11_GATE_CLOSURE_BLOCKERS_VI.md": "00e8f9f7cc0afeffb3abaeadcc5744d57c1d5de95817c9c36b04d7480cfd7384",
+    "docs/reference/stage11_gate_cohort_register_qa_20261029_v4.json": "e04086317405b17213d4099190521972e4e44f7360de51c24aaddaa31ee919df"
+  },
+  "gates": [
+    {
+      "gate_id": "G1",
+      "status": "OPEN",
+      "next_requirement": "Template only; no signed lock",
+      "accountable_roles": "Project/product owner; regulatory/privacy/safety reviewers as applicable"
+    },
+    {
+      "gate_id": "G2",
+      "status": "OPEN",
+      "next_requirement": "No reviewer, blind draw, labels, or adjudication",
+      "accountable_roles": "Independent clinical subject-matter reviewers and adjudicator; project owner as custodian"
+    },
+    {
+      "gate_id": "G3",
+      "status": "OPEN",
+      "next_requirement": "No blind claim-span ratings; no answer generator; lexical heuristics are not entailment",
+      "accountable_roles": "Independent clinical evidence reviewers; RAG/evaluation lead"
+    },
+    {
+      "gate_id": "G4",
+      "status": "OPEN",
+      "next_requirement": "15 leads screened; none eligible; BTXRD upstream per-image rights and patient/image overlap evidence remain unresolved",
+      "accountable_roles": "Dataset custodian/data steward; imaging rights holder; independent cohort auditor"
+    },
+    {
+      "gate_id": "G5",
+      "status": "OPEN",
+      "next_requirement": "Preliminary hazard scenarios prepared (5 prompts); no intended-use-specific signed hazard analysis, severity/likelihood rationale, verified controls or qualified safety sign-off",
+      "accountable_roles": "Clinical safety lead; independent clinical reviewers"
+    },
+    {
+      "gate_id": "G6",
+      "status": "OPEN",
+      "next_requirement": "Local review identified unresolved controls; no signed deployment approval",
+      "accountable_roles": "Privacy officer/data-protection reviewer; security reviewer; system owner"
+    },
+    {
+      "gate_id": "G7",
+      "status": "OPEN",
+      "next_requirement": "Official-source map and machine-readable register prepared; no signed product classification/pathway/legal opinion; full function/jurisdiction assessment remains for qualified reviewer",
+      "accountable_roles": "Qualified regulatory reviewer/counsel for each target jurisdiction; product owner"
+    }
+  ],
+  "commands_after_user_resumes": {
+    "verify_backup": "python -X utf8 checkpoints/20261029_pause_handoff/verify_resume_bundle.py",
+    "offline_audit": ".venv/Scripts/python.exe -m rag.audit --report-dir docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "replay": ".venv/Scripts/python.exe -m rag.replay_reports --bundle docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "regression": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q"
+  },
+  "checkpoint_directory": "checkpoints/20261029_pause_handoff",
+  "portable_assets_scope": [
+    "rag/index",
+    "rag/models",
+    "data/external_datasets",
+    "results",
+    "api_results",
+    "logs",
+    "data/*.db (consistent SQLite backup)"
+  ],
+  "excluded_from_backup": [
+    ".git (history stored via repository.bundle)",
+    ".venv",
+    "other virtualenvs",
+    "previous checkpoints",
+    "system installers/caches",
+    "credentials and app state outside workspace"
+  ],
+  "do_not": [
+    "Resume without a new user request",
+    "Treat viewed dev/test probes as independent evaluation",
+    "Fill blind labels or reviewer signatures as agent",
+    "Use BTXRD as independent external cohort for this model",
+    "Enable answer_ready without closure evidence and qualified sign-off",
+    "Overwrite historical evidence records",
+    "Use stale default bundle for replay/audit"
+  ]
+}

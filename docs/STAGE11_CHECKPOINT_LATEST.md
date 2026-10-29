@@ -1,5 +1,61 @@
 # Checkpoint dự án BoneScope — bản mới nhất 29/10/2026
 
+## Kiểm tra cuối liên kết và regression — snapshot hiện hành
+
+Snapshot mới nhất: [`checkpoints/20261029_stage11_academic_handoff_verified/project_snapshot.zip`](../checkpoints/20261029_stage11_academic_handoff_verified/project_snapshot.zip), với manifest/hash/verifier cùng thư mục. Link lộ trình trong [bảng kỹ thuật](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) được sửa theo heading thật; full regression chạy lại 94 passed/132 subtests, 1 cảnh báo Starlette. QA register 24/24 refs PASS; 0/7 gate đóng, `answer_ready=false`. Chuyển máy cần thêm [bundle tài nguyên/runtime và Git history](../checkpoints/20261029_pause_handoff/bundle_manifest.json). Các mục dưới là lịch sử.
+
+## Đồng bộ báo cáo học tập — snapshot hiện hành
+
+Snapshot mới nhất: [`checkpoints/20261029_stage11_academic_handoff_final/project_snapshot.zip`](../checkpoints/20261029_stage11_academic_handoff_final/project_snapshot.zip), với manifest/hash/verifier cùng thư mục. README, kế hoạch và tiến độ đã đồng bộ trạng thái tiếp tục Giai đoạn 11, [bảng 7 bước kỹ thuật](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) và [thăm dò score](reference/stage11_similarity_overlap_probe_20261029.json). Model/index/BTXRD/runtime/Git history cần [bundle tài nguyên](../checkpoints/20261029_pause_handoff/bundle_manifest.json) khi chuyển máy. 0/7 gate đóng, `answer_ready=false`; các mục dưới là lịch sử.
+
+## Bảo vệ record tái chạy — snapshot hiện hành
+
+Snapshot mới nhất: [`checkpoints/20261029_stage11_similarity_probe_final/project_snapshot.zip`](../checkpoints/20261029_stage11_similarity_probe_final/project_snapshot.zip), với manifest/hash/verifier cùng thư mục. Script thăm dò score nay từ chối ghi đè record đã tồn tại; kiểm hash trước/sau cho trường hợp ghi đè bị từ chối PASS. [Bảng đối chiếu](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) có lệnh tái chạy với tên file mới. Model/index/BTXRD/runtime/Git history cần [bundle tài nguyên](../checkpoints/20261029_pause_handoff/bundle_manifest.json) khi chuyển máy. 0/7 gate đóng, `answer_ready=false`; các mục dưới là lịch sử.
+
+## Thăm dò ngưỡng — snapshot hiện hành
+
+Snapshot mới nhất: [`checkpoints/20261029_stage11_similarity_probe/project_snapshot.zip`](../checkpoints/20261029_stage11_similarity_probe/project_snapshot.zip), với manifest/hash/verifier cùng thư mục. [Thăm dò score trên 28 câu đã xem](reference/stage11_similarity_overlap_probe_20261029.json) và [bảng đối chiếu đồ án](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) ghi giới hạn của ngưỡng similarity; không chọn hay triển khai ngưỡng mới. Model/index/BTXRD/runtime/Git history cần [bundle cũ](../checkpoints/20261029_pause_handoff/bundle_manifest.json) khi chuyển máy. 0/7 gate đóng, `answer_ready=false`; các mục dưới là lịch sử.
+
+## Báo cáo học tập — bản đối chiếu kỹ thuật hiện hành
+
+Snapshot mới nhất: [`checkpoints/20261029_stage11_educational_matrix/project_snapshot.zip`](../checkpoints/20261029_stage11_educational_matrix/project_snapshot.zip), với manifest/hash/verifier cùng thư mục. [Bảng đối chiếu 7 bước kỹ thuật](reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) ghi rõ pipeline đã thực hiện và khoảng trống similarity threshold mặc định. Bản này là source/tài liệu sau [checkpoint phạm vi học tập](../checkpoints/20261029_stage11_educational_scope/manifest.json); khi chuyển máy cần thêm [bundle tài nguyên/runtime và lịch sử Git](../checkpoints/20261029_pause_handoff/bundle_manifest.json). 0/7 gate đóng và `answer_ready=false`; các tiêu đề “hiện hành” phía dưới là lịch sử tại thời điểm tương ứng.
+
+## Phạm vi đề tài học tập — checkpoint hiện hành
+
+Snapshot mới: [`checkpoints/20261029_stage11_educational_scope/project_snapshot.zip`](../checkpoints/20261029_stage11_educational_scope/project_snapshot.zip), với manifest/hash và verifier cùng thư mục. Người dùng đã xác định [mục tiêu báo cáo thực nghiệm](reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md), không cung cấp cho bác sĩ/người bệnh. [Register QA v6](reference/stage11_gate_cohort_register_qa_20261029_v6.json) được tái kiểm bằng `tools/verify_stage11_registers.py`: 24/24 artifact references, 15 cohort leads, 7/7 gate OPEN. Full regression 94 passed/132 subtests; [record](reference/stage11_educational_scope_verification_20261029.json). Không có G1 owner/reviewer sign-off, `answer_ready=false`. Model/index/BTXRD/runtime và Git history nằm ở [bundle tài nguyên](../checkpoints/20261029_pause_handoff/bundle_manifest.json); chuyển máy cần snapshot mới cùng bundle này. Các checkpoint phía dưới là lịch sử.
+
+## Hồ sơ G1/G6 sau demo — checkpoint hiện hành
+
+Snapshot mới: [`checkpoints/20261029_stage11_demo_gates_sync/project_snapshot.zip`](../checkpoints/20261029_stage11_demo_gates_sync/project_snapshot.zip), manifest/hash và verifier cùng thư mục. G1 intended-use draft và G6 privacy/security static review được đồng bộ với UI tra cứu local; [QA v5](reference/stage11_gate_cohort_register_qa_20261029_v5.json) kiểm 23/23 artifact references, 15 cohort leads và 7/7 gate OPEN. Chưa có owner/reviewer sign-off, `answer_ready=false`. Model/index/BTXRD/runtime và Git history vẫn được lưu trong [bundle tài nguyên](../checkpoints/20261029_pause_handoff/bundle_manifest.json); chuyển máy cần cả snapshot mới và bundle này. Các checkpoint dưới là lịch sử.
+
+## Bản tra cứu local tái sử dụng model — checkpoint hiện hành
+
+Snapshot mới: [`checkpoints/20261029_stage11_chat_demo_cached/project_snapshot.zip`](../checkpoints/20261029_stage11_chat_demo_cached/project_snapshot.zip), manifest/hash và verifier cùng thư mục. [Record v3](reference/stage11_chat_demo_verification_20261029_v3.json) ghi 92 passed/132 subtests và kiểm bộ truy xuất được tái sử dụng. Audit/replay của retrieval nền PASS và fingerprint không đổi sau sửa cache demo. Model/index/BTXRD/runtime và lịch sử Git vẫn ở [bundle tài nguyên đã xác minh](../checkpoints/20261029_pause_handoff/bundle_manifest.json). Khi chuyển máy cần checkpoint mới cùng bundle tài nguyên. Các snapshot dưới là lịch sử. 0/7 gates CLOSED, `answer_ready=false`.
+
+## Bản tra cứu nội bộ được gia cố — checkpoint hiện hành
+
+Snapshot mới: [`checkpoints/20261029_stage11_chat_demo_hardened/project_snapshot.zip`](../checkpoints/20261029_stage11_chat_demo_hardened/project_snapshot.zip), với manifest/hash và verifier cùng thư mục. [Bản ghi kiểm chứng v2](reference/stage11_chat_demo_verification_20261029_v2.json) xác nhận 91 passed/132 subtests, audit PASS, replay 16/16 PASS và kiểm Host/Origin/status của API. Tài nguyên lớn model/index/BTXRD/runtime và lịch sử Git vẫn nằm trong [bundle tài nguyên](../checkpoints/20261029_pause_handoff/bundle_manifest.json); khi chuyển máy cần cả hai thư mục. Những mục “mới nhất” dưới đây là lịch sử. 0/7 gates CLOSED, `answer_ready=false`.
+
+## Bản tra cứu chatbot nội bộ — checkpoint mới nhất
+
+Mã giao diện tra cứu `rag.demo_api` và [bản ghi kiểm chứng](reference/stage11_chat_demo_verification_20261029.json) được lưu tại [`checkpoints/20261029_stage11_chat_demo/project_snapshot.zip`](../checkpoints/20261029_stage11_chat_demo/project_snapshot.zip); `manifest.json` cùng thư mục ghi hash từng file và ZIP. Snapshot này chứa source/tài liệu/cache và thay đổi chưa commit; tài nguyên model/index/BTXRD/runtime và lịch sử Git có trong [bundle tài nguyên đã kiểm](../checkpoints/20261029_pause_handoff/bundle_manifest.json). Nếu chuyển máy, chép cả thư mục checkpoint mới và bundle tài nguyên. Regression 89 passed/132 subtests, audit PASS, replay 16/16 PASS; 0/7 gate đóng và `answer_ready=false`.
+
+## Tiếp nối sau tạm dừng — checkpoint hiện hành
+
+Người dùng đã yêu cầu tiếp tục Giai đoạn 11. Tài liệu [mốc chatbot](reference/STAGE11_CHATBOT_READINESS_VI.md) phân biệt bản tra cứu nội bộ có thể xây từ retrieval hiện có và chatbot tạo câu trả lời/diễn giải ca thực còn cần đánh giá và phê duyệt. [Bản ghi xác minh mới](reference/stage11_resume_verification_20261029.json): full software regression 87 passed/132 subtests; offline audit PASS (22 nguồn/794 chunks, 10 evaluation sets, index 794×384); replay PASS 16/16, zero preflight mismatches; 20 fingerprint code/data khớp hồ sơ trước. Đây là tính toàn vẹn phần mềm, không đóng gate.
+
+Snapshot source/tài liệu mới: [`checkpoints/20261029_stage11_resume_chatbot/project_snapshot.zip`](../checkpoints/20261029_stage11_resume_chatbot/project_snapshot.zip), manifest và hash nằm cùng thư mục; kiểm verifier sau tạo. Tài nguyên/model/index/BTXRD/runtime và Git history vẫn lấy từ [bundle bàn giao đã xác minh](../checkpoints/20261029_pause_handoff/bundle_manifest.json). Chuyển máy thì chép **cả hai thư mục checkpoint**, dùng `verify_resume_bundle.py` cho bundle cũ và `tools/create_project_checkpoint.py --verify-dir checkpoints/20261029_stage11_resume_chatbot` cho snapshot mới. Các đoạn checkpoint “hiện hành” bên dưới là lịch sử tại thời điểm ghi. G1–G7 đều OPEN; `answer_ready=false`.
+
+## Bản bàn giao tạm dừng hiện hành
+
+Người dùng yêu cầu tạm ngưng goal và lưu toàn bộ tiến trình ngày 29/10/2026. Thư mục bàn giao hiện hành: [`checkpoints/20261029_pause_handoff`](../checkpoints/20261029_pause_handoff). Dùng `bundle_manifest.json` và `verify_resume_bundle.py` trong thư mục đó để kiểm tra hash/archive; manifest lưu kết quả xác minh và hash của từng thành phần sau khi tạo. Source, tài liệu, test, model/corpus/cache được lưu trong `project_snapshot.zip`; `assets_runtime.zip` bổ sung index, model embedding, BTXRD và runtime artifacts (SQLite dùng consistent backup); lịch sử Git lưu riêng bằng `repository.bundle`.
+
+Đọc [START_HERE_NEXT_CODEX_VI.md](../START_HERE_NEXT_CODEX_VI.md) để tiếp quản trong cùng workspace hoặc chuyển máy; [JSON bàn giao](reference/stage11_pause_handoff_20261029.json) ghi trạng thái và các việc còn thiếu. `.venv`, driver/CUDA, credentials, installer/cache hệ thống và checkpoint cũ không được đóng gói. Trạng thái: tạm dừng theo yêu cầu; khoảng 85% chuẩn bị, **0/7 gate CLOSED**, `answer_ready=false`.
+
+## Các checkpoint và QA lịch sử
+
+Các mục phía dưới được giữ để truy vết. Bản bàn giao hiện hành là thư mục `20261029_pause_handoff` ở trên; các tiêu đề “mới nhất” phía dưới chỉ đúng tại thời điểm ghi trước đó.
+
 ## Checkpoint mới nhất đã xác minh
 
 `checkpoints/20261029_093707/project_snapshot.zip`: **836 files**, 164,803,676 bytes giải nén; SHA-256 `61775e31dd4d0d31ac44448896d76a0d3967be02eccd6e428d43a6414bbde604`. Utility verifier PASS: 836 files, ZIP CRC PASS. Snapshot includes Vietnam regulatory source register, G7 source review, synchronized 23/23 prepared-artifact QA v4, the gate-closure blocker matrix and current project reports/progress. All seven gates remain OPEN; `answer_ready=false`.
