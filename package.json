@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "@google/design.md": "^0.4.0"
+  },
+  "scripts": {
+    "design:lint": "designmd lint --format json rag/demo_web/DESIGN.md"
+  }
+}

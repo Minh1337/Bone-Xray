@@ -1,24 +1,47 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BoneScope · Tra cứu nguồn nội bộ</title>
-  <link rel="stylesheet" href="/assets/style.css">
-  <script src="/assets/app.js" defer></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f8fc"><meta name="description" content="BoneScope — không gian học tập và tra cứu tài liệu về u xương, với nguồn tham khảo minh bạch."><link rel="icon" href="data:,"><title>BoneScope · Trò chuyện và học tập</title><link rel="stylesheet" href="/assets/style.css"><script src="/assets/app.js" defer></script>
 </head>
 <body>
-  <main>
-    <header><p class="eyebrow"><span class="brand-mark">B</span> BONESCOPE <span class="badge">DEMO HỌC TẬP</span></p><h1>Trợ lý tra cứu tài liệu</h1>
-      <p>Đặt câu hỏi về nội dung tài liệu u xương. Trợ lý tìm các đoạn nguồn liên quan để bạn tự đọc.</p></header>
-    <section id="chat" aria-label="Cuộc trò chuyện">
-      <div class="chat-toolbar"><span><i class="status-dot"></i> Tra cứu cục bộ</span><button type="button" id="clear-chat" class="quiet-button">Cuộc trò chuyện mới</button></div>
-      <div id="messages" aria-live="polite" aria-relevant="additions"><p class="welcome">Xin chào! Tôi có thể giúp tìm thông tin trong kho tài liệu. Bạn có thể bắt đầu với:</p><div class="suggestions"><button type="button" class="suggestion">Tài liệu nói gì về osteochondroma?</button><button type="button" class="suggestion">Những cách sinh thiết nào được mô tả?</button></div></div>
-      <form id="question-form"><label for="question">Tin nhắn</label>
-        <textarea id="question" maxlength="1000" required rows="2" placeholder="Ví dụ: Tài liệu mô tả osteochondroma như thế nào?"></textarea>
-        <div class="composer-footer"><span>Enter để gửi · Shift+Enter xuống dòng</span><button type="submit" id="submit">Gửi câu hỏi</button></div></form>
-    </section>
-    <footer>Chỉ phục vụ thử nghiệm tra cứu tài liệu trên máy cục bộ. Không dùng để chẩn đoán, quyết định điều trị hoặc diễn giải ảnh/ca bệnh.</footer>
-  </main>
-</body>
-</html>
+<svg class="svg-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-book" viewBox="0 0 24 24"><path d="M12 5v15m0-15C8 2 3 4 3 4v15s5-2 9 1c4-3 9-1 9-1V4s-5-2-9 1Z"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+<symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 8.5a2.6 2.6 0 0 1 5 1c0 2-2.5 2-2.5 4M12 17h.01"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-4-4 4 4 4-4M4 16v4h16v-4"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+<symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4L12 3Z"/></symbol>
+</defs></svg>
+<a href="#question" class="skip-link">Đến ô nhập câu hỏi</a>
+<div class="app-shell">
+<button class="sidebar-backdrop" id="sidebar-backdrop" tabindex="-1" aria-label="Đóng điều hướng" hidden></button>
+<aside class="sidebar" id="sidebar" aria-label="Điều hướng BoneScope">
+<a class="brand" href="#main" aria-label="BoneScope, không gian tra cứu"><span class="brand-mark" aria-hidden="true"><svg><use href="#i-book"/></svg></span><span class="brand-copy"><strong>BoneScope<span>.</span></strong><small>RESEARCH STUDIO</small></span></a>
+<button type="button" id="clear-chat" class="new-chat-button"><svg><use href="#i-plus"/></svg><span>Cuộc trò chuyện mới</span></button>
+<div class="side-label">KHÔNG GIAN LÀM VIỆC</div>
+<nav class="primary-nav" aria-label="Chính"><a class="nav-item is-active" href="#question" aria-current="page"><svg><use href="#i-search"/></svg><span>Trò chuyện cùng BoneScope</span><span class="nav-dot"></span></a></nav>
+<section class="session-section" aria-labelledby="session-title"><div class="side-label" id="session-title">TRONG CUỘC TRÒ CHUYỆN</div><p class="session-empty" id="session-empty">Các câu hỏi của bạn sẽ xuất hiện ở đây.</p><div id="session-questions" class="session-questions"></div></section>
+<div class="sidebar-spacer"></div>
+<section class="side-card" aria-labelledby="scope-title"><span class="scope-eyebrow"><svg><use href="#i-book"/></svg> KHÔNG GIAN HỌC TẬP</span><h2 id="scope-title">Cùng trò chuyện.<br>Hiểu sâu hơn.</h2><p>Học tập, viết nội dung và tra cứu nguồn về xương khi cần.</p></section>
+<button type="button" id="help-button" class="nav-item help-button"><svg><use href="#i-help"/></svg><span>Hướng dẫn sử dụng</span></button>
+<div class="sidebar-bottom"><span class="version-mark">B</span><span>BoneScope <small>Dự án học tập · Bản thử nghiệm</small></span></div>
+</aside>
+<main id="main" class="main-area">
+<header class="topbar"><div class="topbar-leading"><button type="button" id="menu-toggle" class="icon-button mobile-menu" aria-label="Mở điều hướng" aria-controls="sidebar" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="breadcrumb"><span>Không gian học tập</span><span class="crumb-separator">/</span><strong>Trợ lý BoneScope</strong></div></div><div class="topbar-actions"><span class="local-indicator"><i></i><span>Ứng dụng cục bộ</span></span><button type="button" id="export-chat" class="export-button" disabled title="Xuất cuộc trò chuyện thành tệp Markdown"><svg><use href="#i-download"/></svg><span>Xuất nội dung</span></button><button type="button" id="theme-toggle" class="icon-button" aria-label="Bật giao diện tối" title="Đổi giao diện"><svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v2m0 16v2M5 5l1.5 1.5m11 11L19 19M2 12h2m16 0h2M5 19l1.5-1.5m11-11L19 5"/></svg><svg class="icon-moon" viewBox="0 0 24 24"><path d="M20.2 15.1A8.6 8.6 0 0 1 8.9 3.8 8.7 8.7 0 1 0 20.2 15.1Z"/></svg></button></div></header>
+<div class="workspace"><section class="chat-panel" aria-label="Trợ lý tra cứu tài liệu">
+<div class="chat-heading"><div class="heading-copy"><div class="heading-title-row"><svg class="heading-icon"><use href="#i-spark"/></svg><h1>Trợ lý BoneScope</h1><span class="beta-badge">BETA</span></div><p>Trò chuyện đa chủ đề · Tra cứu tài liệu xương</p></div><button type="button" class="icon-button mobile-new-chat" id="mobile-new-chat" aria-label="Cuộc trò chuyện mới"><svg><use href="#i-plus"/></svg></button><span class="workspace-label"><span class="status-dot"></span>CÓ NGỮ CẢNH HỘI THOẠI</span></div>
+<div class="conversation" id="conversation" tabindex="0" aria-label="Nội dung cuộc trò chuyện"><div id="messages" class="messages" aria-live="polite" aria-relevant="additions text">
+<section class="welcome-block" id="welcome-block" aria-labelledby="welcome-title"><div class="welcome-glyph" aria-hidden="true"><svg><use href="#i-spark"/></svg></div><p class="welcome-kicker">CÙNG BẠN HỌC VÀ KHÁM PHÁ</p><h2 id="welcome-title">Bạn muốn trò chuyện<br><span>về điều gì hôm nay?</span></h2><p class="welcome-copy">Học một điều mới, viết nội dung hay cùng giải một bài toán.<br>Khi hỏi về xương, mình sẽ giúp bạn tra cứu nguồn trong tài liệu.</p><div class="suggestions" aria-label="Câu hỏi gợi ý">
+<button type="button" class="suggestion" data-question="Tài liệu nói gì về osteochondroma?"><span class="suggestion-icon"><svg><use href="#i-book"/></svg></span><span class="suggestion-copy"><small>KHÁM PHÁ CHỦ ĐỀ</small><strong>Tìm hiểu về osteochondroma</strong><span>Xem nội dung trong kho tài liệu</span></span><svg class="suggestion-arrow"><use href="#i-arrow"/></svg></button>
+<button type="button" class="suggestion" data-question="Giải thích Python là gì và gợi ý cách bắt đầu học cho người mới."><span class="suggestion-icon"><svg><use href="#i-search"/></svg></span><span class="suggestion-copy"><small>HỌC ĐIỀU MỚI</small><strong>Bắt đầu học Python</strong><span>Giải thích theo cách dễ hiểu</span></span><svg class="suggestion-arrow"><use href="#i-arrow"/></svg></button>
+</div><div class="welcome-footnote"><span>01 &nbsp; Trò chuyện</span><span>02 &nbsp; Giải thích</span><span>03 &nbsp; Tra cứu nguồn</span></div></section>
+</div></div>
+<div class="composer-wrap"><form id="question-form" class="composer"><label class="visually-hidden" for="question">Câu hỏi tra cứu</label><textarea id="question" maxlength="1000" required rows="1" placeholder="Nhắn cho BoneScope…" aria-describedby="composer-hint"></textarea><div class="composer-footer"><span id="composer-hint"><label class="composer-mode" for="chat-mode"><span class="visually-hidden">Chế độ trả lời</span><select id="chat-mode"><option value="auto">Trò chuyện + tài liệu</option><option value="documents">Chỉ tra cứu tài liệu</option></select></label><span class="keyboard-hint"><kbd>↵</kbd> gửi · Shift + Enter xuống dòng</span></span><div class="composer-actions"><span class="char-count" id="char-count">0/1000</span><button type="button" id="stop-request" class="stop-button" hidden><span class="stop-square"></span>Dừng</button><button type="submit" id="submit" class="send-button" aria-label="Gửi câu hỏi"><span>Gửi câu hỏi</span><svg viewBox="0 0 24 24"><path d="M12 19V5m-6 6 6-6 6 6"/></svg></button></div></div></form><p class="composer-disclaimer">Bản demo học tập · AI có thể sai. Luôn đối chiếu nguồn; không dùng để chẩn đoán hoặc điều trị.</p></div>
+</section></div>
+<footer class="page-footer"><span>BoneScope Research Studio</span><span><span data-provider-name>AI</span> cần kết nối mạng · Không nhập dữ liệu người bệnh</span></footer>
+</main></div>
+<div id="live-status" class="visually-hidden" role="status" aria-live="polite"></div>
+<dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-header"><span class="scope-eyebrow">BONESCOPE · HƯỚNG DẪN</span><button type="button" class="icon-button" id="close-help" aria-label="Đóng hướng dẫn"><svg><use href="#i-close"/></svg></button></div><h2 id="help-title">Bắt đầu từ một câu hỏi.</h2><p>BoneScope trò chuyện đa chủ đề, ghi nhớ ngữ cảnh gần đây và tìm nguồn trong kho tài liệu khi bạn hỏi về xương. Chọn “Chỉ tra cứu tài liệu” để luôn giới hạn câu trả lời theo nguồn. Chatbot chưa có công cụ tìm thông tin thời gian thực trên mạng.</p><ol class="help-steps"><li><strong>Hỏi về một chủ đề cụ thể</strong><span>Ví dụ: “Tài liệu nói gì về osteochondroma?”</span></li><li><strong>Đọc câu trả lời nháp</strong><span><span data-provider-name>AI</span> soạn nội dung dựa trên các đoạn tìm được. Bản nháp có thể có sai sót.</span></li><li><strong>Mở nguồn để đối chiếu</strong><span>Bấm [S1], [S2] hoặc mở thẻ nguồn để đọc đoạn trích, thông tin tài liệu và liên kết gốc.</span></li></ol><p class="help-note">Chatbot dùng tối đa 6 lượt hỏi đáp gần nhất trong giới hạn ngữ cảnh. Lịch sử hội thoại được gửi cùng câu hỏi đến nhà cung cấp AI; chỉ nằm trong tab hiện tại và sẽ mất khi tải lại trang. Dùng “Xuất nội dung” để lưu. Câu hỏi và đoạn nguồn được gửi đến <span data-provider-name>AI</span> khi tạo bản nháp; không nhập thông tin cá nhân hoặc dữ liệu người bệnh.</p></dialog>
+</body></html>

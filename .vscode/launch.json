@@ -9,6 +9,11 @@
             "args": ["rag.demo_api:app", "--host", "127.0.0.1", "--port", "8765"],
             "cwd": "${workspaceFolder}",
             "envFile": "${workspaceFolder}/.env",
+            "serverReadyAction": {
+                "pattern": "Uvicorn running on (https?://\\S+)",
+                "uriFormat": "%s",
+                "action": "openExternally"
+            },
             "env": {
                 "PYTHONUTF8": "1",
                 "HF_HUB_OFFLINE": "1"

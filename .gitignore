@@ -34,6 +34,7 @@ checkpoints/
 .temp/
 tmp/
 .cache/
+node_modules/
 
 # OS generated files
 Thumbs.db

@@ -1,0 +1,14 @@
+{
+	"mcpServers": {
+		"my-mcp-server-4d1787cf": {
+			"type": "http",
+			"command": "https://stitch.googleapis.com/mcp",
+			"args": [],
+			"headers": {
+        "Accept": "application/json",
+        "Authorization": "Bearer <YOUR_ACCESS_TOKEN>",
+        "X-Goog-User-Project": "<YOUR_PROJECT_ID>"
+      }
+		}
+	}
+}
