@@ -1,6 +1,6 @@
 # 🦴 BoneScope · Hệ Thống Hỗ Trợ Phân Tích X-Quang U Xương
 
-**Điểm tiếp quản Codex:** [START_HERE_NEXT_CODEX_VI.md](START_HERE_NEXT_CODEX_VI.md). Giai đoạn 11 tạm dừng theo yêu cầu ngày 29/10/2026; báo cáo, việc còn dở và bản sao lưu được ghi tại đó.
+**Điểm tiếp quản Codex:** [START_HERE_NEXT_CODEX_VI.md](START_HERE_NEXT_CODEX_VI.md). Giai đoạn 11 đang tiếp tục theo yêu cầu sau ngày 29/10/2026; báo cáo, việc còn dở và bản sao lưu được ghi tại đó. Phạm vi hiện tại là **báo cáo học tập có tính thực nghiệm**, không cung cấp cho bác sĩ hoặc người bệnh.
 
 > **Đồ án hệ thống hội thoại hỗ trợ phân tích ảnh X-quang u xương kết hợp mô hình học sâu và RAG.**  
 > Thiết kế để chạy hoàn toàn cục bộ (offline/local) trên Windows 10/11, hỗ trợ tăng tốc GPU (NVIDIA RTX/CUDA) hoặc CPU.
@@ -29,6 +29,10 @@ BONESCOPE/
 │   ├── build_corpus.py      # Tạo corpus từ các nguồn
 │   ├── build_index.py       # Tạo embedding và vector index
 │   ├── retrieval.py         # Hybrid retrieval và routing
+│   ├── conversation.py      # Routing hội thoại đa chủ đề và câu hỏi nối tiếp
+│   ├── generation.py        # Transport Groq/OpenAI và tạo bản nháp
+│   ├── demo_api.py          # API demo tra cứu/hội thoại local
+│   ├── demo_web/             # Giao diện chatbot giáo dục
 │   ├── evaluate.py          # Đánh giá recall/MRR và câu ngoài phạm vi
 │   ├── lexical.py           # Từ khóa, BM25 và hợp nhất thứ hạng
 │   ├── policy.py            # Chính sách phạm vi và đủ nguồn
@@ -70,6 +74,8 @@ BONESCOPE/
 ├── cases.json               # Metadata các ca mẫu
 ├── metadata_example.json     # Metadata mẫu cho API
 ├── requirements*.txt        # Dependency model, API và RAG
+├── package.json              # Kiểm tra DESIGN.md bằng designmd
+├── .env.example              # Mẫu cấu hình provider; không chứa secret
 └── README*.md               # Hướng dẫn tổng quan tiếng Anh/Việt
 ```
 
@@ -93,6 +99,30 @@ Các thư mục đánh dấu **Git bỏ qua** sẽ được tạo lại sau khi 
 - Khi màn hình hiện `Uvicorn running on http://127.0.0.1:8000`, mở trình duyệt để sử dụng.
 - Dừng ứng dụng bằng tổ hợp phím **`Ctrl + C`**.
 
+### Cách 3 — Chạy demo chatbot/RAG giáo dục
+
+Demo chatbot dùng máy chủ FastAPI tại cổng `8765`, chỉ bind loopback. Trong
+VS Code chọn cấu hình **`💬 BoneScope: Chatbot tra cứu tài liệu`** rồi bấm
+**F5**, hoặc chạy:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn rag.demo_api:app --host 127.0.0.1 --port 8765
+```
+
+Mở `http://127.0.0.1:8765`. Không mở `rag\demo_web\index.html` bằng cách nhấp
+đúp vì giao diện cần API. Muốn bật tạo bản nháp, sao chép `.env.example` thành
+`.env` rồi điền key ở máy cá nhân; **không commit hoặc chia sẻ `.env`**. Mặc
+định dùng Groq; có thể chọn OpenAI bằng `LLM_PROVIDER=openai`. Xem [hướng dẫn
+chatbot](docs/guides/README_CHATBOT_UI_VI.md), [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md),
+[thiết lập Groq](docs/guides/GROQ_CHATBOT_SETUP_VI.md) và [thiết lập OpenAI](docs/guides/OPENAI_CHATBOT_SETUP_VI.md).
+
+Chatbot hỗ trợ hội thoại đa chủ đề, ngữ cảnh gần đây, chế độ **Trò chuyện +
+tài liệu** và **Chỉ tra cứu tài liệu**, trích dẫn passage `[S1]`, `[S2]`, xuất
+Markdown, sáng/tối và tạo cuộc trò chuyện mới. Lịch sử chỉ nằm trong bộ nhớ
+tab; không có database hội thoại. Câu hỏi về xương vẫn phải qua retrieval cục
+bộ. Câu trả lời từ model chỉ là **bản nháp chưa kiểm chứng**, không phải chẩn
+đoán, không dùng cho ca bệnh/ảnh cá nhân và không phải bằng chứng nghiệm thu.
+
 ---
 
 ## 🌟 Các Tính Năng Hiện Có
@@ -115,6 +145,12 @@ Các thư mục đánh dấu **Git bỏ qua** sẽ được tạo lại sau khi 
    - Tổng hợp số ca, phân bố các loại u xương đã phát hiện.
    - Thống kê tỷ lệ ca có hiệu chỉnh / nhận xét.
    - Đo lường tốc độ suy luận trung bình và thiết bị phần cứng (GPU/CPU).
+
+5. **Demo chatbot học tập local:**
+   - Tra cứu 22 nguồn/794 đoạn với provenance, license và hash của passage.
+   - Hội thoại đa chủ đề và hỏi nối tiếp; provider bản nháp là Groq hoặc OpenAI.
+   - Không lưu lịch sử phía máy chủ, không nhận ảnh/ca bệnh và luôn trả
+     `answer_ready: false`.
 
 ---
 
@@ -141,22 +177,34 @@ Lệnh kiểm thử hiện tại:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Regression phần mềm gần nhất ngày 29/10/2026: **92 passed / 132 subtests**, một cảnh báo deprecation Starlette; xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json). Đây là regression code, không phải xác nhận lâm sàng hay độc lập. Corpus mới nhất 22 nguồn/794 chunk; audit provenance PASS trên 10 evaluation datasets và deterministic replay PASS 16/16, không preflight mismatch; [fresh audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json) và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json). So sánh sau corpus growth đổi metric ở 4/16 report, gồm expansion dev và V2 đã xem; route ABC được thử tiếp trên dev in-sample. Chưa có reviewer-labeled blind set hoặc citation-entailment adjudication; Stage 11 chưa nghiệm thu, `answer_ready=false`. Xem [project status](docs/PROJECT_STATUS_VI.md), [báo cáo](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) và [checkpoint](docs/STAGE11_CHECKPOINT_LATEST.md).
+Regression phần mềm gần nhất của chatbot/API: **58 passed**, một cảnh báo
+deprecation Starlette. Chạy riêng:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest rag/tests/test_demo_api.py rag/tests/test_generation.py rag/tests/test_conversation.py -q
+node --check rag/demo_web/app.js
+```
+
+Đây là regression code/UI, không phải xác nhận lâm sàng, kiểm định chất lượng
+retrieval hay kiểm định độc lập. Regression Giai đoạn 11 gần nhất được ghi
+trong [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json);
+corpus hiện tại là 22 nguồn/794 chunk, audit provenance PASS và deterministic
+replay PASS 16/16. Chưa có reviewer-labeled blind set hoặc citation-entailment
+adjudication; Giai đoạn 11 chưa nghiệm thu, `answer_ready=false`.
 
 ---
 
 ## 📊 Tiến Độ Dự Án — Cập nhật 29/10/2026
 
-### Mốc đồng bộ repository — 29/10/2026
+### Mốc đồng bộ repository — 02/11/2026
 
 - Đã chuẩn bị đồng bộ toàn bộ source, tài liệu và artifact dữ liệu hợp lệ trong
   workspace lên nhánh `main`.
 - Các snapshot/patch sinh tự động trong `checkpoints/` được giữ cục bộ và bỏ qua
   bởi Git vì có file ZIP khoảng 133 MiB, vượt giới hạn 100 MB/file của GitHub.
-- Trạng thái kỹ thuật sau lần đồng bộ: full regression **92 passed / 132
-  subtests**, corpus **22 nguồn/794 chunk**, audit PASS, replay **16/16**,
-  demo tra cứu tài liệu local đã có smoke check, bảy acceptance gates còn OPEN
-  và `answer_ready=false`.
+- Trạng thái kỹ thuật sau lần đồng bộ: chatbot/API regression **58 passed**,
+  corpus **22 nguồn/794 chunk**, audit PASS, replay **16/16**, bảy acceptance
+  gates còn OPEN và `answer_ready=false`.
 
 ### Đã hoàn thành
 
@@ -170,9 +218,14 @@ Regression phần mềm gần nhất ngày 29/10/2026: **92 passed / 132 subtest
 - Thêm demo tra cứu tài liệu học tập local tại `rag/demo_api.py` và
   `rag/demo_web/`: chỉ bind loopback, có provenance/citation cho passage,
   từ chối câu hỏi ngoài phạm vi hoặc cần ảnh, không lưu lịch sử và không dùng
-  để chẩn đoán. Bản demo có thể cấu hình tuỳ chọn Gemini để thử nghiệm sinh
-  câu trả lời, nhưng mọi đường trả về vẫn giữ `answer_ready=false` và chưa
-  được nghiệm thu.
+  để chẩn đoán.
+- Thêm hội thoại đa chủ đề và hội thoại đa lượt trong `rag/conversation.py`,
+  tầng Groq/OpenAI trong `rag/generation.py`, chế độ `auto`/`documents`,
+  giới hạn lịch sử và deadline. Đây là transport/tạo bản nháp có kiểm soát,
+  không phải answer generator đã nghiệm thu.
+- Thêm giao diện chatbot responsive, xuất Markdown, nguồn có thể mở, theme
+  sáng/tối, retry/stop/new conversation và tài liệu thiết lập provider. UI
+  không gọi Gemini; provider hiện tại là Groq (mặc định) hoặc OpenAI.
 - Đồng bộ tài liệu cài đặt/chạy trên máy mới và cấu trúc repository.
 
 ### Kết quả đo gần nhất và trạng thái kiểm thử
@@ -190,10 +243,10 @@ Regression phần mềm gần nhất ngày 29/10/2026: **92 passed / 132 subtest
 ### Trạng thái hiện tại
 
 **Giai đoạn 11 đang tiếp tục, chưa nghiệm thu để dùng làm nền trả lời y khoa.**
-Đã có demo tra cứu tài liệu học tập local gồm API và giao diện hội thoại riêng;
+Đã có demo tra cứu tài liệu học tập local gồm API và giao diện chatbot đa lượt;
 demo chỉ phục vụ research/education, không nhận ảnh hoặc ca bệnh, không lưu
-lịch sử và không thay thế đánh giá độc lập. Tầng sinh câu trả lời tuỳ chọn
-chưa được nghiệm thu; các đường demo vẫn trả `answer_ready: false`.
+lịch sử phía máy chủ và không thay thế đánh giá độc lập. Tầng sinh câu trả lời
+Groq/OpenAI chỉ tạo bản nháp; các đường demo vẫn trả `answer_ready: false`.
 
 ### Việc cần làm tiếp theo
 
@@ -202,8 +255,11 @@ chưa được nghiệm thu; các đường demo vẫn trả `answer_ready: fals
 2. Đóng băng một tập mù mới và đo false acceptance/refusal, retrieval, routing,
    citation và bất đồng reviewer; không tune trên kết quả mù.
 3. Với kiểm định ảnh G4, chưa có cohort đủ điều kiện: register hiện có 15 leads, cần quyền ảnh/data-use, reference standard, manifest bệnh nhân/ảnh và audit overlap trước mọi external test. C12 TCIA sai modality/disease/endpoint; C13 Gitto chưa có ảnh trong Zenodo; C14 Frontiers thiếu nhóm âm và license; C15 IIEST là bộ ảnh hỗn hợp, chưa rõ package/quyền/reference standard/overlap. Không tải hoặc dùng chúng làm evaluation. Xem [cohort register](docs/reference/stage11_external_cohort_screening_register_20261029.csv), [C15 screen](docs/reference/stage11_iiest_69case_cohort_screen_20261029.json) và [due diligence](docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md).
-4. Chỉ xem xét giai đoạn 12 sau khi cổng evidence và rà soát độc lập được nghiệm thu.
-5. Hoàn thành đánh giá toàn diện, bảo mật và đóng gói bàn giao ở giai đoạn 13.
+4. Hoàn thiện kiểm thử tích hợp provider, xử lý quota/timeout và kiểm tra UI
+   trong môi trường không có key; không ghi key hoặc dữ liệu người dùng vào
+   log, report hay commit.
+5. Chỉ xem xét giai đoạn 12 sau khi cổng evidence và rà soát độc lập được nghiệm thu.
+6. Hoàn thành đánh giá toàn diện, bảo mật và đóng gói bàn giao ở giai đoạn 13.
 
 Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md), [báo cáo Giai đoạn 11 ngày 29/10/2026](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md), [STAGE11_HANDOFF_VI.md](docs/STAGE11_HANDOFF_VI.md), [reviewer packet](docs/reference/STAGE11_REVIEWER_PACKET_VI.md), [intended-use lock template](docs/reference/STAGE11_INTENDED_USE_LOCK_TEMPLATE_VI.md), [safety hazard-analysis guide](docs/reference/STAGE11_SAFETY_REVIEW_GUIDE_VI.md), [privacy/security closeout worksheet](docs/reference/STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md), [online evidence/regulatory review](docs/reference/stage11_online_evidence_review_20261028.md) và [static privacy/security review](docs/reference/STAGE11_LOCAL_PRIVACY_SECURITY_REVIEW_20261029.md).
 
@@ -217,6 +273,8 @@ Xem chi tiết tại [PROJECT_STATUS_VI.md](docs/PROJECT_STATUS_VI.md), [báo c�
 - [ ] **Giai đoạn 11:** Corpus 794 đoạn/22 nguồn, hybrid retrieval, source routing/preferences, evidence evaluator, audit/replay và regression; chưa nghiệm thu vì thiếu reviewer độc lập, tập mù, citation-entailment review và sign-off G1–G7.
 - [x] **Giai đoạn 11A:** Đã tải và lập manifest BTXRD (3.746 ảnh, 10 lớp, 22 metadata, checksum và duplicate audit); do checkpoint hiện tại huấn luyện trên BTXRD nên chưa dùng làm kiểm định độc lập.
 - [ ] **Giai đoạn 12:** Chatbot tiếng Việt có trích dẫn nguồn và kiểm thử an toàn.
+  Đã có prototype hội thoại Groq/OpenAI cho mục tiêu học tập; chưa có
+  acceptance, đánh giá an toàn, blind set hoặc sign-off.
 - [ ] **Giai đoạn 13:** Đánh giá toàn diện, bảo mật và đóng gói bàn giao.
 
 Kho nguồn RAG ban đầu gồm 12 trang NCI và bộ câu hỏi kiểm thử. Xem [hướng dẫn kho tài liệu](docs/guides/README_RAG_CORPUS_VI.md). Một số nhãn u lành tính còn thiếu nguồn chuyên biệt.

@@ -65,8 +65,9 @@ database riêng; không đưa dữ liệu bệnh nhân lên repository công kha
 
 ## 5. Tạo chỉ mục RAG cục bộ
 
-RAG hiện mới có corpus, embedding, retrieval, đánh giá và chính sách routing;
-**chưa có chatbot và chưa được nghiệm thu để trả lời y khoa**.
+RAG hiện có corpus, embedding, retrieval, đánh giá, chính sách routing và demo
+chatbot giáo dục; **chưa được nghiệm thu để trả lời y khoa**. Demo luôn giữ
+`answer_ready=false`.
 
 Cài dependency và tạo index lần đầu:
 
@@ -119,15 +120,52 @@ trước khi truy cập hoặc đánh giá nguồn mới.
 
 Lệnh `rag\audit.py` kiểm tra tính toàn vẹn của source lock, corpus, gold evidence/citation và index. Kết quả PASS không xác minh độ đúng y khoa; `answer_ready` vẫn false.
 
-## 6. Kiểm thử
+## 6. Demo chatbot học tập local
+
+Trong VS Code chọn **💬 BoneScope: Chatbot tra cứu tài liệu** rồi bấm F5, hoặc
+chạy:
+
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn rag.demo_api:app --host 127.0.0.1 --port 8765
+```
+
+Mở `http://127.0.0.1:8765`. Sao chép `.env.example` thành `.env` và điền
+`GROQ_API_KEY` hoặc `OPENAI_API_KEY` ở máy cá nhân; `.env` đã được Git bỏ qua,
+không commit key. Mặc định dùng Groq; đặt `LLM_PROVIDER=openai` để dùng OpenAI.
+
+Demo hỗ trợ hội thoại đa chủ đề, ngữ cảnh gần đây, chế độ **Trò chuyện + tài
+liệu** và **Chỉ tra cứu tài liệu**, trích dẫn `[S1]`/`[S2]`, xuất Markdown,
+retry/stop, theme sáng/tối và tạo cuộc trò chuyện mới. Lịch sử chỉ nằm trong
+tab trình duyệt, không lưu ở máy chủ. Không mở HTML bằng cách nhấp đúp; giao
+diện cần API FastAPI. Xem [hướng dẫn chatbot](docs/guides/README_CHATBOT_UI_VI.md)
+và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
+
+Đây là demo research/education: không nhận ảnh hoặc ca bệnh, không thay thế
+chẩn đoán/tư vấn y khoa, không có web search hay tự chạy code, và câu trả lời
+model chỉ là bản nháp chưa kiểm chứng.
+
+## 7. Kiểm thử
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Full suite vừa chạy lại: **87 passed/132 subtests**, một cảnh báo deprecation Starlette. Đây là regression phần mềm, không phải kiểm định độc lập hay lâm sàng. Xem [run record mới với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json). Corpus 22 nguồn/794 chunk; [fresh integrity audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json) PASS và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json) PASS 16/16. Một số dev/V2 đã xem; chưa có reviewer-labeled blind set hoặc citation-entailment adjudication. Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`. Xem [progress note](docs/STAGE11_PROGRESS_2026-10-29.md) và [checkpoint](docs/STAGE11_CHECKPOINT_LATEST.md).
+Full suite Giai đoạn 11 gần nhất ghi nhận **87 passed/132 subtests**, một
+cảnh báo deprecation Starlette. Riêng chatbot/API hiện có **58 passed**:
 
-## 7. Tài liệu và giới hạn
+```powershell
+.\.venv\Scripts\python.exe -m pytest rag/tests/test_demo_api.py rag/tests/test_generation.py rag/tests/test_conversation.py -q
+node --check rag/demo_web/app.js
+```
+
+Đây là regression phần mềm/UI, không phải kiểm định độc lập hay lâm sàng.
+Xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json),
+[fresh integrity audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json)
+và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json).
+Chưa có reviewer-labeled blind set hoặc citation-entailment adjudication;
+Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
+
+## 8. Tài liệu và giới hạn
 
 - [README tổng quan](README.md)
 - [Trạng thái dự án](docs/PROJECT_STATUS_VI.md)
