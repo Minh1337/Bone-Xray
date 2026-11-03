@@ -1,0 +1,88 @@
+{
+  "record_id": "stage12-integrated-xray-rag-chatbot-verification-20261103",
+  "created_at_utc": "2026-11-03T07:19:25.367313+00:00",
+  "scope": "Educational prototype verification: integrated X-ray + 22 metadata classification -> 10-label mapping -> RAG source lookup -> multi-turn conversation, plus 250-image stratified in-source evaluation and metadata ablation. Not clinical or independent external validation.",
+  "answer_ready": false,
+  "gates_closed": 0,
+  "gates_total": 7,
+  "pytest_summary": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+    "passed": 162,
+    "failed": 0,
+    "subtests_passed": 132,
+    "warnings": 1
+  },
+  "js_syntax_check": {
+    "rag/demo_web/app.js": "PASS",
+    "xray_web/app.js": "PASS"
+  },
+  "rag_audit": {
+    "bundle": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "status": "PASS",
+    "sources": 22,
+    "chunks": 794
+  },
+  "rag_replay": {
+    "bundle": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "status": "PASS",
+    "matched_reports": "16/16",
+    "preflight_mismatches": 0
+  },
+  "register_qa": {
+    "record": "docs/reference/stage11_gate_cohort_register_qa_20261029_v6.json",
+    "status": "PASS",
+    "prepared_artifact_references_checked": 24,
+    "cohort_rows": 15
+  },
+  "xray_in_source_evaluation": {
+    "artifact": "docs/reference/stage11_xray_in_source_evaluation_20261103.json",
+    "sample_count": 250,
+    "per_class": 25,
+    "seed": 20261031,
+    "with_true_metadata": {
+      "top1_accuracy": 0.776,
+      "top3_accuracy": 0.94,
+      "macro_f1": 0.7759,
+      "median_latency_seconds": 0.0252
+    },
+    "with_zeroed_metadata_ablation": {
+      "top1_accuracy": 0.48,
+      "top3_accuracy": 0.72,
+      "macro_f1": 0.4389,
+      "top1_changed_count": 91
+    }
+  },
+  "files_sha256": {
+    "xray_api.py": "e059e6a8c42659a6f4bd264f9d25191c913242c7e3469aed0c5f93934948b205",
+    "inference.py": "7fac95377ac819504a53fb742b1c5648cf7e4e85724220754ce9745f173e8d72",
+    "model_definition.py": "cbc4ad3b001293dcea25177bc37f26c5a491b29520c8114a38abb4c7188030d0",
+    "rag/case_context.py": "7f43ef11da6b6843a807574b45f5a1e69799cbcba1512f4be9607ce120974235",
+    "rag/conversation.py": "52c3cacb2a611f324df3f8b3439d08553ea6a084f884149c1b58a3c583a1b613",
+    "rag/demo_api.py": "6e4de397223deff6e8601d76fcbc9b5d7c6ce572794d1acbeb1684699a86b622",
+    "rag/generation.py": "67026cb9ce0072ba9163c2e73639d83d195c81c059f5dda8c4efbac3e82f723d",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/demo_web/index.html": "a495fccdb1525a4992a6c41bbafe5c00ab59a48cca5fecc1b365260651e2a28b",
+    "rag/demo_web/app.js": "cc685a46188f36af9587a00bd607766f8f48ebe1b4f63e869a3fba8cc1276dcf",
+    "rag/demo_web/style.css": "89123cb27449fc97b70674a079ffcfb4ee0658049c516ad4a6ee8d578b4c00d1",
+    "tools/evaluate_xray_checkpoint.py": "72994533745098e5d67659019e33ae348a2e66e1efd42b8ebdfd2eb0e1153d98",
+    "tools/verify_stage11_registers.py": "056c957ee922020835ee07337f688aa54bd13b962af8130c7780c82e66510bd0",
+    "rag/tests/test_case_context.py": "4e87a78137e881eddfa1fea4036357fe65394761b7003cb45c33da8a84b942f3",
+    "rag/tests/test_demo_api.py": "0b4b3babcffafcb60c978d6e02fc6f67b266ef9bed41bad121bd77166230138d",
+    "rag/tests/test_conversation.py": "d7ab5bc71ad38d4a917200f13dceae976995c4cc3ff4bd2546a9aaf121e5c599",
+    "rag/tests/test_generation.py": "ed3462c0203c612dc88d2ef9cb76c3f0e938c30871657722ce6ed27dd37b4217",
+    "tests/test_end_to_end_pipeline.py": "b4729bf9d0cb4938ddccb252a143ed06d92e53472c6624f354c63ada6df98dc1",
+    "tests/test_xray_evaluator.py": "6c0937632f7af042de979af3b5f0fb65f80f63ad75e8d4b5bc3b7d3828837ed1",
+    "docs/reference/stage11_xray_in_source_evaluation_20261103.json": "4b1694c1a22594d69dbd13e34dc78d392e3356d1f893b775f183053b8b587f32",
+    "docs/reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md": "2eabf4b8ec058b10607b2736762b16468a26c04dd462d1323e10b8d56b2eccbe",
+    "docs/guides/CHATBOT_CONVERSATION_VI.md": "bcf62018ed1019ae33f30ff8322e3e7d559760de127a5bcc73d19aae078ea8c0",
+    "START_HERE_NEXT_CODEX_VI.md": "cd3657f8643a259e6a91ec4a2e094d28b8dc1b663dee27452c0198f69595eeda",
+    "README.md": "73fb5f7f9ab49631a0eb7f3aa1c3a1166eb820c82109a24b2d408104ff9e3704",
+    "README_VI.md": "957dbc192dbf5f3c4ca5499be67748e7216ba45bda2d9ab69e0c0bd0c19db55f",
+    "docs/PROJECT_STATUS_VI.md": "838e39f8e0b5f992a239b090704cfc508b41e2453197a0b993aa999891796a07",
+    "docs/STAGE11_PROGRESS_2026-10-29.md": "2954596760a1a65e75c502d35b109b381f697853e3617533ba8478eb6ddd2292",
+    "docs/STAGE11_HANDOFF_VI.md": "08ed5232740a3cf216b95c3a1f7025a8e9eb37ba162694006fc5b4bac106f309",
+    "docs/STAGE11_EXECUTION_PLAN_VI.md": "bb92af0641ccc4403fec676e7b0503d4eb1656268b58bd3f848a569250fb41f9",
+    "docs/reference/STAGE11_CHATBOT_READINESS_VI.md": "650292ffa207ef5d1d299686c3ea9c1e95f859e8cf7d6e62fce2e7352467516f"
+  }
+}

@@ -95,7 +95,8 @@ class DraftSettings:
         return cls(api_key, model, timeout, tokens, effort, provider)
 
 
-async def generate_answer(question, passages, settings, history=None):
+async def generate_answer(question, passages, settings, history=None, case_context=None,
+                          extra_instructions=""):
     # Only the retrieved text needed for drafting is sent; never local paths or hashes.
     payload = {
         "question": question,
@@ -106,7 +107,10 @@ async def generate_answer(question, passages, settings, history=None):
     }
     if history:
         payload["history"] = history
-    response = await request_response(settings, instructions=INSTRUCTIONS,
+    if case_context:
+        # Server-built classifier summary (rag.case_context.llm_context); never client-supplied.
+        payload["case_context"] = case_context
+    response = await request_response(settings, instructions=INSTRUCTIONS + extra_instructions,
                                       input=json.dumps(payload, ensure_ascii=False))
     return response_text(response, settings)
 

@@ -1,5 +1,31 @@
 # Bàn giao BoneScope cho phiên Codex tiếp theo
 
+## Checkpoint mới nhất — 03/11/2026: Hoàn thiện Chatbot Tích hợp Ảnh X-quang + Metadata + RAG Đa Lượt (Giai đoạn 12 — Phạm vi Học tập Thực nghiệm)
+
+Theo yêu cầu của người dùng hoàn thiện một chatbot thống nhất có thể **phân tích hình ảnh khung xương thực tế kèm 22 metadata và trả lời hội thoại đa lượt**, toàn bộ 7 hạng mục kỹ thuật (`P1`–`P7`) trong [Đánh giá khoảng trống 31/10/2026](docs/reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md) đã được triển khai, kiểm thử và ghi nhận tại [bản ghi kiểm chứng tích hợp](docs/reference/stage12_integrated_chatbot_verification_20261103.json):
+
+1. **Tích hợp X-ray + 22 Metadata vào Chatbot (`rag/case_context.py`, `rag/demo_api.py`, `rag/demo_web/`, `xray_api.py`):**
+   - Dùng chung hàm `parse_metadata()` và `predict_upload()` giữa `xray_api.py` và `rag/demo_api.py` (kiểm tra định dạng ảnh, dung lượng ≤ 30 MiB, ≤ 25 triệu pixel, single-frame, 22 trường metadata hợp lệ: ít nhất 1/17 vị trí giải phẫu `== 1` và đúng 1/3 góc chụp `frontal`/`lateral`/`oblique` `== 1`).
+   - `CaseStore` giữ ngữ cảnh ca trong RAM (`CASE_TTL_SECONDS = 1800`, tối đa 50 ca), không lưu ảnh hoặc metadata ra ổ đĩa, cấp `case_id` do server sở hữu (client không gửi điểm số).
+   - Bảng `LABEL_GUIDE` ánh xạ minh bạch đủ **10 nhãn checkpoint** sang kho tri thức RAG:
+     - `direct` (`osteochondroma`, `simple bone cyst`, `giant cell tumor`, `osteosarcoma`): tự động truy xuất tài liệu RAG cho khái niệm bệnh học tương ứng.
+     - `unresolved` (`osteofibroma`, `synovial osteochondroma`, `multiple osteochondromas`): không tự động gán tương đương sang `osteofibrous dysplasia` / `synovial chondromatosis` / `osteochondroma` đơn độc; chỉ gợi ý chủ đề học thuật liên quan nếu người dùng tự chọn tìm hiểu.
+     - `aggregate` (`other bt`, `other mt`) và `no_tumor` (`no-tumor`): giải thích theo mẫu cố định, không tự truy xuất bệnh cụ thể.
+   - `llm_context(record)` tối thiểu hóa dữ liệu khi gọi LLM ngoài (chỉ gửi Top-3 nhãn/softmax, trạng thái ánh xạ và giới hạn; không gửi ảnh, tên tệp, tuổi, giới tính, vị trí giải phẫu hay mã băm).
+   - Giao diện web `http://127.0.0.1:8765` hỗ trợ hộp thoại tải ảnh X-quang + 22 metadata (hoặc nạp nhanh từ `cases.json`), banner ca đang gắn ở đầu khung chat, nút giải thích ca tức thì (`POST /api/case/{case_id}/explain`), hỏi–đáp nối tiếp đa lượt (`POST /api/query` kèm `case_id`), tự động dọn `case_id` cũ khi đổi/xóa ca (`DELETE /api/case/{case_id}`) và xuất lịch sử Markdown kèm tóm tắt ca.
+2. **Thực nghiệm định lượng & Ablation Cross-Attention Metadata (`tools/evaluate_xray_checkpoint.py`, [bản ghi JSON](docs/reference/stage11_xray_in_source_evaluation_20261103.json)):**
+   - Đánh giá in-source có phân tầng trên **250 ảnh BTXRD** (25 ảnh × 10 lớp, `seed=20261031`, RTX 3050 Laptop GPU):
+     - **Đủ 22 metadata thực:** Top-1 Accuracy = **0.7760** (194/250), Top-3 Accuracy = **0.9400** (235/250), Macro-F1 = **0.7759**, trung vị độ trễ = **25.2 ms/ảnh**.
+     - **Ablation xóa metadata về 0 (`zeroed_metadata`):** Top-1 giảm còn **0.4800** (-29.6 điểm %), Top-3 giảm còn **0.7200** (-22.0 điểm %), Macro-F1 giảm còn **0.4389**, và **91/250 ảnh (36.4%) đổi nhãn dự đoán Top-1** (Recall của `no-tumor` và `synovial osteochondroma` sụp về `0.0`).
+   - *Lưu ý provenance:* `model/metadata_processor.joblib` ghi nhận `n_samples_seen_ = 2616` (~69.8% của 3.746 dòng BTXRD) và BTXRD công khai không có cột `patient_id` để khôi phục `split_signature`, nên mọi số liệu trên BTXRD là **đánh giá nội nguồn & ablation kỹ thuật**, không phải kiểm định độc lập bên ngoài.
+3. **Trạng thái kiểm chứng & ranh giới an toàn:**
+   - Toàn bộ test suite (`api_tests`, `rag/tests`, `tests`, `ui_tests`): **162 passed, 132 subtests passed**.
+   - Offline provenance audit (`cureus_abcrouting_v1`): **PASS** (`22 nguồn / 794 chunks`, `errors: []`).
+   - Deterministic replay (`cureus_abcrouting_v1`): **PASS 16/16**.
+   - Structural register QA (`tools.verify_stage11_registers`): **PASS** (24/24 artifact hashes khớp, 15 cohort leads, **7/7 cổng G1–G7 giữ `OPEN`**, `answer_ready = false`).
+
+---
+
 **Phạm vi mới nhất do người dùng nêu:** [đề tài báo cáo học tập thực nghiệm](docs/reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md), không cung cấp cho bác sĩ hoặc người bệnh. Ưu tiên retrieval/provenance/demo và báo cáo nghiên cứu; [bảng đối chiếu 7 bước kỹ thuật](docs/reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) tách tiến độ đồ án khỏi gate lâm sàng. [QA register có thể chạy lại](tools/verify_stage11_registers.py) với [record v6](docs/reference/stage11_gate_cohort_register_qa_20261029_v6.json) kiểm 24 tham chiếu, không thay ký duyệt.
 
 **Thăm dò bước 7 mới nhất:** [score overlap record](docs/reference/stage11_similarity_overlap_probe_20261029.json) trên 28 câu đã xem cho thấy không thể chọn một ngưỡng dense cosine đơn để giữ trọn 17 câu dương và loại trọn 11 câu âm. Chạy lại bằng `.\.venv\Scripts\python.exe -m tools.probe_stage11_similarity --output docs/reference/stage11_similarity_overlap_probe_rerun.json` nếu cần; khi tái chạy không ghi đè artifact lịch sử, chọn tên record mới. Không sửa retrieval threshold mặc định từ bộ này.

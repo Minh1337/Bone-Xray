@@ -140,9 +140,7 @@ tab trình duyệt, không lưu ở máy chủ. Không mở HTML bằng cách nh
 diện cần API FastAPI. Xem [hướng dẫn chatbot](docs/guides/README_CHATBOT_UI_VI.md)
 và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
 
-Đây là demo research/education: không nhận ảnh hoặc ca bệnh, không thay thế
-chẩn đoán/tư vấn y khoa, không có web search hay tự chạy code, và câu trả lời
-model chỉ là bản nháp chưa kiểm chứng.
+Đây là demo research/education: hỗ trợ phân tích ca ảnh học tập kèm đủ 22 trường metadata bằng mô hình cục bộ (không gửi ảnh hoặc tuổi/giới tính/vị trí cho nhà cung cấp AI), không thay thế chẩn đoán/tư vấn y khoa, không có web search hay tự chạy code, và câu trả lời model chỉ là bản nháp chưa kiểm chứng (`answer_ready=false`). Xem chi tiết tại [đối chiếu hoàn thiện P1–P7](docs/reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md).
 
 ## 7. Kiểm thử
 

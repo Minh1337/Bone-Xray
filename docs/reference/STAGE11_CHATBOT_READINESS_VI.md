@@ -1,5 +1,11 @@
 # Khi nào BoneScope có thể trở thành chatbot?
 
+**Cập nhật mới nhất — 03/11/2026 (Đã hoàn thiện Nguyên mẫu Chatbot Học tập Tích hợp X-quang + Metadata + RAG Đa Lượt):**
+- Trong phạm vi [báo cáo học tập thực nghiệm](STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md), giao diện `rag.demo_api` (`http://127.0.0.1:8765`) đã được nâng cấp thành **chatbot tích hợp đa lượt**:
+  1. **Hội thoại văn bản đa lượt có ngữ cảnh (`rag/conversation.py`, `rag/generation.py`):** viết lại câu hỏi nối tiếp độc lập, giữ trích dẫn `[S1]`, `[S2]` khớp đoạn nguồn, hỗ trợ 3 chế độ trả lời (`auto`, `extractive`, `llm`) và vẫn giữ `answer_ready = false`.
+  2. **Phân tích ca ảnh X-quang + 22 metadata trực tiếp trong khung chat (`rag/case_context.py`, `POST /api/case`, `POST /api/case/{case_id}/explain`):** tái sử dụng `BestModelPredictor` (`model/best_model.pt`), lưu ngữ cảnh ca trong RAM (`CaseStore`, TTL 30 phút, không ghi ảnh/metadata xuống đĩa), ánh xạ minh bạch 10 nhãn checkpoint (`LABEL_GUIDE`: 4 nhãn `direct`, 3 nhãn `unresolved`, 2 nhãn `aggregate`, 1 nhãn `no_tumor`), và gắn `case_id` do server cấp cho các câu hỏi nối tiếp.
+  3. **Kiểm chứng (`stage12_integrated_chatbot_verification_20261103.json`):** `162 passed / 132 subtests passed`, offline audit PASS, replay 16/16 PASS, structural QA 24/24 PASS. Cả 7 cổng nghiệm thu lâm sàng G1–G7 vẫn giữ `OPEN` vì đây là nguyên mẫu học tập thực nghiệm local, không phải thiết bị hay dịch vụ tư vấn y tế.
+
 **Phạm vi đã được người dùng làm rõ:** đề tài là [báo cáo học tập thực nghiệm](STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md), không cung cấp cho bác sĩ hay người bệnh. Với mục tiêu đó, bản tra cứu nội bộ bên dưới đã là một **demo giao diện hỏi–đáp về nguồn tài liệu**. Không cần đợi 7 gate lâm sàng mới có thể trình bày demo học tập. Các mốc chatbot sinh lời giải y khoa/đọc ca thực phía dưới chỉ là lộ trình giả định nếu sau này đổi mục đích, không phải yêu cầu hiện tại của đề tài.
 
 ## Bản tra cứu nội bộ đã hiện thực

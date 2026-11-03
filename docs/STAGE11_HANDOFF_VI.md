@@ -1,5 +1,8 @@
 # Điểm tiếp tục giai đoạn 11
 
+**Cập nhật bàn giao mới nhất — 03/11/2026 (Hoàn thiện Giai đoạn 12 Chatbot Tích hợp X-quang + Metadata + RAG Đa Lượt):**
+- Toàn bộ 7 hạng mục kỹ thuật `P1`–`P7` trong [báo cáo đánh giá khoảng trống](reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md) đã hoàn tất: hợp nhất luồng dự đoán X-quang + 22 metadata vào chatbot (`rag/case_context.py`, `rag/demo_api.py`, `rag/demo_web/`, `xray_api.py`), ánh xạ 10 nhãn (`LABEL_GUIDE`), đánh giá in-source + ablation metadata trên 250 ảnh BTXRD ([`stage11_xray_in_source_evaluation_20261103.json`](reference/stage11_xray_in_source_evaluation_20261103.json): Top-1 `0.7760` với metadata thật so với `0.4800` khi xóa metadata về 0), và lưu hồ sơ kiểm chứng tại [`stage12_integrated_chatbot_verification_20261103.json`](reference/stage12_integrated_chatbot_verification_20261103.json) (**162 passed / 132 subtests**, audit PASS, replay 16/16 PASS, register QA 24/24 PASS, 0/7 gate CLOSED, `answer_ready=false`).
+
 **Điểm dừng hiện hành — 29/10/2026:** người dùng yêu cầu tạm ngưng goal và lưu mọi tiến trình. Đọc [bàn giao độc lập với chat](../START_HERE_NEXT_CODEX_VI.md), [JSON trạng thái/hash](reference/stage11_pause_handoff_20261029.json) và [checkpoint mới nhất](STAGE11_CHECKPOINT_LATEST.md). Các snapshot bên dưới là lịch sử; bundle hiện hành là `cureus_abcrouting_v1`. Không tiếp tục goal trước khi người dùng yêu cầu.
 
 ## Current handoff state — 29/10/2026

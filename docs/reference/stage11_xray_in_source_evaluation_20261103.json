@@ -1,0 +1,544 @@
+{
+  "schema_version": "stage11_xray_in_source_eval_v1",
+  "created_at_utc": "2026-11-03T07:11:14.007888+00:00",
+  "evaluation_scope": "in_source_development_and_ablation_only",
+  "independent_external_validation": false,
+  "answer_ready": false,
+  "warnings": [
+    "BTXRD is declared in model/config.json as the training dataset of best_model.pt.",
+    "Exact train/val/test split image IDs are not stored in the checkpoint (only split_signature hash d812e544... and metadata_processor n_samples_seen_=2616).",
+    "Therefore, roughly 70% of sampled BTXRD images belonged to the training split. Do NOT report these numbers as held-out test accuracy or external clinical performance."
+  ],
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "torch": "2.6.0+cu124"
+  },
+  "fingerprints_sha256": {
+    "best_model.pt": "2965de75f9e8105301fda7faf21a0c091be8ea99908cff6dc59b331ff07db830",
+    "metadata_processor.joblib": "1b47ca6c00bd88b5bc8637d750e38b75f1ca8d5a440b53128dab6443d90aa04e",
+    "val_transform.json": "78de795baa2ecb3fe5db20de3430002175e753f6c5f6856a610f445fa65f99ba",
+    "config.json": "0fa488736a18dae4a4e48fc85676ceb535bbb5dda526c9c399c9eb31c9220f87",
+    "model_definition.py": "cbc4ad3b001293dcea25177bc37f26c5a491b29520c8114a38abb4c7188030d0",
+    "inference.py": "7fac95377ac819504a53fb742b1c5648cf7e4e85724220754ce9745f173e8d72",
+    "btxrd_manifest_csv": "e36be2de308e240c28c38e378416bbf789d6e251665ac66cc46dd62dbf19fe64",
+    "sampled_image_ids_sha256": "18dd2e4a6197d05c1f1d9d39267b4d72cbe32bfb697282d21fd38fc732d7b284"
+  },
+  "checkpoint_provenance_audit": {
+    "checkpoint_keys": [
+      "model_state",
+      "config",
+      "flat_labels",
+      "metadata_columns",
+      "metadata_dim",
+      "best_threshold",
+      "best_epoch",
+      "best_val_mAP",
+      "split_signature"
+    ],
+    "best_epoch": 41,
+    "best_val_mAP_recorded_in_ckpt": 0.686125,
+    "best_threshold_recorded_in_ckpt": 0.15,
+    "split_signature_sha256": "d812e544ba92991c85534a4e8586f913e6e154d006f1371638902266c9696919",
+    "split_ids_present_in_checkpoint": false,
+    "training_csv_path_in_config": "/kaggle/input/datasets/bakiet147/btxrd-dataset/BTXRD/dataset.xlsx",
+    "group_column_in_config": "patient_id",
+    "seed_in_config": 2018,
+    "val_ratio_in_config": 0.15,
+    "test_ratio_in_config": 0.15,
+    "metadata_processor_age_n_samples_seen": 2616,
+    "metadata_processor_age_mean": 35.3528,
+    "metadata_processor_age_std": 20.7671,
+    "metadata_processor_age_median_fill": 35.0
+  },
+  "sampling": {
+    "strategy": "stratified_by_ground_truth_sorted_by_image_id",
+    "per_class_cap": 25,
+    "seed": 20261031,
+    "total_evaluated": 250
+  },
+  "latency_seconds": {
+    "median": 0.0252,
+    "mean": 0.0286,
+    "p95": 0.027,
+    "min": 0.0248,
+    "max": 0.8249
+  },
+  "results_with_true_metadata": {
+    "sample_count": 250,
+    "top1_accuracy": 0.776,
+    "top3_accuracy": 0.94,
+    "macro_f1": 0.7759,
+    "weighted_f1": 0.7759,
+    "per_class": {
+      "no-tumor": {
+        "support": 25,
+        "tp": 25,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0
+      },
+      "osteochondroma": {
+        "support": 25,
+        "tp": 24,
+        "fp": 24,
+        "fn": 1,
+        "precision": 0.5,
+        "recall": 0.96,
+        "f1": 0.6575
+      },
+      "multiple osteochondromas": {
+        "support": 25,
+        "tp": 24,
+        "fp": 3,
+        "fn": 1,
+        "precision": 0.8889,
+        "recall": 0.96,
+        "f1": 0.9231
+      },
+      "simple bone cyst": {
+        "support": 25,
+        "tp": 21,
+        "fp": 8,
+        "fn": 4,
+        "precision": 0.7241,
+        "recall": 0.84,
+        "f1": 0.7778
+      },
+      "giant cell tumor": {
+        "support": 25,
+        "tp": 17,
+        "fp": 3,
+        "fn": 8,
+        "precision": 0.85,
+        "recall": 0.68,
+        "f1": 0.7556
+      },
+      "osteofibroma": {
+        "support": 25,
+        "tp": 12,
+        "fp": 2,
+        "fn": 13,
+        "precision": 0.8571,
+        "recall": 0.48,
+        "f1": 0.6154
+      },
+      "synovial osteochondroma": {
+        "support": 25,
+        "tp": 23,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1.0,
+        "recall": 0.92,
+        "f1": 0.9583
+      },
+      "other bt": {
+        "support": 25,
+        "tp": 13,
+        "fp": 9,
+        "fn": 12,
+        "precision": 0.5909,
+        "recall": 0.52,
+        "f1": 0.5532
+      },
+      "osteosarcoma": {
+        "support": 25,
+        "tp": 20,
+        "fp": 2,
+        "fn": 5,
+        "precision": 0.9091,
+        "recall": 0.8,
+        "f1": 0.8511
+      },
+      "other mt": {
+        "support": 25,
+        "tp": 15,
+        "fp": 5,
+        "fn": 10,
+        "precision": 0.75,
+        "recall": 0.6,
+        "f1": 0.6667
+      }
+    },
+    "confusion_matrix": {
+      "labels": [
+        "no-tumor",
+        "osteochondroma",
+        "multiple osteochondromas",
+        "simple bone cyst",
+        "giant cell tumor",
+        "osteofibroma",
+        "synovial osteochondroma",
+        "other bt",
+        "osteosarcoma",
+        "other mt"
+      ],
+      "matrix_rows_true_cols_pred": [
+        [
+          25,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          24,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          24,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          2,
+          0,
+          21,
+          0,
+          0,
+          0,
+          1,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          17,
+          1,
+          0,
+          1,
+          2,
+          2
+        ],
+        [
+          0,
+          7,
+          0,
+          2,
+          0,
+          12,
+          0,
+          3,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          23,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          9,
+          0,
+          2,
+          1,
+          0,
+          0,
+          13,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          1,
+          1,
+          0,
+          0,
+          2,
+          20,
+          0
+        ],
+        [
+          0,
+          3,
+          3,
+          1,
+          0,
+          1,
+          0,
+          2,
+          0,
+          15
+        ]
+      ]
+    }
+  },
+  "ablation_with_zeroed_metadata": {
+    "description": "Same images and checkpoint, but the 22-dim transformed metadata vector is set to all zeros before MetadataMLP + Cross-Attention.",
+    "top1_predictions_changed_count": 91,
+    "top1_predictions_changed_fraction": 0.364,
+    "metrics": {
+      "sample_count": 250,
+      "top1_accuracy": 0.48,
+      "top3_accuracy": 0.72,
+      "macro_f1": 0.4389,
+      "weighted_f1": 0.4389,
+      "per_class": {
+        "no-tumor": {
+          "support": 25,
+          "tp": 0,
+          "fp": 0,
+          "fn": 25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "osteochondroma": {
+          "support": 25,
+          "tp": 24,
+          "fp": 57,
+          "fn": 1,
+          "precision": 0.2963,
+          "recall": 0.96,
+          "f1": 0.4528
+        },
+        "multiple osteochondromas": {
+          "support": 25,
+          "tp": 16,
+          "fp": 4,
+          "fn": 9,
+          "precision": 0.8,
+          "recall": 0.64,
+          "f1": 0.7111
+        },
+        "simple bone cyst": {
+          "support": 25,
+          "tp": 17,
+          "fp": 18,
+          "fn": 8,
+          "precision": 0.4857,
+          "recall": 0.68,
+          "f1": 0.5667
+        },
+        "giant cell tumor": {
+          "support": 25,
+          "tp": 7,
+          "fp": 2,
+          "fn": 18,
+          "precision": 0.7778,
+          "recall": 0.28,
+          "f1": 0.4118
+        },
+        "osteofibroma": {
+          "support": 25,
+          "tp": 12,
+          "fp": 4,
+          "fn": 13,
+          "precision": 0.75,
+          "recall": 0.48,
+          "f1": 0.5854
+        },
+        "synovial osteochondroma": {
+          "support": 25,
+          "tp": 0,
+          "fp": 0,
+          "fn": 25,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0
+        },
+        "other bt": {
+          "support": 25,
+          "tp": 14,
+          "fp": 27,
+          "fn": 11,
+          "precision": 0.3415,
+          "recall": 0.56,
+          "f1": 0.4242
+        },
+        "osteosarcoma": {
+          "support": 25,
+          "tp": 18,
+          "fp": 4,
+          "fn": 7,
+          "precision": 0.8182,
+          "recall": 0.72,
+          "f1": 0.766
+        },
+        "other mt": {
+          "support": 25,
+          "tp": 12,
+          "fp": 14,
+          "fn": 13,
+          "precision": 0.4615,
+          "recall": 0.48,
+          "f1": 0.4706
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "no-tumor",
+          "osteochondroma",
+          "multiple osteochondromas",
+          "simple bone cyst",
+          "giant cell tumor",
+          "osteofibroma",
+          "synovial osteochondroma",
+          "other bt",
+          "osteosarcoma",
+          "other mt"
+        ],
+        "matrix_rows_true_cols_pred": [
+          [
+            0,
+            15,
+            0,
+            5,
+            0,
+            2,
+            0,
+            2,
+            0,
+            1
+          ],
+          [
+            0,
+            24,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            7,
+            16,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            17,
+            0,
+            0,
+            0,
+            2,
+            0,
+            3
+          ],
+          [
+            0,
+            4,
+            0,
+            5,
+            7,
+            0,
+            0,
+            3,
+            0,
+            6
+          ],
+          [
+            0,
+            8,
+            0,
+            1,
+            0,
+            12,
+            0,
+            3,
+            0,
+            1
+          ],
+          [
+            0,
+            9,
+            2,
+            1,
+            0,
+            0,
+            0,
+            8,
+            4,
+            1
+          ],
+          [
+            0,
+            6,
+            0,
+            2,
+            1,
+            1,
+            0,
+            14,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            4,
+            18,
+            1
+          ],
+          [
+            0,
+            3,
+            2,
+            2,
+            1,
+            1,
+            0,
+            4,
+            0,
+            12
+          ]
+        ]
+      }
+    }
+  }
+}

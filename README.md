@@ -3,7 +3,7 @@
 **Điểm tiếp quản Codex:** [START_HERE_NEXT_CODEX_VI.md](START_HERE_NEXT_CODEX_VI.md). Giai đoạn 11 đang tiếp tục theo yêu cầu sau ngày 29/10/2026; báo cáo, việc còn dở và bản sao lưu được ghi tại đó. Phạm vi hiện tại là **báo cáo học tập có tính thực nghiệm**, không cung cấp cho bác sĩ hoặc người bệnh.
 
 > **Đồ án hệ thống hội thoại hỗ trợ phân tích ảnh X-quang u xương kết hợp mô hình học sâu và RAG.**  
-> Thiết kế để chạy hoàn toàn cục bộ (offline/local) trên Windows 10/11, hỗ trợ tăng tốc GPU (NVIDIA RTX/CUDA) hoặc CPU.
+> Suy luận ảnh (Swin + Cross-Attention Metadata) và truy xuất RAG chạy hoàn toàn cục bộ trên Windows 10/11 (GPU NVIDIA RTX/CUDA hoặc CPU); phần tạo bản nháp hội thoại kết nối tới Groq hoặc OpenAI (kèm cơ chế fallback mẫu máy chủ khi không có kết nối).
 
 ---
 
@@ -146,11 +146,10 @@ bộ. Câu trả lời từ model chỉ là **bản nháp chưa kiểm chứng**
    - Thống kê tỷ lệ ca có hiệu chỉnh / nhận xét.
    - Đo lường tốc độ suy luận trung bình và thiết bị phần cứng (GPU/CPU).
 
-5. **Demo chatbot học tập local:**
+5. **Demo chatbot học tập local (kết hợp phân tích ca ảnh → RAG → hội thoại):**
    - Tra cứu 22 nguồn/794 đoạn với provenance, license và hash của passage.
-   - Hội thoại đa chủ đề và hỏi nối tiếp; provider bản nháp là Groq hoặc OpenAI.
-   - Không lưu lịch sử phía máy chủ, không nhận ảnh/ca bệnh và luôn trả
-     `answer_ready: false`.
+   - Hỗ trợ nạp ảnh X-quang học tập kèm 22 trường metadata để chạy mô hình Swin + Cross-Attention cục bộ, đối chiếu bảng ánh xạ 10 nhãn (`rag/case_context.py`) sang kho nguồn, sinh giải thích học thuật có trích dẫn `[S1]`, `[S2]` và hỏi nối tiếp theo `case_id` do máy chủ quản lý.
+   - Hội thoại đa chủ đề và hỏi nối tiếp; provider bản nháp là Groq hoặc OpenAI. Ảnh và metadata chỉ xử lý cục bộ; luôn trả `answer_ready: false`.
 
 ---
 
@@ -195,6 +194,13 @@ adjudication; Giai đoạn 11 chưa nghiệm thu, `answer_ready=false`.
 ---
 
 ## 📊 Tiến Độ Dự Án — Cập nhật 29/10/2026
+
+### Mốc hoàn thiện tích hợp P1–P7 — 03/11/2026
+
+- Đã hoàn thiện toàn bộ 7 hạng mục kỹ thuật trong [báo cáo đối chiếu P1–P7](docs/reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md):
+  - **P1/P3/P4/P6:** Tích hợp luồng **Ảnh + 22 Metadata → Dự đoán Swin + Cross-Attention cục bộ → Ánh xạ 10 nhãn (`LABEL_GUIDE`) → Tra cứu nguồn RAG → Giải thích học thuật & Hội thoại nối tiếp** trong `rag/case_context.py`, `rag/demo_api.py` và `rag/demo_web/`. Đổi hoặc xóa ảnh tự động xóa ngữ cảnh ca cũ (`case_id` trong RAM).
+  - **P2/P5:** Bổ sung `tools/evaluate_xray_checkpoint.py` và hồ sơ thực nghiệm nội nguồn + ablation 250 ảnh phân tầng ([`stage11_xray_in_source_evaluation_20261103.json`](docs/reference/stage11_xray_in_source_evaluation_20261103.json)): có metadata thật đạt **Top-1 = 0,7760, Top-3 = 0,9400, Macro-F1 = 0,7759** (trung vị **25,2 ms/ảnh** trên RTX 3050); khi xóa vector metadata về 0, **Top-1 giảm xuống 0,4800 và Macro-F1 giảm xuống 0,4389** (đổi nhãn Top-1 ở 91/250 ảnh). Ghi rõ giới hạn: đây là số liệu nội nguồn BTXRD và ablation, không phải kiểm định độc lập.
+  - **Kiểm thử tự động:** Full suite đạt **162 passed / 132 subtests** (gồm cả test tích hợp thật `tests/test_end_to_end_pipeline.py`), audit PASS, replay **16/16 PASS**, register QA **PASS**, 7 acceptance gates giữ `OPEN` và `answer_ready=false`.
 
 ### Mốc đồng bộ repository — 02/11/2026
 

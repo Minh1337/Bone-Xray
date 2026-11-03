@@ -88,6 +88,68 @@ def checked_image(path):
     except (OSError, ValueError, UnidentifiedImageError):
         raise HTTPException(415, 'Invalid or damaged image')
 
+def parse_metadata(metadata):
+    """Parse uploaded metadata JSON; reject oversized input and duplicate keys."""
+    if len(metadata) > 8192:
+        raise HTTPException(422, 'Metadata is too long')
+    def reject_duplicates(pairs):
+        out = {}
+        for k, v in pairs:
+            if k in out:
+                raise ValueError(f'Duplicate key: {k}')
+            out[k] = v
+        return out
+    try:
+        return json.loads(metadata, object_pairs_hook=reject_duplicates)
+    except (ValueError, TypeError, RecursionError):
+        raise HTTPException(422, 'metadata must be a JSON object without duplicate keys')
+
+def predict_upload(predictor, file, meta, extra_check=None):
+    """Validate one uploaded image + metadata and run the predictor.
+
+    The image lives only in a temporary directory that is removed before
+    returning. ``extra_check`` may raise ValueError for caller-specific rules.
+    """
+    suffix = Path(file.filename or '').suffix.lower()
+    if suffix not in ('.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff'):
+        raise HTTPException(415, 'Use JPG, JPEG, PNG, BMP or TIFF')
+    with TemporaryDirectory(prefix='xray_api_') as directory:
+        path = Path(directory) / ('image' + suffix)
+        size = 0
+        image_hash = hashlib.sha256()
+        with path.open('wb') as target:
+            while True:
+                part = file.file.read(1024 * 1024)
+                if not part:
+                    break
+                size += len(part)
+                if size > MAX_BYTES:
+                    raise HTTPException(413, 'Image exceeds 30 MiB')
+                target.write(part)
+                image_hash.update(part)
+        if not size:
+            raise HTTPException(422, 'Empty image')
+        try:
+            validate_case({'id': 'api', 'image': str(path), 'metadata': meta}, directory)
+            if extra_check is not None:
+                extra_check(meta)
+        except ValueError as exc:
+            raise HTTPException(422, str(exc))
+        checked_image(path)
+        start = perf_counter()
+        try:
+            values = predictor.predict(path, meta)
+            scores = {item['label']: float(item['score']) for item in values}
+            if len(values) != 10 or set(scores) != set(LABELS) or not all(math.isfinite(x) and 0 <= x <= 1 for x in scores.values()) or abs(sum(scores.values()) - 1) > 1e-4:
+                raise ValueError('Invalid predictor output')
+        except Exception:
+            logger.exception('Model prediction failed')
+            raise HTTPException(500, 'Prediction failed; inspect server log')
+        seconds = perf_counter() - start
+    ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    return {'scores': scores, 'ranked': ranked, 'seconds': seconds,
+            'image_sha256': image_hash.hexdigest(), 'suffix': suffix}
+
 def create_app(loader=load_real):
     guard = Lock()
     @asynccontextmanager
@@ -124,81 +186,38 @@ def create_app(loader=load_real):
         if not guard.acquire(blocking=False):
             raise HTTPException(429, 'Model is busy; retry after the current prediction', headers={'Retry-After': '1'})
         try:
-            if len(metadata) > 8192:
-                raise HTTPException(422, 'Metadata is too long')
-            def reject_duplicates(pairs):
-                out = {}
-                for k, v in pairs:
-                    if k in out:
-                        raise ValueError(f'Duplicate key: {k}')
-                    out[k] = v
-                return out
-            try:
-                meta = json.loads(metadata, object_pairs_hook=reject_duplicates)
-            except (ValueError, TypeError, RecursionError):
-                raise HTTPException(422, 'metadata must be a JSON object without duplicate keys')
-            suffix = Path(file.filename or '').suffix.lower()
-            if suffix not in ('.jpg', '.jpeg', '.png', '.bmp', '.tif', '.tiff'):
-                raise HTTPException(415, 'Use JPG, JPEG, PNG, BMP or TIFF')
-            with TemporaryDirectory(prefix='xray_api_') as directory:
-                path = Path(directory) / ('image' + suffix)
-                size = 0
-                image_hash = hashlib.sha256()
-                with path.open('wb') as target:
-                    while True:
-                        part = file.file.read(1024 * 1024)
-                        if not part:
-                            break
-                        size += len(part)
-                        if size > MAX_BYTES:
-                            raise HTTPException(413, 'Image exceeds 30 MiB')
-                        target.write(part)
-                        image_hash.update(part)
-                if not size:
-                    raise HTTPException(422, 'Empty image')
-                try:
-                    validate_case({'id': 'api', 'image': str(path), 'metadata': meta}, directory)
-                except ValueError as exc:
-                    raise HTTPException(422, str(exc))
-                checked_image(path)
-                start = perf_counter()
-                try:
-                    values = app.state.predictor.predict(path, meta)
-                    scores = {item['label']: float(item['score']) for item in values}
-                    if len(values) != 10 or set(scores) != set(LABELS) or not all(math.isfinite(x) and 0 <= x <= 1 for x in scores.values()) or abs(sum(scores.values()) - 1) > 1e-4:
-                        raise ValueError('Invalid predictor output')
-                except Exception:
-                    logger.exception('Model prediction failed')
-                    raise HTTPException(500, 'Prediction failed; inspect server log')
-                seconds = perf_counter() - start
-                ranked = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-                prediction_id = secrets.token_urlsafe(32)
-                # Do not persist an uploader-supplied filename: it may contain
-                # patient identifiers. Keep only a generic label and validated suffix.
-                record = {'image_filename': 'uploaded-image' + suffix,
-                          'image_sha256': image_hash.hexdigest(), 'metadata': meta,
-                          'scores': scores, 'top1': ranked[0][0],
-                          'top1_score': ranked[0][1], 'prediction_seconds': seconds,
-                          'model_sha256': app.state.info['sha256']['best_model.pt'],
-                          'device': app.state.info['device'], 'api_version': '0.1.0'}
-                with app.state.pending_lock:
-                    now = monotonic()
-                    app.state.pending_predictions = {
-                        key: value for key, value in app.state.pending_predictions.items()
-                        if now - value[0] < 600
-                    }
-                    if len(app.state.pending_predictions) >= 1000:
-                        oldest = min(app.state.pending_predictions,
-                                     key=lambda key: app.state.pending_predictions[key][0])
-                        del app.state.pending_predictions[oldest]
-                    app.state.pending_predictions[prediction_id] = (now, record)
-                return {'top1': ranked[0][0], 'top3': [{'label': k, 'score': v} for k, v in ranked[:3]],
-                        'scores': scores, 'prediction_seconds': seconds, 'image_sha256': image_hash.hexdigest(),
-                        'model_sha256': app.state.info['sha256']['best_model.pt'],
-                        'device': app.state.info['device'], 'api_version': '0.1.0',
-                        'prediction_id': prediction_id,
-                        'notice': ('For coursework and research only; not for diagnosis, screening, triage, or treatment decisions. '
-                                   'Scores are normalized softmax outputs, are not calibrated for clinical use, and must not be interpreted as disease probabilities.')}
+            meta = parse_metadata(metadata)
+            result = predict_upload(app.state.predictor, file, meta)
+            scores, ranked, seconds = result['scores'], result['ranked'], result['seconds']
+            suffix = result['suffix']
+            image_digest = result['image_sha256']
+            prediction_id = secrets.token_urlsafe(32)
+            # Do not persist an uploader-supplied filename: it may contain
+            # patient identifiers. Keep only a generic label and validated suffix.
+            record = {'image_filename': 'uploaded-image' + suffix,
+                      'image_sha256': image_digest, 'metadata': meta,
+                      'scores': scores, 'top1': ranked[0][0],
+                      'top1_score': ranked[0][1], 'prediction_seconds': seconds,
+                      'model_sha256': app.state.info['sha256']['best_model.pt'],
+                      'device': app.state.info['device'], 'api_version': '0.1.0'}
+            with app.state.pending_lock:
+                now = monotonic()
+                app.state.pending_predictions = {
+                    key: value for key, value in app.state.pending_predictions.items()
+                    if now - value[0] < 600
+                }
+                if len(app.state.pending_predictions) >= 1000:
+                    oldest = min(app.state.pending_predictions,
+                                 key=lambda key: app.state.pending_predictions[key][0])
+                    del app.state.pending_predictions[oldest]
+                app.state.pending_predictions[prediction_id] = (now, record)
+            return {'top1': ranked[0][0], 'top3': [{'label': k, 'score': v} for k, v in ranked[:3]],
+                    'scores': scores, 'prediction_seconds': seconds, 'image_sha256': image_digest,
+                    'model_sha256': app.state.info['sha256']['best_model.pt'],
+                    'device': app.state.info['device'], 'api_version': '0.1.0',
+                    'prediction_id': prediction_id,
+                    'notice': ('For coursework and research only; not for diagnosis, screening, triage, or treatment decisions. '
+                               'Scores are normalized softmax outputs, are not calibrated for clinical use, and must not be interpreted as disease probabilities.')}
         finally:
             file.file.close()
             guard.release()
