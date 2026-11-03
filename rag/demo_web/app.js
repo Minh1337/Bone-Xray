@@ -594,6 +594,37 @@ function showCaseError(msg) {
   }
 }
 
+function resetCaseForm() {
+  caseController?.abort();
+  caseForm.reset();
+  caseForm.removeAttribute('aria-busy');
+  caseForm.querySelectorAll('input, select, button').forEach(node => { node.disabled = false; });
+  document.getElementById('cancel-case').textContent = 'Hủy';
+  submitCaseButton.disabled = false;
+  submitCaseButton.querySelector('span').textContent = 'Chạy mô hình & giải thích';
+  caseImage.value = '';
+  caseJson.value = '';
+  caseJsonSelect.replaceChildren();
+  caseJsonPickerWrap.hidden = true;
+  caseJsonNote.textContent = '';
+  importedCases = [];
+  expectedCaseImage = null;
+  binaryControls.forEach(ctrl => { ctrl.value = ''; });
+  caseImageLabel.textContent = 'Chọn ảnh X-quang';
+  casePreviewRow.hidden = true;
+  casePreviewImg.hidden = true;
+  casePreviewImg.removeAttribute('src');
+  casePreviewName.textContent = '';
+  document.getElementById('case-preview-hint').textContent = 'Kiểm tra ảnh trước khi tiếp tục.';
+  if (previewObjectUrl) {
+    URL.revokeObjectURL(previewObjectUrl);
+    previewObjectUrl = null;
+  }
+  caseConfirmed.checked = false;
+  updateBinaryCounter();
+  showCaseError('');
+}
+
 function normalizedFilename(name) {
   return String(name || '').replaceAll('\\', '/').split('/').pop().toLowerCase().replace(/\.jpeg$/, '.jpg');
 }
@@ -604,6 +635,7 @@ function openCaseModal() {
     return;
   }
   setSidebar(false);
+  resetCaseForm();
   showCaseError('');
   setCaseStep(0, false);
   caseDialog.showModal();
@@ -614,6 +646,7 @@ document.getElementById('open-case-dialog').addEventListener('click', openCaseMo
 document.getElementById('composer-case-button').addEventListener('click', openCaseModal);
 function closeCaseModal() {
   caseController?.abort();
+  if (!caseBusy) resetCaseForm();
   caseDialog.close();
 }
 document.getElementById('close-case-dialog').addEventListener('click', closeCaseModal);
