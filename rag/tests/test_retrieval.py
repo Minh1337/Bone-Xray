@@ -7,8 +7,26 @@ from unittest.mock import patch
 
 import numpy as np
 
+try:
+    import pytest
+except ModuleNotFoundError:  # pragma: no cover
+    pytest = None
+
 from rag import retrieval as r
 from rag.lexical import expansion
+
+
+if pytest is not None:
+    @pytest.fixture(autouse=True)
+    def isolate_chat_history_db(monkeypatch):
+        from rag import chat_history
+
+        monkeypatch.setattr(
+            chat_history,
+            "DB_PATH",
+            Path("__unused_retrieval_test_chat_history__.db"),
+        )
+
 
 
 class FakeModel:
@@ -509,6 +527,156 @@ class RetrievalTests(unittest.TestCase):
                         with self.assertRaisesRegex(ValueError, "min_score must be finite"):
                             r.retrieve(question, engine=guard_engine, min_score=invalid_min_score,
                                        mode="dense", rerank_concepts=True)
+
+    def test_search_and_retrieve_validate_source_ids(self):
+        rows = [{"chunk_id": "a", "source_id": "s1", "section": "Biopsy", "url": "https://example.org/a",
+                 "text": "Biopsy examines tissue for bone sarcoma diagnosis"},
+                {"chunk_id": "b", "source_id": "s2", "section": "Imaging", "url": "https://example.org/b",
+                 "text": "Radiograph imaging of bone sarcoma diagnosis"}]
+        vectors = np.array([[1, 0], [0.5, 0.5]], dtype=np.float32)
+        question = "What role does biopsy have in bone tumor diagnosis?"
+        engine = r.Retriever(model=FakeModel(), index=(rows, vectors))
+
+        for valid_source_ids, expected_ids in (
+            (None, ["a", "b"]),
+            (["s1"], ["a"]),
+            (("s1",), ["a"]),
+            (["s2"], ["b"]),
+            (("s2",), ["b"]),
+            (["s1", "s2"], ["a", "b"]),
+            (("s1", "s2"), ["a", "b"]),
+            (["unknown"], []),
+            ([], []),
+            ((), []),
+        ):
+            with self.subTest(valid_source_ids=valid_source_ids):
+                self.assertEqual(
+                    [h["chunk_id"] for h in engine.search(question, source_ids=valid_source_ids, mode="dense")],
+                    expected_ids,
+                )
+                self.assertEqual(
+                    [h["chunk_id"] for h in r.search(
+                        question,
+                        source_ids=valid_source_ids,
+                        index=(rows, vectors),
+                        model=FakeModel(),
+                        mode="dense",
+                    )],
+                    expected_ids,
+                )
+                response = r.retrieve(question, engine=engine, source_ids=valid_source_ids, mode="dense")
+                self.assertEqual([h["chunk_id"] for h in response["hits"]], expected_ids)
+                self.assertFalse(response["answer_ready"])
+                self.assertEqual(
+                    response["status"],
+                    "candidates_found" if expected_ids else "insufficient_evidence",
+                )
+
+        class GuardModel:
+            def encode(self, *args, **kwargs):
+                raise AssertionError("model.encode must not run for invalid source_ids")
+
+        class GuardSearchEngine:
+            config = r.load_config()
+            corpus_rows = rows
+            verifier = None
+
+            def search(self, *args, **kwargs):
+                raise AssertionError("engine.search must not run for invalid source_ids")
+
+        guard_engine = r.Retriever(model=GuardModel(), index=(rows, vectors))
+        unloaded_engine = r.Retriever(model=None, index=(rows, vectors))
+        guard_search_engine = GuardSearchEngine()
+        invalid_source_ids_cases = (
+            "s1",
+            "",
+            "   ",
+            [""],
+            ["   "],
+            ["\t\n"],
+            ("",),
+            ("   ",),
+            ["s1", ""],
+            ["s1", "   "],
+            ("s1", ""),
+            ("s1", "   "),
+            [None],
+            [123],
+            [True],
+            [False],
+            ["s1", None],
+            ["s1", 123],
+            ("s1", None),
+            ("s1", 123),
+            {"s1"},
+            {"s1": True},
+            123,
+            0,
+            3.14,
+            True,
+            False,
+        )
+        with patch.object(r, "load_model", side_effect=AssertionError("model must not load")), \
+                patch.object(r, "load_index", side_effect=AssertionError("index must not load")):
+            for invalid_source_ids in invalid_source_ids_cases:
+                with self.subTest(source_ids=repr(invalid_source_ids)):
+                    with self.assertRaisesRegex(
+                        ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                    ):
+                        guard_engine.search(question, source_ids=invalid_source_ids, mode="dense")
+                    with self.assertRaisesRegex(
+                        ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                    ):
+                        unloaded_engine.search(question, source_ids=invalid_source_ids, mode="dense")
+                    with self.assertRaisesRegex(
+                        ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                    ):
+                        r.search(question, source_ids=invalid_source_ids, mode="dense")
+                    with self.assertRaisesRegex(
+                        ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                    ):
+                        r._route_candidates(
+                            guard_search_engine,
+                            question,
+                            top_k=2,
+                            min_score=None,
+                            source_ids=invalid_source_ids,
+                            mode="dense",
+                            route_source_id="s1",
+                        )
+                    with self.assertRaisesRegex(
+                        ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                    ):
+                        r._overview_candidates(
+                            guard_search_engine,
+                            question,
+                            top_k=2,
+                            min_score=None,
+                            source_ids=invalid_source_ids,
+                            mode="dense",
+                            route_source_id="s1",
+                        )
+                    with patch.object(r, "assess", side_effect=AssertionError("assess must not run")):
+                        with self.assertRaisesRegex(
+                            ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                        ):
+                            r.retrieve(question, engine=guard_search_engine,
+                                       source_ids=invalid_source_ids, mode="dense")
+                        with self.assertRaisesRegex(
+                            ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                        ):
+                            r.retrieve("Hôm nay thời tiết thế nào?", engine=guard_search_engine,
+                                       source_ids=invalid_source_ids, mode="dense")
+                        with self.assertRaisesRegex(
+                            ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                        ):
+                            r.retrieve(question, engine=guard_search_engine,
+                                       source_ids=invalid_source_ids, mode="dense", verify_evidence=True)
+                        with self.assertRaisesRegex(
+                            ValueError, "source_ids must be None or a list/tuple of nonempty strings"
+                        ):
+                            r.retrieve(question, engine=guard_search_engine,
+                                       source_ids=invalid_source_ids, mode="dense", rerank_concepts=True)
 
     def test_index_rejects_changed_source_lock(self):
         with tempfile.TemporaryDirectory() as tmp:

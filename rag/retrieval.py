@@ -116,6 +116,16 @@ def _validate_min_score(min_score):
         raise ValueError("min_score must be finite")
 
 
+def _validate_source_ids(source_ids):
+    if source_ids is None:
+        return
+    if not isinstance(source_ids, (list, tuple)) or any(
+        not isinstance(source_id, str) or not source_id.strip()
+        for source_id in source_ids
+    ):
+        raise ValueError("source_ids must be None or a list/tuple of nonempty strings")
+
+
 class Retriever:
     def __init__(self, *, model=None, index=None, config=None):
         self.corpus_rows, self.vectors = index if index is not None else load_index()
@@ -127,6 +137,7 @@ class Retriever:
         _validate_question(question)
         _validate_top_k(top_k)
         _validate_min_score(min_score)
+        _validate_source_ids(source_ids)
         if not question.strip() or mode not in {"dense", "hybrid"}:
             raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
         expanded = expansion(question, self.config) if mode == "hybrid" else ""
@@ -191,6 +202,7 @@ def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, r
     _validate_question(question)
     _validate_top_k(top_k)
     _validate_min_score(min_score)
+    _validate_source_ids(source_ids)
     # Respect caller restrictions; a route cannot widen an explicit allowlist.
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
@@ -218,6 +230,7 @@ def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode
     _validate_question(question)
     _validate_top_k(top_k)
     _validate_min_score(min_score)
+    _validate_source_ids(source_ids)
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
                              source_ids=source_ids, mode=mode)
@@ -239,6 +252,7 @@ def search(question, *, top_k=5, min_score=None, source_ids=None, model=None, in
     _validate_question(question)
     _validate_top_k(top_k)
     _validate_min_score(min_score)
+    _validate_source_ids(source_ids)
     return Retriever(model=model, index=index).search(question, top_k=top_k, min_score=min_score,
                                                      source_ids=source_ids, mode=mode)
 
@@ -249,6 +263,7 @@ def retrieve(question, *, engine=None, top_k=5, min_score=None, source_ids=None,
     _validate_question(question)
     _validate_top_k(top_k)
     _validate_min_score(min_score)
+    _validate_source_ids(source_ids)
     if verify_evidence and rerank_concepts:
         raise ValueError('Select strict evidence filtering or concept reranking, not both')
     config = engine.config if engine is not None else load_config()
