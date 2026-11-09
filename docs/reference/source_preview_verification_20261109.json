@@ -1,0 +1,18 @@
+{
+  "status": "REVIEW_REQUIRED",
+  "source_id": "nci-osteochondroma-definition",
+  "chunk_count": 1,
+  "payload_sha256": "714b563f81886de34d24d8e6d13aa1fde5772adae18f2ba2c29bfaa60d6194c5",
+  "declaration_sha256": "bd512679af95aa6e3433c1c51aab9ed9dcf53de9bc0d90c1c638b331d95bcc81",
+  "preview_tool_sha256": "b90e416f255f37d9c750597c5ff219d065180ffcd24a5cd7c2fdb7cd7bc7e05f",
+  "acquisition_time_basis": "Payload filesystem mtime; reviewer must verify actual acquisition record",
+  "created_at_utc": "2026-11-09T11:14:28.068266+00:00",
+  "active_corpus_changed": false,
+  "answer_ready": false,
+  "limitations": [
+    "Parser/license declarations do not certify rights, relevance, or medical truth.",
+    "HTML article identity needs manual verification; extracted text may contain untrusted instructions.",
+    "No images are imported; no model is trained; nothing is automatically ingested."
+  ],
+  "exercise_scope": "Preview of an already-registered public source; no new source or gold label added"
+}

@@ -1,0 +1,88 @@
+{
+  "recorded_at_utc": "2026-11-09T11:00:04.569764+00:00",
+  "status": "PASS",
+  "scope": "Software regression and real headless Chrome DOM interaction; AI/retrieval fixtures, not vision or clinical validation",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q --junitxml=.temp/chatbot_regression_20261109.xml",
+  "pytest_passed": 172,
+  "pytest_failed": 0,
+  "subtests_passed": 132,
+  "warnings": 1,
+  "warning": "Starlette anyio BlockingPortal deprecation",
+  "junit": {
+    "tests_including_subtests": 304,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 27.553,
+    "sha256": "c931d9c53b6df2f3230b163601f9b402a52b98cd14ca3711ebf977830a97161b"
+  },
+  "browser": {
+    "engine": "Installed Google Chrome, headless, separate temporary profile",
+    "websockets_version": "16.1.1",
+    "viewports": [
+      [
+        390,
+        844
+      ],
+      [
+        320,
+        568
+      ]
+    ],
+    "automated_dom_interaction": true,
+    "manual_visual_review": false,
+    "live_provider_calls": 0,
+    "image": "Synthetic 64x64 PNG; no X-ray/patient data",
+    "retrieval": "Fixture passages; no citation entailment/relevance claim",
+    "sqlite": "Temporary DB isolated by conftest.py; real user history not used",
+    "checks": [
+      "Attachment clears after send",
+      "Retry uses original image after draft key migrates to saved conversation ID",
+      "Nine image requests including one deliberate failure",
+      "Image history never exceeds 8 messages or 9000 characters",
+      "Question/answer context sent on follow-up",
+      "New chat does not inherit image",
+      "Returning to saved chat in same tab restores File",
+      "Remove context returns to text chat",
+      "Reload preserves text/sources and requires image reattachment",
+      "Saved answers preserve safe Markdown formatting",
+      "Image sources remain reading material; generated S1 text does not become active citation",
+      "Rename and delete via UI persist in SQLite",
+      "No image bytes/base64/attachment filename stored in DB",
+      "No horizontal overflow at both mobile viewports",
+      "Mobile sidebar manages focus/inert state",
+      "Dark theme survives reload",
+      "No JavaScript exception observed"
+    ],
+    "cleanup": "Temporary uvicorn thread stopped; spawned Chrome parent terminated and waited"
+  },
+  "fixes": [
+    "Image retry retained stale draft key and lost image after first successful save; reproduced before fix",
+    "Frontend sent 12-message/12000-character history to image API capped at 8/9000; now bounded per route",
+    "Chat titles included image-not-stored notice; first paragraph now used",
+    "Reopened answers were plain text; safe Markdown now preserved with image-reading-source semantics",
+    "Text UI timeout 90 seconds was shorter than API deadline 105; UI now waits 110 for text and 90 for image"
+  ],
+  "handoff_integrity_matches": {
+    "rag/audit.py": true,
+    "rag/data/corpus.jsonl": true,
+    "rag/data/source_lock.json": true,
+    "rag/index/manifest.json": true,
+    "rag/data/retrieval_config.json": true
+  },
+  "artifact_sha256": {
+    "rag/demo_web/app.js": "abcf67f86d145cd4d2c8448a914a2df99bb2634c7043c2d4c581daf9dda68653",
+    "rag/demo_web/index.html": "b8faba1eb701d5e36f3f52206693b77ac26a2818f19ce1ecd12c478553f77ab7",
+    "rag/chat_history.py": "e31cb266cb57b10d5f12fd6fc3cb208c8a73d8f797bbe2e7e41dfb9935b1735a",
+    "rag/tests/test_chat_history.py": "c65d1105e2a1cd325e1d0a3a1e88413e515f40082de789b03a5ce8df1c3bdbfb",
+    "ui_tests/test_chatbot_browser.py": "f58368f0e34bbc353bd4d6618d15f367a6035ff476f7ee2566d2537e5ed86a07"
+  },
+  "node_syntax_check": "PASS: node --check rag/demo_web/app.js",
+  "remaining": [
+    "Live provider latency/availability/cost and vision quality not measured",
+    "Retrieval confidence threshold not independently calibrated",
+    "Reviewer decisions and external reference-standard evaluation pending"
+  ],
+  "answer_ready": false,
+  "acceptance_gates": "G1-G7 OPEN, unchanged"
+}

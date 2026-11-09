@@ -5,12 +5,12 @@
             "name": "💬 BoneScope: Chatbot tra cứu tài liệu",
             "type": "debugpy",
             "request": "launch",
-            "module": "uvicorn",
-            "args": ["rag.demo_api:app", "--host", "127.0.0.1", "--port", "8765"],
+            "module": "tools.run_chatbot",
+            "args": ["--port", "8765"],
             "cwd": "${workspaceFolder}",
             "envFile": "${workspaceFolder}/.env",
             "serverReadyAction": {
-                "pattern": "Uvicorn running on (https?://\\S+)",
+                "pattern": "BoneScope ready at (https?://\\S+)",
                 "uriFormat": "%s",
                 "action": "openExternally"
             },

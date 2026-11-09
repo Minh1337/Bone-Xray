@@ -1,6 +1,9 @@
 # Giai đoạn 11 — tiến độ và goal đang theo dõi
 
-**Cập nhật mới nhất — 03/11/2026 (Hoàn thiện P1–P7 & Giai đoạn 12 Chatbot Tích hợp Ảnh X-quang + Metadata + RAG):**
+**Cập nhật mới nhất — 05/11/2026 (Nạp ảnh BTXRD theo mã + tự khớp SHA-256 metadata + Vision Chat + SQLite Chat History & kiểm chứng 174 passed):**
+- Đã hoàn thiện luồng nạp ảnh BTXRD theo mã (`GET /api/reference-images/{image_id}`), đối chiếu SHA-256 tự điền 22 metadata và chặn 9 nhóm trùng byte mâu thuẫn (`POST /api/case/metadata-match`), hỏi AI về ảnh đính kèm một lượt (`POST /api/image-chat`), lưu lịch sử văn bản SQLite (`rag/chat_history.py`) và đồng bộ giao diện Pro Obsidian (`rag/demo_web/graphite.css`). Toàn bộ test suite đạt **174 passed / 132 subtests passed** ([`stage12_integrated_chatbot_verification_20261105.json`](reference/stage12_integrated_chatbot_verification_20261105.json), [`chatbot_image_reference_followup_20261105.md`](reference/chatbot_image_reference_followup_20261105.md)).
+
+**Cập nhật trước đó — 03/11/2026 (Hoàn thiện P1–P7 & Giai đoạn 12 Chatbot Tích hợp Ảnh X-quang + Metadata + RAG):**
 - Đã hoàn tất tích hợp bộ phân loại X-quang + 22 metadata vào giao diện và API chatbot đa lượt (`rag/case_context.py`, `rag/demo_api.py`, `rag/demo_web/`), ánh xạ minh bạch 10 nhãn checkpoint (`LABEL_GUIDE`), bổ sung đánh giá định lượng & ablation cross-attention metadata trên 250 ảnh BTXRD ([`stage11_xray_in_source_evaluation_20261103.json`](reference/stage11_xray_in_source_evaluation_20261103.json)) và kiểm thử tích hợp end-to-end (**162 passed / 132 subtests**; [`stage12_integrated_chatbot_verification_20261103.json`](reference/stage12_integrated_chatbot_verification_20261103.json)).
 - Toàn bộ 24 tham chiếu trong register G1–G7 vẫn khớp SHA-256 (`tools.verify_stage11_registers` PASS), **0/7 cổng đóng (`OPEN`)** và `answer_ready=false`. Xem [báo cáo rà soát & hoàn thiện P1–P7](reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md).
 

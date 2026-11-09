@@ -39,16 +39,24 @@
     "openaiSetupGuide": "docs/guides/OPENAI_CHATBOT_SETUP_VI.md",
     "groqSetupGuide": "docs/guides/GROQ_CHATBOT_SETUP_VI.md",
     "conversationGuide": "docs/guides/CHATBOT_CONVERSATION_VI.md",
-    "updated": "2026-10-31",
+    "updated": "2026-11-06",
     "previews": [
       ".stitch/designs/chatbot-desktop.png",
       ".stitch/designs/chatbot-mobile.png",
       ".stitch/designs/chatbot-dark.png"
     ],
-    "validation": "58 mocked API/SDK tests passed; headless Chrome checked conversational history, source disclosure, retry/reset and mobile layout. Two small live Groq checks passed for context recall and standalone source query routing; not an independent quality benchmark.",
+    "validation": "176 passed and 132 subtests passed across api_tests, rag/tests, tests, and ui_tests; node --check rag/demo_web/app.js passed; rag.audit, rag.replay_reports (16/16), and tools.verify_stage11_registers (24/24) passed.",
     "conversationPreviews": [
       ".stitch/designs/chatbot-conversation-desktop.png",
       ".stitch/designs/chatbot-conversation-mobile.png"
-    ]
+    ],
+    "styleLayer": "rag/demo_web/studio.css + rag/demo_web/graphite.css",
+    "researchStudioPreviews": [
+      ".stitch/designs/studio-desktop-20261103.png",
+      ".stitch/designs/studio-mobile-20261103.png",
+      ".stitch/designs/studio-dark-20261103.png",
+      ".stitch/designs/studio-upload-20261103.png"
+    ],
+    "researchStudioNote": "Pro Obsidian & Bioluminescent Cyan theme (graphite.css), asymmetric welcome, three-step image-case flow with 6 BTXRD sample chips and SHA-256 auto-fill, clipboard/drag-drop image attachment, source-first chat, reduced-motion support; screenshots are local UI previews, not model evaluation."
   }
 }

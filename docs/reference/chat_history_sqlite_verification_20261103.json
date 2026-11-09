@@ -1,0 +1,59 @@
+{
+  "record_id": "bonescope-chat-history-sqlite-verification-20261103",
+  "created_at_utc": "2026-11-03T08:59:52Z",
+  "scope": "Local single-user text-and-source chat-history persistence. No real provider request or user database used.",
+  "automated_tests": {
+    "command": ".venv/Scripts/python.exe -m pytest rag/tests/test_chat_history.py rag/tests/test_demo_api.py rag/tests/test_conversation.py rag/tests/test_case_context.py tests/test_end_to_end_pipeline.py -q",
+    "passed": 49,
+    "failed": 0,
+    "warnings": [
+      "Third-party Starlette TestClient warning: anyio.abc.BlockingPortal alias is deprecated."
+    ],
+    "coverage": [
+      "SQLite turn persistence and reopening after database reinitialization",
+      "Source-field allowlist; image-path and metadata fields are excluded",
+      "Conversation listing, rename, delete and message cascade deletion",
+      "Message retention keeps the newest complete question/answer turns",
+      "FastAPI create/list/open/rename/delete endpoints",
+      "Persistence after stopping and restarting the FastAPI process against the same temporary database"
+    ]
+  },
+  "browser_smoke": {
+    "status": "PASS",
+    "application": "Real local FastAPI app and frontend at 127.0.0.1:8766",
+    "database": "Unique temporary SQLite file; no project/user chat database used",
+    "provider_call": "Stubbed at the browser network boundary; no Groq/OpenAI request",
+    "steps": [
+      "Submit a chat question through the UI and persist the resulting answer/source through the normal frontend flow",
+      "Reload the page and verify the conversation appears in saved history",
+      "Reopen the conversation and verify answer and source excerpt are restored",
+      "Delete the conversation and verify it disappears"
+    ],
+    "javascript_page_errors": 0,
+    "synthetic_records_removed": true,
+    "server_stopped": true
+  },
+  "server_restart_smoke": {
+    "status": "PASS",
+    "database": "Same unique temporary SQLite file before and after process restart",
+    "verified": "Saved answer and source excerpt were readable after restarting FastAPI",
+    "synthetic_record_removed": true,
+    "server_stopped": true
+  },
+  "implementation_notes": {
+    "database_path": "data/chat_history.db relative to project root",
+    "scope": "Text, assistant answer and allowlisted citation/source metadata only; X-ray image, filename, case metadata and case id are not saved to chat history",
+    "deployment_limit": "Single-user loopback demo; no app-level encryption, user accounts or automatic backup/restore",
+    "manual_acceptance_on_user_machine": "Still recommended after restart of the user's VS Code run configuration"
+  },
+  "files_sha256": {
+    "conftest.py": "02f31a69d25cfcd4d6b1723e4e375f2f92b068b91895ef57ec3b91c2511b388a",
+    "rag/chat_history.py": "27c0d0380c7cf91182be616c3a2b5c5a4a5e0dc82103da6f890b2e1f901d4a21",
+    "rag/demo_api.py": "5ee5207708348b52b1d4d45d4a0ed9feb6b9fbe6d57fd7499aa1cc452a32498f",
+    "rag/tests/test_chat_history.py": "5959dfe1506a6a9d4ebe3f8b3d92c12dc839a44b6de2fbfed221d3157e1d9578",
+    "rag/demo_web/app.js": "6fa2d92986219deccc77b68f34b47c392e01f0a9d6152d4cb8f5da4d93aa5839",
+    "rag/demo_web/index.html": "4d38cd8d8fff359652cdbccea122c9332ac84cf75117095dd0f98af25e5f4fa4",
+    "rag/demo_web/studio.css": "2228de9978a147f762167322fc12dda9c4befd6b68f81c89736bbaa96d205a6c",
+    "rag/demo_web/graphite.css": "680a00c040abcaed0c3335811181e34ff48d15c9adac30321e6f6ae083f71f07"
+  }
+}

@@ -69,7 +69,8 @@ async def plan_turn(question, history, settings, *, force_search=False, case_con
         except (ValueError, TypeError, KeyError, AttributeError):
             raise DraftError("conversation_invalid_tool", "Chưa hiểu rõ chủ đề cần tra cứu. "
                              "Bạn thử ghi rõ tên chủ đề trong câu hỏi nhé.") from None
-        return {"route": "documents", "question": query}
+        return {"route": "documents", "question": query,
+                "provider": response.provider, "model": response.model}
     if force_search:
         raise DraftError("conversation_tool_required", "Chưa xác định được câu hỏi tra cứu đầy đủ. "
                          "Bạn thử ghi rõ hai chủ đề cần so sánh nhé.")
@@ -77,4 +78,5 @@ async def plan_turn(question, history, settings, *, force_search=False, case_con
     answer = re.sub(r"\[S\d+\]", "", response_text(response, settings)).strip()
     if not answer:
         raise DraftError("conversation_empty", "Chưa tạo được phản hồi. Bạn thử diễn đạt lại nhé.")
-    return {"route": "chat", "answer": answer}
+    return {"route": "chat", "answer": answer,
+            "provider": response.provider, "model": response.model}

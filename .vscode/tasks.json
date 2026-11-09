@@ -5,7 +5,7 @@
 			"label": "Run BoneScope chatbot demo",
 			"type": "shell",
 			"command": "${workspaceFolder}\\.venv\\Scripts\\python.exe",
-			"args": ["-m", "rag.demo_api"],
+			"args": ["-m", "tools.run_chatbot"],
 			"options": {"cwd": "${workspaceFolder}"},
 			"isBackground": true,
 			"problemMatcher": [],

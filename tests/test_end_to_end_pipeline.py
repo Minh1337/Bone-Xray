@@ -17,16 +17,18 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_real_model_and_real_retriever_end_to_end_pipeline(monkeypatch):
-    monkeypatch.setenv("LLM_PROVIDER", "groq")
-    monkeypatch.setenv("GROQ_API_KEY", "test-only-no-network")
-    monkeypatch.setenv("GROQ_MODEL", "openai/gpt-oss-20b")
-    monkeypatch.setenv("GROQ_REASONING_EFFORT", "low")
-    monkeypatch.setenv("GROQ_TIMEOUT_SECONDS", "35")
-    monkeypatch.setenv("GROQ_MAX_OUTPUT_TOKENS", "2400")
+    monkeypatch.setenv("LLM_PROVIDER", "openrouter")
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only-no-network")
+    monkeypatch.setenv("OPENROUTER_MODEL", "openrouter/free")
+    monkeypatch.setenv("OPENROUTER_REASONING_EFFORT", "none")
+    monkeypatch.setenv("OPENROUTER_TIMEOUT_SECONDS", "35")
+    monkeypatch.setenv("OPENROUTER_MAX_OUTPUT_TOKENS", "1600")
 
     async def fake_explain(record, passages, settings):
         assert len(passages) >= 1
-        return "### Kết quả mô hình\nTop-1 osteosarcoma.\n### Tài liệu nói gì về khái niệm\nSarcoma xương [S1].\n### Giới hạn\nChỉ học tập."
+        from rag.generation import DraftText
+        return DraftText("### Kết quả mô hình\nTop-1 osteosarcoma.\n### Tài liệu nói gì về khái niệm\nSarcoma xương [S1].\n### Giới hạn\nChỉ học tập.",
+                         "openrouter", "openrouter/free")
 
     monkeypatch.setattr("rag.case_context.explain_case", fake_explain)
 
@@ -76,3 +78,42 @@ def test_real_model_and_real_retriever_end_to_end_pipeline(monkeypatch):
         assert exp1["lookup"] == "not_allowed"
         assert exp1["passages"] == []
         assert exp1["answer_ready"] is False
+
+
+def test_btxrd_reference_image_lookup_autofill_and_real_model_inference(monkeypatch):
+    monkeypatch.setenv("LLM_PROVIDER", "openrouter")
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only-no-network")
+    monkeypatch.setenv("OPENROUTER_MODEL", "openrouter/free")
+    monkeypatch.setenv("OPENROUTER_REASONING_EFFORT", "none")
+    monkeypatch.setenv("OPENROUTER_TIMEOUT_SECONDS", "35")
+    monkeypatch.setenv("OPENROUTER_MAX_OUTPUT_TOKENS", "1600")
+
+    with TestClient(create_app(), base_url="http://127.0.0.1:8765") as client:
+        # 1. Load real BTXRD image by ID -> exact SHA-256 metadata match -> run real Swin+CrossAttention inference
+        ref_res = client.get("/api/reference-images/IMG000002")
+        assert ref_res.status_code == 200
+        assert ref_res.headers["content-type"] == "image/jpeg"
+
+        match_res = client.post(
+            "/api/case/metadata-match",
+            files={"file": ("IMG000002.jpeg", ref_res.content, "image/jpeg")},
+        )
+        assert match_res.status_code == 200
+        match_body = match_res.json()
+        assert match_body["matched"] is True
+        assert match_body["image_id"] == "IMG000002.jpeg"
+        assert match_body["match_method"] == "sha256_exact"
+
+        case_res = client.post(
+            "/api/case",
+            data={"metadata": json.dumps(match_body["metadata"])},
+            files={"file": ("IMG000002.jpeg", ref_res.content, "image/jpeg")},
+        )
+        assert case_res.status_code == 200
+        case_body = case_res.json()
+        assert case_body["top1"] == "osteosarcoma"
+        assert case_body["answer_ready"] is False
+
+        # 2. Known duplicate-byte group with conflicting metadata in real BTXRD manifest -> blocked (409)
+        dup_res = client.get("/api/reference-images/IMG000430")
+        assert dup_res.status_code == 409

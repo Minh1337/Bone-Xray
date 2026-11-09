@@ -1,0 +1,113 @@
+{
+  "record_id": "stage12-integrated-xray-rag-chatbot-verification-20261105",
+  "created_at_utc": "2026-11-06T04:17:11.539760+00:00",
+  "scope": "Educational prototype verification (2026-11-05 follow-up): integrated X-ray + 22 metadata classification, BTXRD reference image loading by ID (GET /api/reference-images/{image_id}), exact SHA-256 metadata auto-match (POST /api/case/metadata-match) with duplicate-byte conflict guard, 10-label mapping, RAG source lookup, ephemeral vision image chat (POST /api/image-chat) with 429 wait-header extraction, SQLite text-only conversation history (rag/chat_history.py), Pro Obsidian & Bioluminescent Cyan UI styling (rag/demo_web/graphite.css), and 250-image stratified in-source evaluation & metadata ablation. Not clinical or independent external validation.",
+  "answer_ready": false,
+  "gates_closed": 0,
+  "gates_total": 7,
+  "pytest_summary": {
+    "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+    "passed": 176,
+    "failed": 0,
+    "subtests_passed": 132,
+    "warnings": 1
+  },
+  "js_syntax_check": {
+    "rag/demo_web/app.js": "PASS",
+    "xray_web/app.js": "PASS"
+  },
+  "rag_audit": {
+    "bundle": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "status": "PASS",
+    "sources": 22,
+    "chunks": 794
+  },
+  "rag_replay": {
+    "bundle": "docs/reference/stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+    "status": "PASS",
+    "matched_reports": "16/16",
+    "preflight_mismatches": 0
+  },
+  "register_qa": {
+    "record": "docs/reference/stage11_gate_cohort_register_qa_20261029_v6.json",
+    "status": "PASS",
+    "prepared_artifact_references_checked": 24,
+    "cohort_rows": 15
+  },
+  "xray_in_source_evaluation": {
+    "artifact": "docs/reference/stage11_xray_in_source_evaluation_20261103.json",
+    "subgroup_and_calibration_artifact": "docs/reference/stage12_xray_subgroup_and_calibration_20261106.json",
+    "sample_count": 250,
+    "per_class": 25,
+    "seed": 20261031,
+    "with_true_metadata": {
+      "top1_accuracy": 0.776,
+      "top3_accuracy": 0.94,
+      "macro_f1": 0.7759,
+      "ece_10_bin": 0.0367,
+      "multiclass_brier_score": 0.3334,
+      "median_latency_seconds": 0.0252
+    },
+    "with_zeroed_metadata_ablation": {
+      "top1_accuracy": 0.48,
+      "top3_accuracy": 0.72,
+      "macro_f1": 0.4389,
+      "ece_10_bin": 0.2075,
+      "multiclass_brier_score": 0.7616,
+      "top1_changed_count": 91
+    }
+  },
+  "files_sha256": {
+    "xray_api.py": "e059e6a8c42659a6f4bd264f9d25191c913242c7e3469aed0c5f93934948b205",
+    "inference.py": "7fac95377ac819504a53fb742b1c5648cf7e4e85724220754ce9745f173e8d72",
+    "model_definition.py": "cbc4ad3b001293dcea25177bc37f26c5a491b29520c8114a38abb4c7188030d0",
+    "conftest.py": "02f31a69d25cfcd4d6b1723e4e375f2f92b068b91895ef57ec3b91c2511b388a",
+    "rag/case_context.py": "7f43ef11da6b6843a807574b45f5a1e69799cbcba1512f4be9607ce120974235",
+    "rag/chat_history.py": "94ba8aaca233cbfbe5d0bea6d10d6f034b34a840b9ea87c7f13f32f64f4dcfb8",
+    "rag/conversation.py": "52c3cacb2a611f324df3f8b3439d08553ea6a084f884149c1b58a3c583a1b613",
+    "rag/demo_api.py": "ead1f7f174666828bd13a73bc148cb012152833fb6e99c982c33de2e06b5e92e",
+    "rag/generation.py": "d156f2cbde23e15785aecd44a02bb82cc8cd217988361acff099cbfda9fa6106",
+    "rag/retrieval.py": "98016b92ed67fd0a06811b27bccf67dbd4dbb0e5b9847b3ad3bc3f20d9bd52f1",
+    "rag/policy.py": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a",
+    "rag/demo_web/index.html": "944bcf0cd07578579c776cabb6b8307831518c33e4b7fd11c860593ec8c9e33d",
+    "rag/demo_web/app.js": "d40654dbb249e076f34fb4d9a216fb9fac602f46f698ce91237ad115216ecbc1",
+    "rag/demo_web/style.css": "89123cb27449fc97b70674a079ffcfb4ee0658049c516ad4a6ee8d578b4c00d1",
+    "rag/demo_web/studio.css": "11658a6e4796f642a84bf113b821a57368fe63d9397e99500fb818b64d366750",
+    "rag/demo_web/graphite.css": "5fe0162ae60e3d49c62dbdfa9fd3d4f096c3aef33f09946e9eb7dfe5e2f71f41",
+    "tools/evaluate_xray_checkpoint.py": "72994533745098e5d67659019e33ae348a2e66e1efd42b8ebdfd2eb0e1153d98",
+    "tools/analyze_btxrd_catalogue.py": "997b753517306d45e99ee126223a2ac233e988cd3b5fc4d4e8fe344079961391",
+    "tools/analyze_xray_calibration_and_subgroups.py": "e9504988066517df801295194bd222529e09e01929c70f163940b0b3ab5d55b9",
+    "tools/verify_stage11_registers.py": "056c957ee922020835ee07337f688aa54bd13b962af8130c7780c82e66510bd0",
+    "rag/tests/test_case_context.py": "4e87a78137e881eddfa1fea4036357fe65394761b7003cb45c33da8a84b942f3",
+    "rag/tests/test_chat_history.py": "8d2c730f7ed84cbeb8b5014d582cfd3d2bb82b47f9754ab121f469ad9a602c50",
+    "rag/tests/test_demo_api.py": "ef68e13df09d45b4ef1a16a5832dde3af6d9994b064e1ee335d872641aae2638",
+    "rag/tests/test_conversation.py": "d7ab5bc71ad38d4a917200f13dceae976995c4cc3ff4bd2546a9aaf121e5c599",
+    "rag/tests/test_generation.py": "93a08559cebef56c7a051da5544b5b44e97e0887a5ab4905e4446452ec91b14b",
+    "tests/test_end_to_end_pipeline.py": "b72632b5bbf401c4a9e02e90570644bd2c92c03ac3708c2d614ce7d55a10ae1f",
+    "tests/test_xray_evaluator.py": "6c0937632f7af042de979af3b5f0fb65f80f63ad75e8d4b5bc3b7d3828837ed1",
+    "tests/test_btxrd_catalogue_analysis.py": "ca826252feb1a1d806b2b58c65a173d845684ea358e8029d5a7f12b76d782617",
+    "tests/test_xray_calibration_and_subgroups.py": "84747a0a48d0bbd60c482f0339d3a7e0a2ee564db088353f7c94e6a512e5e25f",
+    "ui_tests/test_ui_routes.py": "b6236459899efe88baf04fc1eb676f988429c4d639f97c896f7751718c7788ee",
+    "docs/reference/stage11_xray_in_source_evaluation_20261103.json": "4b1694c1a22594d69dbd13e34dc78d392e3356d1f893b775f183053b8b587f32",
+    "docs/reference/stage12_btxrd_catalogue_and_mapping_analysis_20261105.json": "cd83ed399fda213a79772954e8d706dbf73b84df88bbb04b64ddfaa3e570d498",
+    "docs/reference/stage12_xray_subgroup_and_calibration_20261106.json": "a11f6e730756755279df932c4a3ab6d1932f69c4634df7b646295e75484d6aea",
+    "docs/reference/chat_history_sqlite_verification_20261103.json": "241e368c4a358094b391f362ce467fa3cd518f7eb8f0effbdbe82aa98caf8727",
+    "docs/reference/chatbot_image_reference_followup_20261105.md": "0620adf16d9f33523c6c44fe4eb305549cc5108ac8517af65e599eb3b2e2896c",
+    "docs/reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md": "2eabf4b8ec058b10607b2736762b16468a26c04dd462d1323e10b8d56b2eccbe",
+    "docs/reports/STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md": "eaeae746f4bfd96db7dd7d62415447ad3f1f5bca011af0504fecaa3d561cfcbd",
+    "docs/guides/CHATBOT_CONVERSATION_VI.md": "94c47e0cec078ba2b054b256894d361853a0feb26fc3d780abe3dabc0ca4e795",
+    "docs/guides/README_CHATBOT_UI_VI.md": "865ceb8112ddeae0475456b66c9541d4c167a8ba8fb74d85981acf0ace8193c8",
+    "docs/guides/GROQ_CHATBOT_SETUP_VI.md": "e4f69dd4444f7ce54ed864cecd081766734d57cda181f1f61ef10b2fd0948c05",
+    "docs/guides/README_IMAGE_REFERENCE_VI.md": "8c9505664c780dcb4a7f46b8a270b32145ef723744c29f851355e8a0034d2458",
+    "rag/demo_web/DESIGN.md": "a399aa3b89e5fb15bce494934a8327dc47ec84f5f2ec45da51d64f23b4c0e434",
+    ".stitch/metadata.json": "ea821b6ba6f6d79d4e747367acfadae32e0c86c381de39c9ecedc95312565a5d",
+    "START_HERE_NEXT_CODEX_VI.md": "dc185c88279d3256d17be84b53da4814b6c3ff6ccc310db5da9138c533277494",
+    "README.md": "4198823085c5d6d525077d86b31c57e4bf9387d7685d6998d8778578abf6a519",
+    "README_VI.md": "4f1215a37339062fde573b5941c78c0e26342f0c21ac992916eaa95331f9f098",
+    "docs/PROJECT_STATUS_VI.md": "b5c6eb54f27af3d2ce790a67d6ff417b3a5c2689d90e77343a72215b5410ec90",
+    "docs/STAGE11_PROGRESS_2026-10-29.md": "4e16fca048b3479ec77308a21bf0b73a55da24502e8b7a606740e6cfb82a737e",
+    "docs/STAGE11_HANDOFF_VI.md": "8d4ef5f3cbb0ce86536b6d57567d4e9c1cb894d05608ad7012c863d29f026eb3",
+    "docs/STAGE11_EXECUTION_PLAN_VI.md": "e1b20c3fd33809dee313cc5b0206970d6ea88ecf10bfda79c05f1c2d90f13b03",
+    "docs/reference/STAGE11_CHATBOT_READINESS_VI.md": "650292ffa207ef5d1d299686c3ea9c1e95f859e8cf7d6e62fce2e7352467516f"
+  }
+}

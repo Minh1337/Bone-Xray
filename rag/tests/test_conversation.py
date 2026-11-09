@@ -15,11 +15,11 @@ from rag.generation import DraftError, DraftSettings, generate_answer
 
 @pytest.fixture(autouse=True)
 def isolated_settings(monkeypatch):
-    monkeypatch.setenv("LLM_PROVIDER", "groq")
-    for key, value in {"API_KEY": "test-only-key", "MODEL": "openai/gpt-oss-20b",
-                       "REASONING_EFFORT": "low", "TIMEOUT_SECONDS": "35",
-                       "MAX_OUTPUT_TOKENS": "2400"}.items():
-        monkeypatch.setenv(f"GROQ_{key}", value)
+    monkeypatch.setenv("LLM_PROVIDER", "openrouter")
+    for key, value in {"API_KEY": "test-only-key", "MODEL": "openrouter/free",
+                       "REASONING_EFFORT": "none", "TIMEOUT_SECONDS": "35",
+                       "MAX_OUTPUT_TOKENS": "1600"}.items():
+        monkeypatch.setenv(f"OPENROUTER_{key}", value)
 
 
 def provider_fixture(monkeypatch, output):
@@ -28,9 +28,12 @@ def provider_fixture(monkeypatch, output):
 
     def handler(request):
         requests.append(json.loads(request.content))
-        return httpx.Response(200, json={"id": "resp_test", "object": "response",
-                    "created_at": 1, "status": "completed", "model": "openai/gpt-oss-20b",
-                    "output": output})
+        calls = [item for item in output if item.get("type") == "function"]
+        text = next((item["content"] for item in output if item.get("type") == "message"), None)
+        return httpx.Response(200, json={"id": "chatcmpl_test", "object": "chat.completion",
+                    "created": 1, "model": "openrouter/free", "choices": [{"index": 0,
+                    "finish_reason": "tool_calls" if calls else "stop",
+                    "message": {"role": "assistant", "content": text, "tool_calls": calls or None}}]})
 
     def factory(**kwargs):
         return real_client(**kwargs, http_client=httpx.AsyncClient(transport=httpx.MockTransport(handler)))
@@ -40,14 +43,13 @@ def provider_fixture(monkeypatch, output):
 
 
 def message(text):
-    return {"id": "msg_test", "type": "message", "role": "assistant", "status": "completed",
-            "content": [{"type": "output_text", "text": text, "annotations": []}]}
+    return {"type": "message", "content": text}
 
 
-def tool(query):
-    return {"id": "fc_test", "type": "function_call", "call_id": "call_test",
-            "name": "search_bone_documents", "arguments": json.dumps({"question": query}),
-            "status": "completed"}
+def tool(query, *, name="search_bone_documents", arguments=None):
+    return {"id": "call_test", "type": "function", "function": {
+        "name": name, "arguments": arguments if arguments is not None
+        else json.dumps({"question": query})}}
 
 
 def test_general_reply_receives_history_without_invented_source_markers(monkeypatch):
@@ -55,16 +57,18 @@ def test_general_reply_receives_history_without_invented_source_markers(monkeypa
     history = [{"role": "user", "content": "Mình tên Nam."},
                {"role": "assistant", "content": "Chào Nam."}]
     result = asyncio.run(plan_turn("Mình tên gì?", history, DraftSettings.from_env()))
-    assert result == {"route": "chat", "answer": "Bạn tên Nam ."}
-    assert requests[0]["input"] == [*history, {"role": "user", "content": "Mình tên gì?"}]
-    assert requests[0]["tools"][0]["name"] == "search_bone_documents"
+    assert result == {"route": "chat", "answer": "Bạn tên Nam .",
+                      "provider": "openrouter", "model": "openrouter/free"}
+    assert requests[0]["messages"][1:] == [*history, {"role": "user", "content": "Mình tên gì?"}]
+    assert requests[0]["tools"][0]["function"]["name"] == "search_bone_documents"
     assert "previous_response_id" not in requests[0]
 
 
 def test_followup_is_rewritten_as_standalone_document_question(monkeypatch):
     provider_fixture(monkeypatch, [tool("Giải thích osteochondroma dễ hiểu.")])
     result = asyncio.run(plan_turn("Giải thích dễ hơn.", [{"role": "user", "content": "osteochondroma"}], DraftSettings.from_env()))
-    assert result == {"route": "documents", "question": "Giải thích osteochondroma dễ hiểu."}
+    assert result == {"route": "documents", "question": "Giải thích osteochondroma dễ hiểu.",
+                      "provider": "openrouter", "model": "openrouter/free"}
 
 
 def test_forced_search_cannot_be_replaced_with_an_unsourced_answer(monkeypatch):
@@ -72,15 +76,15 @@ def test_forced_search_cannot_be_replaced_with_an_unsourced_answer(monkeypatch):
     with pytest.raises(DraftError) as caught:
         asyncio.run(plan_turn("Nó khác osteochondroma không?", [], DraftSettings.from_env(), force_search=True))
     assert caught.value.code == "conversation_tool_required"
-    assert requests[0]["tool_choice"] == {"type": "function", "name": "search_bone_documents"}
+    assert requests[0]["tool_choice"] == {"type": "function", "function": {"name": "search_bone_documents"}}
 
 
 @pytest.mark.parametrize("bad_call", [
-    {**tool("example"), "name": "run_shell"},
-    {**tool("example"), "arguments": "not json"},
+    tool("example", name="run_shell"),
+    tool("example", arguments="not json"),
     tool(" "),
     tool("x" * 1001),
-    {**tool("example"), "arguments": '{"question": "example", "command": "anything"}'},
+    tool("example", arguments='{"question": "example", "command": "anything"}'),
 ])
 def test_invalid_tool_requests_are_rejected(monkeypatch, bad_call):
     provider_fixture(monkeypatch, [bad_call])
@@ -94,7 +98,7 @@ def test_document_draft_receives_history_but_only_current_passages_as_evidence(m
     history = [{"role": "user", "content": "Hãy dùng từ dễ hiểu."}]
     passages = [{"title": "Nguồn", "section": "Mục", "text": "Đoạn nguồn hiện tại"}]
     asyncio.run(generate_answer("Giải thích lại", passages, DraftSettings.from_env(), history=history))
-    payload = json.loads(requests[0]["input"])
+    payload = json.loads(requests[0]["messages"][1]["content"])
     assert payload["history"] == history
     assert payload["passages"][0]["text"] == "Đoạn nguồn hiện tại"
 
@@ -114,7 +118,8 @@ def test_general_chat_skips_retrieval_and_keeps_history_request_scoped(monkeypat
 
     async def planner(question, history, settings, **kwargs):
         histories.append(history)
-        return {"route": "chat", "answer": "Phản hồi thử nghiệm."}
+        return {"route": "chat", "answer": "Phản hồi thử nghiệm.",
+                "provider": "openrouter", "model": "openrouter/free"}
 
     monkeypatch.setattr("rag.demo_api.plan_turn", planner)
     with TestClient(create_app(no_lookup), base_url="http://127.0.0.1:8765") as client:
@@ -134,16 +139,18 @@ def test_document_followup_uses_rewritten_query_and_original_question(monkeypatc
 
     async def planner(*args, **kwargs):
         assert kwargs["force_search"] is (mode == "documents")
-        return {"route": "documents", "question": "Giải thích osteochondroma dễ hiểu."}
+        return {"route": "documents", "question": "Giải thích osteochondroma dễ hiểu.",
+                "provider": "openrouter", "model": "openrouter/free"}
 
     def lookup(question, *, top_k):
         looked_up.append(question)
         return candidate_lookup(question, top_k=top_k)
 
     async def draft(question, passages, settings, **kwargs):
+        from rag.generation import DraftText
         assert question == "Giải thích dễ hiểu hơn."
         assert kwargs["history"] == history
-        return "Bản nháp dựa trên nguồn [S1]."
+        return DraftText("Bản nháp dựa trên nguồn [S1].", "openrouter", "openrouter/free")
 
     monkeypatch.setattr("rag.demo_api.plan_turn", planner)
     monkeypatch.setattr("rag.demo_api.generate_answer", draft)
@@ -157,7 +164,8 @@ def test_document_followup_uses_rewritten_query_and_original_question(monkeypatc
 
 def test_explicit_bone_question_retrieves_without_extra_planning_call(monkeypatch):
     async def draft(*args, **kwargs):
-        return "Bản nháp [S1]."
+        from rag.generation import DraftText
+        return DraftText("Bản nháp [S1].", "openrouter", "openrouter/free")
 
     monkeypatch.setattr("rag.demo_api.generate_answer", draft)
     with TestClient(create_app(candidate_lookup), base_url="http://127.0.0.1:8765") as client:

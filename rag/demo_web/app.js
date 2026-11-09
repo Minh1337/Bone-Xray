@@ -4,6 +4,10 @@ const form = document.getElementById('question-form');
 const messages = document.getElementById('messages');
 const input = document.getElementById('question');
 const submit = document.getElementById('submit');
+const imageInput = document.getElementById('image-input');
+const imageAttachment = document.getElementById('image-attachment');
+const imageAttachmentName = document.getElementById('image-attachment-name');
+let attachedImage = null;
 const clear = document.getElementById('clear-chat');
 const liveStatus = document.getElementById('live-status');
 const counter = document.getElementById('char-count');
@@ -18,6 +22,19 @@ const sessionQuestions = document.getElementById('session-questions');
 const sessionEmpty = document.getElementById('session-empty');
 const transcript = [];
 const chatHistory = [];
+const savedConversations = document.getElementById('saved-conversations');
+const savedEmpty = document.getElementById('saved-empty');
+let activeConversationId = null;
+const conversationImageContexts = new Map();
+let draftConversationContextKey = createDraftConversationContextKey();
+let conversationHadImageContext = false;
+let openConversationRequest = 0;
+const imageContextBanner = document.getElementById('image-context-banner');
+const imageContextTitle = document.getElementById('image-context-title');
+const imageContextName = document.getElementById('image-context-name');
+const imageContextNote = document.getElementById('image-context-note');
+const removeImageContext = document.getElementById('remove-image-context');
+const reattachImageContext = document.getElementById('reattach-image-context');
 const chatMode = document.getElementById('chat-mode');
 let activeCase = null;
 const caseBanner = document.getElementById('active-case-banner');
@@ -31,6 +48,10 @@ const casePreviewRow = document.getElementById('case-preview-row');
 const casePreviewImg = document.getElementById('case-preview-img');
 const casePreviewName = document.getElementById('case-preview-name');
 const caseJsonNote = document.getElementById('case-json-note');
+const caseImageMatchNote = document.getElementById('case-image-match-note');
+const caseReferenceId = document.getElementById('case-reference-id');
+const caseReferenceLoad = document.getElementById('case-reference-load');
+const askAiAboutCaseImage = document.getElementById('ask-ai-about-case-image');
 const caseJsonPickerWrap = document.getElementById('case-json-picker-wrap');
 const caseJsonSelect = document.getElementById('case-json-select');
 const caseAge = document.getElementById('case-age');
@@ -52,14 +73,16 @@ const binaryControls = new Map();
 let importedCases = [];
 let expectedCaseImage = null;
 let previewObjectUrl = null;
+let referenceImageRequest = 0;
 let caseBusy = false;
 let caseStep = 0;
 let caseController = null;
 
-function boundedHistory() {
+function boundedHistory(forImage = false) {
   const selected = [];
-  let remaining = 12000;
-  for (const item of chatHistory.slice(-12).reverse()) {
+  let remaining = forImage ? 9000 : 12000;
+  const maxMessages = forImage ? 8 : 12;
+  for (const item of chatHistory.slice(-maxMessages).reverse()) {
     const content = item.content.slice(0, Math.min(3000, remaining));
     if (!content) break;
     selected.unshift({ role: item.role, content });
@@ -68,19 +91,164 @@ function boundedHistory() {
   if (selected[0]?.role === 'assistant') selected.shift();
   return selected;
 }
-const providerLabels = { groq: 'Groq', openai: 'OpenAI' };
+const providerLabels = { openrouter: 'OpenRouter · Free', groq: 'Groq · dự phòng Free' };
+const paidFallbackModel = 'qwen/qwen3.5-flash-02-23';
+function providerLabelFor(provider, model) {
+  if (provider === 'openrouter' && model === paidFallbackModel) {
+    return 'OpenRouter · Qwen3.5 Flash · trả phí dự phòng';
+  }
+  return providerLabels[provider] || 'AI';
+}
 let providerLabel = 'AI';
+
+function createDraftConversationContextKey() {
+  return `draft:${Date.now()}:${Math.random().toString(36).slice(2)}`;
+}
+
+function currentImageContextKey() {
+  return activeConversationId ? `saved:${activeConversationId}` : draftConversationContextKey;
+}
+
+function renderImageContext(key = currentImageContextKey()) {
+  const file = conversationImageContexts.get(key) || null;
+  const hasImageContext = Boolean(file || conversationHadImageContext);
+  imageContextBanner.hidden = !hasImageContext;
+  imageContextTitle.textContent = file
+    ? 'Ảnh đang làm ngữ cảnh cho chat này'
+    : 'Ảnh đã gửi trước đây không còn trong bộ nhớ tab';
+  imageContextName.textContent = file
+    ? `${file.name} · ${(file.size / 1024 / 1024).toFixed(2)} MiB`
+    : 'Lịch sử chỉ lưu văn bản, không lưu tệp ảnh.';
+  imageContextNote.textContent = file
+    ? 'Ảnh sẽ được gửi lại cùng câu hỏi tiếp theo trong tab này; không lưu vào lịch sử.'
+    : 'Hãy đính kèm lại ảnh để tiếp tục hỏi về nội dung ảnh.';
+  removeImageContext.hidden = !file;
+  reattachImageContext.hidden = Boolean(file);
+}
 
 async function loadProviderInfo() {
   try {
     const response = await fetch('/api/config', { cache: 'no-store' });
     if (!response.ok) return;
     const config = await response.json();
-    providerLabel = providerLabels[config.provider] || 'AI';
-    document.querySelectorAll('[data-provider-name]').forEach(node => { node.textContent = providerLabel; });
+    const fallbackAfter = Number(config.free_fallback_after_seconds) || 15;
+    providerLabel = config.paid_fallback_model
+      ? `OpenRouter · Free trước, Qwen trả phí nếu chờ ${fallbackAfter}s`
+      : providerLabelFor(config.provider, config.model);
+    document.querySelectorAll('[data-provider-name]').forEach(node => {
+      node.textContent = providerLabel;
+      if (config.paid_fallback_model) {
+        node.title = `Model miễn phí chạy trước. OpenRouter có thể gọi ${config.paid_fallback_model} tính phí nếu model miễn phí bị giới hạn, trả lời chưa hoàn tất hoặc quá ${fallbackAfter} giây.`;
+      }
+    });
   } catch { /* Keep neutral AI labels when configuration cannot be read. */ }
 }
 loadProviderInfo();
+loadSavedConversations();
+
+async function loadSavedConversations() {
+  try {
+    const res = await fetch('/api/conversations', { cache: 'no-store' });
+    if (!res.ok) return;
+    const data = await res.json();
+    savedConversations.replaceChildren();
+    for (const item of data.conversations || []) {
+      const row = element('div', 'saved-row');
+      const open = element('button', 'session-question saved-open', item.title);
+      open.type = 'button'; open.title = item.title;
+      open.addEventListener('click', () => openSavedConversation(item.id));
+      const rename = element('button', 'saved-action', 'Đổi tên'); rename.type = 'button';
+      rename.addEventListener('click', () => renameSavedConversation(item));
+      const remove = element('button', 'saved-action saved-delete', 'Xóa'); remove.type = 'button';
+      remove.addEventListener('click', () => deleteSavedConversation(item));
+      row.append(open, rename, remove); savedConversations.append(row);
+    }
+    savedEmpty.hidden = (data.conversations || []).length > 0;
+  } catch { /* Chat remains usable when local history is unavailable. */ }
+}
+
+async function openSavedConversation(id) {
+  const openingRevision = conversationRevision;
+  const openingRequest = ++openConversationRequest;
+  try {
+    const res = await fetch(`/api/conversations/${encodeURIComponent(id)}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error('Không mở được cuộc trò chuyện đã lưu.');
+    const data = await res.json();
+    if (openingRevision !== conversationRevision || openingRequest !== openConversationRequest) return;
+    conversationRevision++;
+    clearAttachedImage();
+    activeController?.abort(); activeController = null; activeCase = null; renderCaseBanner();
+    messages.replaceChildren(); transcript.length = 0; chatHistory.length = 0;
+    sessionQuestions.replaceChildren(); sessionEmpty.hidden = true;
+    if (!activeConversationId) conversationImageContexts.delete(currentImageContextKey());
+    activeConversationId = id;
+    conversationHadImageContext = data.messages.some(item => item.role === 'user' && /\[[^\]]*ảnh không được lưu\]/i.test(item.content));
+    renderImageContext(); setBusy(false); setSidebar(false);
+    for (const [index, item] of data.messages.entries()) {
+      const previous = data.messages[index - 1];
+      const savedImageAnswer = item.role === 'assistant' && previous?.role === 'user'
+        && /\[[^\]]*ảnh không được lưu\]/i.test(previous.content);
+      const msg = bubble(item.role === 'user' ? 'user' : 'assistant');
+      if (item.role === 'assistant') assistantLabel(msg, savedImageAnswer
+        ? 'Đã lưu trên máy · phân tích ảnh chưa kiểm chứng' : 'Đã lưu trên máy · bản nháp học tập');
+      const sourceCards = (item.sources || []).map(renderSource);
+      if (item.role === 'assistant') msg.append(renderAnswer(item.content, savedImageAnswer ? [] : sourceCards));
+      else msg.append(element('p', '', item.content));
+      if (item.role === 'assistant' && item.sources?.length) {
+        const list = element('div', 'source-list');
+        list.append(element('div', 'sources-heading', savedImageAnswer
+          ? `TÀI LIỆU ĐỌC THÊM ĐÃ LƯU · ${item.sources.length}` : `NGUỒN ĐÃ LƯU · ${item.sources.length}`));
+        if (savedImageAnswer) msg.append(element('p', 'message-meta',
+          'Tài liệu đọc thêm không xác nhận dấu hiệu trên ảnh. Tệp ảnh không được lưu; hãy đính kèm lại để hỏi tiếp.'));
+        sourceCards.forEach(card => list.append(card));
+        msg.append(list);
+      }
+      transcript.push({ role: item.role === 'user' ? 'Bạn' : 'BoneScope', text: item.content, passages: item.sources || [] });
+      if (item.role === 'user') chatHistory.push({ role: 'user', content: item.content });
+      else chatHistory.push({ role: 'assistant', content: item.content });
+    }
+    exportButton.disabled = transcript.length === 0; scrollToLatest(); announce('Đã mở cuộc trò chuyện đã lưu.');
+  } catch (error) { if (openingRequest === openConversationRequest) announce(error.message); }
+}
+
+async function renameSavedConversation(item) {
+  const title = prompt('Tên mới cho cuộc trò chuyện:', item.title)?.trim();
+  if (!title || title === item.title) return;
+  const res = await fetch(`/api/conversations/${encodeURIComponent(item.id)}`, { method: 'PATCH', headers: {'Content-Type':'application/json'}, body: JSON.stringify({title}) });
+  if (res.ok) loadSavedConversations();
+}
+
+async function deleteSavedConversation(item) {
+  if (!confirm(`Xóa vĩnh viễn cuộc trò chuyện “${item.title}” khỏi máy này?`)) return;
+  const res = await fetch(`/api/conversations/${encodeURIComponent(item.id)}`, { method: 'DELETE' });
+  if (res.ok) {
+    conversationImageContexts.delete(`saved:${item.id}`);
+    if (activeConversationId === item.id) resetChat();
+    loadSavedConversations(); announce('Đã xóa cuộc trò chuyện khỏi máy.');
+  }
+}
+
+async function persistTurn(question, answer, sources = [], imageContextKey = null) {
+  const savingRevision = conversationRevision;
+  const savingConversationId = activeConversationId;
+  try {
+    const res = await fetch('/api/conversations/turn', { method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({conversation_id:savingConversationId,question,answer,sources}), cache:'no-store' });
+    if (!res.ok) throw new Error('Lưu lịch sử không thành công.');
+    const savedId = (await res.json()).conversation_id;
+    const savedImageContextKey = `saved:${savedId}`;
+    if (imageContextKey && conversationImageContexts.has(imageContextKey)) {
+      const file = conversationImageContexts.get(imageContextKey);
+      conversationImageContexts.delete(imageContextKey);
+      conversationImageContexts.set(savedImageContextKey, file);
+    }
+    if (savingRevision === conversationRevision && activeConversationId === savingConversationId) {
+      activeConversationId = savedId;
+      renderImageContext();
+    }
+    loadSavedConversations();
+  } catch { announce('Câu trả lời đã hiển thị, nhưng chưa lưu được lịch sử SQLite.'); }
+}
 
 function setBusy(busy) {
   submit.disabled = busy;
@@ -133,6 +301,8 @@ function scrollToLatest() {
 
 function resetChat(options = {}) {
   conversationRevision += 1;
+  clearAttachedImage();
+  if (!activeConversationId) conversationImageContexts.delete(currentImageContextKey());
   if (activeController) activeController.abort();
   activeController = null;
   if (!options.keepCase && activeCase?.case_id) {
@@ -145,6 +315,10 @@ function resetChat(options = {}) {
   setBusy(false);
   transcript.length = 0;
   chatHistory.length = 0;
+  activeConversationId = null;
+  draftConversationContextKey = createDraftConversationContextKey();
+  conversationHadImageContext = false;
+  renderImageContext();
   sessionQuestions.replaceChildren();
   sessionEmpty.hidden = false;
   exportButton.disabled = true;
@@ -175,6 +349,14 @@ function updateCounter() {
 }
 
 input.addEventListener('input', () => { resizeInput(); updateCounter(); });
+messages.addEventListener('pointermove', event => {
+  const card = event.target.closest('.suggestion');
+  if (!card) return;
+  const rect = card.getBoundingClientRect();
+  card.style.setProperty('--mouse-x', `${(event.clientX - rect.left).toFixed(1)}px`);
+  card.style.setProperty('--mouse-y', `${(event.clientY - rect.top).toFixed(1)}px`);
+});
+
 messages.addEventListener('click', event => {
   const suggestion = event.target.closest('.suggestion');
   if (!suggestion) return;
@@ -240,7 +422,10 @@ function appendInline(parent, text, sourceCards) {
         citation.setAttribute('aria-label', `Đọc nguồn S${match[2]}`);
         citation.addEventListener('click', () => {
           source.open = true;
-          source.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+          source.classList.remove('is-highlighted');
+          void source.offsetWidth;
+          source.classList.add('is-highlighted');
+          source.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
           source.querySelector('summary').focus();
         });
         parent.append(citation);
@@ -279,7 +464,7 @@ function renderAnswer(text, sourceCards) {
 
 function renderResult(data) {
   if (data.answer_ready !== false) throw new Error('Trạng thái kết quả không hợp lệ.');
-  if (!['greeting', 'out_of_scope', 'insufficient_evidence', 'candidates_found', 'conversation', 'case_explanation'].includes(data.status)) throw new Error('Định dạng kết quả không hợp lệ.');
+  if (!['greeting', 'out_of_scope', 'insufficient_evidence', 'candidates_found', 'conversation', 'case_explanation', 'image_chat'].includes(data.status)) throw new Error('Định dạng kết quả không hợp lệ.');
   if (data.status === 'candidates_found' && (!Array.isArray(data.passages) || !data.passages.length)) throw new Error('Định dạng nguồn không hợp lệ.');
   if (data.status === 'case_explanation' && !Array.isArray(data.passages)) throw new Error('Định dạng nguồn không hợp lệ.');
   const answer = bubble('assistant');
@@ -304,36 +489,70 @@ function renderResult(data) {
     announce('Chưa tìm được bằng chứng phù hợp.');
     return;
   }
-  const isChat = data.status === 'conversation';
+  const isImageChat = data.status === 'image_chat';
+  const isChat = data.status === 'conversation' || isImageChat;
   const isCaseExplain = data.status === 'case_explanation';
-  if (!isCaseExplain && ((!isChat && data.status !== 'candidates_found') || !Array.isArray(data.passages) || (isChat ? data.passages.length !== 0 : !data.passages.length))) {
+  if (!isCaseExplain && (!Array.isArray(data.passages)
+    || (data.status === 'conversation' && data.passages.length !== 0)
+    || (data.status === 'candidates_found' && !data.passages.length))) {
     throw new Error('Định dạng kết quả không hợp lệ.');
   }
 
-  let badge = `${providerLabels[data.provider] || 'AI'} · ${isChat ? 'trò chuyện · kiến thức chung' : 'bản nháp chưa kiểm chứng'}`;
+  const answerProviderLabel = providerLabelFor(data.provider, data.model);
+  let badge = `${answerProviderLabel} · ${isImageChat ? 'phân tích ảnh · chưa kiểm chứng' : isChat ? 'trò chuyện · kiến thức chung' : 'bản nháp chưa kiểm chứng'}`;
   if (data.case_context_used) badge += ' · ngữ cảnh ca ảnh';
   if (isCaseExplain) {
     badge = data.basis === 'documents'
-      ? `${providerLabels[data.provider] || 'AI'} · giải thích ca học tập · chưa kiểm chứng`
+      ? `${answerProviderLabel} · giải thích ca học tập · chưa kiểm chứng`
       : 'BoneScope · tóm tắt ca học tập (mẫu máy chủ)';
   }
   assistantLabel(answer, badge);
   const answerText = data.answer || 'Chưa tạo được câu trả lời.';
   const sourceCards = data.passages.map(renderSource);
-  answer.append(renderAnswer(answerText, sourceCards));
+  answer.append(renderAnswer(answerText, isImageChat ? [] : sourceCards));
+  if (isImageChat && data.image_metadata_match) {
+    const siteLabels = { 'hip bone': 'xương hông', pelvis: 'vùng chậu', 'hip-joint': 'khớp háng',
+      'knee-joint': 'khớp gối', femur: 'xương đùi', humerus: 'xương cánh tay',
+      tibia: 'xương chày', fibula: 'xương mác', ulna: 'xương trụ', radius: 'xương quay',
+      hand: 'bàn tay', foot: 'bàn chân', 'ankle-joint': 'khớp cổ chân', 'elbow-joint': 'khớp khuỷu',
+      'shoulder-joint': 'khớp vai', 'upper limb': 'chi trên', 'lower limb': 'chi dưới' };
+    const match = data.image_metadata_match;
+    const sites = (match.sites || []).map(site => siteLabels[site] || site).join(', ') || 'không có trường vị trí';
+    const views = (match.views || []).join(', ') || 'không có trường tư thế';
+    answer.append(element('p', 'message-meta',
+      `Metadata BTXRD khớp SHA-256 với ${match.image_id}: ${sites}; tư thế ${views}. Đây là metadata nguồn, không phải kết luận AI nhìn thấy.`));
+  }
   if (data.draft_error) {
     answer.append(element('p', 'message-meta', `Lưu ý bản nháp AI: ${data.draft_error}`));
   }
   const caveat = element('p', 'answer-caveat');
   caveat.append(icon('M12 3.5 20 18H4L12 3.5Z M12 9v4m0 2.5h.01'));
   caveat.append(document.createTextNode('Nội dung do AI tạo, chưa được kiểm chứng tự động. Hãy đối chiếu từng ý với nguồn bên dưới.'));
-  if (!isChat && (!isCaseExplain || data.basis === 'documents')) answer.append(caveat);
+  if (isImageChat) {
+    caveat.textContent = 'Phân tích ảnh do AI tạo, có thể sai; metadata không nhìn thấy trong ảnh không được suy đoán. Ảnh không được lưu vào lịch sử.';
+    answer.append(caveat);
+  } else if (!isChat && (!isCaseExplain || data.basis === 'documents')) answer.append(caveat);
+
+  if (isImageChat && data.passages.length) {
+    answer.append(element('p', 'message-meta',
+      'Các nguồn dưới đây được tìm theo câu hỏi và phần mô tả ảnh. Đây là tài liệu đọc thêm, không xác nhận dấu hiệu trên ảnh hoặc chẩn đoán.'));
+  }
 
   const sourceList = element('div', 'source-list');
   sourceList.setAttribute('aria-label', 'Nguồn tham khảo');
-  sourceList.append(element('div', 'sources-heading', `ĐOẠN NGUỒN THAM KHẢO · ${data.passages.length}`));
+  sourceList.append(element('div', 'sources-heading', isImageChat
+    ? `TÀI LIỆU LIÊN QUAN ĐỂ ĐỌC THÊM · ${data.passages.length}`
+    : `ĐOẠN NGUỒN THAM KHẢO · ${data.passages.length}`));
   sourceCards.forEach(card => sourceList.append(card));
   if (sourceCards.length) answer.append(sourceList);
+  else if (isImageChat) {
+    const sourceNote = data.source_lookup_status === 'timeout'
+      ? 'Phân tích ảnh hoàn tất, nhưng tra cứu nguồn bị quá thời gian. Bạn có thể hỏi lại sau.'
+      : data.source_lookup_status === 'unavailable'
+        ? 'Phân tích ảnh hoàn tất, nhưng kho tài liệu cục bộ hiện không truy xuất được.'
+        : 'Chưa tìm thấy đoạn tài liệu phù hợp trong kho BoneScope. Điều này không xác nhận ảnh bình thường hay không có bất thường.';
+    answer.append(element('p', 'message-meta', sourceNote));
+  }
 
   const actions = element('div', 'assistant-tools');
   const copy = element('button', 'text-action', 'Sao chép câu trả lời');
@@ -352,32 +571,49 @@ function renderResult(data) {
   });
   actions.append(copy);
   answer.append(actions);
-  announce(isChat ? 'Đã nhận phản hồi trò chuyện, không tra cứu kho tài liệu ở lượt này.' : `Đã tìm thấy câu trả lời và ${data.passages.length} đoạn nguồn tham khảo. Câu trả lời AI chưa được kiểm chứng.`);
+  announce(isImageChat
+    ? data.passages.length
+      ? `Đã nhận phân tích ảnh và ${data.passages.length} tài liệu liên quan.`
+      : 'Đã nhận phân tích ảnh; chưa tìm thấy tài liệu liên quan trong kho.'
+    : isChat ? 'Đã nhận phản hồi trò chuyện, không tra cứu kho tài liệu ở lượt này.'
+      : `Đã tìm thấy câu trả lời và ${data.passages.length} đoạn nguồn tham khảo. Câu trả lời AI chưa được kiểm chứng.`);
 }
 
-function showError(message, question) {
+function showError(message, question, imageFile = null) {
   transcript.push({ role: 'BoneScope · Lỗi', text: message });
   const error = bubble('assistant', 'error-message');
   assistantLabel(error, 'Không thể hoàn tất yêu cầu');
   error.append(element('p', '', message));
-  const retry = element('button', 'text-action', 'Thử lại');
+  const retry = element('button', 'text-action', imageFile ? 'Thử lại với ảnh đã gửi' : 'Thử lại');
   retry.type = 'button';
   retry.append(icon('M20 7v5h-5M4 17v-5h5m-3.5-3A7 7 0 0 1 18 7l2 5M4 12l2 5a7 7 0 0 0 12.5-2'));
   retry.prepend(retry.lastChild);
-  retry.addEventListener('click', () => sendQuestion(question));
+  const retryRevision = conversationRevision;
+  retry.addEventListener('click', () => {
+    if (retryRevision === conversationRevision) sendQuestion(question, imageFile);
+  });
   error.append(retry);
   announce(message);
 }
 
-async function sendQuestion(question) {
-  if (!question || submit.disabled) return;
+async function sendQuestion(question, newlyAttachedImage = null, imageContextKey = currentImageContextKey()) {
+  if (submit.disabled) return;
+  if (newlyAttachedImage) conversationImageContexts.set(imageContextKey, newlyAttachedImage);
+  const imageFile = newlyAttachedImage || conversationImageContexts.get(imageContextKey) || null;
+  if (!question && !imageFile) return;
+  if (imageFile) conversationHadImageContext = true;
+  question = question || 'Hãy mô tả ảnh và những gì có thể quan sát được.';
+  if (imageContextKey === currentImageContextKey()) renderImageContext(imageContextKey);
   stoppedByUser = false;
-  const history = boundedHistory();
+  const history = boundedHistory(Boolean(imageFile));
   const mode = chatMode.value;
   const revision = conversationRevision;
   if (messages.querySelector('.welcome-block')) messages.replaceChildren();
   const user = bubble('user');
   user.append(element('p', '', question));
+  if (imageFile) user.append(element('p', 'message-meta', newlyAttachedImage
+    ? `Ảnh ${imageFile.name} đã gửi · được giữ làm ngữ cảnh trong cuộc trò chuyện này`
+    : `Đang tiếp tục dựa trên ảnh ${imageFile.name} đã gửi trong cuộc trò chuyện này`));
   transcript.push({ role: 'Bạn', text: question });
   exportButton.disabled = false;
   sessionEmpty.hidden = true;
@@ -403,17 +639,29 @@ async function sendQuestion(question) {
   const progressTimer = setInterval(() => {
     progressText.textContent = `Đang xử lý câu hỏi · ${Math.floor((Date.now() - startedAt) / 1000)} giây`;
   }, 1000);
-  const timer = setTimeout(() => controller.abort(), 90000);
+  // The query API allows 105s; leave time for its error/result to reach the UI.
+  const timer = setTimeout(() => controller.abort(), imageFile ? 90000 : 110000);
   const payload = { question, history, mode };
   if (activeCase?.case_id) payload.case_id = activeCase.case_id;
   try {
-    const response = await fetch('/api/query', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-      cache: 'no-store',
-      signal: controller.signal,
-    });
+    let response;
+    if (imageFile) {
+      progressText.textContent = 'Đang gửi ảnh tới AI để phân tích…';
+      const formData = new FormData();
+      formData.append('file', imageFile);
+      formData.append('question', question);
+      formData.append('history', JSON.stringify(history));
+      response = await fetch('/api/image-chat', { method: 'POST', body: formData,
+        cache: 'no-store', signal: controller.signal });
+    } else {
+      response = await fetch('/api/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        cache: 'no-store',
+        signal: controller.signal,
+      });
+    }
     if (response.status === 410 && activeCase) {
       activeCase = null;
       renderCaseBanner();
@@ -433,6 +681,8 @@ async function sendQuestion(question) {
     chatHistory.push({ role: 'user', content: question });
     chatHistory.push({ role: 'assistant', content: data.answer || messages.lastElementChild.innerText });
     transcript.push({ role: 'BoneScope', text: data.answer || messages.lastElementChild.innerText, passages: data.passages || [] });
+    const savedQuestion = imageFile ? `${question}\n\n[Đã gửi kèm ảnh ngữ cảnh; ảnh không được lưu]` : question;
+    await persistTurn(savedQuestion, data.answer || messages.lastElementChild.innerText, data.passages || [], imageContextKey);
   } catch (error) {
     if (revision !== conversationRevision) return;
     pending.remove();
@@ -443,9 +693,9 @@ async function sendQuestion(question) {
         assistantLabel(cancelled, 'Đã dừng chờ phản hồi');
         cancelled.append(element('p', 'message-meta', 'Bạn có thể gửi câu hỏi khác. Yêu cầu đã gửi có thể vẫn được máy chủ xử lý.'));
         announce('Đã dừng chờ phản hồi.');
-      } else showError(`Đã hết thời gian chờ tra cứu và tạo bản nháp. Hãy kiểm tra kết nối ${providerLabel} hoặc thử lại sau.`, question);
+      } else showError(`Đã hết thời gian chờ ${imageFile ? 'phân tích ảnh' : 'tra cứu và tạo bản nháp'}. Hãy kiểm tra kết nối ${providerLabel} hoặc thử lại sau.`, question, imageFile);
     } else {
-      showError(error.message || 'Đã xảy ra lỗi khi tra cứu.', question);
+      showError(error.message || 'Đã xảy ra lỗi khi tra cứu.', question, imageFile);
     }
   } finally {
     clearTimeout(timer);
@@ -459,14 +709,93 @@ async function sendQuestion(question) {
   }
 }
 
+function setAttachedImage(file) {
+  attachedImage = file;
+  imageAttachmentName.textContent = `${file.name} · ${(file.size / 1024 / 1024).toFixed(2)} MiB`;
+  imageAttachment.hidden = false;
+}
+
+function clearAttachedImage() {
+  attachedImage = null;
+  imageInput.value = '';
+  imageAttachment.hidden = true;
+  imageAttachmentName.textContent = '';
+}
+
+function tryAttachImageFile(file) {
+  if (!file) return false;
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    clearAttachedImage(); announce('Chỉ nhận ảnh JPEG, PNG hoặc WEBP.'); return false;
+  }
+  if (!file.size || file.size > 10 * 1024 * 1024) {
+    clearAttachedImage(); announce('Ảnh phải có nội dung và không vượt quá 10 MiB.'); return false;
+  }
+  setAttachedImage(file);
+  announce('Đã đính kèm ảnh. Khi gửi, ảnh sẽ được chuyển tới nhà cung cấp AI để phân tích.');
+  return true;
+}
+
+document.getElementById('attach-image').addEventListener('click', () => imageInput.click());
+document.getElementById('remove-image-attachment').addEventListener('click', clearAttachedImage);
+removeImageContext.addEventListener('click', () => {
+  conversationImageContexts.delete(currentImageContextKey());
+  renderImageContext();
+  announce('Đã xóa ảnh khỏi ngữ cảnh cuộc trò chuyện hiện tại.');
+});
+reattachImageContext.addEventListener('click', () => imageInput.click());
+imageInput.addEventListener('change', () => {
+  const file = imageInput.files?.[0];
+  if (!file) return;
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
+    clearAttachedImage(); announce('Chỉ nhận ảnh JPEG, PNG hoặc WEBP.'); return;
+  }
+  if (!file.size || file.size > 10 * 1024 * 1024) {
+    clearAttachedImage(); announce('Ảnh phải có nội dung và không vượt quá 10 MiB.'); return;
+  }
+  setAttachedImage(file);
+  announce('Đã đính kèm ảnh. Khi gửi, ảnh sẽ được chuyển tới nhà cung cấp AI để phân tích.');
+});
+
+input.addEventListener('paste', event => {
+  const items = event.clipboardData?.items;
+  if (!items) return;
+  for (const item of items) {
+    if (item.kind === 'file' && item.type.startsWith('image/')) {
+      const file = item.getAsFile();
+      if (file) {
+        event.preventDefault();
+        tryAttachImageFile(file);
+        return;
+      }
+    }
+  }
+});
+
+['dragenter', 'dragover'].forEach(type => form.addEventListener(type, event => {
+  if (!event.dataTransfer?.types?.includes('Files')) return;
+  event.preventDefault();
+  form.classList.add('is-dragging');
+}));
+['dragleave', 'drop'].forEach(type => form.addEventListener(type, event => {
+  form.classList.remove('is-dragging');
+  if (type === 'drop' && event.dataTransfer?.files?.length) {
+    event.preventDefault();
+    tryAttachImageFile(event.dataTransfer.files[0]);
+  }
+}));
+
 form.addEventListener('submit', event => {
   event.preventDefault();
+  if (submit.disabled) return;
   const question = input.value.trim();
-  if (!question) return;
+  if (!question && !attachedImage) return;
+  const image = attachedImage;
+  const imageContextKey = currentImageContextKey();
+  clearAttachedImage();
   input.value = '';
   resizeInput();
   updateCounter();
-  sendQuestion(question);
+  sendQuestion(question, image, imageContextKey);
 });
 
 input.addEventListener('keydown', event => {
@@ -482,7 +811,7 @@ function applyTheme(theme) {
   const isDark = theme === 'dark';
   themeToggle.setAttribute('aria-label', isDark ? 'Bật giao diện sáng' : 'Bật giao diện tối');
   themeToggle.title = isDark ? 'Bật giao diện sáng' : 'Bật giao diện tối';
-  document.querySelector('meta[name="theme-color"]').content = isDark ? '#141e19' : '#f5f8f7';
+  document.querySelector('meta[name="theme-color"]').content = isDark ? '#0b0e14' : '#f6f8fb';
 }
 let savedTheme = 'light';
 try { savedTheme = localStorage.getItem('bonescope-theme') === 'dark' ? 'dark' : 'light'; } catch { /* Storage may be unavailable in restricted browser contexts. */ }
@@ -547,6 +876,7 @@ exportButton.addEventListener('click', () => {
       if (hit.license) chunks.push(`Giấy phép: ${hit.license}`);
     });
   });
+  chunks.splice(1, 0, 'Đã xuất từ cuộc trò chuyện đang hiển thị. Hình ảnh X-quang và metadata ca không được lưu trong lịch sử chat.');
   const url = URL.createObjectURL(new Blob(['\ufeff' + chunks.join('\n\n')], { type: 'text/markdown;charset=utf-8' }));
   const link = element('a'); link.href = url; link.download = `bonescope-${new Date().toISOString().slice(0, 10)}.md`;
   document.body.append(link); link.click(); link.remove();
@@ -595,6 +925,7 @@ function showCaseError(msg) {
 }
 
 function resetCaseForm() {
+  referenceImageRequest++;
   caseController?.abort();
   caseForm.reset();
   caseForm.removeAttribute('aria-busy');
@@ -607,6 +938,8 @@ function resetCaseForm() {
   caseJsonSelect.replaceChildren();
   caseJsonPickerWrap.hidden = true;
   caseJsonNote.textContent = '';
+  caseImageMatchNote.textContent = '';
+  askAiAboutCaseImage.hidden = true;
   importedCases = [];
   expectedCaseImage = null;
   binaryControls.forEach(ctrl => { ctrl.value = ''; });
@@ -676,7 +1009,8 @@ document.getElementById('case-clear-fields').addEventListener('click', () => {
   showCaseError('');
 });
 
-caseImage.addEventListener('change', () => {
+caseImage.addEventListener('change', async () => {
+  referenceImageRequest++;
   showCaseError('');
   caseConfirmed.checked = false;
   if (previewObjectUrl) { URL.revokeObjectURL(previewObjectUrl); previewObjectUrl = null; }
@@ -689,6 +1023,8 @@ caseImage.addEventListener('change', () => {
   if (!file) {
     casePreviewRow.hidden = true;
     caseImageLabel.textContent = 'Chọn ảnh X-quang (JPG, PNG, BMP, TIFF ≤ 30 MiB)';
+    caseImageMatchNote.textContent = '';
+    askAiAboutCaseImage.hidden = true;
     return;
   }
   if (!/\.(jpe?g|png|bmp|tiff?)$/i.test(file.name)) {
@@ -701,12 +1037,107 @@ caseImage.addEventListener('change', () => {
     caseImage.value = '';
     return;
   }
+  caseAge.value = '';
+  caseGender.value = '';
+  binaryControls.forEach(ctrl => { ctrl.value = ''; });
+  expectedCaseImage = null;
+  caseJsonNote.textContent = '';
+  updateBinaryCounter();
   previewObjectUrl = URL.createObjectURL(file);
   casePreviewImg.hidden = false;
   casePreviewImg.src = previewObjectUrl;
   casePreviewName.textContent = `${file.name} · ${(file.size / 1024 / 1024).toFixed(2)} MiB`;
   caseImageLabel.textContent = file.name;
   casePreviewRow.hidden = false;
+  caseImageMatchNote.textContent = 'Đang kiểm tra ảnh gốc trong BTXRD để tự ghép metadata…';
+  askAiAboutCaseImage.hidden = true;
+  try {
+    const matchForm = new FormData();
+    matchForm.append('file', file);
+    const response = await fetch('/api/case/metadata-match', {
+      method: 'POST', body: matchForm, cache: 'no-store'
+    });
+    if (!response.ok) throw new Error('Không kiểm tra được ảnh với chỉ mục BTXRD.');
+    const match = await response.json();
+    if (caseImage.files[0] !== file) return;
+    if (match.matched) {
+      const meta = validateMetadataObject(match.metadata);
+      caseAge.value = String(meta.age);
+      caseGender.value = meta.gender;
+      BINARY_FIELDS.forEach(([key]) => { binaryControls.get(key).value = String(meta[key]); });
+      expectedCaseImage = null;
+      caseConfirmed.checked = false;
+      updateBinaryCounter();
+      caseImageMatchNote.textContent = `Khớp chính xác ${match.image_id}; đã lấy metadata từ BTXRD. Nhãn tham chiếu: ${match.ground_truth || 'không có'}. Checkpoint hiện cũng dùng BTXRD làm nguồn huấn luyện, nên đây không phải đánh giá độc lập.`;
+    } else {
+      caseImageMatchNote.textContent = match.reason === 'ambiguous_metadata'
+        ? 'Ảnh trùng nội dung với nhiều dòng BTXRD nhưng metadata khác nhau. Không tự điền; cần đối chiếu nguồn gốc ảnh trước khi chạy Swin.'
+        : 'Không khớp ảnh gốc trong BTXRD. Không thể tự suy ra tuổi/giới tính; chọn “Hỏi AI về ảnh” để nhận mô tả trực quan, hoặc nhập metadata có nguồn để chạy Swin.';
+      askAiAboutCaseImage.hidden = !['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 10 * 1024 * 1024;
+    }
+  } catch (error) {
+    if (caseImage.files[0] === file) {
+      caseImageMatchNote.textContent = error.message;
+      askAiAboutCaseImage.hidden = false;
+    }
+  }
+});
+
+async function loadReferenceImage() {
+  const imageId = caseReferenceId.value.trim().toUpperCase().replace(/\.JPEG$/, '');
+  if (!/^IMG\d{6}$/.test(imageId)) {
+    showCaseError('Nhập mã ảnh BTXRD dạng IMG000001.');
+    return;
+  }
+  const requestId = ++referenceImageRequest;
+  caseReferenceLoad.disabled = true;
+  showCaseError('');
+  caseImageMatchNote.textContent = `Đang nạp ${imageId} từ BTXRD cục bộ…`;
+  try {
+    const response = await fetch(`/api/reference-images/${imageId}`, { cache: 'no-store' });
+    if (!response.ok) {
+      let detail = 'Không tìm thấy ảnh này trong BTXRD cục bộ. Kiểm tra mã và thư mục dữ liệu.';
+      try { const body = await response.json(); if (typeof body.detail === 'string') detail = body.detail; } catch { /* Keep fallback. */ }
+      throw new Error(detail);
+    }
+    const blob = await response.blob();
+    if (!caseDialog.open || requestId !== referenceImageRequest) return;
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([blob], `${imageId}.jpeg`, { type: 'image/jpeg' }));
+    caseImage.files = transfer.files;
+    caseImage.dispatchEvent(new Event('change'));
+  } catch (error) {
+    if (caseDialog.open && requestId === referenceImageRequest) {
+      caseImageMatchNote.textContent = '';
+      showCaseError(error.message || 'Không nạp được ảnh BTXRD.');
+    }
+  } finally {
+    caseReferenceLoad.disabled = false;
+  }
+}
+
+caseReferenceLoad.addEventListener('click', loadReferenceImage);
+document.querySelectorAll('.btxrd-sample-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    caseReferenceId.value = chip.dataset.btxrdId || '';
+    loadReferenceImage();
+  });
+});
+caseReferenceId.addEventListener('keydown', event => {
+  if (event.key === 'Enter') { event.preventDefault(); loadReferenceImage(); }
+});
+
+askAiAboutCaseImage.addEventListener('click', () => {
+  const file = caseImage.files[0];
+  if (!file) return;
+  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 10 * 1024 * 1024) {
+    showCaseError('Luồng hỏi ảnh cần JPEG, PNG hoặc WEBP không quá 10 MiB.');
+    return;
+  }
+  setAttachedImage(file);
+  closeCaseModal();
+  input.focus();
+  announce('Ảnh được đính kèm. Khi gửi, ảnh sẽ được chuyển tới nhà cung cấp AI.');
 });
 
 casePreviewImg.addEventListener('error', () => {
@@ -962,6 +1393,7 @@ caseForm.addEventListener('submit', async event => {
       throw new Error(detail);
     }
     const caseData = await res.json();
+    if (caseController.signal.aborted) throw new DOMException('Analysis cancelled', 'AbortError');
     if (caseData.answer_ready !== false || !caseData.case_id) throw new Error('Phản hồi ca ảnh không hợp lệ.');
 
     // Replacing an image always clears prior chat and deletes the old case context.
@@ -1017,6 +1449,7 @@ caseForm.addEventListener('submit', async event => {
         throw new Error(detail);
       }
       const explainData = await explainRes.json();
+      if (caseController.signal.aborted) return;
       if (revision !== conversationRevision) return;
       pending.remove();
       renderResult(explainData);
@@ -1024,6 +1457,7 @@ caseForm.addEventListener('submit', async event => {
       chatHistory.push({ role: 'user', content: `Đã phân tích ca ảnh học tập; mô hình dự đoán Top-1 là ${caseData.top1} (${Number(caseData.top3?.[0]?.score ?? 0).toFixed(3)}). Hãy giải thích học thuật.` });
       chatHistory.push({ role: 'assistant', content: assistantText });
       transcript.push({ role: 'BoneScope', text: assistantText, passages: explainData.passages || [] });
+      await persistTurn('Phân tích ca ảnh học tập. Không lưu ảnh, tên tệp hoặc metadata ca.', assistantText, explainData.passages || []);
     } catch (explainErr) {
       if (revision === conversationRevision) {
         pending.remove();

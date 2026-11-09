@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "scope": "local configuration/assets only; no model inference or provider request",
+  "answer_ready": false,
+  "checks": [
+    {
+      "name": "dependencies",
+      "status": "PASS",
+      "detail": "Core chatbot dependencies found"
+    },
+    {
+      "name": "rag/demo_api.py",
+      "status": "PASS",
+      "detail": "Required application file"
+    },
+    {
+      "name": "rag/demo_web/index.html",
+      "status": "PASS",
+      "detail": "Required application file"
+    },
+    {
+      "name": "rag/demo_web/app.js",
+      "status": "PASS",
+      "detail": "Required application file"
+    },
+    {
+      "name": "rag/demo_web/style.css",
+      "status": "PASS",
+      "detail": "Required application file"
+    },
+    {
+      "name": "rag/demo_web/studio.css",
+      "status": "PASS",
+      "detail": "Required application file"
+    },
+    {
+      "name": "rag/demo_web/graphite.css",
+      "status": "PASS",
+      "detail": "Required application file"
+    },
+    {
+      "name": "provider_config",
+      "status": "PASS",
+      "detail": "Provider/model allowlist valid"
+    },
+    {
+      "name": "provider_key",
+      "status": "PASS",
+      "detail": "Key configured (value hidden)"
+    },
+    {
+      "name": "rag_index",
+      "status": "PASS",
+      "detail": "Corpus, source lock and vectors match index manifest"
+    },
+    {
+      "name": "embedding",
+      "status": "PASS",
+      "detail": "Local embedding assets/dependency found"
+    },
+    {
+      "name": "local_classifier",
+      "status": "PASS",
+      "detail": "Local classifier assets/dependencies found"
+    },
+    {
+      "name": "chat_database",
+      "status": "PASS",
+      "detail": "SQLite read-only integrity check completed"
+    }
+  ]
+}

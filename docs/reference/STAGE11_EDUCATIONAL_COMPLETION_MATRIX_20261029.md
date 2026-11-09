@@ -1,5 +1,7 @@
 # Giai đoạn 11 theo mục tiêu báo cáo học tập thực nghiệm
 
+**Đối chiếu tiếp nối 09/11/2026:** các bước 1–6 vẫn có artifact; full regression phần mềm mới nhất đạt 172 passed / 132 subtests, gồm browser smoke Chrome với AI/retrieval giả lập và DB/profile tạm. Bước 7 vẫn chỉ có routing `out_of_scope`/`insufficient_evidence` và lọc `min_score` tùy chọn; chưa có ngưỡng similarity mặc định được hiệu chỉnh trên tập độc lập. Vì vậy có thể báo **6/7 ≈ 86% độ bao phủ checklist kỹ thuật này**, không phải phần trăm hoàn thành toàn dự án hay mức nghiệm thu. G1–G7 vẫn OPEN, `answer_ready=false`. Xem [báo cáo trạng thái 09/11](../reports/PROJECT_COMPLETION_STATUS_20261109_VI.md).
+
 **Ngày đối chiếu:** 29/10/2026. [Phạm vi người dùng xác định](STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md): đề tài học tập, không cung cấp cho bác sĩ hoặc người bệnh. Bảng này đối chiếu đúng bảy bước kỹ thuật trong [lộ trình Giai đoạn 11](../LO_TRINH_THUC_HIEN_DU_AN_AI.md); trạng thái triển khai không phải bằng chứng về độ đúng y khoa.
 
 | Bước lộ trình | Kết quả có thể trình bày trong đồ án | Giới hạn còn phải nêu |

@@ -1,0 +1,556 @@
+{
+  "record_id": "stage12-btxrd-catalogue-and-mapping-analysis-20261105",
+  "created_at_utc": "2026-11-06T04:05:01.182385+00:00",
+  "scope": "In-source descriptive analysis of the local BTXRD reference manifest (3,746 rows), 22 metadata fields, SHA-256 duplicate-byte groups, and 10-label RAG mapping coverage. Educational and provenance documentation only; not external clinical validation.",
+  "answer_ready": false,
+  "manifest_path": "data/external_datasets/BTXRD/reference/manifest.csv",
+  "manifest_sha256": "e36be2de308e240c28c38e378416bbf789d6e251665ac66cc46dd62dbf19fe64",
+  "total_images": 3746,
+  "unique_sha256_count": 3725,
+  "duplicate_sha256_Analysis": {
+    "duplicate_hash_group_count": 21,
+    "conflicting_metadata_group_count": 9,
+    "identical_metadata_group_count": 12,
+    "conflicting_metadata_image_ids": [
+      "IMG000430.jpeg",
+      "IMG000591.jpeg",
+      "IMG000707.jpeg",
+      "IMG000765.jpeg",
+      "IMG001721.jpeg",
+      "IMG001722.jpeg",
+      "IMG001733.jpeg",
+      "IMG001734.jpeg",
+      "IMG001766.jpeg",
+      "IMG001789.jpeg",
+      "IMG001799.jpeg",
+      "IMG001836.jpeg",
+      "IMG003346.jpeg",
+      "IMG003456.jpeg",
+      "IMG003668.jpeg",
+      "IMG003669.jpeg",
+      "IMG003685.jpeg",
+      "IMG003686.jpeg"
+    ],
+    "conflicting_metadata_groups": [
+      {
+        "sha256": "1f90054dbce1eb245f25376792129ed3f11be013dedb9679884d395556983762",
+        "image_ids": [
+          "IMG000430.jpeg",
+          "IMG000765.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "osteochondroma"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "9922a655a63d9916199ff7e4c2abf2362881598f196ed07621b5168f59bc3f55",
+        "image_ids": [
+          "IMG000591.jpeg",
+          "IMG003456.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "no-tumor"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": false
+      },
+      {
+        "sha256": "2a821efbeb008dad957bef906147eb31c8cdbad2c5aa09eba722de14e1820d22",
+        "image_ids": [
+          "IMG000707.jpeg",
+          "IMG003346.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "no-tumor"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": false
+      },
+      {
+        "sha256": "fb6ea8415dabd1705a0ad02c2ecbd0d2aacacc09cdde2b252289ecf9e52f70ec",
+        "image_ids": [
+          "IMG001721.jpeg",
+          "IMG001799.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "osteochondroma"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "7c756d8e400d3a8d106968d2d0eeb7c0a7a90bdfeec12cf9e8402fc4398a872c",
+        "image_ids": [
+          "IMG001722.jpeg",
+          "IMG001836.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "osteochondroma"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "a884f1e443f816aaeb3e4243abae72cde951a02c12ddfc406edf4e014be2189e",
+        "image_ids": [
+          "IMG001733.jpeg",
+          "IMG001766.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "osteochondroma"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "687b6e4ff3f91f009a87ec03058ddd9933d833bd633bf93af568b4eb4ddd8a1f",
+        "image_ids": [
+          "IMG001734.jpeg",
+          "IMG001789.jpeg"
+        ],
+        "ground_truths": [
+          "osteochondroma",
+          "osteochondroma"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "2757e9cf7c859412dbcdf2fa58d4ed6ce669322a80f18ae1dcd65e3cf25a574e",
+        "image_ids": [
+          "IMG003668.jpeg",
+          "IMG003686.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "09b4f34d010d9b7c3721390c873bcbcf28fe1322b50355733492456f80746067",
+        "image_ids": [
+          "IMG003669.jpeg",
+          "IMG003685.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": false,
+        "same_ground_truth": true
+      }
+    ],
+    "identical_metadata_groups": [
+      {
+        "sha256": "b08572cde3c7a911b9227ee136f02ce395a26bdaec673562a778fd36de19a920",
+        "image_ids": [
+          "IMG000245.jpeg",
+          "IMG000683.jpeg"
+        ],
+        "ground_truths": [
+          "simple bone cyst",
+          "simple bone cyst"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "39297499b1a0cba24debfa4f56dc2b223448ba7c6122fc216649a3d93eba8281",
+        "image_ids": [
+          "IMG000415.jpeg",
+          "IMG000497.jpeg"
+        ],
+        "ground_truths": [
+          "giant cell tumor",
+          "giant cell tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "a5af40131c6de64f59141c099fc6635d56667a3bd2414bf1c5dc3ad6885d1d49",
+        "image_ids": [
+          "IMG001673.jpeg",
+          "IMG001683.jpeg"
+        ],
+        "ground_truths": [
+          "osteosarcoma",
+          "osteosarcoma"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "dcc14a6a38b2de3bd70ad3254d6f7c50a5343589bbe361b396761ba082709bfd",
+        "image_ids": [
+          "IMG001873.jpeg",
+          "IMG003324.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "7c331c3d721942b5ed3fc39b0157a30a3e37480ddfc02144a866fea2b6eaad77",
+        "image_ids": [
+          "IMG001948.jpeg",
+          "IMG002166.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "116cc706300dc8046e9bc136346fed5eea6b184887e35b75c580035181ce3c11",
+        "image_ids": [
+          "IMG001950.jpeg",
+          "IMG002173.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "e100452c42c1e4c5dcdb5407dc1c4f9eafde70c91eb3d0527222b19e84e25605",
+        "image_ids": [
+          "IMG001951.jpeg",
+          "IMG002167.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "e710040c7d6902609be61316e9f5eec7acd339b81f08f99342541b80c04a7057",
+        "image_ids": [
+          "IMG001952.jpeg",
+          "IMG002168.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "9341914e43a1173a3c62fe31ae29aca0eacefbec50800f886e25f5f2db548d76",
+        "image_ids": [
+          "IMG001953.jpeg",
+          "IMG002169.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "7347871d28d8b64693353f42aef1346b9942ee3f72580d33bb72a8f976ce4fe2",
+        "image_ids": [
+          "IMG001954.jpeg",
+          "IMG002170.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "5cf21cae9f5a64f796e32439f963a92e0d11eec7369e7f8e455750a3db1986ad",
+        "image_ids": [
+          "IMG001955.jpeg",
+          "IMG002171.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      },
+      {
+        "sha256": "56a0c4a779b0a759e4e7342deb6a205f0d5247fe7c52edac079e4d1324300ddb",
+        "image_ids": [
+          "IMG001956.jpeg",
+          "IMG002172.jpeg"
+        ],
+        "ground_truths": [
+          "no-tumor",
+          "no-tumor"
+        ],
+        "same_metadata": true,
+        "same_ground_truth": true
+      }
+    ]
+  },
+  "label_guide_coverage": {
+    "mapped_single_label_count": 3745,
+    "unmapped_or_multilabel_count": 1,
+    "unmapped_or_multilabel_rows": [
+      {
+        "image_id": "IMG001276.jpeg",
+        "ground_truth": null,
+        "ground_truth_raw": null
+      }
+    ],
+    "by_status": {
+      "direct": {
+        "count": 1349,
+        "percentage": 36.01
+      },
+      "unresolved": {
+        "count": 357,
+        "percentage": 9.53
+      },
+      "aggregate": {
+        "count": 160,
+        "percentage": 4.27
+      },
+      "no_tumor": {
+        "count": 1879,
+        "percentage": 50.16
+      }
+    },
+    "by_label": {
+      "no-tumor": {
+        "count": 1879,
+        "percentage": 50.16,
+        "mapping_status": "no_tumor",
+        "rag_query": null,
+        "related_query": null
+      },
+      "osteochondroma": {
+        "count": 753,
+        "percentage": 20.1,
+        "mapping_status": "direct",
+        "rag_query": "Osteochondroma là gì, thường gặp ở đâu và có đặc điểm hình ảnh nào?",
+        "related_query": null
+      },
+      "multiple osteochondromas": {
+        "count": 263,
+        "percentage": 7.02,
+        "mapping_status": "unresolved",
+        "rag_query": null,
+        "related_query": null
+      },
+      "simple bone cyst": {
+        "count": 206,
+        "percentage": 5.5,
+        "mapping_status": "direct",
+        "rag_query": "Simple bone cyst (unicameral bone cyst) là gì và có đặc điểm hình ảnh nào?",
+        "related_query": null
+      },
+      "giant cell tumor": {
+        "count": 93,
+        "percentage": 2.48,
+        "mapping_status": "direct",
+        "rag_query": "Giant cell tumor of bone là gì và có đặc điểm hình ảnh nào?",
+        "related_query": null
+      },
+      "osteofibroma": {
+        "count": 44,
+        "percentage": 1.17,
+        "mapping_status": "unresolved",
+        "rag_query": null,
+        "related_query": null
+      },
+      "synovial osteochondroma": {
+        "count": 50,
+        "percentage": 1.33,
+        "mapping_status": "unresolved",
+        "rag_query": null,
+        "related_query": null
+      },
+      "other bt": {
+        "count": 115,
+        "percentage": 3.07,
+        "mapping_status": "aggregate",
+        "rag_query": null,
+        "related_query": null
+      },
+      "osteosarcoma": {
+        "count": 297,
+        "percentage": 7.93,
+        "mapping_status": "direct",
+        "rag_query": "Osteosarcoma là gì, thường gặp ở đâu và có đặc điểm hình ảnh nào?",
+        "related_query": null
+      },
+      "other mt": {
+        "count": 45,
+        "percentage": 1.2,
+        "mapping_status": "aggregate",
+        "rag_query": null,
+        "related_query": null
+      }
+    }
+  },
+  "metadata_distribution": {
+    "columns_count": 22,
+    "age_summary": {
+      "min": 1.0,
+      "q25": 16.0,
+      "median": 34.0,
+      "mean": 35.29,
+      "stdev": 20.9,
+      "q75": 53.0,
+      "max": 88.0
+    },
+    "gender_counts": {
+      "M": 2098,
+      "F": 1648,
+      "other": 0
+    },
+    "source_center_counts": {
+      "1": 2938,
+      "2": 549,
+      "3": 259
+    },
+    "source_center_by_label": {
+      "1": {
+        "no-tumor": 1593,
+        "osteochondroma": 628,
+        "multiple osteochondromas": 168,
+        "simple bone cyst": 117,
+        "giant cell tumor": 45,
+        "osteofibroma": 33,
+        "synovial osteochondroma": 46,
+        "other bt": 72,
+        "osteosarcoma": 215,
+        "other mt": 20
+      },
+      "2": {
+        "no-tumor": 259,
+        "osteochondroma": 79,
+        "multiple osteochondromas": 46,
+        "simple bone cyst": 54,
+        "giant cell tumor": 33,
+        "osteofibroma": 0,
+        "synovial osteochondroma": 2,
+        "other bt": 0,
+        "osteosarcoma": 66,
+        "other mt": 10
+      },
+      "3": {
+        "no-tumor": 27,
+        "osteochondroma": 46,
+        "multiple osteochondromas": 49,
+        "simple bone cyst": 35,
+        "giant cell tumor": 15,
+        "osteofibroma": 11,
+        "synovial osteochondroma": 2,
+        "other bt": 43,
+        "osteosarcoma": 16,
+        "other mt": 15
+      }
+    },
+    "anatomical_site_positive_counts": {
+      "lower limb": 2406,
+      "upper limb": 1124,
+      "tibia": 630,
+      "femur": 592,
+      "fibula": 259,
+      "humerus": 235,
+      "pelvis": 216,
+      "hand": 97,
+      "foot": 93,
+      "radius": 73,
+      "hip bone": 69,
+      "ulna": 62,
+      "knee-joint": 37,
+      "shoulder-joint": 12,
+      "elbow-joint": 5,
+      "ankle-joint": 4,
+      "hip-joint": 3
+    },
+    "radiographic_view_positive_counts": {
+      "frontal": 2181,
+      "lateral": 1269,
+      "oblique": 296
+    },
+    "radiographic_view_by_label": {
+      "no-tumor": {
+        "frontal": 1002,
+        "lateral": 688,
+        "oblique": 189
+      },
+      "osteochondroma": {
+        "frontal": 493,
+        "lateral": 222,
+        "oblique": 38
+      },
+      "multiple osteochondromas": {
+        "frontal": 162,
+        "lateral": 97,
+        "oblique": 4
+      },
+      "simple bone cyst": {
+        "frontal": 136,
+        "lateral": 43,
+        "oblique": 27
+      },
+      "giant cell tumor": {
+        "frontal": 55,
+        "lateral": 34,
+        "oblique": 4
+      },
+      "osteofibroma": {
+        "frontal": 25,
+        "lateral": 18,
+        "oblique": 1
+      },
+      "synovial osteochondroma": {
+        "frontal": 24,
+        "lateral": 23,
+        "oblique": 3
+      },
+      "other bt": {
+        "frontal": 67,
+        "lateral": 42,
+        "oblique": 6
+      },
+      "osteosarcoma": {
+        "frontal": 187,
+        "lateral": 89,
+        "oblique": 21
+      },
+      "other mt": {
+        "frontal": 30,
+        "lateral": 12,
+        "oblique": 3
+      }
+    },
+    "demo_strict_rule_check": {
+      "rule": ">=1 anatomical site == 1 and ==1 radiographic view == 1",
+      "compliant_count": 3746,
+      "compliant_percentage": 100.0,
+      "non_compliant_count": 0,
+      "non_compliant_sample_ids": []
+    }
+  }
+}

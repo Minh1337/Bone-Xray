@@ -1,10 +1,24 @@
 # Giao diện chatbot BoneScope
 
-Cập nhật: 31/10/2026. Giao diện được triển khai trực tiếp trong `rag/demo_web`, dựa trên bố cục Stitch và các token trong `rag/demo_web/DESIGN.md`. Dùng HTML, CSS, JavaScript thuần; không cần chạy npm, Vite hay tải font từ Internet.
+Cập nhật giao diện: 09/11/2026. Giao diện được triển khai trực tiếp trong `rag/demo_web`, dựa trên bố cục Stitch và các token trong `rag/demo_web/DESIGN.md`. `studio.css` và `graphite.css` được nạp sau `style.css`; ứng dụng dùng HTML, CSS, JavaScript thuần, không cần chạy npm, Vite hay tải font từ Internet.
 
-Phần tạo bản nháp hiện hỗ trợ **Groq/OpenAI**, chọn bằng `LLM_PROVIDER` trong `.env`. Workspace đang chọn Groq: xem [hướng dẫn Groq Free](GROQ_CHATBOT_SETUP_VI.md). Có thể chọn lại OpenAI theo [hướng dẫn kết nối OpenAI](OPENAI_CHATBOT_SETUP_VI.md).
+Phần tạo bản nháp ưu tiên **OpenRouter Free**; sau timeout, rate limit, phản hồi rỗng hoặc chưa hoàn tất có thể chuyển sang **Qwen trả phí dự phòng** (`qwen/qwen3.5-flash-02-23`). Groq chỉ tham gia khi bật rõ ràng và hiện mặc định tắt. Nhãn câu trả lời cho biết model thực tế. Xem [hướng dẫn cấu hình](OPENROUTER_CHATBOT_SETUP_VI.md).
 
 Chatbot đã có **hội thoại đa chủ đề và ngữ cảnh gần đây**, dùng nguồn khi hỏi về xương. Xem [hướng dẫn hội thoại và câu hỏi thử](CHATBOT_CONVERSATION_VI.md). Chế độ mặc định trên giao diện là “Trò chuyện + tài liệu”; có thể chọn “Chỉ tra cứu tài liệu”.
+
+Ô chat có nút **Ảnh** (hoặc dán trực tiếp `Ctrl+V` / kéo–thả tệp ảnh vào ô nhập) để đính kèm JPEG, PNG hoặc WEBP (tối đa 10 MiB). Vision chat dùng `google/gemma-4-31b-it:free` (model multimodal miễn phí), với prompt yêu cầu trả lời tiếng Việt, tách quan sát khỏi khả năng giải thích, thận trọng với chồng hình và ký hiệu R/L, không tự đoán metadata, nhãn hay điểm phân loại. Máy chủ chỉ thêm vị trí/tư thế từ BTXRD khi SHA-256 khớp duy nhất với manifest; không đưa nhãn ground-truth vào prompt. Ảnh không khớp chỉ được phân tích theo pixel và AI phải nói rõ vùng/chi tiết không chắc chắn. Sau phân tích, hệ thống tìm tối đa 4 đoạn tài liệu BoneScope dựa trên câu hỏi và phần mô tả ảnh; các thẻ này là nguồn đọc thêm, không xác nhận phát hiện trên ảnh. Nếu kho không có đoạn phù hợp hoặc đang bận, kết quả phân tích ảnh vẫn hiển thị và giao diện báo tình trạng tra cứu. Sau khi gửi, tệp được gỡ khỏi ô soạn; ảnh được giữ trong RAM của tab theo từng cuộc trò chuyện và gửi lại ở các lượt tiếp theo. **Bỏ ảnh** hủy tệp đang chờ gửi; **Xóa ngữ cảnh** gỡ ảnh đã gửi khỏi chat hiện tại. Ảnh không lưu vào SQLite; đóng/tải lại tab hoặc mở lịch sử ở tab khác thì cần đính kèm ảnh lại. Mọi phản hồi ảnh vẫn chưa kiểm chứng và không dùng để chẩn đoán.
+
+Nút **Ca ảnh · metadata** chạy bộ Swin cục bộ. Khi chọn ảnh, hệ thống đối chiếu SHA-256 với manifest BTXRD đã tải trong `data/external_datasets/BTXRD/`; chỉ ảnh gốc trùng byte mới tự điền metadata. Kết quả cho ảnh BTXRD không phải đánh giá độc lập vì checkpoint được huấn luyện từ cùng nguồn. Ảnh không khớp có thể chuyển sang nút **Hỏi AI về ảnh** để mô tả trực quan mà không điền metadata. Không suy đoán tuổi/giới tính, không đặt trường chưa biết thành 0; nhập thủ công chỉ khi có metadata được ghi nhận cho đúng ảnh. Metadata vẫn có thể nạp từ `cases.json`.
+
+Nếu không muốn tìm ảnh bằng Explorer, mở **Ca ảnh · metadata**, nhập mã như `IMG000001` vào ô **Nạp ảnh BTXRD có sẵn theo mã** rồi bấm **Nạp ảnh** (hoặc bấm trực tiếp một nút **Mẫu nhanh** như `IMG000002 · osteosarcoma`, `IMG000240 · osteochondroma`, `IMG000234 · giant cell tumor`, `IMG000236 · simple bone cyst`, `IMG000001 · other mt`, `IMG001868 · no-tumor`). Mã nằm trong cột `image_id` của `data/external_datasets/BTXRD/reference/manifest.csv`; ảnh gốc nằm trong `data/external_datasets/BTXRD/reference/source/BTXRD/images/`. Giao diện tải ảnh từ máy chủ local và đối chiếu hash để tự điền 22 metadata. Ảnh có cùng byte nhưng metadata mâu thuẫn trong manifest sẽ bị chặn, không tự điền. Bước này không cần API key hoặc Groq; bước **Chạy mô hình & giải thích** có thể gọi nhà cung cấp AI để soạn giải thích.
+
+## Lịch sử hội thoại trên máy
+
+Các lượt hỏi–đáp hoàn tất tự lưu trong `data/chat_history.db` bằng SQLite. Mục **Đã lưu trên máy** ở thanh bên cho phép mở lại, đổi tên và xóa hội thoại. Bản ghi gồm văn bản hỏi–đáp, đoạn nguồn và thông tin trích dẫn. Ảnh, tên tệp, 22 metadata và mã ca không được ghi vào cơ sở dữ liệu chat. Lượt phân tích ảnh được lưu dưới dạng câu chữ tổng quát cùng giải thích; mở lại để đọc, không dùng lại ảnh để suy luận.
+
+Mỗi lần bấm **Cuộc trò chuyện mới**, giao diện bỏ mã phiên đang mở; câu trả lời lưu đến muộn không được gắn vào phiên mới. Máy chủ không tạo lại một hội thoại đã xóa nếu một yêu cầu lưu cũ đến sau. Khi chạm giới hạn lưu cục bộ (500 hội thoại hoặc 2.000 tin nhắn trong một hội thoại), ứng dụng báo lỗi lưu thay vì tự xóa các lượt cũ.
+
+Cơ sở dữ liệu nằm trên máy chạy FastAPI và đã được Git bỏ qua (`data/*.db`). Có thể sao lưu hoặc xóa `data/chat_history.db` khi máy chủ đã dừng. Đây là kho cục bộ đơn người dùng, không có tài khoản hay mã hóa ở tầng ứng dụng; chỉ chạy máy chủ trên `127.0.0.1` và không nhập dữ liệu nhận diện người bệnh.
 
 ## Chạy bằng VS Code
 
@@ -29,8 +43,10 @@ Không mở `index.html` bằng cách nhấp đúp: giao diện và API dùng ch
 - Sao chép bản nháp; xuất cuộc trò chuyện thành Markdown, kèm các đoạn nguồn của từng phản hồi.
 - Chế độ sáng/tối lưu trên trình duyệt; hộp hướng dẫn sử dụng.
 - Cuộc trò chuyện mới hủy chờ và bỏ qua kết quả cũ đến muộn.
+- Giao diện sáng/tối đồng bộ cho chatbot và hộp thoại ca ảnh; chuyển động khi hiện nội dung và chờ kết quả, tự tắt khi hệ điều hành bật hạn chế chuyển động.
+- Hộp thoại nhập ca ba bước có kiểm tra dữ liệu, nạp nhanh ảnh BTXRD theo mã `IMG000001` hoặc 6 chip mẫu tiêu biểu (`.btxrd-sample-chip`), tự khớp SHA-256 cho 22 trường metadata, thanh tiến độ 20 trường nhị phân, tóm tắt trước khi chạy và trạng thái dừng chờ; ô nhập câu hỏi hỗ trợ đính kèm ảnh bằng nút **Ảnh**, dán `Ctrl+V` hoặc kéo–thả. Sau khi gửi, phần đính kèm trong composer biến mất; ảnh nằm ở thanh ngữ cảnh riêng và được giữ riêng cho từng chat trong RAM của tab đến khi xóa ngữ cảnh hoặc đóng/tải lại tab.
 
-Cuộc trò chuyện nằm trong bộ nhớ của tab; tải lại trang sẽ xóa nội dung. Dùng nút xuất để lưu trước khi đóng. Nút dừng ngừng chờ ở trình duyệt; tác vụ đã gửi có thể vẫn được máy chủ/nhà cung cấp AI xử lý.
+Lịch sử hội thoại được lưu trên máy trong SQLite và có thể mở lại. Ngữ cảnh ca ảnh chỉ tồn tại tạm thời; bản ghi chat không chứa ảnh, metadata hay mã ca. Nút dừng ngừng chờ ở trình duyệt; tác vụ đã gửi có thể vẫn được máy chủ/nhà cung cấp AI xử lý.
 
 ## Thiết kế và bàn giao
 
@@ -43,8 +59,14 @@ Giao diện thực tế điều chỉnh bản Stitch để dùng font hệ thố
 
 ## Kiểm tra đã thực hiện
 
+**Tiếp nối 09/11:** kiểm tra Chrome headless tái lập được bằng `.\.venv\Scripts\python.exe -m pytest ui_tests/test_chatbot_browser.py -q`. Cần Chrome/Chromium đã cài và module Python `websockets` hỗ trợ tham số `proxy`; nếu thiếu, pytest báo SKIP và không được tính là đã kiểm chứng trình duyệt. Có thể chỉ đường dẫn Chrome qua biến `BONESCOPE_TEST_CHROME`. Kiểm tra dùng hồ sơ trình duyệt/ảnh hình học/SQLite tạm, phản hồi AI và retrieval giả lập, không gọi provider. Đã đạt các luồng thử lại đúng ảnh sau lần lưu đầu, hỏi ảnh qua nhiều lượt, đổi chat rồi quay lại, xóa ngữ cảnh, reload không giữ ảnh, mở/đổi tên/xóa chat, giữ định dạng câu trả lời và nhãn nguồn đọc thêm, giao diện 320×568/390×844 và lưu chế độ tối. Toàn suite mới nhất: **172 passed / 132 subtests**. Xem [bản ghi kiểm chứng 09/11](../reference/chatbot_browser_regression_20261109.json). Các kiểm tra bên dưới là bằng chứng lịch sử.
+
 Đã kiểm tra trên Chrome headless: phản hồi “xin chào” qua API FastAPI thật; gợi ý; nguồn và trích dẫn; không diễn giải thẻ HTML trong câu trả lời; xuất Markdown; sáng/tối và lưu tùy chọn; hướng dẫn; lỗi/thử lại; dừng chờ; tạo cuộc trò chuyện mới khi yêu cầu đang chạy. Không có lỗi JavaScript ở các luồng đã kiểm tra.
 
 Đã đo ở 1366×768, 390×844, 320×568: không tràn ngang, ô nhập nằm trong khung nhìn. Ảnh desktop được chụp thêm ở 1440×900. Phản hồi có nguồn và lỗi dùng fixture giả lập để kiểm tra giao diện; không gọi Gemini, không kiểm định chất lượng retrieval hay câu trả lời. Máy chủ kiểm tra tạm dùng cổng 8766 được dừng sau kiểm tra.
 
+Lịch sử SQLite được kiểm tra riêng trong [bản ghi xác minh](../reference/chat_history_sqlite_verification_20261103.json): 49 kiểm thử liên quan đạt; kiểm tra trình duyệt xác nhận gửi lượt chat qua luồng giao diện, tải lại, mở lại câu trả lời và nguồn đã lưu, rồi xóa hội thoại. Kiểm tra riêng cũng xác nhận dữ liệu còn sau khi khởi động lại tiến trình FastAPI trên cùng DB tạm. Lượt trả lời AI được giả lập; không gọi Groq/OpenAI. Tất cả kiểm thử dùng DB tạm, không chạm lịch sử thật của người dùng.
+
 Phạm vi Giai đoạn 11 và các acceptance gate không thay đổi. Backend tiếp tục trả `answer_ready=false`.
+
+Provider thật cũng đã có [smoke riêng 09/11](../reference/chatbot_provider_smoke_20261109.json): câu chữ Free đạt sau 3,343 giây; ảnh hình học tự tạo được Qwen xử lý sau tổng 29,594 giây, một lượt trả phí với cost được báo về $0,000248755. Không dùng ảnh X-quang hoặc lịch sử người dùng; chưa đánh giá chất lượng đọc ảnh. Đây là bằng chứng tách riêng với regression offline ở trên.

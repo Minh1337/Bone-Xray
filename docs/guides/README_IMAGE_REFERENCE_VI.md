@@ -17,6 +17,8 @@ Archive đã được tải và xác minh. Cài dependency trước khi tái t�
 
 Script xác minh checksum, giải nén an toàn, đọc CSV/XLSX, ghép từng dòng metadata với ảnh, tính SHA-256 ảnh và sinh `reference/manifest.csv` cùng `reference/summary.json`. Bản gốc trong `reference/source/` không bị biến đổi. Catalogue hiện có 3.746 ảnh và đủ 22 metadata hợp lệ; nhãn chuẩn hợp lệ cho 3.745 ảnh. Một ảnh `IMG001276.jpeg` có nhiều subtype cùng bật và được để trống nhãn để rà soát, không tự đoán. Có 21 nhóm exact-duplicate (42 ảnh), chưa tính perceptual duplicate.
 
+Trong 21 nhóm trùng byte, 9 nhóm có metadata khác nhau. Luồng tự ghép metadata của chatbot từ chối 9 nhóm này; cần đối chiếu provenance của từng dòng trước khi dùng. Có thể nạp ảnh không mâu thuẫn trực tiếp trong hộp thoại bằng mã `IMG000001`, không cần chép ảnh từ thư mục `test_images`.
+
 Label map đầu ra thống nhất với 10 lớp của checkpoint: no-tumor; osteochondroma; multiple osteochondromas; simple bone cyst; giant cell tumor; osteofibroma; synovial osteochondroma; other bt; osteosarcoma; other mt. Metadata manifest theo 22 trường model yêu cầu và kèm center, license, DOI, attribution và hash.
 
 ## Hệ quy chiếu và tránh rò rỉ
@@ -31,4 +33,4 @@ Inference dùng `val_transform.json` hiện tại để so khớp checkpoint; �
 
 ## Trạng thái bàn giao
 
-Archive đã xác minh: MD5 `59132a5036d030580ccade8add8f13df`, SHA-256 `e7c800c3b4e090262b160525a0765f9d93bcc53d639c03806a3ac47b0ded3373`. Phân bố nhãn/hash được lưu trong `data/external_datasets/BTXRD/reference/summary.json`; register được theo dõi trong `docs/reference/btxrd_source_register.json`. Handoff chi tiết tại [Giai đoạn 11](../STAGE11_HANDOFF_VI.md). Cho tới khi khôi phục split gốc hoặc có tập ngoài BTXRD độc lập, chưa công bố accuracy trên ảnh ngoài.
+Archive đã xác minh: MD5 `59132a5036d030580ccade8add8f13df`, SHA-256 `e7c800c3b4e090262b160525a0765f9d93bcc53d639c03806a3ac47b0ded3373`. Phân bố nhãn/hash được lưu trong `data/external_datasets/BTXRD/reference/summary.json`; register được theo dõi trong `docs/reference/btxrd_source_register.json`. Phân tích thống kê toàn bộ 3.746 ảnh (theo nhãn, center 1–3, tư thế chụp, 9 nhóm trùng byte mâu thuẫn metadata) được tái lập qua `tools/analyze_btxrd_catalogue.py` (`docs/reference/stage12_btxrd_catalogue_and_mapping_analysis_20261105.json`); kết quả đánh giá nội nguồn 250 ảnh phân tầng kèm ablation xóa metadata, calibration (`ECE`, `MCE`, `Brier`, `NLL`) và phân rã theo `center`/`view`/`region` được lưu tại `docs/reference/stage11_xray_in_source_evaluation_20261103.json` và `docs/reference/stage12_xray_subgroup_and_calibration_20261106.json` (xem báo cáo tổng hợp [Giai đoạn 12](../reports/STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md) và handoff [Giai đoạn 11](../STAGE11_HANDOFF_VI.md)). Cho tới khi khôi phục split gốc hoặc có tập ngoài BTXRD độc lập, chưa công bố accuracy trên ảnh ngoài.

@@ -46,6 +46,7 @@ BoneScope là ứng dụng chạy cục bộ trên Windows để:
   chuẩn, chẩn đoán y khoa, triển khai public có xác thực hoặc chatbot/LLM đã nghiệm thu.
 - **Cần phát triển tiếp:** độ phủ nguồn, chất lượng retrieval, chatbot có citation,
   đánh giá toàn diện, bảo mật triển khai và tài liệu/slide bàn giao cuối.
+- **Cập nhật GĐ11A, GĐ12 & GĐ13 trong phạm vi học tập thực nghiệm (06/11/2026):** Đã hoàn thiện nguyên mẫu tích hợp **BoneScope Research Studio** (`rag/demo_api.py`, `rag/demo_web/`, `08_start_chatbot.bat`, `http://127.0.0.1:8765`) kết hợp phân loại X-quang + 22 metadata cục bộ (`rag/case_context.py`, nạp ảnh theo mã `IMG000001` hoặc 6 chip mẫu, tự khớp SHA-256 và chặn 9 nhóm trùng byte mâu thuẫn), hội thoại đa lượt có trích dẫn RAG (`22` nguồn / `794` đoạn), hỏi AI về ảnh đính kèm một lượt không lưu ảnh vào SQLite (`POST /api/image-chat`), lưu lịch sử văn bản cục bộ (`rag/chat_history.py`), báo cáo thống kê toàn bộ 3.746 ảnh BTXRD ([`stage12_btxrd_catalogue_and_mapping_analysis_20261105.json`](reference/stage12_btxrd_catalogue_and_mapping_analysis_20261105.json)) và báo cáo đánh giá phân tầng 250 ảnh kèm ablation xóa metadata, hiệu chuẩn xác suất softmax (`ECE`, `MCE`, `Brier`, `NLL`) & phân rã theo `center`/`view`/`region`/`status` ([`stage11_xray_in_source_evaluation_20261103.json`](reference/stage11_xray_in_source_evaluation_20261103.json), [`stage12_xray_subgroup_and_calibration_20261106.json`](reference/stage12_xray_subgroup_and_calibration_20261106.json), [báo cáo tổng hợp GĐ12](reports/STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md)). Toàn bộ kiểm thử đạt **176 passed / 132 subtests passed**; giữ nguyên `answer_ready=false` và **0/7 cổng nghiệm thu lâm sàng/độc lập đóng (`OPEN`)**.
 
 ### 0.3. Quy tắc an toàn và tính trung thực
 
@@ -835,7 +836,7 @@ Trạng thái: PASS / INCOMPLETE / BLOCKED
 
 ## 12. Chatbot tiếng Việt có RAG và citation
 
-> Giai đoạn này **chưa được coi là hoàn thành** trong bản hiện tại.
+> **Cập nhật 06/11/2026 (Phạm vi Học tập Thực nghiệm):** Nguyên mẫu tích hợp **BoneScope Research Studio** (`rag/demo_api.py`, `rag/demo_web/`, `rag/case_context.py`, `rag/chat_history.py`, `08_start_chatbot.bat`) đã hoàn thành cho mục tiêu **báo cáo học tập có tính thực nghiệm** ([`STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md`](reports/STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md), [`stage12_integrated_chatbot_verification_20261105.json`](reference/stage12_integrated_chatbot_verification_20261105.json)). Trạng thái nghiệm thu độc lập/lâm sàng (`G1`–`G7`) vẫn giữ `OPEN` và `answer_ready=false`.
 
 ### Mục tiêu
 
@@ -881,7 +882,7 @@ RAG index:
 Citation tests:
 Safety/privacy tests:
 Out-of-scope fallback:
-Đánh giá của người có chuyên môn:
+Đánh giá của người có chuyên môn: Chờ hội đồng/chuyên gia độc lập (G1–G7 OPEN; trong phạm vi học tập thực nghiệm đạt 176 passed / 132 subtests passed, xem docs/reports/STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md)
 Trạng thái: PASS / BLOCKED
 ```
 
@@ -939,7 +940,7 @@ Release/source/model/index version:
 Known limitations:
 Tài liệu bàn giao:
 Người duyệt:
-Trạng thái phát hành: PASS / BLOCKED
+Trạng thái phát hành: PASS (Bàn giao nguyên mẫu & báo cáo học tập thực nghiệm local: docs/reports/STAGE12_EXPERIMENTAL_CHATBOT_AND_BTXRD_REPORT_VI.md, docs/reference/stage12_integrated_chatbot_verification_20261105.json) / BLOCKED cho phát hành lâm sàng (0/7 cổng G1–G7 đóng, answer_ready=false)
 ```
 
 ---

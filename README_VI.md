@@ -130,13 +130,16 @@ chạy:
 ```
 
 Mở `http://127.0.0.1:8765`. Sao chép `.env.example` thành `.env` và điền
-`GROQ_API_KEY` hoặc `OPENAI_API_KEY` ở máy cá nhân; `.env` đã được Git bỏ qua,
-không commit key. Mặc định dùng Groq; đặt `LLM_PROVIDER=openai` để dùng OpenAI.
+`OPENROUTER_API_KEY` ở máy cá nhân; `.env` đã được Git bỏ qua, không commit key.
+Mặc định dùng OpenRouter Free Router và model ảnh miễn phí. Nếu model miễn phí
+bị giới hạn, trả lời chưa hoàn tất hoặc mất hơn 15 giây, ứng dụng có thể chuyển
+sang `qwen/qwen3.5-flash-02-23` tính phí theo token; nhãn phản hồi sẽ ghi rõ khi
+đã dùng Qwen. Xem [hướng dẫn cấu hình](docs/guides/OPENROUTER_CHATBOT_SETUP_VI.md).
 
 Demo hỗ trợ hội thoại đa chủ đề, ngữ cảnh gần đây, chế độ **Trò chuyện + tài
 liệu** và **Chỉ tra cứu tài liệu**, trích dẫn `[S1]`/`[S2]`, xuất Markdown,
-retry/stop, theme sáng/tối và tạo cuộc trò chuyện mới. Lịch sử chỉ nằm trong
-tab trình duyệt, không lưu ở máy chủ. Không mở HTML bằng cách nhấp đúp; giao
+retry/stop, theme sáng/tối, đính kèm ảnh làm ngữ cảnh nhiều lượt trong tab hiện tại (nút Ảnh, dán `Ctrl+V` hoặc kéo–thả; bấm Bỏ ảnh để chuyển về chat văn bản/RAG), nạp nhanh ảnh BTXRD theo mã kèm tự khớp 22 metadata qua SHA-256 và tạo cuộc trò chuyện mới. Ảnh không lưu vào SQLite; mở lại hội thoại cần đính kèm ảnh lại. Lịch sử hội thoại văn bản được lưu cục bộ trong
+`data/chat_history.db` (không lưu byte ảnh hay dữ liệu ca bệnh). Không mở HTML bằng cách nhấp đúp; giao
 diện cần API FastAPI. Xem [hướng dẫn chatbot](docs/guides/README_CHATBOT_UI_VI.md)
 và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
 
@@ -148,15 +151,17 @@ và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Full suite Giai đoạn 11 gần nhất ghi nhận **87 passed/132 subtests**, một
-cảnh báo deprecation Starlette. Riêng chatbot/API hiện có **58 passed**:
+Full suite offline gần nhất (09/11/2026) ghi nhận **172 passed, 0 failed / 132 subtests passed**, một
+cảnh báo deprecation Starlette. Các lời gọi provider đều dùng mock transport, không tiêu token API. Xem [báo cáo trạng thái hoàn thiện](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [audit RAG 09/11](docs/reference/stage11_integrity_audit_20261109_cureus_v1.json), [replay 09/11](docs/reference/stage11_replay_20261109_cureus_v1.json) và [manifest kiểm chứng tích hợp 05/11](docs/reference/stage12_integrated_chatbot_verification_20261105.json).
+
+Để chạy riêng các kiểm tra chatbot/API:
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest rag/tests/test_demo_api.py rag/tests/test_generation.py rag/tests/test_conversation.py -q
 node --check rag/demo_web/app.js
 ```
 
-Đây là regression phần mềm/UI, không phải kiểm định độc lập hay lâm sàng.
+Đây là regression phần mềm/UI, không phải kiểm định độc lập hay lâm sàng. Sau regression, [smoke provider thật riêng](docs/reference/chatbot_provider_smoke_20261109.json) đã PASS với một câu chữ qua Free và một ảnh hình học qua Qwen dự phòng: một lượt Qwen trả phí, cost các phản hồi báo về $0,000248755. Chưa chấm chất lượng X-quang hoặc nguồn; không dùng dữ liệu hội thoại thật.
 Xem [run record với code/data hashes](docs/reference/stage11_test_run_20261029_postdocs_full.json),
 [fresh integrity audit](docs/reference/stage11_integrity_audit_20261029_workspace_recheck_v1.json)
 và [fresh replay](docs/reference/stage11_replay_20261029_workspace_recheck_v1.json).
@@ -195,5 +200,5 @@ Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
 - [Progress note Giai đoạn 11](docs/STAGE11_PROGRESS_2026-10-29.md)
 
 Mô hình ảnh chưa được tuyên bố là có accuracy lâm sàng hoặc xác suất đã hiệu
-chuẩn. RAG còn thiếu nguồn cho một số nhãn, chưa có chatbot, chưa có citation
-generation và chưa được phép dùng để tự chẩn đoán hay đề xuất phác đồ.
+chuẩn. RAG còn thiếu nguồn trực tiếp cho một số nhãn, nguyên mẫu chatbot học tập luôn giữ `answer_ready=false`
+và chưa được phép dùng để tự chẩn đoán hay đề xuất phác đồ.

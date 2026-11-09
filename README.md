@@ -16,6 +16,7 @@ The project is intentionally scoped as an **educational and experimental report*
 - **22-field case workflow** with image validation, metadata validation, review-before-run, and explicit confirmation.
 - **Local Research Studio** with responsive light/dark UI, mobile navigation, accessible dialogs, retry/stop controls, and Markdown export.
 - **Multi-turn conversation** with recent context, document-only mode, source citations (`[S1]`, `[S2]`), and conservative out-of-scope handling.
+- **Multi-turn image chat** keeps an attached image in the current browser tab and resends it with follow-up questions; removing the attachment returns to text/RAG chat. Image bytes are not stored in SQLite, so reopening a saved conversation requires attaching the image again.
 - **RAG retrieval and provenance** with source metadata, licenses, chunk identifiers, corpus/index audits, deterministic replay, and evaluation reports.
 - **Privacy-conscious architecture**: image and case metadata stay in the local inference service; the optional LLM provider receives only the data described in the project documentation.
 - **Fail-closed readiness state**: generated content remains marked `answer_ready=false`; acceptance gates are not silently closed.
@@ -65,7 +66,7 @@ Educational X-ray + 22 metadata fields
 - Python 3.11, 64-bit
 - Git
 - NVIDIA GPU with a compatible CUDA/PyTorch installation is recommended; CPU mode is supported but slower
-- Optional: Groq or OpenAI API credentials for draft generation
+- Optional: OpenRouter API key; Groq Free Plan key is optional for rate-limit fallback
 
 The repository includes local model/runtime assets needed for the current prototype. Do not commit additional datasets, patient data, runtime databases, logs, API keys, or generated caches.
 
@@ -118,11 +119,13 @@ Copy-Item .env.example .env
 Then configure the provider on your machine:
 
 ```dotenv
-LLM_PROVIDER=groq
-GROQ_API_KEY=replace-with-a-local-secret
+LLM_PROVIDER=openrouter
+OPENROUTER_API_KEY=replace-with-a-local-secret
+OPENROUTER_MODEL=openrouter/free
+GROQ_FALLBACK_ENABLED=false
 ```
 
-OpenAI is also supported through `LLM_PROVIDER=openai`. Never commit `.env` or paste credentials into issues, pull requests, screenshots, or logs.
+OpenRouter Free is tried first (`openrouter/free` for text/RAG and a `:free` vision model for images). If the free request times out, is rate-limited, incomplete, or empty, the app can call the fixed paid fallback `qwen/qwen3.5-flash-02-23`; its output is labeled in the chat UI. Image requests sent to Qwen can incur input and output charges. Groq is disabled by default and is only an optional fallback if explicitly enabled. See [provider setup](docs/guides/OPENROUTER_CHATBOT_SETUP_VI.md). Never commit `.env` or paste credentials into issues, pull requests, screenshots, or logs.
 
 ## RAG index setup
 
@@ -144,17 +147,18 @@ Run the complete regression suite:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-The latest integrated verification recorded:
+The latest offline regression run (09/11/2026) recorded:
 
-- 162 tests passed
+- 172 tests passed, 0 failed
 - 132 subtests passed
-- provenance audit: `PASS`
-- deterministic replay: `16/16 PASS`
+- all provider requests in tests use mocked transports; no API credits were used
+- provenance audit: `PASS`, 22 sources / 794 chunks ([09/11 record](docs/reference/stage11_integrity_audit_20261109_cureus_v1.json))
+- deterministic replay: `16/16 PASS` ([09/11 record](docs/reference/stage11_replay_20261109_cureus_v1.json))
 - JavaScript syntax check: `PASS`
 - `answer_ready=false`
 - acceptance gates G1–G7 remain `OPEN`
 
-See the [integrated verification record](docs/reference/stage12_integrated_chatbot_verification_20261103.json) and the [latest UI checkpoint](checkpoints/20261103_stage12_ui_completion/manifest.json) for reproducibility details.
+See the [09/11 completion status report](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), the [05/11 integrated verification record](docs/reference/stage12_integrated_chatbot_verification_20261105.json), and the [latest UI checkpoint](checkpoints/20261103_stage12_ui_completion/manifest.json) for details. The 09/11 run includes a real headless Chrome lifecycle test with a temporary profile/SQLite database and offline AI/retrieval fixtures ([record](docs/reference/chatbot_browser_regression_20261109.json)). The regression did not call OpenRouter/Groq. A separate [live provider smoke](docs/reference/chatbot_provider_smoke_20261109.json) subsequently passed for short text via Free and a synthetic geometric PNG via the Qwen fallback (one paid attempt, $0.000248755 reported cost). This does not assess X-ray interpretation quality or guarantee future latency.
 
 ## Scope and safety
 

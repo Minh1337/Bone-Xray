@@ -17,12 +17,12 @@ from xray_api import LABELS
 
 @pytest.fixture(autouse=True)
 def isolated_env(monkeypatch):
-    monkeypatch.setenv("LLM_PROVIDER", "groq")
-    monkeypatch.setenv("GROQ_API_KEY", "test-only-no-network")
-    monkeypatch.setenv("GROQ_MODEL", "openai/gpt-oss-20b")
-    monkeypatch.setenv("GROQ_REASONING_EFFORT", "low")
-    monkeypatch.setenv("GROQ_TIMEOUT_SECONDS", "35")
-    monkeypatch.setenv("GROQ_MAX_OUTPUT_TOKENS", "2400")
+    monkeypatch.setenv("LLM_PROVIDER", "openrouter")
+    monkeypatch.setenv("OPENROUTER_API_KEY", "test-only-no-network")
+    monkeypatch.setenv("OPENROUTER_MODEL", "openrouter/free")
+    monkeypatch.setenv("OPENROUTER_REASONING_EFFORT", "none")
+    monkeypatch.setenv("OPENROUTER_TIMEOUT_SECONDS", "35")
+    monkeypatch.setenv("OPENROUTER_MAX_OUTPUT_TOKENS", "1600")
 
 
 def make_png_bytes():
@@ -133,7 +133,9 @@ def test_direct_label_explain_retrieves_sources_and_keeps_privacy_boundaries(mon
     async def fake_explain(record, passages, settings):
         ctx = cases.llm_context(record)
         sent_payloads.append({"case_context": ctx, "passages": passages})
-        return "### Kết quả mô hình\nTop-1 osteochondroma.\n### Tài liệu nói gì về khái niệm\nU lành [S1].\n### Giới hạn\nChỉ học tập."
+        from rag.generation import DraftText
+        return DraftText("### Kết quả mô hình\nTop-1 osteochondroma.\n### Tài liệu nói gì về khái niệm\nU lành [S1].\n### Giới hạn\nChỉ học tập.",
+                         "openrouter", "openrouter/free")
 
     monkeypatch.setattr("rag.case_context.explain_case", fake_explain)
     with TestClient(create_app(fake_retrieve, loader), base_url="http://127.0.0.1:8765") as client:
@@ -190,7 +192,7 @@ def test_explain_falls_back_to_template_with_sources_if_llm_fails(monkeypatch):
     loader, _ = make_fake_loader("osteochondroma")
 
     async def broken_llm(*args, **kwargs):
-        raise DraftError("groq_quota", "Groq hết quota.", 429)
+        raise DraftError("openrouter_rate_limit", "OpenRouter Free đang giới hạn lượt gọi.", 429)
 
     monkeypatch.setattr("rag.case_context.explain_case", broken_llm)
     with TestClient(create_app(fake_retrieve, loader), base_url="http://127.0.0.1:8765") as client:
@@ -201,7 +203,7 @@ def test_explain_falls_back_to_template_with_sources_if_llm_fails(monkeypatch):
     body = explained.json()
     assert body["basis"] == "server_template"
     assert len(body["passages"]) == 1
-    assert "Groq hết quota" in body["draft_error"]
+    assert "OpenRouter Free đang giới hạn" in body["draft_error"]
     assert body["answer_ready"] is False
 
 
@@ -211,7 +213,8 @@ def test_followup_query_uses_server_owned_case_and_rejects_client_score_injectio
 
     async def fake_plan(question, history, settings, *, force_search=False, case_context=None, extra_instructions=""):
         captured["case_context"] = case_context
-        return {"route": "chat", "answer": "Nhãn Top-1 của ca đang mở là simple bone cyst (điểm 0.82)."}
+        return {"route": "chat", "answer": "Nhãn Top-1 của ca đang mở là simple bone cyst (điểm 0.82).",
+                "provider": "openrouter", "model": "openrouter/free"}
 
     monkeypatch.setattr("rag.demo_api.plan_turn", fake_plan)
     with TestClient(create_app(fake_retrieve, loader), base_url="http://127.0.0.1:8765") as client:

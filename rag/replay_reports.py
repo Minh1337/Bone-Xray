@@ -15,7 +15,7 @@ except ModuleNotFoundError:
 
 
 PROJECT = Path(__file__).resolve().parent.parent
-DEFAULT_BUNDLE = PROJECT / "docs" / "reference" / "stage11_policy_rerun_20261029_personal_image_jats_wrapper_v7"
+DEFAULT_BUNDLE = PROJECT / "docs" / "reference" / "stage11_policy_rerun_20261029_cureus_abcrouting_v1"
 
 
 def replay(bundle):

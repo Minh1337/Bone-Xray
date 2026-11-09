@@ -1,0 +1,539 @@
+{
+  "record_id": "stage12-xray-subgroup-and-calibration-20261106",
+  "schema_version": "stage12_xray_subgroup_and_calibration_v1",
+  "created_at_utc": "2026-11-06T04:05:52.149562+00:00",
+  "evaluation_scope": "in_source_development_subgroup_and_calibration_analysis",
+  "independent_external_validation": false,
+  "answer_ready": false,
+  "warnings": [
+    "BTXRD is declared in model/config.json as the training dataset of best_model.pt (~70% training split, n_samples_seen_=2616).",
+    "All subgroup accuracies and calibration scores (ECE, MCE, Brier, NLL) are in-source development metrics and MUST NOT be reported as independent clinical validation.",
+    "Softmax scores exhibit non-zero calibration error and significant sensitivity to the 22-field metadata vector; BoneScope therefore displays them only as uncalibrated relative scores."
+  ],
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "device": "cuda",
+    "gpu": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "torch": "2.6.0+cu124"
+  },
+  "sampling": {
+    "per_class_cap": 25,
+    "seed": 20261031,
+    "total_evaluated": 250,
+    "manifest_sha256": "e36be2de308e240c28c38e378416bbf789d6e251665ac66cc46dd62dbf19fe64",
+    "best_model_sha256": "2965de75f9e8105301fda7faf21a0c091be8ea99908cff6dc59b331ff07db830"
+  },
+  "calibration_analysis": {
+    "with_true_metadata": {
+      "sample_count": 250,
+      "top1_accuracy": 0.776,
+      "mean_top1_confidence_all": 0.7892,
+      "mean_top1_confidence_correct": 0.8439,
+      "mean_top1_confidence_incorrect": 0.5996,
+      "overconfidence_gap_top1_minus_accuracy": 0.0132,
+      "ece_10_bin": 0.0367,
+      "mce_10_bin": 0.0671,
+      "multiclass_brier_score": 0.3334,
+      "negative_log_likelihood": 0.7295,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": "[0.0, 0.1]",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0,
+          "abs_calibration_gap": 0.0
+        },
+        {
+          "bin_index": 2,
+          "range": "(0.1, 0.2]",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0,
+          "abs_calibration_gap": 0.0
+        },
+        {
+          "bin_index": 3,
+          "range": "(0.2, 0.3]",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0,
+          "abs_calibration_gap": 0.0
+        },
+        {
+          "bin_index": 4,
+          "range": "(0.3, 0.4]",
+          "count": 16,
+          "mean_confidence": 0.3476,
+          "empirical_accuracy": 0.3125,
+          "abs_calibration_gap": 0.0351
+        },
+        {
+          "bin_index": 5,
+          "range": "(0.4, 0.5]",
+          "count": 19,
+          "mean_confidence": 0.4631,
+          "empirical_accuracy": 0.5263,
+          "abs_calibration_gap": 0.0633
+        },
+        {
+          "bin_index": 6,
+          "range": "(0.5, 0.6]",
+          "count": 27,
+          "mean_confidence": 0.5473,
+          "empirical_accuracy": 0.5556,
+          "abs_calibration_gap": 0.0082
+        },
+        {
+          "bin_index": 7,
+          "range": "(0.6, 0.7]",
+          "count": 21,
+          "mean_confidence": 0.6472,
+          "empirical_accuracy": 0.7143,
+          "abs_calibration_gap": 0.0671
+        },
+        {
+          "bin_index": 8,
+          "range": "(0.7, 0.8]",
+          "count": 28,
+          "mean_confidence": 0.7609,
+          "empirical_accuracy": 0.75,
+          "abs_calibration_gap": 0.0109
+        },
+        {
+          "bin_index": 9,
+          "range": "(0.8, 0.9]",
+          "count": 26,
+          "mean_confidence": 0.8422,
+          "empirical_accuracy": 0.8462,
+          "abs_calibration_gap": 0.0039
+        },
+        {
+          "bin_index": 10,
+          "range": "(0.9, 1.0]",
+          "count": 113,
+          "mean_confidence": 0.9855,
+          "empirical_accuracy": 0.9381,
+          "abs_calibration_gap": 0.0475
+        }
+      ]
+    },
+    "with_zeroed_metadata_ablation": {
+      "sample_count": 250,
+      "top1_accuracy": 0.48,
+      "mean_top1_confidence_all": 0.6875,
+      "mean_top1_confidence_correct": 0.7451,
+      "mean_top1_confidence_incorrect": 0.6345,
+      "overconfidence_gap_top1_minus_accuracy": 0.2075,
+      "ece_10_bin": 0.2075,
+      "mce_10_bin": 0.3461,
+      "multiclass_brier_score": 0.7616,
+      "negative_log_likelihood": 2.7223,
+      "reliability_bins": [
+        {
+          "bin_index": 1,
+          "range": "[0.0, 0.1]",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0,
+          "abs_calibration_gap": 0.0
+        },
+        {
+          "bin_index": 2,
+          "range": "(0.1, 0.2]",
+          "count": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0,
+          "abs_calibration_gap": 0.0
+        },
+        {
+          "bin_index": 3,
+          "range": "(0.2, 0.3]",
+          "count": 5,
+          "mean_confidence": 0.2868,
+          "empirical_accuracy": 0.0,
+          "abs_calibration_gap": 0.2868
+        },
+        {
+          "bin_index": 4,
+          "range": "(0.3, 0.4]",
+          "count": 20,
+          "mean_confidence": 0.3476,
+          "empirical_accuracy": 0.25,
+          "abs_calibration_gap": 0.0976
+        },
+        {
+          "bin_index": 5,
+          "range": "(0.4, 0.5]",
+          "count": 29,
+          "mean_confidence": 0.4487,
+          "empirical_accuracy": 0.3103,
+          "abs_calibration_gap": 0.1383
+        },
+        {
+          "bin_index": 6,
+          "range": "(0.5, 0.6]",
+          "count": 41,
+          "mean_confidence": 0.5538,
+          "empirical_accuracy": 0.4146,
+          "abs_calibration_gap": 0.1392
+        },
+        {
+          "bin_index": 7,
+          "range": "(0.6, 0.7]",
+          "count": 40,
+          "mean_confidence": 0.6535,
+          "empirical_accuracy": 0.55,
+          "abs_calibration_gap": 0.1035
+        },
+        {
+          "bin_index": 8,
+          "range": "(0.7, 0.8]",
+          "count": 30,
+          "mean_confidence": 0.7487,
+          "empirical_accuracy": 0.5,
+          "abs_calibration_gap": 0.2487
+        },
+        {
+          "bin_index": 9,
+          "range": "(0.8, 0.9]",
+          "count": 27,
+          "mean_confidence": 0.8561,
+          "empirical_accuracy": 0.5926,
+          "abs_calibration_gap": 0.2635
+        },
+        {
+          "bin_index": 10,
+          "range": "(0.9, 1.0]",
+          "count": 58,
+          "mean_confidence": 0.9668,
+          "empirical_accuracy": 0.6207,
+          "abs_calibration_gap": 0.3461
+        }
+      ]
+    }
+  },
+  "subgroup_breakdown": {
+    "by_radiographic_view": {
+      "frontal": {
+        "with_true_metadata": {
+          "sample_count": 146,
+          "top1_accuracy": 0.774,
+          "top3_accuracy": 0.9315,
+          "weighted_f1": 0.7732,
+          "mean_top1_confidence": 0.7804,
+          "mean_top1_confidence_correct": 0.8419,
+          "mean_top1_confidence_incorrect": 0.5698,
+          "ece_10_bin": 0.0664,
+          "multiclass_brier_score": 0.3378
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 146,
+          "top1_accuracy": 0.4863,
+          "top3_accuracy": 0.7397,
+          "weighted_f1": 0.4578,
+          "mean_top1_confidence": 0.7034,
+          "mean_top1_confidence_correct": 0.7594,
+          "mean_top1_confidence_incorrect": 0.6504,
+          "ece_10_bin": 0.2171,
+          "multiclass_brier_score": 0.7546
+        }
+      },
+      "lateral": {
+        "with_true_metadata": {
+          "sample_count": 88,
+          "top1_accuracy": 0.7841,
+          "top3_accuracy": 0.9545,
+          "weighted_f1": 0.7802,
+          "mean_top1_confidence": 0.8021,
+          "mean_top1_confidence_correct": 0.8423,
+          "mean_top1_confidence_incorrect": 0.6564,
+          "ece_10_bin": 0.0797,
+          "multiclass_brier_score": 0.3282
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 88,
+          "top1_accuracy": 0.4773,
+          "top3_accuracy": 0.7273,
+          "weighted_f1": 0.4205,
+          "mean_top1_confidence": 0.6716,
+          "mean_top1_confidence_correct": 0.7369,
+          "mean_top1_confidence_incorrect": 0.612,
+          "ece_10_bin": 0.1943,
+          "multiclass_brier_score": 0.7502
+        }
+      },
+      "oblique": {
+        "with_true_metadata": {
+          "sample_count": 16,
+          "top1_accuracy": 0.75,
+          "top3_accuracy": 0.9375,
+          "weighted_f1": 0.7438,
+          "mean_top1_confidence": 0.7984,
+          "mean_top1_confidence_correct": 0.8727,
+          "mean_top1_confidence_incorrect": 0.5754,
+          "ece_10_bin": 0.1327,
+          "multiclass_brier_score": 0.3215
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 16,
+          "top1_accuracy": 0.4375,
+          "top3_accuracy": 0.5,
+          "weighted_f1": 0.4,
+          "mean_top1_confidence": 0.6305,
+          "mean_top1_confidence_correct": 0.6485,
+          "mean_top1_confidence_incorrect": 0.6165,
+          "ece_10_bin": 0.3115,
+          "multiclass_brier_score": 0.888
+        }
+      }
+    },
+    "by_source_center": {
+      "center_1": {
+        "with_true_metadata": {
+          "sample_count": 173,
+          "top1_accuracy": 0.8208,
+          "top3_accuracy": 0.9595,
+          "weighted_f1": 0.8179,
+          "mean_top1_confidence": 0.8293,
+          "mean_top1_confidence_correct": 0.8656,
+          "mean_top1_confidence_incorrect": 0.663,
+          "ece_10_bin": 0.0503,
+          "multiclass_brier_score": 0.2899
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 173,
+          "top1_accuracy": 0.4566,
+          "top3_accuracy": 0.6879,
+          "weighted_f1": 0.4032,
+          "mean_top1_confidence": 0.7056,
+          "mean_top1_confidence_correct": 0.7494,
+          "mean_top1_confidence_incorrect": 0.6688,
+          "ece_10_bin": 0.2489,
+          "multiclass_brier_score": 0.8185
+        }
+      },
+      "center_2": {
+        "with_true_metadata": {
+          "sample_count": 39,
+          "top1_accuracy": 0.6923,
+          "top3_accuracy": 0.8974,
+          "weighted_f1": 0.6883,
+          "mean_top1_confidence": 0.7355,
+          "mean_top1_confidence_correct": 0.8136,
+          "mean_top1_confidence_incorrect": 0.5597,
+          "ece_10_bin": 0.1469,
+          "multiclass_brier_score": 0.4136
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 39,
+          "top1_accuracy": 0.4359,
+          "top3_accuracy": 0.7179,
+          "weighted_f1": 0.4419,
+          "mean_top1_confidence": 0.636,
+          "mean_top1_confidence_correct": 0.7444,
+          "mean_top1_confidence_incorrect": 0.5523,
+          "ece_10_bin": 0.238,
+          "multiclass_brier_score": 0.7602
+        }
+      },
+      "center_3": {
+        "with_true_metadata": {
+          "sample_count": 38,
+          "top1_accuracy": 0.6579,
+          "top3_accuracy": 0.8947,
+          "weighted_f1": 0.6347,
+          "mean_top1_confidence": 0.6616,
+          "mean_top1_confidence_correct": 0.7533,
+          "mean_top1_confidence_incorrect": 0.4852,
+          "ece_10_bin": 0.1601,
+          "multiclass_brier_score": 0.4493
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 38,
+          "top1_accuracy": 0.6316,
+          "top3_accuracy": 0.8684,
+          "weighted_f1": 0.6056,
+          "mean_top1_confidence": 0.6584,
+          "mean_top1_confidence_correct": 0.7313,
+          "mean_top1_confidence_incorrect": 0.5333,
+          "ece_10_bin": 0.1152,
+          "multiclass_brier_score": 0.504
+        }
+      }
+    },
+    "by_anatomical_region": {
+      "lower limb": {
+        "with_true_metadata": {
+          "sample_count": 165,
+          "top1_accuracy": 0.8,
+          "top3_accuracy": 0.9636,
+          "weighted_f1": 0.8016,
+          "mean_top1_confidence": 0.8088,
+          "mean_top1_confidence_correct": 0.8506,
+          "mean_top1_confidence_incorrect": 0.6417,
+          "ece_10_bin": 0.0624,
+          "multiclass_brier_score": 0.3113
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 165,
+          "top1_accuracy": 0.5091,
+          "top3_accuracy": 0.7333,
+          "weighted_f1": 0.4679,
+          "mean_top1_confidence": 0.7122,
+          "mean_top1_confidence_correct": 0.76,
+          "mean_top1_confidence_incorrect": 0.6627,
+          "ece_10_bin": 0.2031,
+          "multiclass_brier_score": 0.7506
+        }
+      },
+      "pelvis": {
+        "with_true_metadata": {
+          "sample_count": 28,
+          "top1_accuracy": 0.75,
+          "top3_accuracy": 0.9286,
+          "weighted_f1": 0.7507,
+          "mean_top1_confidence": 0.7367,
+          "mean_top1_confidence_correct": 0.819,
+          "mean_top1_confidence_incorrect": 0.49,
+          "ece_10_bin": 0.061,
+          "multiclass_brier_score": 0.3229
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 28,
+          "top1_accuracy": 0.5357,
+          "top3_accuracy": 0.7857,
+          "weighted_f1": 0.5107,
+          "mean_top1_confidence": 0.658,
+          "mean_top1_confidence_correct": 0.7187,
+          "mean_top1_confidence_incorrect": 0.5881,
+          "ece_10_bin": 0.2009,
+          "multiclass_brier_score": 0.6455
+        }
+      },
+      "upper limb": {
+        "with_true_metadata": {
+          "sample_count": 57,
+          "top1_accuracy": 0.7193,
+          "top3_accuracy": 0.8772,
+          "weighted_f1": 0.7152,
+          "mean_top1_confidence": 0.7581,
+          "mean_top1_confidence_correct": 0.8351,
+          "mean_top1_confidence_incorrect": 0.5606,
+          "ece_10_bin": 0.0777,
+          "multiclass_brier_score": 0.4024
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 57,
+          "top1_accuracy": 0.3684,
+          "top3_accuracy": 0.6491,
+          "weighted_f1": 0.3316,
+          "mean_top1_confidence": 0.6306,
+          "mean_top1_confidence_correct": 0.704,
+          "mean_top1_confidence_incorrect": 0.5878,
+          "ece_10_bin": 0.2622,
+          "multiclass_brier_score": 0.8505
+        }
+      }
+    },
+    "by_rag_mapping_status": {
+      "direct": {
+        "with_true_metadata": {
+          "sample_count": 100,
+          "top1_accuracy": 0.82,
+          "top3_accuracy": 0.96,
+          "weighted_f1": 0.8511,
+          "mean_top1_confidence": 0.7921,
+          "mean_top1_confidence_correct": 0.8361,
+          "mean_top1_confidence_incorrect": 0.5915,
+          "ece_10_bin": 0.0717,
+          "multiclass_brier_score": 0.272
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 100,
+          "top1_accuracy": 0.66,
+          "top3_accuracy": 0.89,
+          "weighted_f1": 0.7027,
+          "mean_top1_confidence": 0.7178,
+          "mean_top1_confidence_correct": 0.797,
+          "mean_top1_confidence_incorrect": 0.5642,
+          "ece_10_bin": 0.0909,
+          "multiclass_brier_score": 0.4675
+        }
+      },
+      "unresolved": {
+        "with_true_metadata": {
+          "sample_count": 75,
+          "top1_accuracy": 0.7867,
+          "top3_accuracy": 0.9467,
+          "weighted_f1": 0.8622,
+          "mean_top1_confidence": 0.8281,
+          "mean_top1_confidence_correct": 0.8904,
+          "mean_top1_confidence_incorrect": 0.5983,
+          "ece_10_bin": 0.1226,
+          "multiclass_brier_score": 0.3092
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 75,
+          "top1_accuracy": 0.3733,
+          "top3_accuracy": 0.6533,
+          "weighted_f1": 0.4643,
+          "mean_top1_confidence": 0.6968,
+          "mean_top1_confidence_correct": 0.7399,
+          "mean_top1_confidence_incorrect": 0.6711,
+          "ece_10_bin": 0.3235,
+          "multiclass_brier_score": 0.9192
+        }
+      },
+      "aggregate": {
+        "with_true_metadata": {
+          "sample_count": 50,
+          "top1_accuracy": 0.56,
+          "top3_accuracy": 0.86,
+          "weighted_f1": 0.7,
+          "mean_top1_confidence": 0.6196,
+          "mean_top1_confidence_correct": 0.6295,
+          "mean_top1_confidence_incorrect": 0.607,
+          "ece_10_bin": 0.1608,
+          "multiclass_brier_score": 0.6592
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 50,
+          "top1_accuracy": 0.52,
+          "top3_accuracy": 0.84,
+          "weighted_f1": 0.6414,
+          "mean_top1_confidence": 0.5936,
+          "mean_top1_confidence_correct": 0.6188,
+          "mean_top1_confidence_incorrect": 0.5663,
+          "ece_10_bin": 0.1463,
+          "multiclass_brier_score": 0.6864
+        }
+      },
+      "no_tumor": {
+        "with_true_metadata": {
+          "sample_count": 25,
+          "top1_accuracy": 1.0,
+          "top3_accuracy": 1.0,
+          "weighted_f1": 1.0,
+          "mean_top1_confidence": 1.0,
+          "mean_top1_confidence_correct": 1.0,
+          "mean_top1_confidence_incorrect": 0.0,
+          "ece_10_bin": 0.0,
+          "multiclass_brier_score": 0.0
+        },
+        "with_zeroed_metadata": {
+          "sample_count": 25,
+          "top1_accuracy": 0.0,
+          "top3_accuracy": 0.0,
+          "weighted_f1": 0.0,
+          "mean_top1_confidence": 0.7265,
+          "mean_top1_confidence_correct": 0.0,
+          "mean_top1_confidence_incorrect": 0.7265,
+          "ece_10_bin": 0.7265,
+          "multiclass_brier_score": 1.6157
+        }
+      }
+    }
+  }
+}

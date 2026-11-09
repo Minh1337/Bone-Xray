@@ -1,0 +1,42 @@
+{
+  "created_at_local": "2026-11-09T21:56:00+07:00",
+  "purpose": "Final re-verification before consolidated educational report; software/provenance checks only",
+  "answer_ready": false,
+  "gates": {"total": 7, "closed": 0, "status": "all OPEN"},
+  "provider_calls_made": false,
+  "checks": [
+    {"name": "pytest api_tests rag/tests tests ui_tests -q", "status": "PASS", "result": "202 passed, 0 failed, 132 subtests passed, 1 Starlette deprecation warning", "note": "includes 2 new tests for tools/export_report_docx.py; provider traffic mocked"},
+    {"name": "rag.audit", "status": "PASS", "record": "docs/reference/stage11_integrity_audit_20261109_final_cureus_v1.json", "result": "22 sources / 794 chunks, 10 evaluation dataset hashes, errors=[]"},
+    {"name": "rag.replay_reports", "status": "PASS", "record": "docs/reference/stage11_replay_20261109_final_cureus_v1.json", "result": "16/16 report artifacts"},
+    {"name": "tools.verify_stage11_registers", "status": "PASS", "result": "24 references, 15 cohort rows, 7 gates, 0 closed"},
+    {"name": "tools.chatbot_doctor", "status": "PASS", "result": "13/13 local checks; key value hidden; no provider request"},
+    {"name": "node --check rag/demo_web/app.js", "status": "PASS"}
+  ],
+  "foundation_hashes_match_handoff": {
+    "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+    "retrieval_config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "model_sha256": "7a77d5da5ee721c7c740e4082447d3026b6521d3eac5edb93edb6aa88f03b7d7",
+    "evaluation_report_manifest_sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c"
+  },
+  "implementation_sha256": {
+    "rag/demo_api.py": "61584f9eea97dbe43badbe17a59dbd75c5ef5c1e6c06a70cee1b9336741cd9f0",
+    "rag/generation.py": "29f223fa98ac214c307389719b0eb1a36e027a2c3b6cb5eab40c0441ad80d24b",
+    "rag/conversation.py": "6bdff1de7ffa8d898a150fce66fe751eaa1f17ba63c51789229ed619f084caa6",
+    "rag/chat_history.py": "e31cb266cb57b10d5f12fd6fc3cb208c8a73d8f797bbe2e7e41dfb9935b1735a",
+    "rag/demo_web/app.js": "abcf67f86d145cd4d2c8448a914a2df99bb2634c7043c2d4c581daf9dda68653",
+    "tools/export_report_docx.py": "9f6d1b3c5fc4189d4d601293b501a8ad7e89c5f786fafe239f0ebf7f8d119078",
+    "tests/test_export_report_docx.py": "e6c4b7db564234d7fe9f50f005802516c57209eb8a62b262d2b1adf024ab678c"
+  },
+  "outputs": [
+    "docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261109_VI.md",
+    "docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261109_VI.docx"
+  ],
+  "limitations": [
+    "Software regression, integrity and replay checks do not establish medical validity, citation entailment or generalization.",
+    "Retrieval metrics are on viewed/agent-authored dev sets; X-ray metrics are in-source on BTXRD.",
+    "Step 7 threshold calibration remains AWAITING_LABELS; no threshold installed.",
+    "No reviewer signature, blind label or gate closure was created."
+  ]
+}

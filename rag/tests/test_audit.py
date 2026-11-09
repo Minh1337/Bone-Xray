@@ -6,10 +6,17 @@ from pathlib import Path
 
 import numpy as np
 
-from rag.audit import MODEL_ID, MODEL_REVISION, audit
+from rag.audit import DEFAULT_REPORT_DIR, MODEL_ID, MODEL_REVISION, audit
+from rag.replay_reports import DEFAULT_BUNDLE
 
 
 class ArtifactAuditTests(unittest.TestCase):
+    def test_default_audit_and_replay_use_the_current_bundle(self):
+        self.assertEqual(DEFAULT_REPORT_DIR, DEFAULT_BUNDLE)
+        self.assertEqual(DEFAULT_REPORT_DIR.name,
+                         "stage11_policy_rerun_20261029_cureus_abcrouting_v1")
+        self.assertTrue((DEFAULT_REPORT_DIR / "manifest.json").is_file())
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)

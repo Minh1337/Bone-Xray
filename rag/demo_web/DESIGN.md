@@ -3,39 +3,41 @@ version: "alpha"
 name: "BoneScope Research Studio"
 description: "Local multi-topic educational chatbot with sourced bone-document lookup. Private Stitch UI design workspace."
 colors:
-  primary: "#245D75"
+  primary: "#0284C7"
   on-primary: "#FFFFFF"
-  primary-container: "#D1E9F4"
-  on-primary-container: "#123B50"
-  secondary: "#52616A"
-  surface: "#F7F8FC"
-  surface-container-low: "#F0F2F7"
-  surface-container: "#EAEDF3"
-  surface-high: "#E3E7EF"
+  primary-container: "#E0F2FE"
+  on-primary-container: "#0C4A6E"
+  secondary: "#64748B"
+  accent-teal: "#0D9488"
+  surface: "#F6F8FB"
+  surface-container-low: "#EEF2F7"
+  surface-container: "#E2E8F0"
+  surface-high: "#CBD5E1"
   surface-white: "#FFFFFF"
-  on-surface: "#191C20"
-  on-surface-variant: "#454B54"
-  outline: "#747B85"
-  outline-variant: "#C5CBD4"
-  error: "#BA1A1A"
-  error-container: "#FFDAD6"
-  success: "#28734E"
-  dark-primary: "#A6CEE2"
-  dark-on-primary: "#073548"
-  dark-primary-container: "#214D61"
-  dark-on-primary-container: "#D1E9F4"
-  dark-secondary: "#B7C8D1"
-  dark-surface: "#111418"
-  dark-surface-container-low: "#191D22"
-  dark-surface-container: "#20252B"
-  dark-surface-high: "#292F36"
-  dark-on-surface: "#E1E2E8"
-  dark-on-surface-variant: "#C2C7D0"
-  dark-outline: "#8C929B"
-  dark-outline-variant: "#9099A4"
-  dark-error: "#FFB4AB"
-  dark-error-container: "#7D2923"
-  dark-success: "#87D6A8"
+  on-surface: "#0F172A"
+  on-surface-variant: "#334155"
+  outline: "#64748B"
+  outline-variant: "#CBD5E1"
+  error: "#DC2626"
+  error-container: "#FEF2F2"
+  success: "#10B981"
+  dark-primary: "#38BDF8"
+  dark-accent-teal: "#2DD4BF"
+  dark-on-primary: "#06131F"
+  dark-primary-container: "#153047"
+  dark-on-primary-container: "#E0F2FE"
+  dark-secondary: "#94A3B8"
+  dark-surface: "#0B0E14"
+  dark-surface-container-low: "#080B10"
+  dark-surface-container: "#151B26"
+  dark-surface-high: "#1E2636"
+  dark-on-surface: "#F1F5F9"
+  dark-on-surface-variant: "#CBD5E1"
+  dark-error: "#F87171"
+  dark-error-container: "#7F1D1D"
+  dark-success: "#34D399"
+  dark-hero-gradient: "linear-gradient(145deg, #0D1829 0%, #0F253A 52%, #0C353D 100%)"
+  dark-brand-gradient: "linear-gradient(135deg, #38BDF8 0%, #2DD4BF 100%)"
 typography:
   display:
     fontFamily: "Segoe UI Variable Display, Segoe UI, Arial, sans-serif"
@@ -124,7 +126,7 @@ components:
     textColor: "{colors.dark-on-surface-variant}"
   dark-outlined-surface:
     backgroundColor: "{colors.dark-surface}"
-    textColor: "{colors.dark-outline-variant}"
+    textColor: "{colors.dark-on-surface-variant}"
   dark-error-message:
     backgroundColor: "{colors.dark-error-container}"
     textColor: "{colors.dark-error}"
@@ -137,11 +139,11 @@ components:
 
 ## Overview
 
-BoneScope Research Studio is a calm, source-forward educational workspace for exploring a local document collection. Its visual language feels clear, measured, and approachable: a cool blue-green accent anchors the interface while pale blue-gray surfaces keep long reading sessions quiet. The visual hierarchy prioritizes the question, the AI draft label, and source passages. This is a local learning demo; the interface does not present clinical advice or image interpretation.
+BoneScope Research Studio is a polished, source-forward educational chat workspace. The current design uses an obsidian canvas, cool charcoal panels, cyan-to-teal accents, fine grid texture, subtle ambient light and a radiographic line-art motif. The welcome view centers a conversational headline above an asymmetric bento grid; the conversation view prioritizes readable messages, citations and the anchored composer. The image workflow presents model classification as an educational experiment and does not interpret the X-ray as a diagnosis. The classifier and retrieval run locally; text prompts, recent chat context, retrieved passages and (for an open case) Top-3 labels/scores may be sent to the configured external language-model provider.
 
 ## Colors
 
-The light palette uses a muted deep teal-blue for primary actions, a pale blue container for selected and user-authored content, and cool neutral surfaces for reading areas. Text uses dark ink and slate roles; outlines remain visible around interactive cards and fields. Error red marks failed requests. Green is reserved for local-session indicators. The dark palette keeps the same hierarchy with charcoal surfaces and pale blue primary actions. Always pair each surface with its corresponding readable foreground token.
+The light palette uses a cool near-white canvas (#F6F8FB), blue-gray sidebar (#EEF2F7), bright cards and blue/teal accents. The dark palette uses obsidian (#0B0E14), a deeper sidebar (#080B10), raised charcoal cards (#151B26), cyan (#38BDF8) and teal (#2DD4BF). Reserve green for local processing status, red for errors, and retain readable focus indicators in both themes. Keep the X-ray feature card on its deep blue-green gradient in both themes.
 
 ## Typography
 
@@ -179,12 +181,29 @@ Use softly rounded geometry throughout: compact icon controls around 12px, cards
 
 ## Implemented application · 2026-10-31
 
-Private Stitch project: `7327687804675427525`. Screen IDs and design-system asset are recorded in `.stitch/metadata.json`. The local application adapts the generated desktop/mobile composition using the system font stack and inline SVG instead of external font/icon dependencies. Preview images show the actual local frontend, not the generated mockup.
+Private Stitch project: `7327687804675427525`. Screen IDs and design-system asset are recorded in `.stitch/metadata.json`. The application adapts the desktop/mobile composition using the system font stack and inline SVG instead of external font/icon dependencies. Preview images show the actual local frontend, not the generated mockup.
 
-The welcome state uses a two-line 40px headline, an understated sparkle mark, paired topic cards and a three-step reading hint. The sidebar lists questions from the current tab; there is no persistent conversation database. Export saves Markdown locally. The help dialog explains source checking and network use by the selected AI provider. Groq and OpenAI labels follow server configuration; the actual answer label follows the provider returned with that answer. UI cancellation stops waiting in the browser; it does not promise cancellation of server work.
+The welcome state uses a two-line headline, compact studio label, feature card for image analysis, paired topic cards and example prompt chips. Saved conversations are stored in the local SQLite database and can be reopened or deleted; the history stores text and source references, not X-ray images by default. Export saves Markdown locally. The help dialog explains source checking and network use by the selected AI provider. Provider labels follow server configuration; the actual answer label follows the provider returned with that answer. UI cancellation stops waiting in the browser; it does not promise cancellation of server work.
 
 Answer typography is 14px with 1.85 line height. Safe rendering supports paragraphs, headings, lists, bold text, inline code and source references without interpreting model text as HTML. Source excerpts remain plain text. The educational draft label stays visible and `answer_ready=false` remains a backend requirement.
 
 ## Conversational update · 2026-10-31
 
 The user selected multi-topic conversation with document lookup for bone questions. The composer now includes an Auto conversation/document mode selector and a strict document-only mode. General replies are labeled as model knowledge and have no fabricated source cards. Document replies retain their citations and provenance. Recent conversation context stays in tab memory and is cleared by New conversation. Updated previews and implementation details are linked from docs/guides/CHATBOT_CONVERSATION_VI.md.
+
+## Current Obsidian Research Studio · 2026-11-03
+
+This section supersedes earlier visual directions recorded above. The active implementation is `index.html` + `studio.css` + `graphite.css`; keep the newer Obsidian/Cyan/Teal direction when extending the page. `graphite.css` is a legacy asset name and does not describe the current palette.
+
+The welcome page uses a centered prompt and a three-card bento composition: a prominent X-ray analysis entry on the left and two smaller document/conversation starters on the right. It also includes quick prompt chips, a source/local-processing note, ambient grid and two softly blurred cyan/teal lights. The X-ray art is decorative SVG with a restrained scan sweep; it does not represent an uploaded or analyzed image. The composer remains anchored beneath the conversation and expands to full width on narrow screens.
+
+Use local system fonts and inline SVG. Keep motion limited to short entry/hover transitions, subtle ambient movement and the scan sweep; use transforms and opacity, and honor `prefers-reduced-motion`. Ensure touch targets, keyboard focus, contrast, citation navigation, and no horizontal overflow on mobile. The composer and case flow must keep their existing accessible labels and functional selectors.
+
+Make data handling legible: image and 22 metadata fields are processed by the local classifier; the selected external language-model provider receives user text/context, retrieved source excerpts, and only Top-3 labels/scores plus a mapping note for an active image case. Saved chat history stores text and source references in local SQLite; images are not persisted there by default. Keep the educational-use and non-diagnostic notice visible. Never imply that the entire assistant or all conversation data is local, and do not introduce fabricated source counts or clinical claims.
+
+## Pro Obsidian & Bioluminescent Cyan Refinement · 2026-11-06
+
+`graphite.css` serves as the active Pro Obsidian & Bioluminescent Cyan styling layer (`#05070B` deep obsidian canvas, `#00E5FF` cyan accents, `#14F195` emerald status highlights, and `#F8FAF8`/`#CBD5E1` high-contrast typography) with complete light-mode (`html[data-theme="light"]`) and `prefers-reduced-motion` parity:
+
+- **Composer Multimodal Image Attachment:** Supports `#attach-image`, `.image-attachment` preview card with thumbnail/status/remove button, Clipboard Paste (`Ctrl+V`) and Drag-and-Drop image attachment directly onto `#question-form.composer` with `.composer.is-dragging` visual feedback.
+- **Step 1 BTXRD Reference & Sample Chips:** Provides `#case-reference-id` / `#case-reference-load` lookup (`GET /api/reference-images/{image_id}`), exact SHA-256 auto-fill status banner (`#case-image-match-note`), `#ask-ai-about-case-image` fallback button for non-BTXRD images, and 6 one-click BTXRD sample case chips (`.btxrd-sample-chips` / `.btxrd-sample-chip`) covering representative tumor and non-tumor classes (`IMG000002`, `IMG000240`, `IMG000234`, `IMG000236`, `IMG000001`, `IMG001868`).

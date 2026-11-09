@@ -1,0 +1,82 @@
+{
+  "recorded_at_utc": "2026-11-09T11:03:19.438672+00:00",
+  "scope": "Two bounded live provider smoke requests; no clinical/image-quality validation",
+  "provider": "openrouter",
+  "settings": {
+    "text_model": "openrouter/free",
+    "paid_fallback_model": "qwen/qwen3.5-flash-02-23",
+    "free_fallback_after_seconds": 15.0
+  },
+  "user_data_sent": false,
+  "user_db_used": false,
+  "checks": [
+    {
+      "kind": "text",
+      "status": "PASS",
+      "route": "chat",
+      "provider": "openrouter",
+      "model": "openrouter/free",
+      "answer_characters": 2,
+      "seconds": 3.343
+    },
+    {
+      "kind": "synthetic_image",
+      "status": "PASS",
+      "provider": "openrouter",
+      "model": "qwen/qwen3.5-flash-02-23",
+      "answer_characters": 595,
+      "image_sha256": "72a60634c2ebf7ba18c12be2b5a3d150e0a893517c361b9efe3253b029a84002",
+      "image_size": [
+        128,
+        128
+      ],
+      "seconds": 29.594
+    }
+  ],
+  "http_attempts": [
+    {
+      "model": "openrouter/free",
+      "status_code": 200,
+      "usage": {
+        "prompt_tokens": 781,
+        "completion_tokens": 56,
+        "total_tokens": 837,
+        "cost": 0
+      }
+    },
+    {
+      "model": "google/gemma-4-31b-it:free",
+      "status_code": 429,
+      "usage": {}
+    },
+    {
+      "model": "openrouter/free",
+      "outcome": "No HTTP response recorded before fallback; cancellation type not captured by trace wrapper"
+    },
+    {
+      "model": "qwen/qwen3.5-flash-02-23",
+      "status_code": 200,
+      "usage": {
+        "prompt_tokens": 1111,
+        "completion_tokens": 679,
+        "total_tokens": 1790,
+        "cost": 0.000248755
+      }
+    }
+  ],
+  "answer_ready": false,
+  "acceptance_gates": "G1-G7 OPEN",
+  "status": "PASS",
+  "paid_http_attempts": 1,
+  "reported_cost_usd": 0.000248755,
+  "cost_note": "Only cost returned by successful responses is included; a timed-out request may have server-side usage not reported here. OpenRouter Activity is authoritative.",
+  "input_reproduction": {
+    "text_function": "rag.conversation.plan_turn",
+    "text_question": "Kiểm tra kết nối. Chỉ trả lời đúng một từ: OK.",
+    "image_function": "rag.generation.generate_image_answer",
+    "image_generation": "PIL RGB 128x128 black; white rectangle (32,32,95,95); PNG",
+    "image_question": "Đây là ảnh hình học kiểm thử, không phải X-quang. Hãy mô tả hai màu và hình nhìn thấy, tối đa hai câu.",
+    "credentials": "Loaded locally from .env; not recorded",
+    "real_xray_used": false
+  }
+}

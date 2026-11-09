@@ -31,6 +31,14 @@ button:active:not(:disabled) { transform:translateY(1px) }
 .nav-item { min-height:46px; padding:11px; border-radius:10px }
 .session-empty { font-size:12px; line-height:1.8 }
 .session-question { min-height:44px; font-size:12px }
+.saved-section { max-height:34vh }
+.saved-heading { display:flex; align-items:center; justify-content:space-between }
+.saved-indicator { margin:0 10px 12px; padding:3px 6px; border:1px solid var(--line); border-radius:5px; color:var(--secondary); font:9px Consolas,monospace }
+.saved-row { display:grid; grid-template-columns:minmax(0,1fr) auto auto; align-items:center; gap:2px }
+.saved-open { min-width:0 }
+.saved-action { min-height:36px; padding:5px 6px; border:0; border-radius:6px; background:transparent; color:var(--secondary); font-size:10px }
+.saved-action:hover { background:var(--surface-high); color:var(--on-surface) }
+.saved-delete:hover { color:var(--error) }
 .side-card { padding:20px 16px; border-radius:15px }
 .side-card h2 { font-family:var(--font-display); font-size:22px; line-height:1.3; font-weight:550 }
 .side-card p,.help-button { font-size:12px }
@@ -116,6 +124,10 @@ button:active:not(:disabled) { transform:translateY(1px) }
 .case-trigger { min-height:40px; margin:0; padding:6px 10px; border-radius:9px; background:transparent; font-size:12px }
 .case-trigger svg { width:16px; height:16px }
 .composer-actions { gap:12px }
+.image-attachment { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:0 0 12px; padding:8px 10px; border:1px solid var(--line); border-radius:10px; background:var(--surface-container-low); font-size:12px }
+.image-attachment small { flex-basis:100%; color:var(--secondary); font-size:10px }
+.image-attachment-name { overflow-wrap:anywhere; font-weight:600 }
+#attach-image { flex-shrink:0 }
 .char-count { font-size:10px; font-variant-numeric:tabular-nums }
 .send-button,.secondary-button { display:inline-flex; align-items:center; justify-content:center; gap:12px; min-height:44px; padding:10px 18px; border:1px solid transparent; border-radius:11px; font-size:13px; font-weight:600; background:var(--primary); color:var(--on-primary); transition:transform 200ms var(--ease) }
 .send-button:hover:not(:disabled) { filter:brightness(1.08) }
@@ -143,6 +155,13 @@ dialog.case-dialog { width:min(800px,calc(100% - 32px)); padding:26px 30px }
 .stage-description { margin:0 0 18px; font-size:13px }
 .case-error { margin-bottom:18px; font-size:13px; line-height:1.7; overflow-wrap:anywhere }
 .case-upload-row { display:block }
+.case-reference-picker { margin:16px 0 10px; padding:14px; border:1px solid var(--line); border-radius:12px; background:var(--surface-container) }
+.case-reference-picker label { display:block; margin-bottom:9px; font-size:13px; font-weight:650 }
+.case-reference-picker>div { display:flex; gap:8px; align-items:stretch }
+.case-reference-picker input { min-width:0; flex:1; padding:10px 12px; border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--on-surface); font:inherit }
+.case-reference-picker input:focus-visible { outline:2px solid var(--primary); outline-offset:2px }
+.case-reference-picker p { margin:9px 0 0; font-size:11px; line-height:1.5; color:var(--secondary); overflow-wrap:anywhere }
+.case-reference-picker code { font-size:inherit }
 .case-file-picker { position:relative; flex-direction:column; gap:12px; padding:30px 22px; border-radius:16px; text-align:center; overflow-wrap:anywhere }
 .case-file-picker:hover,.case-file-picker.is-dragging { border-color:var(--primary); background:var(--primary-container) }
 .case-file-picker:focus-within,.case-json-picker:focus-within { outline:3px solid var(--primary); outline-offset:4px }
