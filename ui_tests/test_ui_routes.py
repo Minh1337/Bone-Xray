@@ -3,15 +3,15 @@ import sys
 import unittest
 from fastapi.testclient import TestClient
 from unittest.mock import patch
-import xray_api
+import bonescope.xray_api as xray_api
 
 class UIRouteTests(unittest.TestCase):
     def test_ui_and_api_together(self):
         # No real checkpoint is loaded here. Real model loads when the server starts.
         fake_app = xray_api.create_app(lambda:(object(), {'device': 'test-only', 'sha256': {}, 'labels': xray_api.LABELS}))
         with patch.object(xray_api, 'app', fake_app):
-            sys.modules.pop('xray_ui', None)
-            module = importlib.import_module('xray_ui')
+            sys.modules.pop('bonescope.xray_ui', None)
+            module = importlib.import_module('bonescope.xray_ui')
             with TestClient(module.app) as client:
                 self.assertEqual(client.get('/').status_code, 200)
                 self.assertIn('BoneScope', client.get('/').text)

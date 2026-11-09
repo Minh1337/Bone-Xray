@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0.."
 set PYTHONUTF8=1
 if not exist .venv\Scripts\python.exe goto missing
-.venv\Scripts\python.exe verify_api.py
+.venv\Scripts\python.exe -m bonescope.verify_api
 set RUN_CODE=%ERRORLEVEL%
 pause
 exit /b %RUN_CODE%

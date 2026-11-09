@@ -6,7 +6,7 @@ set NO_ALBUMENTATIONS_UPDATE=1
 set HF_HUB_OFFLINE=1
 if not exist .venv\Scripts\python.exe goto missing
 if not exist logs mkdir logs
-.venv\Scripts\python.exe check_model.py --device auto > logs\last_run_console.txt 2>&1
+.venv\Scripts\python.exe -m bonescope.check_model --device auto > logs\last_run_console.txt 2>&1
 set RUN_CODE=%ERRORLEVEL%
 type logs\last_run_console.txt
 pause

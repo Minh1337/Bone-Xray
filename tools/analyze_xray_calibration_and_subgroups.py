@@ -38,7 +38,7 @@ if str(ROOT) not in sys.path:
 os.environ.setdefault("NO_ALBUMENTATIONS_UPDATE", "1")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
-from inference import Predictor
+from bonescope.inference import Predictor
 from rag import case_context as cases
 from tools.evaluate_xray_checkpoint import (
     compute_classification_metrics,

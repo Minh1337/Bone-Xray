@@ -47,9 +47,9 @@ Educational X-ray + 22 metadata fields
 
 | Area | Entry points |
 | --- | --- |
-| X-ray API and local UI | [`xray_api.py`](xray_api.py), [`xray_ui.py`](xray_ui.py) |
-| Model definition and inference | [`model_definition.py`](model_definition.py), [`inference.py`](inference.py) |
-| Case validation and storage | [`case_api.py`](case_api.py), [`database.py`](database.py) |
+| X-ray API and local UI | [`bonescope/xray_api.py`](bonescope/xray_api.py), [`bonescope/xray_ui.py`](bonescope/xray_ui.py) |
+| Model definition and inference | [`bonescope/model_definition.py`](bonescope/model_definition.py), [`bonescope/inference.py`](bonescope/inference.py) |
+| Case validation and storage | [`bonescope/case_api.py`](bonescope/case_api.py), [`bonescope/database.py`](bonescope/database.py) |
 | RAG retrieval and policy | [`rag/retrieval.py`](rag/retrieval.py), [`rag/policy.py`](rag/policy.py) |
 | Conversation and generation | [`rag/conversation.py`](rag/conversation.py), [`rag/generation.py`](rag/generation.py) |
 | Integrated chatbot API | [`rag/demo_api.py`](rag/demo_api.py) |

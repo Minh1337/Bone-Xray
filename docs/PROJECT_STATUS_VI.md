@@ -95,7 +95,7 @@ Nếu dùng tại Việt Nam hoặc xử lý dữ liệu bệnh nhân, cần th�
 - Đọc README tiếng Anh/Việt và toàn bộ Markdown trong `docs/`, gồm roadmap, hướng dẫn, thiết kế evidence và handoff.
 - Kiểm tra commit mới: policy routing đã được commit; ghi chú trước đó nói hai file policy/test chưa commit là lỗi thời.
 - Chạy `\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q`: **36 passed, 28 subtests passed**, một cảnh báo deprecated từ Starlette.
-- Khởi động API cục bộ trên CUDA và chạy `verify_api.py`: **API_LOCAL_PARITY_PASSED**, 3/3 ca khớp baseline local (sai lệch score tối đa 0, Top-1/metadata/hash ảnh khớp); metadata thiếu trả 422, ảnh hỏng trả 415. JSON đầy đủ tại `api_results/20261027_212246_844539/api_report.json` (runtime, Git bỏ qua).
+- Khởi động API cục bộ trên CUDA và chạy `python -m bonescope.verify_api`: **API_LOCAL_PARITY_PASSED**, 3/3 ca khớp baseline local (sai lệch score tối đa 0, Top-1/metadata/hash ảnh khớp); metadata thiếu trả 422, ảnh hỏng trả 415. JSON đầy đủ tại `api_results/20261027_212246_844539/api_report.json` (runtime, Git bỏ qua).
 - Phép parity này chỉ đối chiếu API với kết quả chạy local đã lưu; **không** xác minh parity với notebook và **không** chứng minh độ chính xác lâm sàng.
 - Giai đoạn 11 vẫn chưa đạt điều kiện làm nền cho chatbot y khoa. Kết quả hybrid/rerank và thất bại của strict lexical filter được giữ nguyên như trong handoff và báo cáo thử nghiệm; các tập V2/V3 đã xem không phải kiểm định độc lập.
 

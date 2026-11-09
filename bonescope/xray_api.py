@@ -15,9 +15,9 @@ import warnings
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from PIL import Image, UnidentifiedImageError
-from api_validation import META_COLS, validate_case
+from .api_validation import META_COLS, validate_case
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 MAX_BYTES = 30 * 1024 * 1024
 MAX_PIXELS = 25_000_000
 LABELS = ['no-tumor', 'osteochondroma', 'multiple osteochondromas',
@@ -36,8 +36,8 @@ def load_real():
     os.environ.setdefault('NO_ALBUMENTATIONS_UPDATE', '1')
     os.environ.setdefault('HF_HUB_OFFLINE', '1')
     import torch
-    from inference import Predictor
-    import model_definition as definition
+    from .inference import Predictor
+    from . import model_definition as definition
     torch.set_num_threads(4)
     torch.backends.cudnn.benchmark = False
     torch.backends.cuda.matmul.allow_tf32 = False
@@ -64,7 +64,7 @@ def load_real():
         if k != 'pretrained' and getattr(definition.CFG, k, None) != v:
             raise ValueError(f'Checkpoint/config mismatch: {k}')
     fingerprints = {n: digest(folder / n) for n in names}
-    fingerprints.update({n: digest(ROOT / n) for n in ['inference.py', 'model_definition.py']})
+    fingerprints.update({n: digest(Path(__file__).resolve().parent / n) for n in ['inference.py', 'model_definition.py']})
     return predictor, {'device': device, 'sha256': fingerprints, 'labels': LABELS}
 
 def checked_image(path):

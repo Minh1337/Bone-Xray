@@ -8,9 +8,9 @@ from unittest.mock import patch
 from fastapi.testclient import TestClient
 from PIL import Image
 
-import database as db
-from case_api import router
-from xray_api import LABELS, META_COLS, create_app
+from bonescope import database as db
+from bonescope.case_api import router
+from bonescope.xray_api import LABELS, META_COLS, create_app
 
 
 class FakePredictor:

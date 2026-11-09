@@ -45,8 +45,8 @@ if str(ROOT) not in sys.path:
 os.environ.setdefault("NO_ALBUMENTATIONS_UPDATE", "1")
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 
-from inference import Predictor
-import model_definition as definition
+from bonescope.inference import Predictor
+from bonescope import model_definition as definition
 
 
 def sha256_file(path):

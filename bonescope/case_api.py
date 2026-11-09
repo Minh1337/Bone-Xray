@@ -5,7 +5,7 @@ from time import monotonic
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
-import database as db
+from . import database as db
 
 logger = logging.getLogger('uvicorn.error')
 router = APIRouter(tags=['cases'])

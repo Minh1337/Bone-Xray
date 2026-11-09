@@ -3,9 +3,9 @@ from pathlib import Path
 from contextlib import asynccontextmanager
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
-from xray_api import app
-from case_api import router as case_router
-import database as db
+from .xray_api import app
+from .case_api import router as case_router
+from . import database as db
 
 # Initialise the runtime database only when the server starts.
 original_lifespan = app.router.lifespan_context
@@ -19,7 +19,7 @@ app.router.lifespan_context = lifespan
 # Register case management routes
 app.include_router(case_router)
 
-WEB = Path(__file__).resolve().parent / 'xray_web'
+WEB = Path(__file__).resolve().parents[1] / 'xray_web'
 app.mount('/ui-assets', StaticFiles(directory=WEB), name='xray-ui-assets')
 
 @app.get('/', include_in_schema=False)

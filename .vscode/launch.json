@@ -27,7 +27,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "xray_ui:app",
+                "bonescope.xray_ui:app",
                 "--host", "127.0.0.1",
                 "--port", "8000",
                 "--reload"
@@ -46,7 +46,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "xray_api:app",
+                "bonescope.xray_api:app",
                 "--host", "127.0.0.1",
                 "--port", "8000",
                 "--reload"
@@ -63,7 +63,7 @@
             "name": "🧪 BoneScope: Chạy kiểm tra model",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/check_model.py",
+            "module": "bonescope.check_model",
             "env": {
                 "PYTHONUTF8": "1",
                 "NO_ALBUMENTATIONS_UPDATE": "1",

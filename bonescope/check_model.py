@@ -12,9 +12,9 @@ import sys
 import time
 import traceback
 from datetime import datetime
-from validation import META_COLS, validate_case, compare_scores
+from .validation import META_COLS, validate_case, compare_scores
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 os.environ.setdefault('NO_ALBUMENTATIONS_UPDATE', '1')
 os.environ.setdefault('HF_HUB_OFFLINE', '1')
 
@@ -49,7 +49,7 @@ def main():
         import numpy as np
         import torch
         from PIL import Image
-        from inference import Predictor
+        from .inference import Predictor
         torch.set_num_threads(4)
         torch.backends.cudnn.benchmark = False
         torch.backends.cuda.matmul.allow_tf32 = False
@@ -102,7 +102,7 @@ def main():
             raise ValueError('Expected 10 distinct class labels')
         report['labels'] = list(predictor.labels)
         # Check that the supplied config agrees with the config actually used by the model.
-        import model_definition as definition
+        from . import model_definition as definition
         supplied = json.loads((args.model_dir / 'config.json').read_text(encoding='utf-8-sig'))
         mismatches = {k: {'file': v, 'loaded': getattr(definition.CFG, k, None)}
                       for k, v in supplied.items() if k != 'pretrained' and getattr(definition.CFG, k, None) != v}

@@ -7,7 +7,7 @@ import joblib
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from PIL import Image
-import model_definition as definition
+from . import model_definition as definition
 
 class Predictor:
     def __init__(self, folder, device='cpu'):

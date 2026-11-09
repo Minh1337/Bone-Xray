@@ -11,7 +11,7 @@ if errorlevel 1 goto failed
 echo Stop the old API window with Ctrl+C before starting this server.
 echo After Application startup complete, open http://127.0.0.1:8000/
 echo Keep this window open. Stop with Ctrl+C.
-.venv\Scripts\python.exe -m uvicorn xray_ui:app --host 127.0.0.1 --port 8000 --workers 1
+.venv\Scripts\python.exe -m uvicorn bonescope.xray_ui:app --host 127.0.0.1 --port 8000 --workers 1
 pause
 exit /b 0
 :missing

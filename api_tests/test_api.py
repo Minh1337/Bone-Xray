@@ -5,7 +5,7 @@ import unittest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
 from PIL import Image
-from xray_api import create_app, META_COLS, LABELS
+from bonescope.xray_api import create_app, META_COLS, LABELS
 
 class FakePredictor:
     def __init__(self):
@@ -64,10 +64,10 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(self.send(payload=b'fake jpeg').status_code, 415)
         self.assertEqual(self.send(name='x.pdf').status_code, 415)
     def test_large_bytes(self):
-        with patch('xray_api.MAX_BYTES', 10):
+        with patch('bonescope.xray_api.MAX_BYTES', 10):
             self.assertEqual(self.send().status_code, 413)
     def test_large_pixels(self):
-        with patch('xray_api.MAX_PIXELS', 10):
+        with patch('bonescope.xray_api.MAX_PIXELS', 10):
             self.assertEqual(self.send().status_code, 413)
     def test_error_cleanup_and_recovery(self):
         self.fake.fail = True

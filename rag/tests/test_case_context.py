@@ -8,11 +8,11 @@ from fastapi.testclient import TestClient
 from PIL import Image
 import pytest
 
-from api_validation import META_COLS
+from bonescope.api_validation import META_COLS
 from rag import case_context as cases
 from rag.demo_api import create_app
 from rag.generation import DraftError
-from xray_api import LABELS
+from bonescope.xray_api import LABELS
 
 
 @pytest.fixture(autouse=True)

@@ -7,7 +7,7 @@ set NO_ALBUMENTATIONS_UPDATE=1
 set HF_HUB_OFFLINE=1
 echo Starting local API. Keep this window open. Stop with Ctrl+C.
 echo After startup: http://127.0.0.1:8000/docs
-.venv\Scripts\python.exe -m uvicorn xray_api:app --host 127.0.0.1 --port 8000 --workers 1
+.venv\Scripts\python.exe -m uvicorn bonescope.xray_api:app --host 127.0.0.1 --port 8000 --workers 1
 pause
 exit /b 0
 

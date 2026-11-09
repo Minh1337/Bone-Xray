@@ -2,7 +2,7 @@ import copy
 import tempfile
 import unittest
 from pathlib import Path
-from validation import META_COLS, validate_case, compare_scores
+from bonescope.validation import META_COLS, validate_case, compare_scores
 
 class ValidationTests(unittest.TestCase):
     def setUp(self):

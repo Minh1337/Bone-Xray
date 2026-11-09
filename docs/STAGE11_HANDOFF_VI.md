@@ -226,7 +226,7 @@ Repository bắt đầu ở `main`, `HEAD=d1ef896` (`Harden RAG policy routing a
 
 **Bước phát triển kế tiếp:** mở rộng corpus có kiểm soát. Đã tìm thấy tài liệu AAOS hữu ích cho simple bone cyst và multiple osteochondromas, nhưng chưa ingest vì cần xác minh quyền tái sử dụng. Nhãn `osteofibroma` chưa được tự ý đồng nhất với osteofibrous dysplasia. Xác minh nguồn dữ liệu nhãn và điều khoản trước; sau đó cập nhật `sources.json`, tạo lại corpus/index, gắn lại gold và lưu báo cáo mới vào thư mục mới. Không sửa các tập V2/V3 đã xem rồi gọi chúng là đánh giá độc lập.
 
-Xác minh API/model thật đã hoàn tất: `verify_api.py` trả `API_LOCAL_PARITY_PASSED` cho 3/3 ca, sai lệch score tối đa 0, metadata và hash ảnh khớp; metadata thiếu bị từ chối 422, ảnh hỏng bị từ chối 415. Báo cáo runtime: `api_results/20261027_212246_844539/api_report.json` (Git bỏ qua). Phép này chỉ so với baseline local, không phải notebook parity hay đánh giá lâm sàng.
+Xác minh API/model thật đã hoàn tất: `python -m bonescope.verify_api` trả `API_LOCAL_PARITY_PASSED` cho 3/3 ca, sai lệch score tối đa 0, metadata và hash ảnh khớp; metadata thiếu bị từ chối 422, ảnh hỏng bị từ chối 415. Báo cáo runtime: `api_results/20261027_212246_844539/api_report.json` (Git bỏ qua). Phép này chỉ so với baseline local, không phải notebook parity hay đánh giá lâm sàng.
 
 ## Cập nhật phiên làm việc ngày 27/10/2026 lúc 17:27
 
@@ -268,7 +268,7 @@ phiên này vì mục tiêu là hoàn thiện routing và test; API vẫn cần 
 4. Bổ sung nguồn cho `simple bone cyst`, `osteofibroma` và
    `synovial osteochondroma`, rồi xây lại corpus/index theo hướng dẫn nếu dữ
    liệu thay đổi.
-5. Khi cần xác minh tích hợp, khởi động API trước rồi chạy `verify_api.py`;
+5. Khi cần xác minh tích hợp, khởi động API trước rồi chạy `python -m bonescope.verify_api`;
    ghi kết quả mới vào tài liệu, không coi việc routing test là kiểm chứng
    độ chính xác lâm sàng.
 

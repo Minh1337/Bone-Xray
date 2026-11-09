@@ -30,7 +30,7 @@ Có thể ép chạy CPU từ CMD:
 
 ```bat
 set XRAY_DEVICE=cpu
-.venv\Scripts\python.exe -m uvicorn xray_api:app --host 127.0.0.1 --port 8000 --workers 1
+.venv\Scripts\python.exe -m uvicorn bonescope.xray_api:app --host 127.0.0.1 --port 8000 --workers 1
 ```
 
 ## Endpoint chính

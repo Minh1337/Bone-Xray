@@ -12,7 +12,7 @@ import json
 import statistics
 from pathlib import Path
 
-from api_validation import META_COLS
+from bonescope.api_validation import META_COLS
 from rag import case_context as cases
 
 ROOT = Path(__file__).resolve().parents[1]

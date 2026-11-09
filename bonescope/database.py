@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-DB_PATH = Path(__file__).resolve().parent / 'data' / 'bonescope.db'
+DB_PATH = Path(__file__).resolve().parents[1] / 'data' / 'bonescope.db'
 
 # ---------------------------------------------------------------------------
 # Connection helpers

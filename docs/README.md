@@ -32,7 +32,7 @@ BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, 
 | [Hướng dẫn UI](guides/README_UI_VI.md) | Giao diện ứng dụng |
 | [Kho nguồn RAG](guides/README_RAG_CORPUS_VI.md) | Thu thập, chia đoạn và quản lý nguồn |
 | [Chỉ mục RAG](guides/README_RAG_INDEX_VI.md) | Embedding, truy xuất và kết quả đánh giá |
-| `reference/api_reference_local.json` | Dữ liệu tham chiếu cho `verify_api.py` |
+| `reference/api_reference_local.json` | Dữ liệu tham chiếu cho `python -m bonescope.verify_api` |
 | [Báo cáo tiến độ](reports/Bao_cao_tien_do.docx) | Báo cáo Word lịch sử, snapshot 27/10/2026; không phải trạng thái hiện hành |
 | [Báo cáo Giai đoạn 11 — 29/10/2026](reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) | Snapshot có dẫn nguồn về bằng chứng kỹ thuật, giới hạn, 7 cổng nghiệm thu và runbook đóng cổng; không phải sign-off lâm sàng |
 

@@ -107,7 +107,7 @@ def check_origin(request):
 
 def default_predictor_loader():
     # Imported lazily so the text chatbot never loads torch unless a case is analysed.
-    from xray_api import load_real
+    from bonescope.xray_api import load_real
     return load_real()
 
 
@@ -129,7 +129,7 @@ def create_app(retrieve_fn=None, predictor_loader=None):
     model_state = {"predictor": None, "info": None}
 
     def predict_case(file, meta):
-        from xray_api import predict_upload
+        from bonescope.xray_api import predict_upload
         if not model_guard.acquire(blocking=False):
             raise HTTPException(429, "Mô hình đang phân tích một ảnh khác; thử lại sau ít giây.",
                                 headers={"Retry-After": "2"})
@@ -279,7 +279,7 @@ def create_app(retrieve_fn=None, predictor_loader=None):
     @app.post("/api/case")
     async def create_case(request: Request, file: UploadFile = File(...), metadata: str = Form(...)):
         check_origin(request)
-        from xray_api import parse_metadata
+        from bonescope.xray_api import parse_metadata
         try:
             meta = parse_metadata(metadata)
             record = await asyncio.to_thread(predict_case, file, meta)

@@ -72,14 +72,9 @@ Bone_Xray_Local_Check/
 ├── tests/                   # validation tests
 ├── api_tests/               # API và case-management tests
 ├── ui_tests/                # route/UI integration tests
-├── check_model.py           # kiểm tra model offline
-├── inference.py             # Predictor và preprocessing
-├── model_definition.py      # kiến trúc model
-├── validation.py            # validation cases và score comparison
-├── xray_api.py              # FastAPI prediction service
-├── case_api.py              # case/comment/correction/dashboard routes
-├── database.py              # SQLite và schema
-├── xray_ui.py               # ghép API, case routes và static UI
+├── scripts/                 # launcher setup, API, UI và chatbot
+├── bonescope/               # API, database, inference và model modules
+├── tools/                   # evaluator, audit, chatbot và checkpoint utilities
 ├── cases.json               # 3 ca mẫu có metadata
 ├── requirements.txt         # dependency model/inference
 └── requirements_api.txt     # dependency API
@@ -315,7 +310,7 @@ scripts\02_run_check.bat
 Mặc định script gọi:
 
 ```text
-check_model.py --device auto
+bonescope.check_model --device auto
 ```
 
 Chương trình kiểm tra input, tính SHA256, nạp model, kiểm tra config/metadata, chạy
