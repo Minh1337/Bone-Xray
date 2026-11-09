@@ -4,6 +4,14 @@
 
 **Bắt đầu tại [trạng thái và bàn giao hiện tại](PROJECT_STATUS_VI.md).** Tài liệu đó ghi những phần đã làm, bằng chứng kiểm tra, giới hạn và việc cần thực hiện tiếp.
 
+## Trạng thái hiện hành
+
+BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, gồm pipeline phân loại X-quang, Research Studio, hội thoại RAG và chatbot ảnh nhiều lượt. Bản kiểm chứng gần nhất ghi nhận `209 passed`, audit RAG `22 nguồn / 794 chunks`, replay xác định `16/16`, và chatbot doctor `13/13`. Đây là kiểm thử phần mềm và tính toàn vẹn artifact; không phải kiểm định lâm sàng hoặc đánh giá độc lập.
+
+`answer_ready=false`, ngưỡng retrieval vẫn `AWAITING_LABELS`, và cả 7 acceptance gates vẫn `OPEN`. Không sử dụng hệ thống để chẩn đoán, triage, theo dõi hoặc điều trị.
+
+Để chạy nhanh trên máy mới, đọc [README tiếng Anh](../README.md) hoặc [README tiếng Việt](../README_VI.md). Để tiếp quản công việc kỹ thuật, đọc [trạng thái dự án](PROJECT_STATUS_VI.md), [quy trình nghiên cứu](guides/RESEARCH_WORKFLOW_VI.md) và [bản bàn giao](../START_HERE_NEXT_CODEX_VI.md).
+
 | Tài liệu | Nội dung |
 | --- | --- |
 | [README tiếng Việt](../README_VI.md) | Cài đặt, khởi động, sử dụng và kiểm thử trên máy mới |
@@ -25,15 +33,14 @@
 | [Kho nguồn RAG](guides/README_RAG_CORPUS_VI.md) | Thu thập, chia đoạn và quản lý nguồn |
 | [Chỉ mục RAG](guides/README_RAG_INDEX_VI.md) | Embedding, truy xuất và kết quả đánh giá |
 | `reference/api_reference_local.json` | Dữ liệu tham chiếu cho `verify_api.py` |
-| [Báo cáo tiến độ](reports/Bao_cao_tien_do.docx) | Báo cáo Word v1.7, snapshot 27/10/2026; dùng [trạng thái dự án](PROJECT_STATUS_VI.md) và [handoff Stage 11](STAGE11_HANDOFF_VI.md) cho snapshot mới hơn 29/10/2026 |
+| [Báo cáo tiến độ](reports/Bao_cao_tien_do.docx) | Báo cáo Word lịch sử, snapshot 27/10/2026; không phải trạng thái hiện hành |
 | [Báo cáo Giai đoạn 11 — 29/10/2026](reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) | Snapshot có dẫn nguồn về bằng chứng kỹ thuật, giới hạn, 7 cổng nghiệm thu và runbook đóng cổng; không phải sign-off lâm sàng |
 | [Tài liệu phát triển](reports/Tai_lieu_phat_trien_du_an.docx) | Tài liệu Word nền tảng của dự án |
 
 Các đường dẫn lệnh trong tài liệu được hiểu từ thư mục gốc `BONESCOPE/`, trừ khi có ghi khác.
 
-Trạng thái code gần nhất đã commit: `d1ef896` (policy routing và bàn giao Giai đoạn 11). Đọc [trạng thái dự án](PROJECT_STATUS_VI.md) để xem các xác minh mới hơn và thay đổi tài liệu đang thực hiện.
-RAG đã có corpus/index/retrieval CLI và các phép đánh giá thử nghiệm; chatbot
-chưa được triển khai, `answer_ready` vẫn luôn `false`, và giai đoạn 11 chưa
-được nghiệm thu để dùng làm nền trả lời y khoa.
+Các file trong `docs/reference/` mang ngày và phiên bản vì lưu bằng chứng lịch sử,
+record hash và kết quả tái lập. Không xóa hoặc gộp các record này chỉ để giảm số
+file nếu chưa cập nhật các liên kết, manifest và báo cáo phụ thuộc vào chúng.
 
 Sau mỗi thay đổi chức năng hoặc kết thúc một giai đoạn, cập nhật `PROJECT_STATUS_VI.md` với việc đã làm, lệnh/kết quả kiểm thử, giới hạn và bước tiếp theo; cập nhật Completion Note của giai đoạn tương ứng khi đủ tiêu chí trong lộ trình. Nếu thay đổi đường dẫn, API hoặc cách chạy, sửa cả hướng dẫn liên quan và README gốc trong cùng lượt thay đổi.
