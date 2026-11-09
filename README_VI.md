@@ -32,6 +32,11 @@ Tiếp theo nhấp đúp `04_setup_api.bat` để cài FastAPI và chạy test A
 Không copy `.venv` từ máy khác; hãy tạo lại trên từng máy để tránh lỗi đường dẫn,
 Python và phần cứng.
 
+Để chạy **chatbot học tập**, tạo `.env` từ `.env.example`, điền key OpenRouter
+trên máy của bạn, rồi chạy `10_setup_chatbot.bat` và `09_check_chatbot.bat`.
+Không đưa `.env` lên Git. Các bước này cũng được ghi trong
+[quy trình thực nghiệm](docs/guides/RESEARCH_WORKFLOW_VI.md).
+
 ## 3. Khởi động ứng dụng
 
 Nhấp đúp `07_start_ui.bat`, sau đó mở:
@@ -123,10 +128,10 @@ Lệnh `rag\audit.py` kiểm tra tính toàn vẹn của source lock, corpus, go
 ## 6. Demo chatbot học tập local
 
 Trong VS Code chọn **💬 BoneScope: Chatbot tra cứu tài liệu** rồi bấm F5, hoặc
-chạy:
+nhấp đúp `08_start_chatbot.bat`:
 
 ```powershell
-.\.venv\Scripts\python.exe -m uvicorn rag.demo_api:app --host 127.0.0.1 --port 8765
+.\.venv\Scripts\python.exe -m tools.run_chatbot --port 8765
 ```
 
 Mở `http://127.0.0.1:8765`. Sao chép `.env.example` thành `.env` và điền
@@ -151,8 +156,7 @@ và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Full suite offline gần nhất (09/11/2026) ghi nhận **172 passed, 0 failed / 132 subtests passed**, một
-cảnh báo deprecation Starlette. Các lời gọi provider đều dùng mock transport, không tiêu token API. Xem [báo cáo trạng thái hoàn thiện](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [audit RAG 09/11](docs/reference/stage11_integrity_audit_20261109_cureus_v1.json), [replay 09/11](docs/reference/stage11_replay_20261109_cureus_v1.json) và [manifest kiểm chứng tích hợp 05/11](docs/reference/stage12_integrated_chatbot_verification_20261105.json).
+Full suite mới nhất: xem [bản review code tự động 10/11](docs/reference/stage11_autopilot_review_20261110.json) để biết số test, hash và giới hạn. Provider dùng mock trong suite; không tiêu token API. Xem [báo cáo trạng thái hoàn thiện](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [audit RAG](docs/reference/stage11_integrity_audit_20261109_final_cureus_v1.json), [replay RAG](docs/reference/stage11_replay_20261109_final_cureus_v1.json) và [manifest kiểm chứng tích hợp 05/11](docs/reference/stage12_integrated_chatbot_verification_20261105.json).
 
 Để chạy riêng các kiểm tra chatbot/API:
 
@@ -175,6 +179,8 @@ Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
 - [Báo cáo tổng hợp Giai đoạn 11 — 29/10/2026](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md)
 - [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
 - [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)
+- [Quy trình chạy, nạp nguồn và hiệu chỉnh retrieval](docs/guides/RESEARCH_WORKFLOW_VI.md)
+- [Addendum review câu trả lời do generator tạo](docs/reference/STAGE11_GENERATOR_REVIEW_ADDENDUM_20261110.md)
 - [Hướng dẫn index và retrieval](docs/guides/README_RAG_INDEX_VI.md)
 - [Hệ quy chiếu ảnh X-quang](docs/guides/README_IMAGE_REFERENCE_VI.md)
 - [Thiết kế kiểm tra bằng chứng](docs/reference/EVIDENCE_CHECK_DESIGN_VI.md)
@@ -194,8 +200,8 @@ Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
 - [Phiếu closeout privacy/security theo phạm vi](docs/reference/STAGE11_PRIVACY_SECURITY_GATE_TEMPLATE_VI.md)
 - [Checklist cohort ảnh ngoài BTXRD](docs/reference/STAGE11_EXTERNAL_COHORT_DUE_DILIGENCE_VI.md)
 - [CSV trống ghi nhận quyền tái sử dụng theo ảnh](docs/reference/stage11_image_rights_chain_template_20261028.csv)
-- [Integrity audit hiện hành](docs/reference/stage11_integrity_audit_20261029_cureus_abcrouting_v1.json)
-- [Deterministic replay hiện hành](docs/reference/stage11_replay_20261029_cureus_abcrouting_v1.json)
+- [Integrity audit hiện hành](docs/reference/stage11_integrity_audit_20261110_final.json)
+- [Deterministic replay hiện hành](docs/reference/stage11_replay_20261110_final.json)
 - [Full regression record mới nhất](docs/reference/stage11_test_run_20261029_postdocs_full.json)
 - [Progress note Giai đoạn 11](docs/STAGE11_PROGRESS_2026-10-29.md)
 

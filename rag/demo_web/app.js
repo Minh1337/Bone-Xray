@@ -1012,6 +1012,8 @@ document.getElementById('case-clear-fields').addEventListener('click', () => {
 caseImage.addEventListener('change', async () => {
   referenceImageRequest++;
   showCaseError('');
+  caseImageMatchNote.textContent = '';
+  askAiAboutCaseImage.hidden = true;
   caseConfirmed.checked = false;
   if (previewObjectUrl) { URL.revokeObjectURL(previewObjectUrl); previewObjectUrl = null; }
   casePreviewRow.hidden = true;
@@ -1078,7 +1080,8 @@ caseImage.addEventListener('change', async () => {
   } catch (error) {
     if (caseImage.files[0] === file) {
       caseImageMatchNote.textContent = error.message;
-      askAiAboutCaseImage.hidden = false;
+      askAiAboutCaseImage.hidden = !['image/jpeg', 'image/png', 'image/webp'].includes(file.type)
+        || file.size > 10 * 1024 * 1024;
     }
   }
 });

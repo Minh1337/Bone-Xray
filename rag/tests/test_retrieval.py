@@ -399,6 +399,32 @@ class RetrievalTests(unittest.TestCase):
                                    engine=unloaded_engine, top_k=invalid_top_k, mode="dense",
                                    rerank_concepts=True)
 
+    def test_search_and_retrieve_validate_mode_before_routing(self):
+        rows = [{"chunk_id": "a", "source_id": "s1", "section": "Biopsy", "url": "https://example.org/a",
+                 "text": "Biopsy examines tissue for bone sarcoma diagnosis"}]
+        vectors = np.array([[1, 0]], dtype=np.float32)
+        engine = r.Retriever(model=None, index=(rows, vectors))
+        for invalid_mode in (None, 1, [], {}, "other"):
+            with self.subTest(mode=invalid_mode):
+                with self.assertRaisesRegex(ValueError, "mode must be"):
+                    engine.search("biopsy", mode=invalid_mode)
+                with self.assertRaisesRegex(ValueError, "mode must be"):
+                    r.search("biopsy", index=(rows, vectors), mode=invalid_mode)
+                with self.assertRaisesRegex(ValueError, "mode must be"):
+                    r.retrieve("What treatment should I choose for my tumor?", engine=engine,
+                               mode=invalid_mode)
+
+        class GuardEngine:
+            config = r.load_config()
+            corpus_rows = rows
+            verifier = None
+
+            def search(self, *args, **kwargs):
+                raise AssertionError("invalid mode must be rejected before retrieval")
+
+        with self.assertRaisesRegex(ValueError, "mode must be"):
+            r.retrieve("What treatment should I choose for my tumor?", engine=GuardEngine(), mode=[])
+
     def test_search_and_retrieve_validate_question_type_and_nonempty(self):
         rows = [{"chunk_id": "a", "source_id": "s1", "section": "Biopsy", "url": "https://example.org/a",
                  "text": "Biopsy examines tissue for bone sarcoma diagnosis"}]

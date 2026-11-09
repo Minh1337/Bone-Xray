@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 INDEX = ROOT / "index"
 DEFAULT_REPORT_DIR = (ROOT.parent / "docs" / "reference" /
-                      "stage11_policy_rerun_20261029_cureus_abcrouting_v1")
+                      "stage11_policy_rerun_20261110_retrieval_input_validation_v1")
 
 
 def _read_json(path):

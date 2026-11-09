@@ -1,0 +1,36 @@
+{
+  "created_at_utc": "2026-11-09T19:25:16.260505+00:00",
+  "schema_version": 1,
+  "purpose": "reviewer_supplied",
+  "independence_verified": false,
+  "dataset_sha256": "0ce05f208233373339901e30a5b240f1ffe61d41b5caa8ba0c886d4fe1011d63",
+  "bindings": {
+    "corpus": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "source_lock": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "config": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "index": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+    "retrieval": "da6270e226f9fad5d3dcf5a84c99c3065b75deb12bc9088e72b67f4d12257022",
+    "policy": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a"
+  },
+  "tool_sha256": "520a939cfa88344b35df6b0680213ee906099f72f41534749f0c26cc5b82a5ed",
+  "criteria": {
+    "min_fully_answerable_retention": null,
+    "max_unsupported_candidate_rate": null
+  },
+  "score_definition": "Maximum original dense cosine; not hybrid ranking_score or answer correctness",
+  "status": "AWAITING_LABELS",
+  "candidate_threshold": null,
+  "curve": [],
+  "observations": [],
+  "holdout_scored": false,
+  "withheld_holdout_count": 0,
+  "runtime_policy_changed": false,
+  "answer_ready": false,
+  "limitations": [
+    "Reviewer independence/label correctness cannot be certified by this tool.",
+    "Exact duplicate/cluster overlap checks do not detect all paraphrases or leakage.",
+    "Counts/rates are descriptive; cluster uncertainty, sample-size adequacy and evidence support need external review.",
+    "Out-of-scope questions are reported separately, excluded from selection; runtime policy guards remain necessary.",
+    "No threshold is installed; G1-G7 remain OPEN."
+  ]
+}

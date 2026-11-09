@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "purpose": "reviewer_supplied",
+  "independence": "Requires external review; not verified by this software",
+  "bindings": {
+    "corpus": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "source_lock": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "config": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "index": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+    "retrieval": "da6270e226f9fad5d3dcf5a84c99c3065b75deb12bc9088e72b67f4d12257022",
+    "policy": "b4fd80789066748cf1d409330384f85faa19abd621af33c407c529f29407cb4a"
+  },
+  "criteria": {
+    "min_fully_answerable_retention": null,
+    "max_unsupported_candidate_rate": null
+  },
+  "questions": [],
+  "question_fields": [
+    "id",
+    "cluster_id",
+    "split (calibration or holdout)",
+    "question_vi",
+    "answerability (answerable, partially_answerable, unanswerable)",
+    "expected_status (candidates_found, insufficient_evidence, out_of_scope)"
+  ],
+  "notes": "Owner/reviewers supply labels/criteria before seeing ranks/scores. Do not paste patient data."
+}

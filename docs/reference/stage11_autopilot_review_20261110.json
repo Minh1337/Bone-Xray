@@ -1,0 +1,172 @@
+{
+  "created_at_utc": "2026-11-09T19:44:06.446313+00:00",
+  "purpose": "Review of automatic retrieval input-validation commits plus final local regression; software and artifact consistency only.",
+  "reviewed_automatic_commits": [
+    "10a50f12ef0494c45f3ff674a2adeb62a8b39500",
+    "738f04ebcf2c69ac86a67d3c376f92efb920a20e",
+    "1333b9a1064b9a5fc502dd7fd56005fec226ecf1",
+    "2a80f70e2b731856f88c7dedd045e67669b47f31"
+  ],
+  "review_finding_fixed": "Invalid mode types previously could raise TypeError; unsupported mode could bypass validation on an out-of-scope route. Added explicit validation and regression coverage.",
+  "checks": [
+    {
+      "name": "full_pytest_suite",
+      "status": "PASS",
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest api_tests rag\\tests tests ui_tests -q --junitxml=docs\\reference\\stage11_autopilot_review_20261110.junit.xml",
+      "passed": 209,
+      "failed": 0,
+      "subtests_passed": 227,
+      "junit_sha256": "20b1b4cd1828aa87bb04ecb03e569d1b0382370f6854ef9d4198480a33591330",
+      "warning": "One Starlette anyio BlockingPortal deprecation; no test failure.",
+      "junit_artifact": "docs/reference/stage11_autopilot_review_20261110.junit.xml",
+      "execution_context": "The default workspace sandbox denied Chrome GPU child startup; the final full run used approved local process permissions with the original secure Chrome flags. No browser test source changes were retained.",
+      "junit_testcase_count": 209,
+      "junit_artifact_includes_subtests": false
+    },
+    {
+      "name": "RAG provenance audit",
+      "status": "PASS",
+      "source_count": 22,
+      "chunk_count": 794,
+      "evaluation_dataset_count": 10,
+      "errors": [],
+      "record": "docs/reference/stage11_integrity_audit_20261110_final.json"
+    },
+    {
+      "name": "RAG deterministic replay",
+      "status": "PASS",
+      "reports_checked": 16,
+      "all_reports_match": true,
+      "changed_metrics_across_snapshots": 0,
+      "bundle": "docs/reference/stage11_policy_rerun_20261110_retrieval_input_validation_v1",
+      "manifest_sha256": "900a4758d0625ff08fc2fdd1bd78ea5309cd3c65301163e7107128d46f8f29f3",
+      "record": "docs/reference/stage11_replay_20261110_final.json",
+      "comparison_sha256": "f834f4981fde3b632d9725d393cfc38b4cc6d74640f2960bde29e37f74628783"
+    },
+    {
+      "name": "Stage 11 register QA",
+      "status": "PASS",
+      "errors": [],
+      "gate_rows": 7,
+      "gate_closed": 0,
+      "prepared_artifact_references_checked": 24,
+      "cohort_rows": 15,
+      "scope": "reference/hash/shape consistency only; not gate acceptance"
+    },
+    {
+      "name": "local chatbot doctor",
+      "status": "PASS",
+      "checks": 13,
+      "provider_request_made": false
+    },
+    {
+      "name": "frontend syntax",
+      "status": "PASS",
+      "command": "node --check rag/demo_web/app.js"
+    },
+    {
+      "name": "VS Code JSON",
+      "status": "PASS",
+      "files": [
+        ".vscode/launch.json",
+        ".vscode/tasks.json"
+      ]
+    },
+    {
+      "name": "retrieval targeted suite",
+      "status": "PASS",
+      "passed": 22,
+      "subtests_passed": 205,
+      "command": ".\\.venv\\Scripts\\python.exe -m pytest rag\\tests\\test_retrieval.py -q"
+    }
+  ],
+  "threshold_readiness": {
+    "status": "AWAITING_LABELS",
+    "candidate_threshold": null,
+    "runtime_policy_changed": false,
+    "answer_ready": false
+  },
+  "foundation_hashes": {
+    "corpus_sha256": "4ff6131a632858739ba533db01a40bb79cf855ec29641a5bf31f7f9718dda6ec",
+    "source_lock_sha256": "dafa8f6c4a6b22eb7760c824f710be1a2f4cd0c96091bdef6b008cf53d56eab5",
+    "index_manifest_sha256": "751728d5e618afbe2f627fcea47c2718be3c76920c635e429aaec1ec668f37fe",
+    "retrieval_config_sha256": "6b15b2c564d4948b85b25838decebc0919c1edd63c29039649a6ad1dd4a62a64",
+    "model_sha256": "7a77d5da5ee721c7c740e4082447d3026b6521d3eac5edb93edb6aa88f03b7d7"
+  },
+  "implementation_sha256": {
+    "rag/retrieval.py": "da6270e226f9fad5d3dcf5a84c99c3065b75deb12bc9088e72b67f4d12257022",
+    "rag/tests/test_retrieval.py": "cfb53111e3d4de92436daf5e1cc6114a080fcfcceebacd39db68eb6ef379b0b0",
+    "rag/audit.py": "2af69d888ab51b760bef5ce590fed4736782713d9905b96e8344f66b05fdc126",
+    "rag/replay_reports.py": "49134e45cd0967125277926f7c5145c90813e3d3ec146804e732617c3a7861eb",
+    "rag/tests/test_audit.py": "f9bcc89a978ccf6358ba929c487b6a89285409ed8e6f525db6b8b805e10734ee",
+    "tools/chatbot_doctor.py": "2dc4492a3e110e1891ce51db5a407a5c038b5cc75a98b44f2cbd38cb5521c67a",
+    "tools/run_chatbot.py": "d58f1ecbb931a8bcd6c47579b4d3bf00112923373df94afab5e04abeb9a292c8",
+    "tools/calibrate_retrieval_threshold.py": "520a939cfa88344b35df6b0680213ee906099f72f41534749f0c26cc5b82a5ed",
+    "tools/preview_rag_source.py": "b90e416f255f37d9c750597c5ff219d065180ffcd24a5cd7c2fdb7cd7bc7e05f",
+    ".vscode/tasks.json": "ebce79d8178dac06065880215dd4c21847fc208385b8bd40a529803ae95b6daf",
+    "01_setup.bat": "24790c053ba7481f7c2a900fa3fa0bb10d0c684830a794cb1d0c3102885ce436",
+    "04_setup_api.bat": "c737708d0f349c08af72ffa436c3d75dbd4d39e5f3f68aaf45c6a04551bd25a0",
+    "08_start_chatbot.bat": "b7d1ae18287ac5d2d2e5e118ec422558994e748f231e130da148be93e1f0e17e",
+    "09_check_chatbot.bat": "078bf854286166251a84beb5d7e7bc5343513c35c19ed64861f94c9e90ce354c",
+    "10_setup_chatbot.bat": "4235c2da477d168fdd197e704d8f295e6485651c753f97d48fd2ee42496b8c43",
+    "README.md": "20c1187f0f0592638f883202ea16e42a0e9afc8d6a541fc9c852bbedaa44dfdf",
+    "README_VI.md": "fd913741f4014b422e9d336bc0c4ad11fe245eea102765dde9e793a2bf2f2bd4",
+    "START_HERE_NEXT_CODEX_VI.md": "391db37cda028d74b5599a0cad42e6009ddb4ed44e026ad95d51085c77e7c7b2",
+    "docs/PROJECT_STATUS_VI.md": "e8c2ff03a46bade0343d65ec86f0c4e8180819d3975bac90cdd831868e465017",
+    "docs/guides/README_RAG_CORPUS_VI.md": "11ebb6bb47904cf3dc0778cfa9e590e6ccb61ced9da8c079c1f4b1d60d9d61fb",
+    "docs/guides/RESEARCH_WORKFLOW_VI.md": "7b0a17d1ca1513e60f87a599d4a8a06324cbc09c2881bed285b8e70a80ceb340",
+    "docs/reference/STAGE11_CHATBOT_READINESS_VI.md": "1c85c32eae2ee42f22b449c818974af2506728bdc03bec9becee266700c7e2f2",
+    "docs/reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md": "7500baf3b4dffe767b79663ff4e4fb1021fd17d6463d3d90577a6903f159a0e3",
+    "docs/reference/STAGE11_GENERATOR_REVIEW_ADDENDUM_20261110.md": "7bd76ebe41dc1071092e9a07a99df2a7c53fc2be3f56560145717667c973b70a",
+    "docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md": "dd51b701d554204933d6a7cb0a9b36cb43929dd9168e6c675f5cac8efbb30aa7"
+  },
+  "working_tree": [
+    "## main...origin/main [ahead 6]",
+    " M .vscode/tasks.json",
+    " M 01_setup.bat",
+    " M 04_setup_api.bat",
+    " M 08_start_chatbot.bat",
+    " M README.md",
+    " M README_VI.md",
+    " M START_HERE_NEXT_CODEX_VI.md",
+    " M docs/PROJECT_STATUS_VI.md",
+    " M docs/guides/README_RAG_CORPUS_VI.md",
+    " M docs/reference/STAGE11_CHATBOT_READINESS_VI.md",
+    " M docs/reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md",
+    " M docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md",
+    " M rag/audit.py",
+    " M rag/replay_reports.py",
+    " M rag/retrieval.py",
+    " M rag/tests/test_audit.py",
+    " M rag/tests/test_retrieval.py",
+    "?? 09_check_chatbot.bat",
+    "?? 10_setup_chatbot.bat",
+    "?? docs/guides/RESEARCH_WORKFLOW_VI.md",
+    "?? docs/reference/STAGE11_GENERATOR_REVIEW_ADDENDUM_20261110.md",
+    "?? docs/reference/answer_claim_review_template_20261110.csv",
+    "?? docs/reference/retrieval_threshold_dataset_template_20261110.json",
+    "?? docs/reference/retrieval_threshold_readiness_20261110.json",
+    "?? docs/reference/stage11_autopilot_review_20261110.json",
+    "?? docs/reference/stage11_autopilot_review_20261110.junit.xml",
+    "?? docs/reference/stage11_integrity_audit_20261110.json",
+    "?? docs/reference/stage11_integrity_audit_20261110_final.json",
+    "?? docs/reference/stage11_integrity_audit_20261110_retrieval_input_validation_v1.json",
+    "?? docs/reference/stage11_policy_rerun_20261110_retrieval_input_validation_v1/",
+    "?? docs/reference/stage11_replay_20261110.json",
+    "?? docs/reference/stage11_replay_20261110_final.json",
+    "?? docs/reference/stage11_replay_20261110_retrieval_input_validation_v1.json"
+  ],
+  "provider_calls_made": false,
+  "answer_ready": false,
+  "acceptance_gates": {
+    "total": 7,
+    "closed": 0,
+    "status": "all OPEN"
+  },
+  "limitations": [
+    "Retrieval datasets are development/regression sets already viewed; replay is not independent validation.",
+    "No reviewer-labeled threshold calibration exists; status remains AWAITING_LABELS and no runtime threshold was installed.",
+    "No external rights-cleared X-ray cohort with independent reference standard or patient/lesion split was evaluated.",
+    "Software tests and provenance checks do not establish X-ray accuracy, claim entailment, clinical validity, privacy/security review, or generalization."
+  ]
+}

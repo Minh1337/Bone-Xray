@@ -2,7 +2,7 @@
 
 **Đề tài:** Nguyên mẫu học tập kết hợp phân loại ảnh X-quang u xương (Swin + 22 metadata), truy xuất tài liệu có trích nguồn (RAG) và chatbot đa lượt
 
-**Ngày chốt:** 09/11/2026 (UTC+07) · **Loại tài liệu:** báo cáo học tập có tính thực nghiệm
+**Ngày lập:** 09/11/2026 · **Cập nhật kiểm chứng:** 10/11/2026 (UTC+07) · **Loại tài liệu:** báo cáo học tập có tính thực nghiệm
 
 > [!IMPORTANT]
 > BoneScope là nguyên mẫu **học tập/nghiên cứu nội bộ**, không cung cấp cho bác sĩ hay người bệnh, không phải thiết bị y tế và không dùng để chẩn đoán hay quyết định điều trị ([phạm vi do người dùng xác định](../reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md)). API luôn trả `answer_ready=false`; bảy gate nghiệm thu G1–G7 vẫn `OPEN`. Mọi số liệu dưới đây là **thực nghiệm nội nguồn hoặc trên bộ dev đã xem**, không phải kiểm định độc lập.
@@ -11,7 +11,7 @@
 
 BoneScope gồm bốn thành phần chạy cục bộ: (1) mô hình phân loại X-quang `Swin + MetadataMLP + Cross-Attention` trên 10 nhãn BTXRD; (2) kho RAG 22 nguồn công khai có provenance, 794 đoạn, chỉ mục `794 × 384` với `intfloat/multilingual-e5-small` và truy xuất lai BM25 + dense; (3) chatbot đa lượt có định tuyến chủ đề, từ chối ngoài phạm vi và chat ảnh tạm trong tab; (4) lịch sử hội thoại SQLite chỉ lưu văn bản và nguồn.
 
-Kết quả chính: trên 250 ảnh BTXRD phân tầng (in-source), mô hình đạt Top-1 **0,776**, Top-3 **0,940**, Macro-F1 **0,776**, ECE 10-bin **0,037**. Khi xóa metadata về 0, Top-1 còn **0,480** và ECE tăng lên **0,208**, cho thấy nhánh metadata đóng góp lớn và mô hình trở nên tự tin quá mức khi thiếu metadata. RAG tái lập được 16/16 báo cáo đánh giá, audit provenance PASS. Bộ regression phần mềm offline đạt **202 passed / 132 subtests**; browser smoke và smoke provider thật cơ bản PASS.
+Kết quả chính: trên 250 ảnh BTXRD phân tầng (in-source), mô hình đạt Top-1 **0,776**, Top-3 **0,940**, Macro-F1 **0,776**, ECE 10-bin **0,037**. Khi xóa metadata về 0, Top-1 còn **0,480** và ECE tăng lên **0,208**, cho thấy nhánh metadata đóng góp lớn và mô hình trở nên tự tin quá mức khi thiếu metadata. RAG tái lập được 16/16 báo cáo đánh giá, audit provenance PASS. Bộ regression phần mềm offline ngày 10/11 đạt **209 passed / 227 subtests passed**; browser smoke và smoke provider thật cơ bản đã có record riêng.
 
 Giới hạn chính: chưa có tập ảnh ngoài độc lập, chưa có reviewer độc lập chấm relevance/entailment, và chưa có ngưỡng similarity được hiệu chỉnh (bước 7 của checklist Giai đoạn 11).
 
@@ -38,7 +38,7 @@ Catalogue cục bộ có **3.746 ảnh**, 3.725 SHA-256 duy nhất; 21 nhóm tr�
 
 ### 2.2. Kho văn bản RAG
 
-22 nguồn công khai text-only (NCI, review mở CC BY…), mỗi nguồn có URL, section, license và hash trong source lock; 794 đoạn. Không nhập hình ảnh từ nguồn. Xem [audit 09/11](../reference/stage11_integrity_audit_20261109_final_cureus_v1.json).
+22 nguồn công khai text-only (NCI, review mở CC BY…), mỗi nguồn có URL, section, license và hash trong source lock; 794 đoạn. Không nhập hình ảnh từ nguồn. Xem [audit 10/11](../reference/stage11_integrity_audit_20261110_final.json).
 
 ## 3. Phương pháp
 
@@ -80,9 +80,9 @@ Nguồn: [đánh giá in-source](../reference/stage11_xray_in_source_evaluation_
 | Expansion dev (25 câu) | Recall@5 1,000; MRR@5 0,689; abstention âm 3/3 | Sau route ABC, tối ưu in-sample |
 | Stress song ngữ (20 câu) | Exact-gold recall@5 8/10; MRR 0,633; abstention âm 10/10 | Hai miss có candidate liên quan, cần reviewer |
 | OFD dev (7 câu) | Recall@5 5/5; MRR 0,70 | Câu hỏi lấy từ nguồn vừa ingest |
-| Replay bundle `cureus_abcrouting_v1` | 16/16 khớp, 0 mismatch | [record 09/11](../reference/stage11_replay_20261109_final_cureus_v1.json) |
+| Replay bundle `retrieval_input_validation_v1` | 16/16 khớp, 0 mismatch; 0 metric đổi so với bundle trước | [record 10/11](../reference/stage11_replay_20261110_final.json) |
 
-**Thăm dò ngưỡng (bước 7):** trên 28 câu đã xem, cosine dense top-1 thấp nhất của nhóm dương là 0,8003, cao nhất của nhóm âm là 0,9087. Hai miền chồng nhau nên **không có ngưỡng đơn** tách trọn hai nhóm ([record](../reference/stage11_similarity_overlap_probe_20261029.json)). Hệ thống vì thế dựa vào routing để từ chối, không cài ngưỡng mặc định. Công cụ [`calibrate_retrieval_threshold.py`](../../tools/calibrate_retrieval_threshold.py) đã sẵn sàng nhận nhãn reviewer và đang ở trạng thái `AWAITING_LABELS` ([readiness](../reference/retrieval_threshold_readiness_20261109.json)).
+**Thăm dò ngưỡng (bước 7):** trên 28 câu đã xem, cosine dense top-1 thấp nhất của nhóm dương là 0,8003, cao nhất của nhóm âm là 0,9087. Hai miền chồng nhau nên **không có ngưỡng đơn** tách trọn hai nhóm ([record](../reference/stage11_similarity_overlap_probe_20261029.json)). Hệ thống vì thế dựa vào routing để từ chối, không cài ngưỡng mặc định. Công cụ [`calibrate_retrieval_threshold.py`](../../tools/calibrate_retrieval_threshold.py) đã sẵn sàng nhận nhãn reviewer và đang ở trạng thái `AWAITING_LABELS` ([readiness 10/11](../reference/retrieval_threshold_readiness_20261110.json)).
 
 **Evidence verifier lexical:** chặn nhầm 7/7 câu dương trên V2 test và 3/5 trên OFD dev, nên để opt-in/tắt mặc định. Độ phủ từ vựng không đo được entailment.
 
@@ -90,7 +90,7 @@ Nguồn: [đánh giá in-source](../reference/stage11_xray_in_source_evaluation_
 
 | Kiểm tra | Kết quả |
 | --- | --- |
-| Regression offline (`api_tests`, `rag/tests`, `tests`, `ui_tests`) | **202 passed, 0 failed / 132 subtests** (09/11/2026, 1 cảnh báo deprecation Starlette) |
+| Regression offline (`api_tests`, `rag/tests`, `tests`, `ui_tests`) | **209 passed, 0 failed / 227 subtests passed** (10/11/2026, 1 cảnh báo deprecation Starlette; [JUnit](../reference/stage11_autopilot_review_20261110.junit.xml)) |
 | Audit provenance RAG | PASS: 22 nguồn / 794 chunks, 0 lỗi |
 | Register QA | PASS: 24 tham chiếu, 15 cohort leads, 7/7 gate OPEN |
 | Browser Chrome headless (AI giả lập, DB tạm) | PASS: nhiều lượt ảnh, retry, lịch sử, mobile 320/390 px, dark mode ([record](../reference/chatbot_browser_regression_20261109.json)) |
@@ -119,14 +119,14 @@ Nguồn: [đánh giá in-source](../reference/stage11_xray_in_source_evaluation_
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
-.\.venv\Scripts\python.exe -m rag.audit --output docs/reference/stage11_integrity_audit_YYYYMMDD_cureus_v1.json
-.\.venv\Scripts\python.exe -m rag.replay_reports --output docs/reference/stage11_replay_YYYYMMDD_cureus_v1.json
+.\.venv\Scripts\python.exe -m rag.audit --output docs/reference/stage11_integrity_audit_YYYYMMDD.json
+.\.venv\Scripts\python.exe -m rag.replay_reports --output docs/reference/stage11_replay_YYYYMMDD.json
 .\.venv\Scripts\python.exe -m tools.verify_stage11_registers
 .\.venv\Scripts\python.exe -m tools.chatbot_doctor
 .\.venv\Scripts\python.exe -m tools.run_chatbot   # hoặc 08_start_chatbot.bat, mở http://127.0.0.1:8765
 ```
 
-Kết quả chạy lại ngày 09/11/2026 được ghi tại [final_verification_20261109.json](../reference/final_verification_20261109.json).
+Kết quả kiểm chứng hiện hành ngày 10/11/2026 được ghi tại [bản review tự động](../reference/stage11_autopilot_review_20261110.json), [audit](../reference/stage11_integrity_audit_20261110_final.json) và [replay](../reference/stage11_replay_20261110_final.json). Bản [kiểm chứng 09/11](../reference/final_verification_20261109.json) được giữ làm mốc lịch sử.
 
 ## 8. Kết luận
 

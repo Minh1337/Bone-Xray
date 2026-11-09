@@ -1,10 +1,12 @@
 # Trạng thái hoàn thiện BoneScope — 09/11/2026
 
+> **Bổ sung 10/11/2026:** review các commit retrieval autopilot đã phát hiện và sửa validation `mode` trước routing. Full suite hiện đạt **209 passed / 227 subtests**, audit PASS trên 22 nguồn/794 chunks; bundle mới replay 16/16 và không metric nào đổi; register 24/24 hash PASS, 7 gate OPEN. Xem [record review](../reference/stage11_autopilot_review_20261110.json), [audit](../reference/stage11_integrity_audit_20261110_final.json), [replay](../reference/stage11_replay_20261110_final.json) và [hướng dẫn vận hành/nghiên cứu](../guides/RESEARCH_WORKFLOW_VI.md). Dữ liệu retrieval vẫn là dev/regression đã xem; không có threshold hoặc gate mới được chấp nhận.
+
 > **Cập nhật 21:57:** regression hiện đạt **202 passed / 132 subtests**; audit, replay 16/16, register QA và chatbot doctor đều PASS ([bản ghi](../reference/final_verification_20261109.json)). Đã có [báo cáo tổng kết đồ án](BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261109_VI.md) (Markdown + DOCX). Các số 172/176 bên dưới là mốc trước đó. Gate và giới hạn không đổi.
 
 ## Tóm tắt
 
-Nguyên mẫu BoneScope phục vụ **học tập và nghiên cứu nội bộ** đã có các luồng chính: chatbot đa chủ đề, tra cứu RAG, lịch sử SQLite chỉ lưu chữ và nguồn, chat ảnh nhiều lượt trong tab, gợi ý tài liệu sau khi phân tích ảnh, và phân loại X-quang cục bộ khi có đủ metadata. Bộ regression offline hiện tại đạt **172 passed, 0 failed; 132 subtests passed**.
+Nguyên mẫu BoneScope phục vụ **học tập và nghiên cứu nội bộ** đã có các luồng chính: chatbot đa chủ đề, tra cứu RAG, lịch sử SQLite chỉ lưu chữ và nguồn, chat ảnh nhiều lượt trong tab, gợi ý tài liệu sau khi phân tích ảnh, và phân loại X-quang cục bộ khi có đủ metadata. Bộ regression offline hiện hành đạt **209 passed, 0 failed; 227 subtests passed**; kết quả 172/132 bên dưới là snapshot browser regression ngày 09/11.
 
 Chưa thể gọi toàn dự án là 100%. Theo checklist kỹ thuật bảy bước của Giai đoạn 11, sáu bước có artifact và bằng chứng triển khai hiện hành; bước 7 mới có cơ chế từ chối một số yêu cầu ngoài phạm vi, nhưng chưa có ngưỡng tin cậy được hiệu chỉnh bằng dữ liệu độc lập. Đây tương ứng **6/7 ≈ 86% độ bao phủ checklist kỹ thuật hẹp**, không phải phần trăm hoàn thành toàn dự án. Bảy gate G1–G7 vẫn `OPEN`; API vẫn trả `answer_ready=false`.
 
@@ -64,7 +66,7 @@ Dừng phiên cũ bằng Shift+F5, chạy lại cấu hình chatbot bằng F5 r�
 
 | Phạm vi | Trạng thái |
 | --- | --- |
-| Regression phần mềm offline | 172/172 passed; 132 subtests passed |
+| Regression phần mềm offline | 209/209 passed; 227 subtests passed |
 | Checklist pipeline kỹ thuật Giai đoạn 11 | 6/7 bước có artifact; khoảng 86% độ bao phủ hẹp; bước 7 chưa hiệu chỉnh ngưỡng độc lập |
 | Chatbot học tập và luồng ảnh | Chức năng chính đã tích hợp; mock/API, Chrome headless và provider smoke cơ bản PASS; chưa đánh giá độc lập chất lượng X-quang/nguồn |
 | Gate nghiệm thu G1–G7 | 0/7 đóng, đều `OPEN` |

@@ -101,7 +101,7 @@ Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/). API documentation is avai
 ### 3. Run the integrated Research Studio
 
 ```powershell
-.\.venv\Scripts\python.exe -m uvicorn rag.demo_api:app --host 127.0.0.1 --port 8765
+.\.venv\Scripts\python.exe -m tools.run_chatbot --port 8765
 ```
 
 Open [http://127.0.0.1:8765/](http://127.0.0.1:8765/).
@@ -147,18 +147,17 @@ Run the complete regression suite:
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-The latest offline regression run (09/11/2026) recorded:
+The latest local verification is recorded in the [10/11 automated-change review](docs/reference/stage11_autopilot_review_20261110.json):
 
-- 172 tests passed, 0 failed
-- 132 subtests passed
-- all provider requests in tests use mocked transports; no API credits were used
-- provenance audit: `PASS`, 22 sources / 794 chunks ([09/11 record](docs/reference/stage11_integrity_audit_20261109_cureus_v1.json))
-- deterministic replay: `16/16 PASS` ([09/11 record](docs/reference/stage11_replay_20261109_cureus_v1.json))
-- JavaScript syntax check: `PASS`
-- `answer_ready=false`
-- acceptance gates G1–G7 remain `OPEN`
+- full regression: `209 passed`, `0 failed`, and `227 subtests passed`
+- provenance audit: `PASS`, 22 sources / 794 chunks ([record](docs/reference/stage11_integrity_audit_20261110_final.json))
+- deterministic replay: `16/16 PASS`, with no metric changes across snapshots ([record](docs/reference/stage11_replay_20261110_final.json))
+- chatbot environment checks: `13/13 PASS`; JavaScript and VS Code configuration syntax checks: `PASS`
+- provider requests during the verification suite: none; provider tests use mocked transports
+- retrieval threshold readiness: `AWAITING_LABELS`; no runtime threshold was installed
+- `answer_ready=false`; acceptance gates G1–G7 remain `OPEN`
 
-See the [09/11 completion status report](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), the [05/11 integrated verification record](docs/reference/stage12_integrated_chatbot_verification_20261105.json), and the [latest UI checkpoint](checkpoints/20261103_stage12_ui_completion/manifest.json) for details. The 09/11 run includes a real headless Chrome lifecycle test with a temporary profile/SQLite database and offline AI/retrieval fixtures ([record](docs/reference/chatbot_browser_regression_20261109.json)). The regression did not call OpenRouter/Groq. A separate [live provider smoke](docs/reference/chatbot_provider_smoke_20261109.json) subsequently passed for short text via Free and a synthetic geometric PNG via the Qwen fallback (one paid attempt, $0.000248755 reported cost). This does not assess X-ray interpretation quality or guarantee future latency.
+See the [completion status report](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [research workflow](docs/guides/RESEARCH_WORKFLOW_VI.md), and [05/11 integrated verification record](docs/reference/stage12_integrated_chatbot_verification_20261105.json) for details. The earlier 09/11 run includes a real headless Chrome lifecycle test with a temporary profile/SQLite database and offline AI/retrieval fixtures ([record](docs/reference/chatbot_browser_regression_20261109.json)). A separate [live provider smoke](docs/reference/chatbot_provider_smoke_20261109.json) passed earlier for short text via Free and a synthetic geometric PNG via the Qwen fallback (one paid attempt, $0.000248755 reported cost). These checks do not assess X-ray interpretation quality, clinical validity, or future provider latency.
 
 ## Scope and safety
 

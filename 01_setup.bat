@@ -16,9 +16,9 @@ if errorlevel 1 goto fail
 .venv\Scripts\python.exe -m pip check >> logs\setup.log 2>&1
 if errorlevel 1 goto fail
 .venv\Scripts\python.exe -m pip freeze > logs\installed_versions.txt
-.venv\Scripts\python.exe -m unittest discover -s tests >> logs\setup.log 2>&1
-if errorlevel 1 goto fail
-echo Setup complete. Add best_model.pt and fill cases.json before running 02_run_check.bat.
+echo Base environment installed. Add model assets for the classifier.
+echo For the chatbot, run 10_setup_chatbot.bat, then 09_check_chatbot.bat.
+echo Run the full pytest suite after all chatbot and development dependencies are installed.
 pause
 exit /b 0
 :python_missing

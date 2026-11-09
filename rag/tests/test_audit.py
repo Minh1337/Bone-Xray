@@ -14,7 +14,7 @@ class ArtifactAuditTests(unittest.TestCase):
     def test_default_audit_and_replay_use_the_current_bundle(self):
         self.assertEqual(DEFAULT_REPORT_DIR, DEFAULT_BUNDLE)
         self.assertEqual(DEFAULT_REPORT_DIR.name,
-                         "stage11_policy_rerun_20261029_cureus_abcrouting_v1")
+                         "stage11_policy_rerun_20261110_retrieval_input_validation_v1")
         self.assertTrue((DEFAULT_REPORT_DIR / "manifest.json").is_file())
 
     def setUp(self):

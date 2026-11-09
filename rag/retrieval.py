@@ -102,6 +102,11 @@ def _validate_top_k(top_k):
         raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
 
 
+def _validate_mode(mode):
+    if not isinstance(mode, str) or mode not in {"dense", "hybrid"}:
+        raise ValueError("mode must be 'dense' or 'hybrid'")
+
+
 def _validate_min_score(min_score):
     if min_score is None:
         return
@@ -136,9 +141,10 @@ class Retriever:
     def search(self, question, *, top_k=5, min_score=None, source_ids=None, mode="hybrid"):
         _validate_question(question)
         _validate_top_k(top_k)
+        _validate_mode(mode)
         _validate_min_score(min_score)
         _validate_source_ids(source_ids)
-        if not question.strip() or mode not in {"dense", "hybrid"}:
+        if not question.strip():
             raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
         expanded = expansion(question, self.config) if mode == "hybrid" else ""
         queries = ["query: " + question.strip()]
@@ -201,6 +207,7 @@ def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, r
     """Reserve one result from an explicit source cue, then fill globally."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_mode(mode)
     _validate_min_score(min_score)
     _validate_source_ids(source_ids)
     # Respect caller restrictions; a route cannot widen an explicit allowlist.
@@ -229,6 +236,7 @@ def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode
     """For explicit overview requests, surface that source's abstract if present."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_mode(mode)
     _validate_min_score(min_score)
     _validate_source_ids(source_ids)
     if source_ids is not None and route_source_id not in source_ids:
@@ -251,6 +259,7 @@ def search(question, *, top_k=5, min_score=None, source_ids=None, model=None, in
     """Raw search retained for comparisons; it does not enforce scope or safety."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_mode(mode)
     _validate_min_score(min_score)
     _validate_source_ids(source_ids)
     return Retriever(model=model, index=index).search(question, top_k=top_k, min_score=min_score,
@@ -262,6 +271,7 @@ def retrieve(question, *, engine=None, top_k=5, min_score=None, source_ids=None,
     """Route unsupported requests before loading the model; return candidate evidence only."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_mode(mode)
     _validate_min_score(min_score)
     _validate_source_ids(source_ids)
     if verify_evidence and rerank_concepts:

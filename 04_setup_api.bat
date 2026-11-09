@@ -23,6 +23,6 @@ pause
 exit /b 1
 
 :missing
-echo Copy these files INTO Bone_Xray_Local_Check next to the existing .venv folder.
+echo Virtual environment not found in BONESCOPE. Run 01_setup.bat first.
 pause
 exit /b 1

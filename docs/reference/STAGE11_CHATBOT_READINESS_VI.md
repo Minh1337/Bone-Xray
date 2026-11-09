@@ -1,5 +1,7 @@
 # Khi nào BoneScope có thể trở thành chatbot?
 
+**Cập nhật 10/11/2026:** BoneScope hiện đã là chatbot học tập local có generator OpenRouter, hội thoại nhiều lượt, lịch sử SQLite text-only, Vision Chat trong phiên tab và retrieval nguồn. Mốc **“thêm generator” đã hoàn thành về tích hợp kỹ thuật**; Mốc 2 chưa được xác minh độc lập về claim-to-span/citation entailment, chất lượng, safety hoặc tính khái quát. Mốc 3 (phân tích ca/ảnh như sản phẩm) vẫn chưa đủ dữ liệu ngoài, reviewer hay nghiệm thu. Tiến độ/giới hạn hiện hành nằm trong [báo cáo hoàn thiện](../reports/PROJECT_COMPLETION_STATUS_20261109_VI.md) và [quy trình thực nghiệm](../guides/RESEARCH_WORKFLOW_VI.md); những snapshot ngày 03/11 bên dưới là lịch sử.
+
 **Cập nhật mới nhất — 03/11/2026 (Đã hoàn thiện Nguyên mẫu Chatbot Học tập Tích hợp X-quang + Metadata + RAG Đa Lượt):**
 - Trong phạm vi [báo cáo học tập thực nghiệm](STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md), giao diện `rag.demo_api` (`http://127.0.0.1:8765`) đã được nâng cấp thành **chatbot tích hợp đa lượt**:
   1. **Hội thoại văn bản đa lượt có ngữ cảnh (`rag/conversation.py`, `rag/generation.py`):** viết lại câu hỏi nối tiếp độc lập, giữ trích dẫn `[S1]`, `[S2]` khớp đoạn nguồn, hỗ trợ 3 chế độ trả lời (`auto`, `extractive`, `llm`) và vẫn giữ `answer_ready = false`.
@@ -28,11 +30,11 @@ Mở `http://127.0.0.1:8765` trên cùng máy. API `/api/query` dùng `rag.retri
 
 **Kiểm chứng hiện tại:** API/UI trả đoạn cho `candidates_found`, trống cho `out_of_scope` và câu hỏi ảnh cá nhân; test fail-closed khi status không hợp lệ, hit xuất hiện sau khi từ chối hoặc status có nguồn nhưng không có đoạn. Đã chạy full regression **92 passed/132 subtests**. Audit PASS và replay 16/16 PASS của retrieval nền được chạy trước thay đổi cache ở demo; fingerprint retrieval/policy/corpus/config/index không đổi sau đó. Kiểm JS syntax ở bản giao diện hiện tại. Đây vẫn là prototype; cần đánh giá thêm các ca lỗi runtime/model/index và kiểm thử với người dùng trước bất kỳ bản phát hành nào. Không cần đợi đủ bảy chữ ký chỉ để phát triển prototype trên dữ liệu được phép trong môi trường nội bộ, nhưng phải tuân phạm vi do owner đặt ra và không dùng thông tin bệnh nhân chưa được phép. Không đổi `answer_ready=false`.
 
-## Mốc 2 — chatbot tạo câu trả lời bằng ngôn ngữ tự nhiên: sau khi có lớp kiểm chứng riêng
+## Mốc 2 — chatbot tạo câu trả lời bằng ngôn ngữ tự nhiên: đã tích hợp, đang chờ đánh giá độc lập
 
-Retrieval hiện trả **candidate passages**, không xác nhận chúng thực sự hỗ trợ một câu trả lời. Muốn thêm LLM, cần một đường triển khai riêng và khóa trước: intended use, người dùng, nguồn, câu hỏi được phép, dạng câu trả lời, hành động khi không đủ chứng cứ. Tầng tạo câu trả lời cần xuất **từng claim gắn với exact source span/citation, provenance và phiên bản nguồn**; từ chối khi span không hỗ trợ claim, sai polarity/điều kiện/phạm vi hoặc câu hỏi vượt scope. Strict lexical filter hiện có là thử nghiệm opt-in và không phải entailment; không thể dùng nó như giấy phép mở generator.
+Generator đã được tích hợp trong `rag/generation.py`; retrieval vẫn trả **candidate passages**, không tự xác nhận rằng chúng hỗ trợ câu trả lời được sinh. Để nâng chất lượng claim, mỗi câu trả lời cần được review theo từng claim với exact source span/citation, provenance và phiên bản nguồn; chấm polarity, điều kiện, qualifier và phạm vi. Strict lexical filter vẫn là thử nghiệm opt-in, không đo entailment và không thay thế review độc lập. Hướng dẫn ghi nhãn mới nằm ở [addendum review generator](STAGE11_GENERATOR_REVIEW_ADDENDUM_20261110.md).
 
-Trước khi cho người ngoài nhóm thử nghiệm dùng câu trả lời sinh ra, cần hoàn thành đánh giá mù độc lập và adjudication (G2), claim-to-span support/entailment và false acceptance/refusal (G3), safety scenarios và controls (G5), privacy/security theo deployment (G6), cùng G1/G7 theo mục đích sử dụng và jurisdiction. G3 cần bổ sung rubric cho **generated claims** vì rubric hiện tại chủ yếu chuẩn bị cho hỗ trợ của retrieval passage. Không được lấy metric dev đã xem làm tỷ lệ an toàn. Khi đổi kiến trúc generator/prompt/model/corpus, khóa version và đánh giá lại theo protocol tương ứng.
+Trước khi đưa ra claim rằng generator đáng tin cậy hoặc mở rộng người dùng/phạm vi, cần đánh giá mù độc lập và adjudication (G2), claim-to-span support/entailment và false acceptance/refusal (G3), safety scenarios và controls (G5), privacy/security theo deployment (G6), cùng quyết định G1/G7 theo mục đích và jurisdiction. Hiện chưa có nhãn/reviewer độc lập hay sign-off cho các tiêu chí đó. Không lấy metric dev đã xem làm tỷ lệ an toàn. Khi đổi prompt/model/corpus, khóa version và đánh giá lại theo protocol tương ứng.
 
 ## Mốc 3 — chatbot trả lời về ca bệnh hoặc ảnh X-quang thực: chỉ sau nghiệm thu chức năng tích hợp
 
@@ -41,7 +43,7 @@ Classifier ảnh hiện trả nhãn và softmax; chưa có kiểm định độc
 | Tính năng | Có thể làm khi nào | Trạng thái hiện tại |
 | --- | --- | --- |
 | Tra cứu theo lượt hỏi, hiển thị passage/citation như một màn hình chat nội bộ | Trong Stage 11 | Bản local research-only đã chạy và qua smoke check; chưa có đánh giá độc lập |
-| Tạo câu trả lời văn bản về kiến thức chung | Sau khi khóa scope, triển khai generator có claim-to-span verification, đánh giá mù/entailment/safety/privacy/legal theo use case | Chưa có generator và chưa có đánh giá độc lập |
+| Tạo câu trả lời văn bản về kiến thức chung | Generator đã tích hợp cho demo học tập; trước khi nâng claim chất lượng cần review claim-to-span, retrieval, safety/privacy và đánh giá theo scope | Đã có generator; chưa có đánh giá độc lập về entailment/chất lượng hoặc sign-off |
 | Trả lời về ảnh/ca người bệnh và dùng ngoài nghiên cứu nội bộ | Sau khi đủ bằng chứng, quyền, đánh giá và phê duyệt cho chức năng tích hợp trong jurisdiction đích | 0/7 gate đóng; không đủ điều kiện |
 
 ## Việc gần nhất có ích

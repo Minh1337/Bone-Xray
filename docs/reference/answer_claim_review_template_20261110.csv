@@ -1,0 +1,1 @@
+reviewer_id,question_id,answer_id,claim_id,claim_text,cited_source_id,cited_chunk_id,cited_text_sha256,exact_support_span,support_relation,essential_qualifiers_preserved,contradiction_present,reading_material_only,notes,reviewed_at

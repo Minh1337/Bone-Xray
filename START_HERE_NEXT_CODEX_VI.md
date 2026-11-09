@@ -1,5 +1,24 @@
 # Bàn giao BoneScope cho phiên Codex tiếp theo
 
+## Điểm dừng 10/11/2026 — người dùng yêu cầu tạm ngưng
+
+- Đã đối chiếu workspace với record 10/11; các hash implementation trong record khớp. `model_sha256` trong record là **model embedding E5** ở `rag/models/e5-small/model.safetensors`, không phải checkpoint ảnh `model/best_model.pt`.
+- Đã cập nhật báo cáo tổng kết Markdown `docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261109_VI.md` theo regression **209 passed / 227 subtests**, audit/replay bundle 10/11 và threshold `AWAITING_LABELS`. File DOCX cùng tên vẫn là snapshot 09/11: bản mới đã xuất thử vào `.temp`, nhưng chưa thay DOCX vì máy không có LibreOffice để render và kiểm tra bố cục.
+- `rag/demo_web/app.js` đã xóa ghi chú metadata cũ khi chọn ảnh mới và chỉ hiện nút “Hỏi AI về ảnh” sau lỗi tra cứu nếu ảnh thuộc JPEG/PNG/WEBP và không quá 10 MiB. `node --check` PASS; Chrome smoke offline `ui_tests/test_chatbot_browser.py` PASS 1/1 với quyền chạy tiến trình cục bộ. Bộ full suite **209/227** là lượt chạy trước sửa UI nhỏ này; chưa chạy lại toàn bộ sau sửa.
+- Người dùng yêu cầu **tạm ngưng** do hết usage. Giữ nguyên toàn bộ thay đổi chưa commit, `.env`, SQLite và artifact lịch sử. G1–G7 vẫn OPEN, `answer_ready=false`; chưa có nhãn reviewer độc lập hoặc cohort ảnh ngoài đủ quyền.
+
+## Xác minh mới nhất 10/11/2026 — review các thay đổi retrieval tự động
+
+User yêu cầu tiếp tục hoàn thiện dự án và sau này muốn review thay đổi nếu AI tự động sửa code. Workspace đã có 4 commit autopilot cho validation `question`, `top_k`, `min_score`, `source_ids`; review bổ sung phát hiện `mode` sai kiểu có thể gây `TypeError` hoặc lọt qua nhánh policy từ chối. Đã thêm validation `mode` và regression.
+
+- Full suite sau thay đổi: **209 passed, 227 subtests passed**, 0 failed; một cảnh báo deprecation Starlette. Provider calls trong test không gọi AI thật.
+- RAG: audit PASS **22 nguồn/794 chunks**, bundle mới replay **16/16**; so sánh 16 report không có metric nào đổi. Dataset là development/regression đã xem, không phải đánh giá độc lập.
+- Register QA PASS: **24 tham chiếu**, **15 cohort**, **7/7 gate OPEN**. `answer_ready=false`.
+- Công cụ local: `tools.chatbot_doctor` PASS 13/13, `node --check` PASS. Threshold workflow vẫn `AWAITING_LABELS`, không có threshold được cài.
+- Record tổng hợp: [stage11_autopilot_review_20261110.json](docs/reference/stage11_autopilot_review_20261110.json). Quy trình sử dụng/nhận nguồn/đánh giá: [RESEARCH_WORKFLOW_VI.md](docs/guides/RESEARCH_WORKFLOW_VI.md).
+- Bundle mới theo mã hiện hành: `docs/reference/stage11_policy_rerun_20261110_retrieval_input_validation_v1`; bundle cũ được giữ nguyên. Mặc định audit/replay đã chuyển sang bundle mới.
+- Nhánh trước lượt này sạch và ahead 6 commit so với `origin/main`; các thay đổi phiên này hiện chưa commit. Không commit/push khi chưa được yêu cầu.
+
 ## Mốc mới nhất 09/11/2026 (21:57) — Báo cáo tổng kết đồ án và xác minh lại
 
 Người dùng yêu cầu hoàn thiện dự án nhanh nhất. Đã chạy lại toàn bộ kiểm chứng: regression **202 passed / 132 subtests** (1 cảnh báo Starlette, provider giả lập), audit PASS 22 nguồn/794 chunks, replay PASS 16/16, register QA PASS 24 tham chiếu/7 gate OPEN, `tools.chatbot_doctor` PASS 13/13, `node --check` PASS. Hash nền khớp handoff. Bản ghi: [final_verification_20261109.json](docs/reference/final_verification_20261109.json). Mọi ghi chú “chưa chạy pytest” bên dưới đã được thay bằng kết quả này.

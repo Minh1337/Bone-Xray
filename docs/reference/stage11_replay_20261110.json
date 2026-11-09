@@ -1,0 +1,123 @@
+{
+  "created_at_utc": "2026-11-09T19:27:17.091569+00:00",
+  "bundle": "C:\\Users\\Admin\\Desktop\\Project\\MainProject\\BONESCOPE\\docs\\reference\\stage11_policy_rerun_20261029_cureus_abcrouting_v1",
+  "manifest_sha256": "0b3942a50502b48cfca9c66299dc7495d85e05bcff4463c2ad1c9eae96cb380c",
+  "replay_implementation_sha256": "29342ad1bf9e6fa78e983b9004f51b69f5ddbdb403c7817bdff4a81a022c2643",
+  "preflight_mismatches": [],
+  "report_artifacts_checked": 16,
+  "reports": [
+    {
+      "path": "evidence_v3_viewed.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "expansion_dev.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "expansion_dev_concept_rerank.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "expansion_dev_strict.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "image_routing_dev.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "legacy_all.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "osteofibrous_dysplasia_dev.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "osteofibrous_dysplasia_dev_strict.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "synovial_source_dev.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "synovial_source_dev_strict.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "synovial_synonym_dev.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "synovial_synonym_dev_strict.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "v2_test_concept_rerank.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "v2_test_regression.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "v2_test_strict.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    },
+    {
+      "path": "nci_osteochondroma_dev.json",
+      "match": false,
+      "different_fields": [
+        "implementation_sha256"
+      ]
+    }
+  ],
+  "status": "FAIL"
+}
