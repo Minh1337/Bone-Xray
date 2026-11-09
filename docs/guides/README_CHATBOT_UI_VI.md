@@ -50,12 +50,10 @@ Lịch sử hội thoại được lưu trên máy trong SQLite và có thể m�
 
 ## Thiết kế và bàn giao
 
-- Dự án Stitch riêng: https://stitch.withgoogle.com/projects/7327687804675427525
-- ID màn hình, hệ thống thiết kế, tệp triển khai và ảnh xem trước: `.stitch/metadata.json`.
-- HTML tham chiếu Stitch: `.stitch/designs/desktop-reference.html` (bản mẫu, không phải tệp chạy ứng dụng).
-- Ảnh giao diện thật: `.stitch/designs/chatbot-desktop.png`, `chatbot-mobile.png`, `chatbot-dark.png`.
+- Đặc tả triển khai hiện tại: [`rag/demo_web/DESIGN.md`](../../rag/demo_web/DESIGN.md).
+- Các ảnh/mockup thiết kế đã được loại khỏi repository vì không cần cho runtime; giao diện thực tế được phục vụ trực tiếp từ [`rag/demo_web/`](../../rag/demo_web/).
 
-Giao diện thực tế điều chỉnh bản Stitch để dùng font hệ thống, SVG nội tuyến và các chức năng đang có. Không hiển thị tài khoản, nguồn, số lượng tài liệu hoặc kết quả mô phỏng như dữ liệu thật.
+Giao diện thực tế dùng font hệ thống, SVG nội tuyến và các chức năng đang có. Không hiển thị tài khoản, nguồn, số lượng tài liệu hoặc kết quả mô phỏng như dữ liệu thật.
 
 ## Kiểm tra đã thực hiện
 

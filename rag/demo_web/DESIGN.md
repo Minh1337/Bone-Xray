@@ -181,7 +181,7 @@ Use softly rounded geometry throughout: compact icon controls around 12px, cards
 
 ## Implemented application · 2026-10-31
 
-Private Stitch project: `7327687804675427525`. Screen IDs and design-system asset are recorded in `.stitch/metadata.json`. The application adapts the desktop/mobile composition using the system font stack and inline SVG instead of external font/icon dependencies. Preview images show the actual local frontend, not the generated mockup.
+The application adapts the desktop/mobile composition using the system font stack and inline SVG instead of external font/icon dependencies. The design file describes implementation intent; it is not a runtime dependency or a clinical performance claim.
 
 The welcome state uses a two-line headline, compact studio label, feature card for image analysis, paired topic cards and example prompt chips. Saved conversations are stored in the local SQLite database and can be reopened or deleted; the history stores text and source references, not X-ray images by default. Export saves Markdown locally. The help dialog explains source checking and network use by the selected AI provider. Provider labels follow server configuration; the actual answer label follows the provider returned with that answer. UI cancellation stops waiting in the browser; it does not promise cancellation of server work.
 

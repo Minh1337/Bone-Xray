@@ -35,7 +35,6 @@ BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, 
 | `reference/api_reference_local.json` | Dữ liệu tham chiếu cho `verify_api.py` |
 | [Báo cáo tiến độ](reports/Bao_cao_tien_do.docx) | Báo cáo Word lịch sử, snapshot 27/10/2026; không phải trạng thái hiện hành |
 | [Báo cáo Giai đoạn 11 — 29/10/2026](reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md) | Snapshot có dẫn nguồn về bằng chứng kỹ thuật, giới hạn, 7 cổng nghiệm thu và runbook đóng cổng; không phải sign-off lâm sàng |
-| [Tài liệu phát triển](reports/Tai_lieu_phat_trien_du_an.docx) | Tài liệu Word nền tảng của dự án |
 
 Các đường dẫn lệnh trong tài liệu được hiểu từ thư mục gốc `BONESCOPE/`, trừ khi có ghi khác.
 

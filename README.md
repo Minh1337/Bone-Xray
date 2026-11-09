@@ -21,10 +21,6 @@ The project is intentionally scoped as an **educational and experimental report*
 - **Privacy-conscious architecture**: image and case metadata stay in the local inference service; the optional LLM provider receives only the data described in the project documentation.
 - **Fail-closed readiness state**: generated content remains marked `answer_ready=false`; acceptance gates are not silently closed.
 
-## Screenshots
-
-The latest UI exploration images are stored in [`.stitch/designs/`](.stitch/designs/). They are design references, not claims of clinical performance.
-
 ## Architecture
 
 ```text
