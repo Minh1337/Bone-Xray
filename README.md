@@ -153,6 +153,8 @@ The latest local verification is recorded in the [10/11 automated-change review]
 - retrieval threshold readiness: `AWAITING_LABELS`; no runtime threshold was installed
 - `answer_ready=false`; acceptance gates G1–G7 remain `OPEN`
 
+The [AI-only internal review](docs/reference/AI_ONLY_INTERNAL_REVIEW_20261110_VI.md) records the software/provenance review scope and its limits. It is not an independent clinical, safety, privacy, regulatory, or claim-entailment review.
+
 See the [completion status report](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [research workflow](docs/guides/RESEARCH_WORKFLOW_VI.md), and [05/11 integrated verification record](docs/reference/stage12_integrated_chatbot_verification_20261105.json) for details. The earlier 09/11 run includes a real headless Chrome lifecycle test with a temporary profile/SQLite database and offline AI/retrieval fixtures ([record](docs/reference/chatbot_browser_regression_20261109.json)). A separate [live provider smoke](docs/reference/chatbot_provider_smoke_20261109.json) passed earlier for short text via Free and a synthetic geometric PNG via the Qwen fallback (one paid attempt, $0.000248755 reported cost). These checks do not assess X-ray interpretation quality, clinical validity, or future provider latency.
 
 ## Scope and safety
