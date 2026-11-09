@@ -142,11 +142,13 @@ Các số liệu và hạng mục dưới đây được lưu để tái dựng 
 
 ## Các việc tiếp theo hiện hành
 
-1. Tìm nguồn ảnh khác BTXRD có quyền sử dụng, nhãn chuẩn được chuyên gia xác nhận và provenance đủ để đánh giá tổng quát.
-2. Nếu nhà phát hành cung cấp, khôi phục danh sách split gốc của checkpoint; không suy ra split từ archive hiện tại.
-3. Cần tập RAG độc lập do người khác soạn/rà soát; V2/V3 đã xem không phải kiểm định mới.
-4. Xác minh `osteofibroma` với metadata dataset gốc/người chuyên môn; đánh giá kiểm tra đủ bằng chứng theo ngữ nghĩa.
-5. Chỉ triển khai prototype chatbot sau khi retrieval/evidence được xác minh; không bật `answer_ready` hay tuyên bố độ chính xác ảnh trên BTXRD có overlap chưa loại trừ.
+Các kiểm tra kỹ thuật có thể thực hiện trong workspace đã hoàn tất ở lượt xác minh 10/11: full suite `209 passed / 227 subtests`, audit `22 nguồn / 794 chunks`, replay `16/16`, chatbot doctor `13/13` và JavaScript syntax `PASS`. Các record mới được lưu tại [audit completion](reference/stage11_integrity_audit_20261110_completion.json) và [replay completion](reference/stage11_replay_20261110_completion.json).
+
+1. **BLOCKED — cohort ảnh ngoài:** cần nguồn có quyền sử dụng, reference standard, provenance theo bệnh nhân/lesion và kiểm tra overlap với checkpoint. Không tự tải hoặc đánh dấu eligible.
+2. **BLOCKED — split checkpoint:** chỉ khôi phục nếu nhà phát hành cung cấp manifest gốc; không suy ra split từ archive hiện tại.
+3. **BLOCKED — review RAG độc lập:** cần tập câu hỏi/evidence do người khác soạn hoặc rà soát, cùng nhãn relevance, support, polarity và qualifiers. V2/V3 hiện chỉ là dev/regression đã xem.
+4. **BLOCKED — nhãn `osteofibroma`:** cần đối chiếu metadata nguồn và người có chuyên môn; không tự gán tương đương bệnh học.
+5. **DONE WITH LIMITATION — chatbot prototype:** prototype local đã triển khai và kiểm thử; còn thiếu review generator/entailment độc lập. Giữ `answer_ready=false`, không tuyên bố độ chính xác ảnh hoặc nghiệm thu lâm sàng.
 
 ## Lệnh kiểm tra
 

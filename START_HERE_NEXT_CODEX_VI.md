@@ -1,5 +1,9 @@
 # Bàn giao BoneScope cho phiên Codex tiếp theo
 
+## Cập nhật sau lượt xác minh 10/11/2026
+
+Đã chạy lại phần kỹ thuật trên workspace hiện hành: full suite **209 passed / 227 subtests**, audit RAG **PASS 22 nguồn/794 chunks**, deterministic replay **PASS 16/16**, `tools.chatbot_doctor` **PASS 13/13** và `node --check` **PASS**. Record tái chạy được lưu tại [audit completion](docs/reference/stage11_integrity_audit_20261110_completion.json) và [replay completion](docs/reference/stage11_replay_20261110_completion.json). Các gate G1–G7 vẫn `OPEN`, `answer_ready=false`; các mục còn lại cần reviewer, rights clearance hoặc quyết định owner.
+
 ## Điểm dừng 10/11/2026 — người dùng yêu cầu tạm ngưng
 
 - Đã đối chiếu workspace với record 10/11; các hash implementation trong record khớp. `model_sha256` trong record là **model embedding E5** ở `rag/models/e5-small/model.safetensors`, không phải checkpoint ảnh `model/best_model.pt`.
