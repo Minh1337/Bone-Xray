@@ -11,6 +11,7 @@ ENV/
 .env
 .env.*
 !.env.example
+.mcp.json
 
 # Binary installers
 tools/*.exe
