@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 set PYTHONUTF8=1
 set NO_ALBUMENTATIONS_UPDATE=1
 set HF_HUB_OFFLINE=1

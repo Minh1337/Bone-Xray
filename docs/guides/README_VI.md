@@ -36,7 +36,7 @@ Checkpoint và joblib có thể chứa mã thực thi: chỉ nạp bộ tệp do
 
 ## 2. Cài môi trường
 
-Nhấp đúp `01_setup.bat`. Đợi thông báo `Setup complete`.
+Nhấp đúp `scripts\01_setup.bat`. Đợi thông báo `Setup complete`.
 Cửa sổ có thể ít cập nhật; tiến độ chi tiết nằm ở `logs/setup.log`.
 Không cần bật PowerShell execution policy, không cần cài CUDA Toolkit riêng cho bộ kiểm tra này.
 Cần driver NVIDIA tương thích với bản PyTorch CUDA. Nếu không nhận GPU, gửi log để xử lý;
@@ -79,14 +79,14 @@ chưa cần gửi toàn bộ dataset.
 
 ## 4. Chạy kiểm tra
 
-Nhấp đúp `02_run_check.bat`. Mặc định chọn CUDA nếu PyTorch nhận GPU, nếu không thì dùng CPU.
+Nhấp đúp `scripts\02_run_check.bat`. Mặc định chọn CUDA nếu PyTorch nhận GPU, nếu không thì dùng CPU.
 Chương trình kiểm tra đầu vào, tính SHA256, nạp model strict, kiểm tra config và metadata,
 rồi chạy mỗi ảnh 1 lần làm nóng + 3 lần đo. Thời gian gồm đọc ảnh, tiền xử lý và dự đoán,
 không gồm nạp model. Nạp model được đo riêng. Batch size suy luận luôn là 1.
 Mỗi lượt tạo thư mục kết quả mới để không ghi đè lượt trước.
 
 Nếu thiếu VRAM, chương trình ghi lỗi; đóng các ứng dụng dùng GPU rồi thử lại.
-Có thể dùng `03_run_cpu.bat` để thử CPU. Không giảm kích thước ảnh hoặc thay preprocessing.
+Có thể dùng `scripts\03_run_cpu.bat` để thử CPU. Không giảm kích thước ảnh hoặc thay preprocessing.
 Với RAM 8 GB, CPU cũng có thể chậm hoặc thiếu bộ nhớ; log sẽ giúp quyết định bước tiếp.
 
 ## 5. Đọc và gửi kết quả

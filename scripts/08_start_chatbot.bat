@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 set PYTHONUTF8=1
 set NO_ALBUMENTATIONS_UPDATE=1
 set HF_HUB_OFFLINE=1
@@ -14,6 +14,6 @@ set "CHATBOT_EXIT_CODE=%ERRORLEVEL%"
 pause
 exit /b %CHATBOT_EXIT_CODE%
 :missing
-echo Virtual environment (.venv) or rag\demo_api.py not found. Run 01_setup.bat and 10_setup_chatbot.bat first.
+echo Virtual environment (.venv) or rag\demo_api.py not found. Run scripts\01_setup.bat and scripts\10_setup_chatbot.bat first.
 pause
 exit /b 1

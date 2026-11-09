@@ -123,7 +123,7 @@ Nguồn: [đánh giá in-source](../reference/stage11_xray_in_source_evaluation_
 .\.venv\Scripts\python.exe -m rag.replay_reports --output docs/reference/stage11_replay_YYYYMMDD.json
 .\.venv\Scripts\python.exe -m tools.verify_stage11_registers
 .\.venv\Scripts\python.exe -m tools.chatbot_doctor
-.\.venv\Scripts\python.exe -m tools.run_chatbot   # hoặc 08_start_chatbot.bat, mở http://127.0.0.1:8765
+.\.venv\Scripts\python.exe -m tools.run_chatbot   # hoặc scripts\08_start_chatbot.bat, mở http://127.0.0.1:8765
 ```
 
 Kết quả kiểm chứng hiện hành ngày 10/11/2026 được ghi tại [bản review tự động](../reference/stage11_autopilot_review_20261110.json), [audit](../reference/stage11_integrity_audit_20261110_final.json) và [replay](../reference/stage11_replay_20261110_final.json). Bản [kiểm chứng 09/11](../reference/final_verification_20261109.json) được giữ làm mốc lịch sử.

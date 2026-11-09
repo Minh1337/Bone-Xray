@@ -76,8 +76,8 @@ From PowerShell:
 git clone https://github.com/Minh1337/Bone-Xray.git
 cd Bone-Xray
 
-.\01_setup.bat
-.\04_setup_api.bat
+.\scripts\01_setup.bat
+.\scripts\04_setup_api.bat
 ```
 
 The setup scripts create `.venv` and install the model/API dependencies. To set up the RAG environment separately:
@@ -89,7 +89,7 @@ The setup scripts create `.venv` and install the model/API dependencies. To set 
 ### 2. Run the X-ray application
 
 ```powershell
-.\07_start_ui.bat
+.\scripts\07_start_ui.bat
 ```
 
 Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/). API documentation is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).

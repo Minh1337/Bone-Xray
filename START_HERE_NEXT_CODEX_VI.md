@@ -27,7 +27,7 @@ User yêu cầu tiếp tục hoàn thiện dự án và sau này muốn review t
 
 Người dùng yêu cầu hoàn thiện dự án nhanh nhất. Đã chạy lại toàn bộ kiểm chứng: regression **202 passed / 132 subtests** (1 cảnh báo Starlette, provider giả lập), audit PASS 22 nguồn/794 chunks, replay PASS 16/16, register QA PASS 24 tham chiếu/7 gate OPEN, `tools.chatbot_doctor` PASS 13/13, `node --check` PASS. Hash nền khớp handoff. Bản ghi: [final_verification_20261109.json](docs/reference/final_verification_20261109.json). Mọi ghi chú “chưa chạy pytest” bên dưới đã được thay bằng kết quả này.
 
-Sản phẩm bàn giao học tập: [báo cáo tổng kết đồ án (Markdown)](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261109_VI.md) và bản DOCX cùng tên, xuất bằng `.\.venv\Scripts\python.exe -m tools.export_report_docx <md> <docx>` (có test `tests/test_export_report_docx.py`). Các công cụ cục bộ đã có: `tools.chatbot_doctor`, `tools.run_chatbot`/`08_start_chatbot.bat`, `tools.calibrate_retrieval_threshold` (đang `AWAITING_LABELS`), `tools.preview_rag_source`.
+Sản phẩm bàn giao học tập: [báo cáo tổng kết đồ án (Markdown)](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261109_VI.md) và bản DOCX cùng tên, xuất bằng `.\.venv\Scripts\python.exe -m tools.export_report_docx <md> <docx>` (có test `tests/test_export_report_docx.py`). Các công cụ cục bộ đã có: `tools.chatbot_doctor`, `tools.run_chatbot`/`scripts\08_start_chatbot.bat`, `tools.calibrate_retrieval_threshold` (đang `AWAITING_LABELS`), `tools.preview_rag_source`.
 
 Phần kỹ thuật tự làm được đã xong. Phần còn lại cần người ngoài: nhãn reviewer cho retrieval/entailment và ngưỡng bước 7, cohort ảnh ngoài có quyền, intended-use lock và chữ ký G1–G7. G1–G7 OPEN, `answer_ready=false`.
 

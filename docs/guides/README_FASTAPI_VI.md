@@ -5,7 +5,7 @@ API được chạy cục bộ từ thư mục gốc `BONESCOPE/`. Đây không 
 
 ## Cài đặt
 
-Sau khi chạy `01_setup.bat`, chạy `04_setup_api.bat` để cài:
+Sau khi chạy `scripts\01_setup.bat`, chạy `scripts\04_setup_api.bat` để cài:
 
 - FastAPI và Starlette
 - Uvicorn
@@ -18,13 +18,13 @@ Script cũng chạy test API và ghi log vào `logs/api_setup.log`.
 Chạy:
 
 ```text
-05_start_api.bat
+scripts\05_start_api.bat
 ```
 
 Sau khi thấy `Application startup complete`, mở
 `http://127.0.0.1:8000/docs`. API chỉ lắng nghe trên máy hiện tại, dùng một
-worker và nạp model một lần. Không chạy đồng thời `05_start_api.bat` và
-`07_start_ui.bat` vì cùng dùng cổng 8000.
+worker và nạp model một lần. Không chạy đồng thời `scripts\05_start_api.bat` và
+`scripts\07_start_ui.bat` vì cùng dùng cổng 8000.
 
 Có thể ép chạy CPU từ CMD:
 
@@ -53,7 +53,7 @@ không phải kho trạng thái bền vững cho triển khai production.
 Khi server đang chạy, có thể chạy:
 
 ```text
-06_verify_api.bat
+scripts\06_verify_api.bat
 ```
 
 Kết quả được ghi vào `api_results/`, thư mục này bị Git bỏ qua. Nếu không có
@@ -67,7 +67,7 @@ Chạy test tự động không cần server:
 ```
 
 Test dùng predictor giả để kiểm tra contract và lỗi API; cần chạy
-`06_verify_api.bat` để đối chiếu model thật.
+`scripts\06_verify_api.bat` để đối chiếu model thật.
 
 ## Giới hạn an toàn
 

@@ -173,7 +173,7 @@ tùy tiện vì model và dependency đã được kiểm tra trên Python 3.11.
 Chạy từ Explorer hoặc CMD:
 
 ```bat
-01_setup.bat
+scripts\01_setup.bat
 ```
 
 Script thực hiện:
@@ -207,7 +207,7 @@ Script thực hiện:
 ### Tiêu chí nghiệm thu
 
 - Có `.venv\Scripts\python.exe`.
-- `01_setup.bat` báo `Setup complete`.
+- `scripts\01_setup.bat` báo `Setup complete`.
 - `logs/setup.log` không có lỗi cài đặt.
 - `pip check` đạt.
 - `tests` đạt.
@@ -220,7 +220,7 @@ Ngày/giờ:
 Python:
 PyTorch/torchvision:
 CUDA/GPU:
-Kết quả 01_setup.bat:
+Kết quả scripts\01_setup.bat:
 Kết quả pip check:
 Kết quả tests:
 Bằng chứng: logs/setup.log, logs/installed_versions.txt và output test.
@@ -309,7 +309,7 @@ không gọi API, không training lại, không sửa trọng số.
 ### GPU
 
 ```bat
-02_run_check.bat
+scripts\02_run_check.bat
 ```
 
 Mặc định script gọi:
@@ -325,7 +325,7 @@ warm-up một lần rồi đo ba lần cho từng ảnh. Batch suy luận là 1.
 ### CPU fallback
 
 ```bat
-03_run_cpu.bat
+scripts\03_run_cpu.bat
 ```
 
 Chỉ dùng CPU khi cần so sánh hoặc GPU không khả dụng. Không dùng CPU để kết luận
@@ -399,7 +399,7 @@ Lỗi hoặc giới hạn:
 Sau khi giai đoạn model đạt:
 
 ```bat
-04_setup_api.bat
+scripts\04_setup_api.bat
 ```
 
 Script lưu trước/sau cài đặt, cài `requirements_api.txt`, chạy `pip check` và test
@@ -408,7 +408,7 @@ trong `api_tests/`.
 ### Khởi chạy API
 
 ```bat
-05_start_api.bat
+scripts\05_start_api.bat
 ```
 
 API lắng nghe `127.0.0.1:8000`, một worker, không `--reload`, nạp model một lần.
@@ -438,7 +438,7 @@ Swagger: `http://127.0.0.1:8000/docs`.
 ### Xác minh parity
 
 ```bat
-06_verify_api.bat
+scripts\06_verify_api.bat
 ```
 
 Script gửi các ca và ảnh hiện tại tới API, đối chiếu SHA256, metadata và score với
@@ -447,9 +447,9 @@ report offline. Kết quả phải đạt `API_LOCAL_PARITY_PASSED`, với sai l
 
 ### Tiêu chí nghiệm thu
 
-- `04_setup_api.bat` báo pass.
+- `scripts\04_setup_api.bat` báo pass.
 - `GET /health` trả trạng thái ready.
-- `06_verify_api.bat` đạt parity.
+- `scripts\06_verify_api.bat` đạt parity.
 - Kiểm tra lỗi thiếu metadata và ảnh hỏng trả đúng status.
 - Không còn file tạm rác sau request.
 
@@ -479,11 +479,11 @@ Cho người dùng chọn ảnh, nạp metadata, gửi dự đoán và đọc k�
 
 ### Khởi chạy
 
-Không chạy đồng thời `05_start_api.bat` và `07_start_ui.bat` vì cùng dùng cổng 8000.
+Không chạy đồng thời `scripts\05_start_api.bat` và `scripts\07_start_ui.bat` vì cùng dùng cổng 8000.
 Dừng API cũ bằng `Ctrl+C`, sau đó:
 
 ```bat
-07_start_ui.bat
+scripts\07_start_ui.bat
 ```
 
 Mở `http://127.0.0.1:8000/`.
@@ -501,7 +501,7 @@ Mở `http://127.0.0.1:8000/`.
 
 ### Kiểm thử UI
 
-`07_start_ui.bat` chạy route tests trong `ui_tests/` trước khi khởi động uvicorn.
+`scripts\07_start_ui.bat` chạy route tests trong `ui_tests/` trước khi khởi động uvicorn.
 UI phải xử lý mất kết nối, HTTP 429, thiếu trường, chọn nhầm ảnh/ca và trạng thái
 đang xử lý mà không hiển thị dự đoán giả.
 

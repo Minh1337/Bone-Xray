@@ -25,29 +25,29 @@ Không commit hoặc chia sẻ ảnh bệnh nhân, database runtime, log hay sec
 
 ## 2. Cài môi trường
 
-Nhấp đúp `01_setup.bat`. Script tạo `.venv`, cài PyTorch và dependency mô hình,
+Nhấp đúp `scripts\01_setup.bat`. Script tạo `.venv`, cài PyTorch và dependency mô hình,
 chạy kiểm tra cơ bản rồi tạo log trong `logs/`.
 
-Tiếp theo nhấp đúp `04_setup_api.bat` để cài FastAPI và chạy test API.
+Tiếp theo nhấp đúp `scripts\04_setup_api.bat` để cài FastAPI và chạy test API.
 Không copy `.venv` từ máy khác; hãy tạo lại trên từng máy để tránh lỗi đường dẫn,
 Python và phần cứng.
 
 Để chạy **chatbot học tập**, tạo `.env` từ `.env.example`, điền key OpenRouter
-trên máy của bạn, rồi chạy `10_setup_chatbot.bat` và `09_check_chatbot.bat`.
+trên máy của bạn, rồi chạy `scripts\10_setup_chatbot.bat` và `scripts\09_check_chatbot.bat`.
 Không đưa `.env` lên Git. Các bước này cũng được ghi trong
 [quy trình thực nghiệm](docs/guides/RESEARCH_WORKFLOW_VI.md).
 
 ## 3. Khởi động ứng dụng
 
-Nhấp đúp `07_start_ui.bat`, sau đó mở:
+Nhấp đúp `scripts\07_start_ui.bat`, sau đó mở:
 
 ```text
 http://127.0.0.1:8000/
 ```
 
 API có tài liệu tại `http://127.0.0.1:8000/docs`. Không chạy
-`05_start_api.bat` đồng thời với `07_start_ui.bat` vì cả hai dùng cổng 8000.
-Nếu cần chạy API riêng, dùng `05_start_api.bat`.
+`scripts\05_start_api.bat` đồng thời với `scripts\07_start_ui.bat` vì cả hai dùng cổng 8000.
+Nếu cần chạy API riêng, dùng `scripts\05_start_api.bat`.
 
 ## 4. Phân tích và lưu ca
 
@@ -128,7 +128,7 @@ Lệnh `rag\audit.py` kiểm tra tính toàn vẹn của source lock, corpus, go
 ## 6. Demo chatbot học tập local
 
 Trong VS Code chọn **💬 BoneScope: Chatbot tra cứu tài liệu** rồi bấm F5, hoặc
-nhấp đúp `08_start_chatbot.bat`:
+nhấp đúp `scripts\08_start_chatbot.bat`:
 
 ```powershell
 .\.venv\Scripts\python.exe -m tools.run_chatbot --port 8765

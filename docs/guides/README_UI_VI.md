@@ -5,12 +5,12 @@ Không cần Node.js, API key hay CDN để chạy phần giao diện local.
 
 ## Khởi động
 
-1. Chạy `01_setup.bat` và `04_setup_api.bat` một lần trên máy mới.
-2. Chạy `07_start_ui.bat`.
+1. Chạy `scripts\01_setup.bat` và `scripts\04_setup_api.bat` một lần trên máy mới.
+2. Chạy `scripts\07_start_ui.bat`.
 3. Mở `http://127.0.0.1:8000/`.
 
-Không mở trực tiếp các file HTML bằng Explorer. Không chạy `05_start_api.bat`
-đồng thời với `07_start_ui.bat`; nếu cần chạy API riêng, dùng `05_start_api.bat`
+Không mở trực tiếp các file HTML bằng Explorer. Không chạy `scripts\05_start_api.bat`
+đồng thời với `scripts\07_start_ui.bat`; nếu cần chạy API riêng, dùng `scripts\05_start_api.bat`
 và không mở UI ở cổng 8000 cùng lúc.
 
 ## Các trang
@@ -49,7 +49,7 @@ Test toàn bộ repository:
 ```
 
 Kết quả xác nhận ngày 27/10/2026 của toàn bộ suite là **36 passed, 28 subtests passed**. Việc
-chạy với model thật trên máy mới cần thêm bước kiểm tra API bằng `06_verify_api.bat`.
+chạy với model thật trên máy mới cần thêm bước kiểm tra API bằng `scripts\06_verify_api.bat`.
 
 ## Giới hạn
 

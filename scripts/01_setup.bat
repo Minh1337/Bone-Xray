@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 if not exist logs mkdir logs
 py -3.11 -c "import sys,struct; assert struct.calcsize('P') == 8" > logs\setup.log 2>&1
 if errorlevel 1 goto python_missing
@@ -17,7 +17,7 @@ if errorlevel 1 goto fail
 if errorlevel 1 goto fail
 .venv\Scripts\python.exe -m pip freeze > logs\installed_versions.txt
 echo Base environment installed. Add model assets for the classifier.
-echo For the chatbot, run 10_setup_chatbot.bat, then 09_check_chatbot.bat.
+echo For the chatbot, run scripts\10_setup_chatbot.bat, then scripts\09_check_chatbot.bat.
 echo Run the full pytest suite after all chatbot and development dependencies are installed.
 pause
 exit /b 0

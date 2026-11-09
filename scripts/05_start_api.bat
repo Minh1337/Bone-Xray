@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 set PYTHONUTF8=1
 if not exist .venv\Scripts\python.exe goto missing
 set NO_ALBUMENTATIONS_UPDATE=1

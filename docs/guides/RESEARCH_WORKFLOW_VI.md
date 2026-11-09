@@ -6,9 +6,9 @@ Tài liệu này hướng dẫn chạy chatbot local, kiểm tra môi trường,
 
 Ở máy hiện tại, dependency, index, embedding, mô hình ảnh, cấu hình OpenRouter và SQLite đã qua kiểm tra local trong [readiness record](../reference/chatbot_local_readiness_20261109.json). Kiểm tra này không gọi nhà cung cấp AI.
 
-- Khởi động: nhấp đúp `08_start_chatbot.bat`, hoặc chọn cấu hình **BoneScope: Chatbot tra cứu tài liệu** trong VS Code rồi nhấn F5. Mở `http://127.0.0.1:8765/` nếu trình duyệt không tự mở.
-- Kiểm tra trước khi chạy: nhấp đúp `09_check_chatbot.bat`, chạy tác vụ VS Code **Check BoneScope chatbot environment**, hoặc chạy `.\.venv\Scripts\python.exe -m tools.chatbot_doctor`.
-- Cài lại dependency chatbot trên một checkout mới: chạy `01_setup.bat`, tạo `.env` từ `.env.example` và điền key ở máy local, sau đó chạy `10_setup_chatbot.bat`. Script lưu log cài đặt ở `logs/chatbot_setup.log`; không đưa `.env` hoặc log có dữ liệu nhạy cảm lên Git.
+- Khởi động: nhấp đúp `scripts\08_start_chatbot.bat`, hoặc chọn cấu hình **BoneScope: Chatbot tra cứu tài liệu** trong VS Code rồi nhấn F5. Mở `http://127.0.0.1:8765/` nếu trình duyệt không tự mở.
+- Kiểm tra trước khi chạy: nhấp đúp `scripts\09_check_chatbot.bat`, chạy tác vụ VS Code **Check BoneScope chatbot environment**, hoặc chạy `..\..\.venv\Scripts\python.exe -m tools.chatbot_doctor`.
+- Cài lại dependency chatbot trên một checkout mới: chạy `scripts\01_setup.bat`, tạo `.env` từ `.env.example` và điền key ở máy local, sau đó chạy `scripts\10_setup_chatbot.bat`. Script lưu log cài đặt ở `logs/chatbot_setup.log`; không đưa `.env` hoặc log có dữ liệu nhạy cảm lên Git.
 - Nếu cổng 8765 đang được dùng, launcher kiểm tra health endpoint local. Nó không tự dừng tiến trình khác. Dừng server cũ bằng Shift+F5 trong VS Code hoặc Ctrl+C ở cửa sổ server; có thể chọn cổng khác bằng `python -m tools.run_chatbot --port 8766`.
 
 Doctor kiểm tra dependency cốt lõi, cấu hình model allowlist, trạng thái key mà không in giá trị, hash index/corpus, model assets và integrity SQLite. `PASS` không chứng minh API key còn quota, model trả lời đúng, hoặc citation hỗ trợ claim. `WARN` có thể chỉ ra một tính năng tùy chọn như index hoặc classifier chưa sẵn sàng.
