@@ -125,6 +125,21 @@ def test_rejected_case_never_calls_a_generator_or_returns_passages():
                              "answer_ready": False, "passages": []}
 
 
+@pytest.mark.parametrize("question", ["", " \t\n "])
+def test_empty_or_whitespace_question_rejected_without_retrieval_or_ai(monkeypatch, question):
+    def unexpected_retrieval(*args, **kwargs):
+        raise AssertionError("Empty or whitespace question must not trigger source lookup")
+
+    async def unexpected_ai(*args, **kwargs):
+        raise AssertionError("Empty or whitespace question must not trigger AI processing")
+
+    monkeypatch.setattr("rag.demo_api.plan_turn", unexpected_ai)
+    monkeypatch.setattr("rag.demo_api.generate_answer", unexpected_ai)
+    with TestClient(create_app(unexpected_retrieval), base_url="http://127.0.0.1:8765") as client:
+        response = client.post("/api/query", json={"question": question})
+    assert response.status_code == 422
+
+
 def test_fail_closed_if_rejected_question_has_hits_or_answer_ready():
     for answer_ready, hits in [(True, []), (False, [{"text": "not allowed"}])]:
         def invalid(question, top_k):
