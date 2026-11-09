@@ -351,6 +351,36 @@ class RetrievalTests(unittest.TestCase):
         self.assertEqual([(h["chunk_id"], h["url"]) for h in hits], [("a", "https://example.org/a")])
         self.assertEqual(r.search("câu hỏi", index=(rows, vectors), model=FakeModel(), min_score=1.1), [])
 
+    def test_search_validates_top_k_is_positive_non_bool_int(self):
+        rows = [{"chunk_id": "a", "source_id": "s1", "section": "Biopsy", "url": "https://example.org/a",
+                 "text": "Biopsy examines tissue for bone sarcoma diagnosis"},
+                {"chunk_id": "b", "source_id": "s2", "section": "Imaging", "url": "https://example.org/b",
+                 "text": "Radiograph imaging of bone sarcoma diagnosis"}]
+        vectors = np.array([[1, 0], [0.5, 0.5]], dtype=np.float32)
+        engine = r.Retriever(model=FakeModel(), index=(rows, vectors))
+        self.assertEqual([h["chunk_id"] for h in engine.search("câu hỏi", top_k=1, mode="dense")], ["a"])
+        self.assertEqual([h["chunk_id"] for h in engine.search("câu hỏi", top_k=2, mode="dense")], ["a", "b"])
+        verified = r.retrieve("What role does biopsy have in bone tumor diagnosis?",
+                              engine=engine, top_k=1, mode="dense", verify_evidence=True)
+        self.assertEqual([h["chunk_id"] for h in verified["hits"]], ["a"])
+        unloaded_engine = r.Retriever(model=None, index=(rows, vectors))
+        with patch.object(r, "load_model", side_effect=AssertionError("model must not load")):
+            for invalid_top_k in (0, -1, -5, 1.5, "2", True, False):
+                with self.subTest(top_k=invalid_top_k):
+                    with self.assertRaisesRegex(ValueError, "top_k positive"):
+                        unloaded_engine.search("câu hỏi", top_k=invalid_top_k, mode="dense")
+                    with self.assertRaisesRegex(ValueError, "top_k positive"):
+                        r.retrieve("What role does biopsy have in bone tumor diagnosis?",
+                                   engine=unloaded_engine, top_k=invalid_top_k, mode="dense")
+                    with self.assertRaisesRegex(ValueError, "top_k positive"):
+                        r.retrieve("What role does biopsy have in bone tumor diagnosis?",
+                                   engine=unloaded_engine, top_k=invalid_top_k, mode="dense",
+                                   verify_evidence=True)
+                    with self.assertRaisesRegex(ValueError, "top_k positive"):
+                        r.retrieve("What role does biopsy have in bone tumor diagnosis?",
+                                   engine=unloaded_engine, top_k=invalid_top_k, mode="dense",
+                                   rerank_concepts=True)
+
     def test_index_rejects_changed_source_lock(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)

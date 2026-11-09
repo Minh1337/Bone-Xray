@@ -90,6 +90,11 @@ def load_index():
     return corpus_rows, vectors
 
 
+def _validate_top_k(top_k):
+    if isinstance(top_k, bool) or not isinstance(top_k, int) or top_k < 1:
+        raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
+
+
 class Retriever:
     def __init__(self, *, model=None, index=None, config=None):
         self.corpus_rows, self.vectors = index if index is not None else load_index()
@@ -98,8 +103,9 @@ class Retriever:
         self.lexical = None
         self.verifier = None
     def search(self, question, *, top_k=5, min_score=None, source_ids=None, mode="hybrid"):
-        if not question.strip() or top_k < 1 or mode not in {"dense", "hybrid"}:
-            raise ValueError("Question must be nonempty, top_k positive, mode dense or hybrid")
+        _validate_top_k(top_k)
+        if not question.strip() or mode not in {"dense", "hybrid"}:
+            raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
         if min_score is not None and not np.isfinite(min_score):
             raise ValueError("min_score must be finite")
         expanded = expansion(question, self.config) if mode == "hybrid" else ""
@@ -159,6 +165,7 @@ def requests_source_overview(question, config):
 
 def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, route_source_id):
     """Reserve one result from an explicit source cue, then fill globally."""
+    _validate_top_k(top_k)
     # Respect caller restrictions; a route cannot widen an explicit allowlist.
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
@@ -183,6 +190,7 @@ def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, r
 
 def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode, route_source_id):
     """For explicit overview requests, surface that source's abstract if present."""
+    _validate_top_k(top_k)
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
                              source_ids=source_ids, mode=mode)
@@ -208,6 +216,7 @@ def search(question, *, top_k=5, min_score=None, source_ids=None, model=None, in
 def retrieve(question, *, engine=None, top_k=5, min_score=None, source_ids=None, mode="hybrid",
              verify_evidence=False, rerank_concepts=False):
     """Route unsupported requests before loading the model; return candidate evidence only."""
+    _validate_top_k(top_k)
     if verify_evidence and rerank_concepts:
         raise ValueError('Select strict evidence filtering or concept reranking, not both')
     config = engine.config if engine is not None else load_config()
