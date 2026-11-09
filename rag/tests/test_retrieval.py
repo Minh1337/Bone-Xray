@@ -381,6 +381,48 @@ class RetrievalTests(unittest.TestCase):
                                    engine=unloaded_engine, top_k=invalid_top_k, mode="dense",
                                    rerank_concepts=True)
 
+    def test_search_and_retrieve_validate_question_type_and_nonempty(self):
+        rows = [{"chunk_id": "a", "source_id": "s1", "section": "Biopsy", "url": "https://example.org/a",
+                 "text": "Biopsy examines tissue for bone sarcoma diagnosis"}]
+        vectors = np.array([[1, 0]], dtype=np.float32)
+        unloaded_engine = r.Retriever(model=None, index=(rows, vectors))
+
+        class GuardEngine:
+            config = r.load_config()
+            corpus_rows = rows
+            verifier = None
+
+            def search(self, *args, **kwargs):
+                raise AssertionError("search must not run for invalid or empty question")
+
+        guard_engine = GuardEngine()
+        with patch.object(r, "load_model", side_effect=AssertionError("model must not load")):
+            for invalid_question in (None, 0, 123, -7, 3.14, True, False, ["câu hỏi"], {"question": "câu hỏi"}):
+                with self.subTest(question=invalid_question):
+                    with self.assertRaisesRegex(ValueError, "Question must be a string"):
+                        unloaded_engine.search(invalid_question, mode="dense")
+                    with self.assertRaisesRegex(ValueError, "Question must be a string"):
+                        r.search(invalid_question, index=(rows, vectors), mode="dense")
+                    with patch.object(r, "assess", side_effect=AssertionError("assess must not run")):
+                        with self.assertRaisesRegex(ValueError, "Question must be a string"):
+                            r.retrieve(invalid_question, engine=guard_engine)
+                        with self.assertRaisesRegex(ValueError, "Question must be a string"):
+                            r.retrieve(invalid_question, engine=guard_engine, verify_evidence=True)
+                        with self.assertRaisesRegex(ValueError, "Question must be a string"):
+                            r.retrieve(invalid_question, engine=guard_engine, rerank_concepts=True)
+
+            for empty_question in ("", " ", "   ", "\t\n  "):
+                with self.subTest(empty_question=repr(empty_question)):
+                    with self.assertRaisesRegex(ValueError, "Question must be nonempty"):
+                        unloaded_engine.search(empty_question, mode="dense")
+                    with self.assertRaisesRegex(ValueError, "Question must be nonempty"):
+                        r.search(empty_question, index=(rows, vectors), mode="dense")
+                    result = r.retrieve(empty_question, engine=guard_engine)
+                    self.assertEqual(result["status"], "out_of_scope")
+                    self.assertEqual(result["reason"], "empty_question")
+                    self.assertEqual(result["hits"], [])
+                    self.assertFalse(result["answer_ready"])
+
     def test_index_rejects_changed_source_lock(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)

@@ -90,6 +90,11 @@ def load_index():
     return corpus_rows, vectors
 
 
+def _validate_question(question):
+    if not isinstance(question, str):
+        raise ValueError("Question must be a string")
+
+
 def _validate_top_k(top_k):
     if isinstance(top_k, bool) or not isinstance(top_k, int) or top_k < 1:
         raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
@@ -103,6 +108,7 @@ class Retriever:
         self.lexical = None
         self.verifier = None
     def search(self, question, *, top_k=5, min_score=None, source_ids=None, mode="hybrid"):
+        _validate_question(question)
         _validate_top_k(top_k)
         if not question.strip() or mode not in {"dense", "hybrid"}:
             raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
@@ -150,6 +156,7 @@ class Retriever:
 
 def resolve_source_route(question, config):
     """Return a source preference only for explicit, high-precision topic cues."""
+    _validate_question(question)
     matches = []
     for route in config.get('source_routes', []):
         if any(contains(question, cue) for cue in route.get('terms', [])):
@@ -160,11 +167,13 @@ def resolve_source_route(question, config):
 
 
 def requests_source_overview(question, config):
+    _validate_question(question)
     return any(contains(question, cue) for cue in config.get('overview_cues', []))
 
 
 def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, route_source_id):
     """Reserve one result from an explicit source cue, then fill globally."""
+    _validate_question(question)
     _validate_top_k(top_k)
     # Respect caller restrictions; a route cannot widen an explicit allowlist.
     if source_ids is not None and route_source_id not in source_ids:
@@ -190,6 +199,7 @@ def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, r
 
 def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode, route_source_id):
     """For explicit overview requests, surface that source's abstract if present."""
+    _validate_question(question)
     _validate_top_k(top_k)
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
@@ -209,6 +219,7 @@ def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode
 
 def search(question, *, top_k=5, min_score=None, source_ids=None, model=None, index=None, mode="dense"):
     """Raw search retained for comparisons; it does not enforce scope or safety."""
+    _validate_question(question)
     return Retriever(model=model, index=index).search(question, top_k=top_k, min_score=min_score,
                                                      source_ids=source_ids, mode=mode)
 
@@ -216,6 +227,7 @@ def search(question, *, top_k=5, min_score=None, source_ids=None, model=None, in
 def retrieve(question, *, engine=None, top_k=5, min_score=None, source_ids=None, mode="hybrid",
              verify_evidence=False, rerank_concepts=False):
     """Route unsupported requests before loading the model; return candidate evidence only."""
+    _validate_question(question)
     _validate_top_k(top_k)
     if verify_evidence and rerank_concepts:
         raise ValueError('Select strict evidence filtering or concept reranking, not both')
