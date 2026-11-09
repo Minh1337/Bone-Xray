@@ -3,6 +3,8 @@
 import hashlib
 import json
 import argparse
+import math
+import numbers
 from pathlib import Path
 
 import numpy as np
@@ -100,6 +102,20 @@ def _validate_top_k(top_k):
         raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
 
 
+def _validate_min_score(min_score):
+    if min_score is None:
+        return
+    if (isinstance(min_score, (bool, np.bool_))
+            or not isinstance(min_score, numbers.Real)):
+        raise ValueError("min_score must be finite")
+    try:
+        finite = math.isfinite(min_score)
+    except OverflowError as exc:
+        raise ValueError("min_score must be finite") from exc
+    if not finite:
+        raise ValueError("min_score must be finite")
+
+
 class Retriever:
     def __init__(self, *, model=None, index=None, config=None):
         self.corpus_rows, self.vectors = index if index is not None else load_index()
@@ -110,10 +126,9 @@ class Retriever:
     def search(self, question, *, top_k=5, min_score=None, source_ids=None, mode="hybrid"):
         _validate_question(question)
         _validate_top_k(top_k)
+        _validate_min_score(min_score)
         if not question.strip() or mode not in {"dense", "hybrid"}:
             raise ValueError("Question must be nonempty, top_k positive integer, mode dense or hybrid")
-        if min_score is not None and not np.isfinite(min_score):
-            raise ValueError("min_score must be finite")
         expanded = expansion(question, self.config) if mode == "hybrid" else ""
         queries = ["query: " + question.strip()]
         if expanded:
@@ -175,6 +190,7 @@ def _route_candidates(engine, question, *, top_k, min_score, source_ids, mode, r
     """Reserve one result from an explicit source cue, then fill globally."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_min_score(min_score)
     # Respect caller restrictions; a route cannot widen an explicit allowlist.
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
@@ -201,6 +217,7 @@ def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode
     """For explicit overview requests, surface that source's abstract if present."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_min_score(min_score)
     if source_ids is not None and route_source_id not in source_ids:
         return engine.search(question, top_k=top_k, min_score=min_score,
                              source_ids=source_ids, mode=mode)
@@ -220,6 +237,8 @@ def _overview_candidates(engine, question, *, top_k, min_score, source_ids, mode
 def search(question, *, top_k=5, min_score=None, source_ids=None, model=None, index=None, mode="dense"):
     """Raw search retained for comparisons; it does not enforce scope or safety."""
     _validate_question(question)
+    _validate_top_k(top_k)
+    _validate_min_score(min_score)
     return Retriever(model=model, index=index).search(question, top_k=top_k, min_score=min_score,
                                                      source_ids=source_ids, mode=mode)
 
@@ -229,6 +248,7 @@ def retrieve(question, *, engine=None, top_k=5, min_score=None, source_ids=None,
     """Route unsupported requests before loading the model; return candidate evidence only."""
     _validate_question(question)
     _validate_top_k(top_k)
+    _validate_min_score(min_score)
     if verify_evidence and rerank_concepts:
         raise ValueError('Select strict evidence filtering or concept reranking, not both')
     config = engine.config if engine is not None else load_config()

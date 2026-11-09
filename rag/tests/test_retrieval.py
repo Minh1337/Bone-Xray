@@ -423,6 +423,93 @@ class RetrievalTests(unittest.TestCase):
                     self.assertEqual(result["hits"], [])
                     self.assertFalse(result["answer_ready"])
 
+    def test_search_and_retrieve_validate_min_score(self):
+        rows = [{"chunk_id": "a", "source_id": "s1", "section": "Biopsy", "url": "https://example.org/a",
+                 "text": "Biopsy examines tissue for bone sarcoma diagnosis"},
+                {"chunk_id": "b", "source_id": "s2", "section": "Imaging", "url": "https://example.org/b",
+                 "text": "Radiograph imaging of bone sarcoma diagnosis"}]
+        vectors = np.array([[1, 0], [0.5, 0.5]], dtype=np.float32)
+        question = "What role does biopsy have in bone tumor diagnosis?"
+        engine = r.Retriever(model=FakeModel(), index=(rows, vectors))
+
+        for threshold, expected_ids in (
+            (None, ["a", "b"]),
+            (-1, ["a", "b"]),
+            (0, ["a", "b"]),
+            (0.5, ["a", "b"]),
+            (np.float32(0.5), ["a", "b"]),
+            (np.int64(0), ["a", "b"]),
+            (0.6, ["a"]),
+            (1, ["a"]),
+            (1.0, ["a"]),
+            (1.1, []),
+        ):
+            with self.subTest(valid_min_score=threshold):
+                self.assertEqual(
+                    [h["chunk_id"] for h in engine.search(question, min_score=threshold, mode="dense")],
+                    expected_ids,
+                )
+                response = r.retrieve(question, engine=engine, min_score=threshold, mode="dense")
+                self.assertEqual([h["chunk_id"] for h in response["hits"]], expected_ids)
+                self.assertEqual(
+                    response["status"],
+                    "candidates_found" if expected_ids else "insufficient_evidence",
+                )
+
+        class GuardModel:
+            def encode(self, *args, **kwargs):
+                raise AssertionError("model.encode must not run for invalid min_score")
+
+        guard_engine = r.Retriever(model=GuardModel(), index=(rows, vectors))
+        unloaded_engine = r.Retriever(model=None, index=(rows, vectors))
+        invalid_min_scores = (
+            True,
+            False,
+            np.bool_(True),
+            np.bool_(False),
+            "0.5",
+            "",
+            "nan",
+            "inf",
+            [0.5],
+            (0.5,),
+            {0.5},
+            {"min_score": 0.5},
+            np.array([0.5], dtype=np.float32),
+            np.array(0.5, dtype=np.float32),
+            float("nan"),
+            float("inf"),
+            float("-inf"),
+            np.nan,
+            np.inf,
+            -np.inf,
+            np.float32("nan"),
+            np.float32("inf"),
+            -np.float32("inf"),
+        )
+        with patch.object(r, "load_model", side_effect=AssertionError("model must not load")):
+            for invalid_min_score in invalid_min_scores:
+                with self.subTest(min_score=repr(invalid_min_score)):
+                    with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                        guard_engine.search(question, min_score=invalid_min_score, mode="dense")
+                    with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                        unloaded_engine.search(question, min_score=invalid_min_score, mode="dense")
+                    with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                        r.search(question, min_score=invalid_min_score, index=(rows, vectors),
+                                 model=GuardModel(), mode="dense")
+                    with patch.object(r, "assess", side_effect=AssertionError("assess must not run")):
+                        with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                            r.retrieve(question, engine=guard_engine, min_score=invalid_min_score, mode="dense")
+                        with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                            r.retrieve("Hôm nay thời tiết thế nào?", engine=guard_engine,
+                                       min_score=invalid_min_score, mode="dense")
+                        with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                            r.retrieve(question, engine=guard_engine, min_score=invalid_min_score,
+                                       mode="dense", verify_evidence=True)
+                        with self.assertRaisesRegex(ValueError, "min_score must be finite"):
+                            r.retrieve(question, engine=guard_engine, min_score=invalid_min_score,
+                                       mode="dense", rerank_concepts=True)
+
     def test_index_rejects_changed_source_lock(self):
         with tempfile.TemporaryDirectory() as tmp:
             base = Path(tmp)
