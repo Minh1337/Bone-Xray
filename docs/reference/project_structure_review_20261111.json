@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-11T20:16:34+07:00",
+  "scope": "post_refactor_structure_and_runtime_path_review",
+  "reviewed_head": "a35e60e9c6682cec097b7e81103b4c5b61b62efe",
+  "findings_fixed": [
+    "scripts/07_start_ui.bat still checked removed root-level xray_api.py",
+    "scripts/05_start_api.bat and scripts/06_verify_api.bat retained obsolete copy-addon recovery text",
+    "bonescope/check_model.py fingerprinted removed root-level model_definition.py and inference.py",
+    "tools/evaluate_xray_checkpoint.py fingerprinted removed root-level model_definition.py and inference.py",
+    "current repository layout and primary documentation retained references to pre-package paths"
+  ],
+  "verification": {
+    "compile_and_import": "PASS",
+    "focused_pytest": {
+      "status": "PASS",
+      "passed": 23,
+      "subtests_passed": 7
+    },
+    "full_pytest": {
+      "status": "PASS",
+      "passed": 209,
+      "subtests_passed": 227,
+      "warning": "One Starlette anyio BlockingPortal deprecation warning"
+    },
+    "chatbot_doctor": "PASS 13/13",
+    "rag_audit": "PASS 22 sources / 794 chunks",
+    "rag_replay": "PASS 16/16",
+    "stage11_register": "PASS; 7 gates remain OPEN",
+    "javascript_syntax": "PASS for rag/demo_web/app.js and xray_web/app.js",
+    "model_cli": "TECHNICAL_CHECK_PASSED on 3 local sample cases using CUDA",
+    "xray_evaluator_smoke": "PASS on 10-image deterministic sample using CUDA"
+  },
+  "implementation_sha256": {
+    "bonescope/check_model.py": "80bb3244a145b522de5432b36a7e539874a49b410e3cd99ec97ad6a1871b8e91",
+    "tools/evaluate_xray_checkpoint.py": "a67b996aea468f17fcd044408d2cd26f1743ded50055c4bd2781a3db7fe96591",
+    "scripts/05_start_api.bat": "9d24756936349701e1e11227913a6f3470035857e62a2f8bffb0da932d2fe0bf",
+    "scripts/06_verify_api.bat": "f05f02b9cf45e62ca6f0ae51275bac96dfe6eadf549f7552129eb6c98299fa2a",
+    "scripts/07_start_ui.bat": "8fc4c2854e91d59df0eb6c28cc981f8b87ee44cb5e8bbf12440c7ad6a88ca26f",
+    "README.md": "cbcf27306031bcd5292694039afb7ae68449383051306ed1aaf66effa46bc0a9",
+    "docs/guides/README_FASTAPI_VI.md": "5daf638721d569793b7b461a13193f135adb7e04ebb4495c22ede74e6fdd15b8"
+  },
+  "provider_calls_made": false,
+  "answer_ready": false,
+  "acceptance_gates": {
+    "total": 7,
+    "closed": 0,
+    "status": "all OPEN"
+  },
+  "limitations": [
+    "This review verifies software structure, local execution and artifact integrity only.",
+    "It does not provide independent X-ray validation, reviewer labels or gate acceptance."
+  ],
+  "followup_20261111_2025": {
+    "findings_fixed": [
+      "bonescope.verify_api (scripts/06_verify_api.bat) always failed: refactor changed inference.py hash (import-only change, commit a262b61) so artifact_hashes_match was false",
+      "16 markdown links pointed to checkpoint folders removed during cleanup",
+      "ui_tests/test_ui_routes.py popped 'xray_ui' instead of 'bonescope.xray_ui' from sys.modules after patching xray_api.app, leaving the fake app cached",
+      "scripts/07_start_ui.bat ran 'unittest discover -s ui_tests -v' without -p, which imports ui_tests/test_chatbot_browser.py (requires pytest from requirements_dev.txt and rag from requirements_rag.txt) and would fail on a fresh Quick Start install before chatbot/dev packages are installed",
+      "root __pycache__/ retained 8 orphaned .pyc files from pre-package root modules",
+      "docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md and START_HERE_NEXT_CODEX_VI.md retained stale references to 08_start_chatbot.bat, xray_api.py, and Bone_Xray_Local_Check/"
+    ],
+    "fix": [
+      "verify_api accepts a code-only hash revision documented in docs/reference/api_reference_code_revisions.json; model artifacts must still match exactly and prediction parity (<=1e-4, same top-1) is still required",
+      "stale checkpoint links converted to plain text with removal note",
+      "ui_tests/test_ui_routes.py now pops 'bonescope.xray_ui' and skips the optional Research Studio test when chatbot dependencies are not yet installed",
+      "scripts/07_start_ui.bat scopes unittest discovery to -p \"test_ui_routes.py\"",
+      "removed 8 orphaned .pyc files from root __pycache__/",
+      "updated directory tree and launcher/module paths in docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md and START_HERE_NEXT_CODEX_VI.md"
+    ],
+    "verification": {
+      "full_pytest": "214 passed / 227 subtests (adds api_tests/test_verify_api_hashes.py)",
+      "live_api_parity": "API_LOCAL_PARITY_PASSED on 3 reference cases against bonescope.xray_ui on port 8011",
+      "xray_ui_assets": "200 for / and all assets",
+      "chatbot_server": "tools.run_chatbot started; /, assets, /api/config, /api/conversations = 200; no provider request",
+      "rag_audit": "PASS",
+      "rag_replay": "PASS 16/16",
+      "registers": "PASS, 0/7 gates closed",
+      "chatbot_doctor": "PASS",
+      "node_check": "PASS rag/demo_web/app.js, xray_web/app.js",
+      "markdown_links": "0 broken"
+    },
+    "implementation_sha256": {
+      "bonescope/verify_api.py": "2b919971f39afcaee7e66a2d11ea07c08f6aa7140b0a180cf4d5f1c5ffaf9ccd",
+      "ui_tests/test_ui_routes.py": "181c04d5e64dbe32b2a3f34b74fe40ee127e5fbcc0314d154ffecbf8f6fb13c9",
+      "scripts/07_start_ui.bat": "8fc4c2854e91d59df0eb6c28cc981f8b87ee44cb5e8bbf12440c7ad6a88ca26f"
+    }
+  }
+}

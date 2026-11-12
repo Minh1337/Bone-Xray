@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-12T21:12:52+07:00",
+  "scope": "local_software_and_artifact_integrity_after_repository_restructure",
+  "git": {
+    "head": "a35e60e9c6682cec097b7e81103b4c5b61b62efe",
+    "branch": "main",
+    "worktree_clean": false,
+    "changes_committed_by_this_review": false
+  },
+  "checks": {
+    "pytest": {
+      "status": "PASS_WITH_ENVIRONMENT_SKIP",
+      "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+      "passed": 213,
+      "failed": 0,
+      "skipped": 1,
+      "subtests_passed": 227,
+      "warning": "One Starlette anyio BlockingPortal deprecation warning",
+      "provider_calls": false
+    },
+    "browser_smoke": {
+      "status": "SKIPPED",
+      "reason": "Installed Chrome 157 exposes DevTools but crashes its about:blank renderer before BoneScope navigation; the test preflight reports this as an environment skip.",
+      "prior_successful_run": "2026-11-09",
+      "prior_run_scope": "temporary Chrome profile and SQLite database; synthetic image; offline AI and retrieval fixtures"
+    },
+    "rag_audit": {
+      "status": "PASS",
+      "sources": 22,
+      "chunks": 794,
+      "source_cache_missing": 0,
+      "evaluation_sets_checked": 10
+    },
+    "rag_replay": {
+      "status": "PASS",
+      "reports_checked": 16,
+      "preflight_mismatches": 0
+    },
+    "chatbot_doctor": {
+      "status": "PASS",
+      "checks_passed": 13,
+      "checks_failed": 0
+    },
+    "stage11_registers": {
+      "status": "PASS",
+      "prepared_artifact_references_checked": 24,
+      "cohort_rows": 15,
+      "acceptance_gates": 7,
+      "gates_closed": 0
+    },
+    "frontend_and_vscode_syntax": "PASS",
+    "markdown_links": {
+      "status": "PASS",
+      "markdown_files_checked": 54,
+      "local_links_checked": 954,
+      "broken_links": 0
+    },
+    "api_local_parity": {
+      "status": "PASS",
+      "last_run_date": "2026-11-12",
+      "reference_cases": 3,
+      "cases_passed": 3,
+      "max_score_delta": 0.0,
+      "model_artifact_hashes_match": true,
+      "code_revision_recorded": "a262b61",
+      "missing_metadata_rejected": true,
+      "corrupt_image_rejected": true,
+      "report_path": "api_results/20261112_211241_815790/api_report.json",
+      "note": "Fresh local API run; no external AI provider was called."
+    }
+  },
+  "implementation_sha256": {
+    "ui_tests/test_chatbot_browser.py": "2c45883902964c9a11521d0d1a72ec663225fac5b920d75ed98b21c09b4791ee",
+    "bonescope/verify_api.py": "2b919971f39afcaee7e66a2d11ea07c08f6aa7140b0a180cf4d5f1c5ffaf9ccd",
+    "scripts/07_start_ui.bat": "8fc4c2854e91d59df0eb6c28cc981f8b87ee44cb5e8bbf12440c7ad6a88ca26f"
+  },
+  "acceptance": {
+    "answer_ready": false,
+    "gate_status": "all OPEN",
+    "completion_percentage": "not computed; no defensible project-wide denominator"
+  },
+  "limitations": [
+    "Regression and replay datasets are development/regression evidence, not independent validation.",
+    "This verification does not assess clinical accuracy, citation entailment, privacy/security approval, or legal/regulatory acceptance.",
+    "External-image cohort rights, independent labels/reviewers, and authorized gate decisions remain outstanding."
+  ]
+}

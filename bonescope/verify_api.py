@@ -9,6 +9,33 @@ import traceback
 import httpx
 
 ROOT = Path(__file__).resolve().parents[1]
+CODE_FILES = {'inference.py', 'model_definition.py'}
+CODE_REVISIONS = ROOT / 'docs' / 'reference' / 'api_reference_code_revisions.json'
+
+
+def load_code_revisions(path=CODE_REVISIONS):
+    """Return documented code-only hash revisions; model artifacts are never accepted here."""
+    if not path.is_file():
+        return []
+    revisions = json.loads(path.read_text(encoding='utf-8-sig')).get('revisions', [])
+    return [r for r in revisions if r.get('file') in CODE_FILES]
+
+
+def hash_basis(actual, expected, revisions):
+    """Map each baseline artifact to 'baseline', 'accepted_revision:<commit>' or None (mismatch)."""
+    basis = {}
+    for name, want in expected.items():
+        got = actual.get(name)
+        if got == want:
+            basis[name] = 'baseline'
+            continue
+        basis[name] = None
+        for rev in revisions:
+            if rev['file'] == name and rev.get('baseline_sha256') == want and rev.get('accepted_sha256') == got:
+                basis[name] = f"accepted_revision:{rev.get('commit', 'unknown')}"
+                break
+    return basis
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -28,7 +55,8 @@ def main():
             health = client.get('/health')
             health.raise_for_status()
             report['health'] = health.json()
-            report['artifact_hashes_match'] = all(health.json()['sha256'].get(k) == v for k, v in baseline['sha256'].items())
+            report['artifact_hash_basis'] = hash_basis(health.json()['sha256'], baseline['sha256'], load_code_revisions())
+            report['artifact_hashes_match'] = all(v is not None for v in report['artifact_hash_basis'].values())
             if not report['artifact_hashes_match']:
                 raise ValueError('Model/code/config hashes differ from verified local run')
             for case in cases:

@@ -1,205 +1,107 @@
-# BoneScope
+<h1 align="center">BoneScope</h1>
 
-> Local research studio for educational bone X-ray experiments, metadata-aware image classification, and provenance-aware retrieval-augmented exploration.
+<p align="center">An educational research studio for bone X-ray classification and source-backed document exploration.</p>
 
-[![Status: educational prototype](https://img.shields.io/badge/status-educational%20prototype-21695c)](#scope-and-safety)
-[![Python](https://img.shields.io/badge/python-3.11%2B-3776ab)](https://www.python.org/)
-[![Platform](https://img.shields.io/badge/platform-Windows%2010%2F11-0078d4)](#requirements)
+<p align="center">
+  <img alt="Educational prototype" src="https://img.shields.io/badge/scope-educational%20prototype-0F766E">
+  <img alt="Python 3.11" src="https://img.shields.io/badge/Python-3.11-3776AB?logo=python&amp;logoColor=white">
+  <img alt="Windows" src="https://img.shields.io/badge/platform-Windows-475569">
+</p>
 
-BoneScope combines a local deep-learning inference pipeline with a local RAG research studio. The integrated demo lets a user upload an educational X-ray case, enter the required metadata, inspect Top-3 model outputs, and ask follow-up questions against a provenance-tracked document collection.
+<p align="center">
+  <a href="README_VI.md">Hướng dẫn tiếng Việt</a> ·
+  <a href="docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md">Coursework report</a> ·
+  <a href="docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md">Demo checklist</a>
+</p>
 
-The project is intentionally scoped as an **educational and experimental report**. It is not a medical device, diagnostic service, clinical decision-support system, or patient-facing application.
+![BoneScope Research Studio in dark mode, showing local chat history, the X-ray analysis entry point, and document search](docs/media/bonescope-research-studio.webp)
 
-## Highlights
+*Research Studio home screen on Windows.*
 
-- **Metadata-aware X-ray inference** using a Swin-based classifier with metadata processing and cross-attention.
-- **22-field case workflow** with image validation, metadata validation, review-before-run, and explicit confirmation.
-- **Local Research Studio** with responsive light/dark UI, mobile navigation, accessible dialogs, retry/stop controls, and Markdown export.
-- **Multi-turn conversation** with recent context, document-only mode, source citations (`[S1]`, `[S2]`), and conservative out-of-scope handling.
-- **Multi-turn image chat** keeps an attached image in the current browser tab and resends it with follow-up questions; removing the attachment returns to text/RAG chat. Image bytes are not stored in SQLite, so reopening a saved conversation requires attaching the image again.
-- **RAG retrieval and provenance** with source metadata, licenses, chunk identifiers, corpus/index audits, deterministic replay, and evaluation reports.
-- **Privacy-conscious architecture**: image and case metadata stay in the local inference service; the optional LLM provider receives only the data described in the project documentation.
-- **Fail-closed readiness state**: generated content remains marked `answer_ready=false`; acceptance gates are not silently closed.
+## What you can try
 
-## Architecture
-
-```text
-Educational X-ray + 22 metadata fields
-                 │
-                 ▼
-       Local validation and inference
-       Swin + metadata cross-attention
-                 │
-                 ▼
-          Top-3 labels and scores
-                 │
-                 ▼
-     Transparent label-to-topic mapping
-                 │
-                 ▼
-  Local RAG retrieval + optional draft generation
-                 │
-                 ▼
-     Cited passages, limitations, and abstention
-```
-
-### Main components
-
-| Area | Entry points |
+| Workspace | What it does |
 | --- | --- |
-| X-ray API and local UI | [`bonescope/xray_api.py`](bonescope/xray_api.py), [`bonescope/xray_ui.py`](bonescope/xray_ui.py) |
-| Model definition and inference | [`bonescope/model_definition.py`](bonescope/model_definition.py), [`bonescope/inference.py`](bonescope/inference.py) |
-| Case validation and storage | [`bonescope/case_api.py`](bonescope/case_api.py), [`bonescope/database.py`](bonescope/database.py) |
-| RAG retrieval and policy | [`rag/retrieval.py`](rag/retrieval.py), [`rag/policy.py`](rag/policy.py) |
-| Conversation and generation | [`rag/conversation.py`](rag/conversation.py), [`rag/generation.py`](rag/generation.py) |
-| Integrated chatbot API | [`rag/demo_api.py`](rag/demo_api.py) |
-| Research Studio frontend | [`rag/demo_web/`](rag/demo_web/) |
-| Evaluation and audit tools | [`tools/`](tools/), [`rag/audit.py`](rag/audit.py) |
+| **X-ray Workbench** · port 8000 | Upload an authorized X-ray with 22 metadata fields. A local Swin model combines image and metadata features through cross-attention and returns ranked labels and softmax scores. |
+| **Research Studio** · port 8765 | Search a local collection of 22 sources and 794 text passages. With OpenRouter configured, ask follow-up questions, inspect cited passages, or discuss an attached image. SQLite keeps conversation text and sources on the machine. |
 
-## Requirements
+BoneScope is a local coursework prototype. The classifier is intended for educational experiments, and the chat interface is intended for exploring the reference collection. Use synthetic or authorized samples and keep patient data out of the demo.
 
-- Windows 10/11
-- Python 3.11, 64-bit
-- Git
-- NVIDIA GPU with a compatible CUDA/PyTorch installation is recommended; CPU mode is supported but slower
-- Optional: OpenRouter API key; Groq Free Plan key is optional for rate-limit fallback
+## Run on Windows
 
-The repository includes local model/runtime assets needed for the current prototype. Do not commit additional datasets, patient data, runtime databases, logs, API keys, or generated caches.
-
-## Quick start
-
-### 1. Create the environment
-
-From PowerShell:
+Install **Python 3.11 (64-bit)** with the Python Launcher, **Git**, and **Git LFS**. The classifier supports CPU and CUDA. Run the commands from PowerShell.
 
 ```powershell
+git lfs install
 git clone https://github.com/Minh1337/Bone-Xray.git
 cd Bone-Xray
-
+git lfs pull
 .\scripts\01_setup.bat
+```
+
+Git LFS supplies the checkpoint in `model/best_model.pt`. The setup script creates `.venv` and installs the base model dependencies.
+
+**X-ray Workbench**
+
+```powershell
 .\scripts\04_setup_api.bat
-```
-
-The setup scripts create `.venv` and install the model/API dependencies. To set up the RAG environment separately:
-
-```powershell
-.\.venv\Scripts\python.exe -m pip install -r requirements_rag.txt
-```
-
-### 2. Run the X-ray application
-
-```powershell
 .\scripts\07_start_ui.bat
 ```
 
-Open [http://127.0.0.1:8000/](http://127.0.0.1:8000/). API documentation is available at [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+Open [the X-ray Workbench](http://127.0.0.1:8000/) or its [API documentation](http://127.0.0.1:8000/docs). See the [Windows guide](README_VI.md) for the image and metadata workflow.
 
-### 3. Run the integrated Research Studio
-
-```powershell
-.\.venv\Scripts\python.exe -m tools.run_chatbot --port 8765
-```
-
-Open [http://127.0.0.1:8765/](http://127.0.0.1:8765/).
-
-Do not open `rag/demo_web/index.html` directly: the frontend is served by the FastAPI application and requires the local API routes.
-
-### 4. Optional LLM configuration
-
-Create a local `.env` from [`.env.example`](.env.example):
+**Research Studio**
 
 ```powershell
-Copy-Item .env.example .env
+.\scripts\10_setup_chatbot.bat
+.\.venv\Scripts\python.exe -m rag.build_index --download-model
+.\.venv\Scripts\python.exe -m tools.chatbot_doctor
+.\scripts\08_start_chatbot.bat
 ```
 
-Then configure the provider on your machine:
-
-```dotenv
-LLM_PROVIDER=openrouter
-OPENROUTER_API_KEY=replace-with-a-local-secret
-OPENROUTER_MODEL=openrouter/free
-GROQ_FALLBACK_ENABLED=false
-```
-
-OpenRouter Free is tried first (`openrouter/free` for text/RAG and a `:free` vision model for images). If the free request times out, is rate-limited, incomplete, or empty, the app can call the fixed paid fallback `qwen/qwen3.5-flash-02-23`; its output is labeled in the chat UI. Image requests sent to Qwen can incur input and output charges. Groq is disabled by default and is only an optional fallback if explicitly enabled. See [provider setup](docs/guides/OPENROUTER_CHATBOT_SETUP_VI.md). Never commit `.env` or paste credentials into issues, pull requests, screenshots, or logs.
-
-## RAG index setup
-
-The current retrieval bundle contains 22 provenance-tracked sources and 794 chunks. Build or refresh local retrieval assets with:
+Open [Research Studio](http://127.0.0.1:8765/). The first index build downloads the pinned multilingual E5 model. The corpus and its source registry are tracked in Git, while the embedding model and index are built locally. For a document lookup without an API key, run the retrieval command in a second terminal. See the [RAG guide](docs/guides/README_RAG_INDEX_VI.md) for audit and replay commands.
 
 ```powershell
-.\.venv\Scripts\python.exe rag\build_index.py --download-model
-.\.venv\Scripts\python.exe -m rag.audit --report-dir docs\reference\local_audit
-.\.venv\Scripts\python.exe rag\evaluate.py
+.\.venv\Scripts\python.exe -m rag.retrieval "What is osteochondroma?" --top-k 5
 ```
 
-The generated `rag/index/`, `rag/models/`, and `rag/source_cache/` directories are local runtime assets and are ignored by Git. Audit success means artifact integrity and provenance checks passed; it does not establish medical validity or clinical safety.
+To enable generated answers, copy [`.env.example`](.env.example) to `.env`, set `OPENROUTER_API_KEY`, and restart the app. The configured free route is tried first and the Qwen fallback can incur charges. The [provider guide](docs/guides/OPENROUTER_CHATBOT_SETUP_VI.md) describes the routing and setup.
 
-## Validation
+## Experiment results
 
-Run the complete regression suite:
+The report compares the same checkpoint on **250 BTXRD images**, with 25 images per label. The second run replaces the metadata input vector with zeros to measure how strongly the checkpoint depends on it.
+
+| Input condition | Top-1 accuracy | Top-3 accuracy | Macro-F1 |
+| --- | ---: | ---: | ---: |
+| Image + metadata | 77.6% (194/250) | 94.0% (235/250) | 0.776 |
+| Image + zeroed metadata vector | 48.0% (120/250) | 72.0% (180/250) | 0.439 |
+
+These results describe an **in-source experiment**. The checkpoint was trained on BTXRD, and the original split cannot be reconstructed from the available records. The [coursework report](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) explains the sampling, class results, and limits. See the [evaluation record](docs/reference/stage11_xray_in_source_evaluation_20261103.json) for the saved results.
+
+The November 12 verification recorded **3/3 local reference cases** for API parity and **16/16 matching RAG replays**. The regression suite passed 213 tests with one browser test skipped in the sandbox. That browser test passed in a separate run using an isolated database, synthetic images, and mocked AI. See the [verification record](docs/reference/project_verification_20261112.json) and the [demo checklist](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md).
+
+## Data flow and research status
+
+- X-ray classification and vector search run locally. Generated chat may send the prompt, recent conversation, selected passages, or a minimal case summary to the configured provider. Attaching an image to chat sends the image to that provider.
+- Conversation text and source references persist in local SQLite. Chat attachments stay in the browser tab and are discarded on reload.
+- Retrieval scores rank candidate passages, and the classifier returns uncalibrated softmax scores. Independent review of answer support and an external image evaluation remain open. The research status is `answer_ready=false`, with gates G1–G7 open.
+
+See the [source registry](rag/data/sources.json), [image data guide](docs/guides/README_IMAGE_REFERENCE_VI.md), and [research status](docs/reference/STAGE11_EDUCATIONAL_COMPLETION_MATRIX_20261029.md) for provenance, reuse terms, and evaluation limits.
+
+## Repository map
+
+| Path | Contents |
+| --- | --- |
+| [`bonescope/`](bonescope/) · [`xray_web/`](xray_web/) | Local classifier, FastAPI endpoints, and X-ray Workbench |
+| [`rag/`](rag/) | Retrieval, provider routing, conversation storage, and Research Studio |
+| [`scripts/`](scripts/) · [`tools/`](tools/) | Windows launchers, verification, and research utilities |
+| [`docs/`](docs/) | Reports, source records, setup guides, and handoff |
+
+After setting up both workspaces, install the test dependencies and run the regression suite.
 
 ```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements_dev.txt
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-The latest local verification is recorded in the [10/11 automated-change review](docs/reference/stage11_autopilot_review_20261110.json):
-
-- full regression: `209 passed`, `0 failed`, and `227 subtests passed`
-- provenance audit: `PASS`, 22 sources / 794 chunks ([record](docs/reference/stage11_integrity_audit_20261110_final.json))
-- deterministic replay: `16/16 PASS`, with no metric changes across snapshots ([record](docs/reference/stage11_replay_20261110_final.json))
-- chatbot environment checks: `13/13 PASS`; JavaScript and VS Code configuration syntax checks: `PASS`
-- provider requests during the verification suite: none; provider tests use mocked transports
-- retrieval threshold readiness: `AWAITING_LABELS`; no runtime threshold was installed
-- `answer_ready=false`; acceptance gates G1–G7 remain `OPEN`
-
-The [AI-only internal review](docs/reference/AI_ONLY_INTERNAL_REVIEW_20261110_VI.md) records the software/provenance review scope and its limits. It is not an independent clinical, safety, privacy, regulatory, or claim-entailment review.
-
-See the [completion status report](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [research workflow](docs/guides/RESEARCH_WORKFLOW_VI.md), and [05/11 integrated verification record](docs/reference/stage12_integrated_chatbot_verification_20261105.json) for details. The earlier 09/11 run includes a real headless Chrome lifecycle test with a temporary profile/SQLite database and offline AI/retrieval fixtures ([record](docs/reference/chatbot_browser_regression_20261109.json)). A separate [live provider smoke](docs/reference/chatbot_provider_smoke_20261109.json) passed earlier for short text via Free and a synthetic geometric PNG via the Qwen fallback (one paid attempt, $0.000248755 reported cost). These checks do not assess X-ray interpretation quality, clinical validity, or future provider latency.
-
-## Scope and safety
-
-BoneScope is for **local educational experimentation only**.
-
-- Do not use it to diagnose, triage, monitor, or treat a person.
-- Do not upload real patient data or personally identifiable information.
-- Model scores are not calibrated probabilities and are not clinical confidence.
-- The BTXRD measurements in this repository are in-source development/reference experiments, not independent external validation.
-- RAG passages are retrieval candidates; citations do not automatically prove that a generated claim is entailed.
-- The prototype deliberately keeps `answer_ready=false` and does not claim clinical acceptance.
-
-Read the [Vietnamese project guide](README_VI.md), [chatbot readiness notes](docs/reference/STAGE11_CHATBOT_READINESS_VI.md), and [handoff record](START_HERE_NEXT_CODEX_VI.md) before extending the system.
-
-## Repository layout
-
-```text
-BONESCOPE/
-├── rag/                 # Retrieval, policy, conversation, API, and Research Studio
-├── model/               # Local model weights and configuration
-├── xray_web/            # X-ray application frontend
-├── docs/                # Guides, reports, provenance, and verification records
-├── api_tests/           # API and case-management tests
-├── rag/tests/           # Retrieval, conversation, and chatbot tests
-├── tests/               # End-to-end and model evaluation tests
-├── ui_tests/            # UI route tests
-├── tools/               # Evaluation and checkpoint utilities
-├── xray_api.py          # X-ray FastAPI service
-├── xray_ui.py           # X-ray UI entry point
-└── rag/demo_api.py      # Research Studio FastAPI service
-```
-
-## Contributing
-
-This repository is maintained as an experimental learning project. Before opening a change:
-
-1. Keep changes local, reproducible, and narrowly scoped.
-2. Do not add secrets, patient data, or unlicensed source material.
-3. Preserve provenance and update directly related documentation.
-4. Run the focused tests and the full regression suite when behavior crosses components.
-5. Do not change `answer_ready`, acceptance-gate status, or evaluation claims without the corresponding evidence and review record.
-
-For detailed Vietnamese instructions, see [`README_VI.md`](README_VI.md).
-
-## License and data provenance
-
-Review the provenance and license metadata for every source before redistributing corpus text, images, model weights, or generated artifacts. Repository documentation records the current source-screening decisions; those records are not a substitute for checking upstream terms at the time of use.
+The browser smoke test uses an installed Chrome or Chromium and mocked provider calls. Use the [demo checklist](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md) to rehearse the presentation and the [handoff notes](START_HERE_NEXT_CODEX_VI.md) to continue development.

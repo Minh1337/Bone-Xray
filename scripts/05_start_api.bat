@@ -8,10 +8,11 @@ set HF_HUB_OFFLINE=1
 echo Starting local API. Keep this window open. Stop with Ctrl+C.
 echo After startup: http://127.0.0.1:8000/docs
 .venv\Scripts\python.exe -m uvicorn bonescope.xray_api:app --host 127.0.0.1 --port 8000 --workers 1
+set "RUN_CODE=%ERRORLEVEL%"
 pause
-exit /b 0
+exit /b %RUN_CODE%
 
 :missing
-echo Copy these files INTO Bone_Xray_Local_Check next to the existing .venv folder.
+echo Python environment not found in BONESCOPE. Run scripts\01_setup.bat first.
 pause
 exit /b 1

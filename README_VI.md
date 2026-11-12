@@ -6,20 +6,16 @@ phần mềm nghiên cứu; kết quả không thay thế chẩn đoán hoặc t
 
 ## 1. Lấy mã nguồn
 
-Cài Git và Python **3.11 64-bit**, sau đó chạy:
-
-```powershell
-git clone https://github.com/Minh1337/Bone-Xray.git
-cd Bone-Xray
-```
-
-Model chính nằm trong `model/`. Nếu checkout chỉ có Git LFS pointer, cài Git
-LFS rồi tải dữ liệu:
+Cài Git, Git LFS và Python **3.11 64-bit** kèm Python Launcher, sau đó chạy:
 
 ```powershell
 git lfs install
+git clone https://github.com/Minh1337/Bone-Xray.git
+cd Bone-Xray
 git lfs pull
 ```
+
+Checkpoint `model/best_model.pt` được quản lý qua Git LFS.
 
 Không commit hoặc chia sẻ ảnh bệnh nhân, database runtime, log hay secret.
 
@@ -32,10 +28,9 @@ Tiếp theo nhấp đúp `scripts\04_setup_api.bat` để cài FastAPI và chạ
 Không copy `.venv` từ máy khác; hãy tạo lại trên từng máy để tránh lỗi đường dẫn,
 Python và phần cứng.
 
-Để chạy **chatbot học tập**, tạo `.env` từ `.env.example`, điền key OpenRouter
-trên máy của bạn, rồi chạy `scripts\10_setup_chatbot.bat` và `scripts\09_check_chatbot.bat`.
-Không đưa `.env` lên Git. Các bước này cũng được ghi trong
-[quy trình thực nghiệm](docs/guides/RESEARCH_WORKFLOW_VI.md).
+Để chạy **chatbot học tập**, chạy `scripts\10_setup_chatbot.bat`, dựng chỉ mục theo mục 5,
+rồi chạy `scripts\09_check_chatbot.bat`. Khi cần sinh câu trả lời, tạo `.env` từ
+`.env.example` và điền key OpenRouter trên máy. Xem [quy trình thực nghiệm](docs/guides/RESEARCH_WORKFLOW_VI.md).
 
 ## 3. Khởi động ứng dụng
 
@@ -153,10 +148,11 @@ và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
 ## 7. Kiểm thử
 
 ```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements_dev.txt
 .\.venv\Scripts\python.exe -m pytest api_tests rag/tests tests ui_tests -q
 ```
 
-Full suite mới nhất: xem [bản review code tự động 10/11](docs/reference/stage11_autopilot_review_20261110.json) để biết số test, hash và giới hạn. Provider dùng mock trong suite; không tiêu token API. Xem [báo cáo trạng thái hoàn thiện](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md), [audit RAG](docs/reference/stage11_integrity_audit_20261109_final_cureus_v1.json), [replay RAG](docs/reference/stage11_replay_20261109_final_cureus_v1.json) và [manifest kiểm chứng tích hợp 05/11](docs/reference/stage12_integrated_chatbot_verification_20261105.json).
+Ngày 12/11, bộ regression trong sandbox đạt **213 bài và 227 subtests**, với một bài Chrome bị bỏ qua. Bài Chrome chạy riêng ngoài sandbox đạt **1/1** với ảnh tổng hợp, SQLite tạm và AI giả lập. Xem [checklist nghiệm thu](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md), [bản ghi kiểm chứng](docs/reference/project_verification_20261112.json), [audit RAG](docs/reference/stage11_integrity_audit_20261110_final.json) và [replay RAG](docs/reference/stage11_replay_20261110_final.json).
 
 Để chạy riêng các kiểm tra chatbot/API:
 
@@ -176,7 +172,11 @@ Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
 
 - [README tổng quan](README.md)
 - [Trạng thái dự án](docs/PROJECT_STATUS_VI.md)
-- [Báo cáo tổng hợp Giai đoạn 11 — 29/10/2026](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md)
+- [Báo cáo tổng kết đồ án — 12/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md)
+- [Checklist nghiệm thu demo học tập](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md)
+- [Record precheck nghiệm thu 12/11/2026](docs/reference/project_acceptance_precheck_20261112.json)
+- [Báo cáo tổng kết đồ án — DOCX 12/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.docx) (đã xuất, chưa render kiểm tra trực quan)
+- [Báo cáo tổng hợp Giai đoạn 11 — hồ sơ lịch sử và gate](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md)
 - [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
 - [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)
 - [Quy trình chạy, nạp nguồn và hiệu chỉnh retrieval](docs/guides/RESEARCH_WORKFLOW_VI.md)

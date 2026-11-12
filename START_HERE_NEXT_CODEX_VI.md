@@ -1,5 +1,21 @@
 # Bàn giao BoneScope cho phiên Codex tiếp theo
 
+## Trạng thái hiện tại — 12/11/2026
+
+Báo cáo đồ án hiện hành: [Markdown](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) · [DOCX](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.docx). DOCX đã xuất và kiểm tra cấu trúc; chưa render trực quan vì môi trường thiếu LibreOffice.
+
+Checklist nghiệm thu demo: [PRODUCT_ACCEPTANCE_CHECKLIST_VI.md](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md); [record precheck 12/11](docs/reference/project_acceptance_precheck_20261112.json). Checklist này phục vụ nghiệm thu phần mềm học tập local; G1–G7 vẫn là các gate riêng.
+
+**Rà soát bổ sung 12/11:** browser smoke đạt **1/1** khi chạy riêng ngoài sandbox với dữ liệu tổng hợp và AI giả lập. Bộ regression trong sandbox vẫn ghi **213 đạt, 1 skip**. Chatbot doctor đạt 13/13, RAG audit đạt, replay khớp 16/16 và checkpoint chạy CPU đạt 3/3 ca mẫu. Hai launcher X-quang trả mã thoát của Uvicorn. Git bỏ qua tệp SQLite journal, WAL và SHM.
+
+Sau cải tổ, mã ứng dụng X-quang nằm trong `bonescope/` và launcher Windows trong `scripts/`. Đã sửa đường dẫn launcher, fingerprint evaluator/model checker, phạm vi phát hiện UI test và đối chiếu hash của API. Regression mới nhất đạt **213 passed, 1 skipped / 227 subtests**; browser smoke bị skip vì Chrome 157 làm renderer crash trên trang trống, trước khi mở BoneScope (browser smoke lần 09/11 đã PASS). Kiểm tra API với ba ca tham chiếu đạt `API_LOCAL_PARITY_PASSED` với score delta bằng 0, hash model khớp tuyệt đối và hash `inference.py` dùng revision mã đã ghi nhận. RAG audit PASS **22 nguồn/794 chunks**, replay PASS **16/16**, register QA PASS với **7 gate OPEN**, chatbot doctor PASS **13/13**, kiểm tra JavaScript và liên kết Markdown PASS. Không gọi model provider trong các kiểm tra này. Xem [record hiện hành 12/11](docs/reference/project_verification_20261112.json), [record rà soát cấu trúc 11/11](docs/reference/project_structure_review_20261111.json), [báo cáo tổng kết mới nhất](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) và [báo cáo trạng thái kỹ thuật](docs/reports/PROJECT_COMPLETION_STATUS_20261109_VI.md).
+
+Bản bàn giao 13/11 gồm README GitHub, báo cáo tổng kết, checklist demo và các sửa lỗi sau khi gom mã vào `bonescope/`. Các bản ghi xác minh lưu commit và hash tại thời điểm chạy. G1–G7 vẫn mở và `answer_ready=false`. Những mục còn thiếu gồm nhãn độc lập, quyền sử dụng cohort và quyết định có thẩm quyền.
+
+**Rà soát nội bộ AI-only 12/11:** đã xem từng điều kiện G1–G7 theo register và hồ sơ hiện hành. Kết luận: 7/7 vẫn OPEN vì thiếu bằng chứng closure cụ thể; xem [báo cáo rà soát nội bộ AI](docs/reports/STAGE11_AI_INTERNAL_GATE_REVIEW_20261112_VI.md). Review này không độc lập và không thay chữ ký, nhãn mù, quyền dữ liệu, phê duyệt hoặc quyết định có thẩm quyền. Không đổi acceptance criteria hay `answer_ready=false` trong lượt này.
+
+**Rà soát tiếp 11/11 (20:25):** `scripts/06_verify_api.bat` luôn FAIL vì refactor đổi hash `inference.py` (chỉ đổi dòng import). Đã sửa `bonescope/verify_api.py` để chấp nhận revision mã có ghi chép trong [api_reference_code_revisions.json](docs/reference/api_reference_code_revisions.json); file model vẫn phải khớp tuyệt đối và vẫn bắt buộc parity dự đoán ≤ 1e-4. Chạy thật: `API_LOCAL_PARITY_PASSED` 3/3 ca; UI X-quang và chatbot khởi động, mọi asset 200. Đã đổi 16 link tới checkpoint đã dọn thành chữ thường. Full suite **214 passed / 227 subtests**, audit/replay/register/doctor PASS, 0 link Markdown hỏng. Giữ `answer_ready=false`; G1–G7 vẫn OPEN. Các thay đổi cấu trúc đã được người dùng commit trước đó ở HEAD `a35e60e`; không khôi phục các file `.stitch`, `.mcp.json` hoặc tài liệu thiết kế đã được dọn nếu không có yêu cầu mới.
+
 ## Cập nhật sau lượt xác minh 10/11/2026
 
 Đã chạy lại phần kỹ thuật trên workspace hiện hành: full suite **209 passed / 227 subtests**, audit RAG **PASS 22 nguồn/794 chunks**, deterministic replay **PASS 16/16**, `tools.chatbot_doctor` **PASS 13/13** và `node --check` **PASS**. Record tái chạy được lưu tại [audit completion](docs/reference/stage11_integrity_audit_20261110_completion.json) và [replay completion](docs/reference/stage11_replay_20261110_completion.json). Các gate G1–G7 vẫn `OPEN`, `answer_ready=false`; các mục còn lại cần reviewer, rights clearance hoặc quyết định owner.
@@ -23,7 +39,9 @@ User yêu cầu tiếp tục hoàn thiện dự án và sau này muốn review t
 - Bundle mới theo mã hiện hành: `docs/reference/stage11_policy_rerun_20261110_retrieval_input_validation_v1`; bundle cũ được giữ nguyên. Mặc định audit/replay đã chuyển sang bundle mới.
 - Nhánh trước lượt này sạch và ahead 6 commit so với `origin/main`; các thay đổi phiên này hiện chưa commit. Không commit/push khi chưa được yêu cầu.
 
-## Mốc mới nhất 09/11/2026 (21:57) — Báo cáo tổng kết đồ án và xác minh lại
+## Bản lưu lịch sử 09/11/2026 (21:57) — Báo cáo tổng kết đồ án và xác minh lại
+
+Đây là snapshot lịch sử; báo cáo hiện hành là bản 12/11 được liên kết ở trạng thái phía trên. DOCX 12/11 đã xuất và kiểm tra cấu trúc, nhưng chưa render từng trang do máy thiếu LibreOffice.
 
 Người dùng yêu cầu hoàn thiện dự án nhanh nhất. Đã chạy lại toàn bộ kiểm chứng: regression **202 passed / 132 subtests** (1 cảnh báo Starlette, provider giả lập), audit PASS 22 nguồn/794 chunks, replay PASS 16/16, register QA PASS 24 tham chiếu/7 gate OPEN, `tools.chatbot_doctor` PASS 13/13, `node --check` PASS. Hash nền khớp handoff. Bản ghi: [final_verification_20261109.json](docs/reference/final_verification_20261109.json). Mọi ghi chú “chưa chạy pytest” bên dưới đã được thay bằng kết quả này.
 
@@ -65,8 +83,8 @@ Trong hộp thoại ca ảnh đã thêm nạp ảnh cục bộ bằng mã `IMG00
 
 Theo yêu cầu của người dùng hoàn thiện một chatbot thống nhất có thể **phân tích hình ảnh khung xương thực tế kèm 22 metadata và trả lời hội thoại đa lượt**, toàn bộ 7 hạng mục kỹ thuật (`P1`–`P7`) trong [Đánh giá khoảng trống 31/10/2026](docs/reports/PROJECT_GAP_ASSESSMENT_20261031_VI.md) đã được triển khai, kiểm thử và ghi nhận tại [bản ghi kiểm chứng tích hợp](docs/reference/stage12_integrated_chatbot_verification_20261103.json):
 
-1. **Tích hợp X-ray + 22 Metadata vào Chatbot (`rag/case_context.py`, `rag/demo_api.py`, `rag/demo_web/`, `xray_api.py`):**
-   - Dùng chung hàm `parse_metadata()` và `predict_upload()` giữa `xray_api.py` và `rag/demo_api.py` (kiểm tra định dạng ảnh, dung lượng ≤ 30 MiB, ≤ 25 triệu pixel, single-frame, 22 trường metadata hợp lệ: ít nhất 1/17 vị trí giải phẫu `== 1` và đúng 1/3 góc chụp `frontal`/`lateral`/`oblique` `== 1`).
+1. **Tích hợp X-ray + 22 Metadata vào Chatbot (`rag/case_context.py`, `rag/demo_api.py`, `rag/demo_web/`, `bonescope/xray_api.py`):**
+   - Dùng chung hàm `parse_metadata()` và `predict_upload()` giữa `bonescope/xray_api.py` và `rag/demo_api.py` (kiểm tra định dạng ảnh, dung lượng ≤ 30 MiB, ≤ 25 triệu pixel, single-frame, 22 trường metadata hợp lệ: ít nhất 1/17 vị trí giải phẫu `== 1` và đúng 1/3 góc chụp `frontal`/`lateral`/`oblique` `== 1`).
    - `CaseStore` giữ ngữ cảnh ca trong RAM (`CASE_TTL_SECONDS = 1800`, tối đa 50 ca), không lưu ảnh hoặc metadata ra ổ đĩa, cấp `case_id` do server sở hữu (client không gửi điểm số).
    - Bảng `LABEL_GUIDE` ánh xạ minh bạch đủ **10 nhãn checkpoint** sang kho tri thức RAG:
      - `direct` (`osteochondroma`, `simple bone cyst`, `giant cell tumor`, `osteosarcoma`): tự động truy xuất tài liệu RAG cho khái niệm bệnh học tương ứng.
@@ -160,7 +178,7 @@ Các lệnh audit/replay mặc định hiện trỏ tới bundle đang dùng `cu
 
 ## Bản lưu để chuyển phiên/máy
 
-Thư mục [checkpoints/20261029_pause_handoff](checkpoints/20261029_pause_handoff) gồm:
+Bản lưu cục bộ `checkpoints/20261029_pause_handoff/` gồm:
 
 - `project_snapshot.zip` và `manifest.json`: source, tài liệu, test, model do Git theo dõi, cấu hình, corpus và source cache; SHA-256 từng file do checkpoint utility ghi.
 - `assets_runtime.zip` và `assets_runtime_manifest.json`: index, model embedding, BTXRD đang có, kết quả/API artifacts, logs và bản SQLite nhất quán của dữ liệu runtime cục bộ. Đây là lưu trữ nội bộ, không phát hành lại dữ liệu hay xác nhận quyền tái sử dụng.

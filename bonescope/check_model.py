@@ -60,7 +60,7 @@ def main():
         cuda = torch.cuda.is_available()
         report['environment'].update(cuda_available=cuda, torch_cuda=torch.version.cuda)
         if args.device == 'cuda' and not cuda:
-            raise RuntimeError('CUDA not available. Check NVIDIA driver, setup log, or use 03_run_cpu.bat.')
+            raise RuntimeError('CUDA not available. Check NVIDIA driver, setup log, or use scripts\\03_run_cpu.bat.')
         device = 'cuda' if args.device == 'auto' and cuda else ('cpu' if args.device == 'auto' else args.device)
         report['device'] = device
         if cuda:
@@ -74,7 +74,9 @@ def main():
         if missing:
             raise FileNotFoundError(f'Missing files in model folder: {missing}')
         report['sha256'] = {f: sha256(args.model_dir / f) for f in files}
-        report['sha256'].update({f: sha256(ROOT / f) for f in ['model_definition.py', 'inference.py']})
+        package_dir = Path(__file__).resolve().parent
+        report['sha256'].update({f'bonescope/{f}': sha256(package_dir / f)
+                                 for f in ['model_definition.py', 'inference.py']})
         cases = json.loads(args.cases.read_text(encoding='utf-8-sig'))
         if not isinstance(cases, list) or not cases:
             raise ValueError('cases.json must be a non-empty list')

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "purpose": "Accepted code-file hash revisions for bonescope.verify_api; model artifacts are never listed here and must match api_reference_local.json exactly.",
+  "baseline": "docs/reference/api_reference_local.json",
+  "revisions": [
+    {
+      "file": "inference.py",
+      "baseline_sha256": "7fac95377ac819504a53fb742b1c5648cf7e4e85724220754ce9745f173e8d72",
+      "accepted_sha256": "5b95c748a5db1809f06177be690f98b8154f1d30d6e23f619d3eb89fb3ec53c2",
+      "commit": "a262b61",
+      "change": "Moved to bonescope/inference.py; only line changed: 'import model_definition as definition' -> 'from . import model_definition as definition'",
+      "recorded_at": "2026-11-11T20:25:00+07:00",
+      "condition": "Accepted only together with prediction parity (max score delta <= 1e-4 and identical top-1) on the three reference cases"
+    }
+  ]
+}

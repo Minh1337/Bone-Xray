@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-12T22:20:35+07:00",
+  "scope": "local_educational_product_acceptance_precheck",
+  "git": {
+    "head": "a35e60e9c6682cec097b7e81103b4c5b61b62efe",
+    "branch": "main",
+    "worktree_clean": false,
+    "changes_committed_by_this_review": false
+  },
+  "checks": {
+    "pytest_full": {
+      "status": "PASS_WITH_ENVIRONMENT_SKIP",
+      "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+      "passed": 213,
+      "failed": 0,
+      "skipped": 1,
+      "subtests_passed": 227,
+      "warnings": [
+        "Starlette anyio BlockingPortal deprecation warning"
+      ],
+      "provider_calls": false
+    },
+    "docx_export_tests": {
+      "status": "PASS",
+      "command": ".venv/Scripts/python.exe -m pytest tests/test_export_report_docx.py -q",
+      "passed": 2,
+      "failed": 0
+    },
+    "chatbot_doctor": {
+      "status": "PASS",
+      "checks_passed": 13,
+      "checks_failed": 0,
+      "scope": "read-only local dependencies, configuration, assets and SQLite; no provider request"
+    },
+    "browser_smoke": {
+      "status": "SKIPPED",
+      "command": ".venv/Scripts/python.exe -m pytest ui_tests/test_chatbot_browser.py -q -rs",
+      "reason": "Chrome 157.0.8103.78 closed the DevTools WebSocket while Runtime.enable ran, before navigation to the app.",
+      "alternative_browser_found": false,
+      "prior_successful_run": "2026-11-09"
+    },
+    "report_docx": {
+      "export_status": "PASS",
+      "structural_read_status": "PASS",
+      "paragraphs": 112,
+      "tables": 9,
+      "external_hyperlinks": 5,
+      "callout_text_in_document_paragraphs": true,
+      "visual_render_status": "BLOCKED_ENVIRONMENT",
+      "render_reason": "LibreOffice soffice.exe is not installed; Word automation was unavailable in this environment."
+    },
+    "documentation_links": {
+      "status": "PASS",
+      "markdown_files_checked": 6,
+      "links_checked": 313,
+      "broken_local_links": 0
+    },
+    "local_server_binding": {
+      "status": "STATIC_REVIEW_PASS",
+      "entrypoint": "tools/run_chatbot.py",
+      "host": "127.0.0.1",
+      "dynamic_exposure_tested": false
+    }
+  },
+  "acceptance": {
+    "scope": "local educational prototype",
+    "manual_acceptance_checklist_pending": true,
+    "answer_ready": false,
+    "gate_status": "all OPEN",
+    "gates_closed": 0,
+    "project_wide_completion_percentage": "not computed"
+  },
+  "limitations": [
+    "Browser smoke did not reach the app in this environment; manual UI acceptance remains pending.",
+    "DOCX was parsed structurally but its page layout was not visually rendered.",
+    "External image cohort rights, independent labels, independent RAG support ratings, and formal G1-G7 decisions remain outstanding."
+  ]
+}

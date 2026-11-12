@@ -1,4 +1,5 @@
 import importlib
+import importlib.util
 import sys
 import unittest
 from fastapi.testclient import TestClient
@@ -24,9 +25,11 @@ class UIRouteTests(unittest.TestCase):
                 self.assertEqual(client.get('/model/best_model.pt').status_code, 404)
                 self.assertEqual(client.get('/ui-assets/../model/best_model.pt').status_code, 404)
                 self.assertIn('/predict', client.get('/openapi.json').json()['paths'])
-            sys.modules.pop('xray_ui', None)
+            sys.modules.pop('bonescope.xray_ui', None)
 
     def test_research_studio_ui_and_static_assets_contract(self):
+        if importlib.util.find_spec('openai') is None or importlib.util.find_spec('dotenv') is None:
+            self.skipTest('Optional RAG chatbot dependencies are not installed')
         from rag.demo_api import create_app
         with TestClient(create_app(lambda *_a, **_k: None), base_url='http://127.0.0.1:8765') as client:
             home = client.get('/')

@@ -18,7 +18,13 @@ tools/*.exe
 
 # Runtime SQLite Database & logs
 data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
 data/*.sqlite3
+data/*.sqlite3-journal
+data/*.sqlite3-wal
+data/*.sqlite3-shm
 data/external_datasets/
 logs/
 results/

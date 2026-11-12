@@ -1,2 +1,8 @@
 model/*.pt filter=lfs diff=lfs merge=lfs -text
 *.pt filter=lfs diff=lfs merge=lfs -text
+
+# The API reference compares these files by raw SHA-256.
+bonescope/inference.py text eol=lf
+bonescope/model_definition.py text eol=lf
+model/config.json text eol=lf
+model/val_transform.json text eol=lf

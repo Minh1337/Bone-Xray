@@ -6,7 +6,7 @@
 
 ## Trạng thái hiện hành
 
-BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, gồm pipeline phân loại X-quang, Research Studio, hội thoại RAG và chatbot ảnh nhiều lượt. Bản kiểm chứng gần nhất ghi nhận `209 passed`, audit RAG `22 nguồn / 794 chunks`, replay xác định `16/16`, và chatbot doctor `13/13`. Đây là kiểm thử phần mềm và tính toàn vẹn artifact; không phải kiểm định lâm sàng hoặc đánh giá độc lập.
+BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, gồm pipeline phân loại X-quang, Research Studio, hội thoại RAG và chatbot ảnh nhiều lượt. Kiểm chứng gần nhất đạt `213 passed / 1 skipped / 227 subtests`, audit RAG `22 nguồn / 794 chunks`, replay xác định `16/16`, chatbot doctor `13/13`, và API parity trên ba ca tham chiếu. Browser smoke skip vì renderer Chrome crash trước khi nạp ứng dụng. Đây là kiểm thử phần mềm và tính toàn vẹn artifact; không phải kiểm định lâm sàng hoặc đánh giá độc lập. Xem [bàn giao hiện hành](../START_HERE_NEXT_CODEX_VI.md), [record kiểm chứng 12/11](reference/project_verification_20261112.json) và [báo cáo hoàn thiện](reports/PROJECT_COMPLETION_STATUS_20261109_VI.md).
 
 `answer_ready=false`, ngưỡng retrieval vẫn `AWAITING_LABELS`, và cả 7 acceptance gates vẫn `OPEN`. Không sử dụng hệ thống để chẩn đoán, triage, theo dõi hoặc điều trị.
 
@@ -16,6 +16,10 @@ BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, 
 | --- | --- |
 | [README tiếng Việt](../README_VI.md) | Cài đặt, khởi động, sử dụng và kiểm thử trên máy mới |
 | [Trạng thái dự án](PROJECT_STATUS_VI.md) | Điểm bàn giao, thay đổi gần đây, kiểm thử và thứ tự phát triển tiếp |
+| [Báo cáo tổng kết đồ án 12/11/2026](reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) | Kiến trúc, dữ liệu, phương pháp, kết quả ảnh/RAG, chatbot, kiểm chứng và giới hạn |
+| [Báo cáo tổng kết đồ án DOCX 12/11/2026](reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.docx) | Bản Word đã xuất; bố cục trang chưa được render kiểm tra trực quan |
+| [Checklist nghiệm thu demo học tập](reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md) | Các luồng cần trình diễn, kết quả đã có và biên bản để người hướng dẫn ghi quyết định |
+| [Record precheck nghiệm thu 12/11/2026](reference/project_acceptance_precheck_20261112.json) | Regression, chatbot doctor, browser smoke, DOCX và giới hạn môi trường |
 | [Tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) | Điểm dừng, ca trượt, kết quả cuối và lệnh tái lập cho AI tiếp quản |
 | [Mốc và bản tra cứu chatbot nội bộ](reference/STAGE11_CHATBOT_READINESS_VI.md) | Cách chạy prototype local và điều kiện cho chatbot tạo câu trả lời |
 | [Phạm vi học tập do người dùng xác định](reference/STAGE11_USER_STATED_EDUCATIONAL_SCOPE_20261029.md) | Mục tiêu báo cáo thực nghiệm, giới hạn dùng và quyết định intended-use còn cần khóa |

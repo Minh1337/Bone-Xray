@@ -1,4 +1,8 @@
-# Trạng thái hoàn thiện BoneScope — 09/11/2026
+# Trạng thái hoàn thiện BoneScope — cập nhật 12/11/2026
+
+> **Báo cáo học tập hiện hành:** [Báo cáo tổng kết đồ án bản 12/11/2026](BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) trình bày mục tiêu, kiến trúc, phương pháp, kết quả ảnh/RAG, chatbot, kiểm chứng và giới hạn. Nguyên mẫu đủ để trình diễn cục bộ theo phạm vi học tập trong record hiện có; không có tỷ lệ hoàn thành chung và không tuyên bố nghiệm thu độc lập. G1–G7 vẫn OPEN, `answer_ready=false`.
+
+> **Cập nhật 12/11/2026 sau cải tổ cấu trúc:** Đã sửa các launcher/fingerprint còn trỏ đường dẫn cũ, thu hẹp UI test discovery để Quick Start không đòi dependency phát triển, và xử lý revision mã `inference.py` có ghi chép khi kiểm tra hash API; checkpoint/model artifacts vẫn phải khớp chính xác. Regression mới nhất đạt **213 passed, 1 skipped / 227 subtests**. Browser smoke hiện skip vì Chrome 157 làm renderer crash khi chỉ mở trang trống, trước khi nạp ứng dụng; smoke Chrome ngày 09/11 đã PASS. Đối chiếu API với ba ca tham chiếu đạt `API_LOCAL_PARITY_PASSED`, score delta `0` cho cả ba ca, hash model khớp và đầu vào metadata/ảnh hỏng bị từ chối. Smoke UI/API cục bộ, chatbot doctor, RAG audit (**22 nguồn/794 chunks**), replay (**16/16**), register và liên kết Markdown đều PASS. Xem [bàn giao mới nhất](../../START_HERE_NEXT_CODEX_VI.md) và [record kiểm chứng 12/11](../reference/project_verification_20261112.json). Các sửa đổi workspace chưa commit. G1–G7 vẫn OPEN, `answer_ready=false`; kết quả kỹ thuật này không thay thế nhãn/reviewer độc lập hoặc quyền sử dụng cohort.
 
 > **Bổ sung 10/11/2026:** review các commit retrieval autopilot đã phát hiện và sửa validation `mode` trước routing. Full suite hiện đạt **209 passed / 227 subtests**, audit PASS trên 22 nguồn/794 chunks; bundle mới replay 16/16 và không metric nào đổi; register 24/24 hash PASS, 7 gate OPEN. Xem [record review](../reference/stage11_autopilot_review_20261110.json), [audit](../reference/stage11_integrity_audit_20261110_final.json), [replay](../reference/stage11_replay_20261110_final.json) và [hướng dẫn vận hành/nghiên cứu](../guides/RESEARCH_WORKFLOW_VI.md). Dữ liệu retrieval vẫn là dev/regression đã xem; không có threshold hoặc gate mới được chấp nhận.
 
@@ -6,7 +10,7 @@
 
 ## Tóm tắt
 
-Nguyên mẫu BoneScope phục vụ **học tập và nghiên cứu nội bộ** đã có các luồng chính: chatbot đa chủ đề, tra cứu RAG, lịch sử SQLite chỉ lưu chữ và nguồn, chat ảnh nhiều lượt trong tab, gợi ý tài liệu sau khi phân tích ảnh, và phân loại X-quang cục bộ khi có đủ metadata. Bộ regression offline hiện hành đạt **209 passed, 0 failed; 227 subtests passed**; kết quả 172/132 bên dưới là snapshot browser regression ngày 09/11.
+Nguyên mẫu BoneScope phục vụ **học tập và nghiên cứu nội bộ** đã có các luồng chính: chatbot đa chủ đề, tra cứu RAG, lịch sử SQLite chỉ lưu chữ và nguồn, chat ảnh nhiều lượt trong tab, gợi ý tài liệu sau khi phân tích ảnh, và phân loại X-quang cục bộ khi có đủ metadata. Bộ regression offline mới nhất đạt **213 passed, 1 skipped; 227 subtests passed**; browser smoke skip do renderer Chrome hiện hành crash trước khi nạp ứng dụng. Kết quả 172/132 bên dưới là snapshot browser regression ngày 09/11, khi smoke Chrome đạt PASS.
 
 Chưa thể gọi toàn dự án là 100%. Theo checklist kỹ thuật bảy bước của Giai đoạn 11, sáu bước có artifact và bằng chứng triển khai hiện hành; bước 7 mới có cơ chế từ chối một số yêu cầu ngoài phạm vi, nhưng chưa có ngưỡng tin cậy được hiệu chỉnh bằng dữ liệu độc lập. Đây tương ứng **6/7 ≈ 86% độ bao phủ checklist kỹ thuật hẹp**, không phải phần trăm hoàn thành toàn dự án. Bảy gate G1–G7 vẫn `OPEN`; API vẫn trả `answer_ready=false`.
 
@@ -66,7 +70,7 @@ Dừng phiên cũ bằng Shift+F5, chạy lại cấu hình chatbot bằng F5 r�
 
 | Phạm vi | Trạng thái |
 | --- | --- |
-| Regression phần mềm offline | 209/209 passed; 227 subtests passed |
+| Regression phần mềm offline | 213 passed, 1 skipped; 227 subtests passed |
 | Checklist pipeline kỹ thuật Giai đoạn 11 | 6/7 bước có artifact; khoảng 86% độ bao phủ hẹp; bước 7 chưa hiệu chỉnh ngưỡng độc lập |
 | Chatbot học tập và luồng ảnh | Chức năng chính đã tích hợp; mock/API, Chrome headless và provider smoke cơ bản PASS; chưa đánh giá độc lập chất lượng X-quang/nguồn |
 | Gate nghiệm thu G1–G7 | 0/7 đóng, đều `OPEN` |

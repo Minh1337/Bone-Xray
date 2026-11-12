@@ -1,3 +1,4 @@
 # Verified local test environment; install runtime/model dependencies separately.
 pytest==9.1.1
 websockets==16.1.1
+python-docx==1.2.0

@@ -42,7 +42,7 @@ set XRAY_DEVICE=cpu
 - `POST /cases`: lưu ca dựa trên `prediction_id` do server cấp; không nhận
   điểm số tự khai từ trình duyệt.
 - `GET /cases`, `GET /cases/{id}`, `DELETE /cases/{id}`: lịch sử SQLite.
-- Các endpoint nhận xét, hiệu chỉnh và dashboard nằm trong `case_api.py`.
+- Các endpoint nhận xét, hiệu chỉnh và dashboard nằm trong `bonescope/case_api.py`.
 
 `prediction_id` chỉ được giữ trong bộ nhớ của một tiến trình, hết hạn sau
 10 phút và không dùng chung giữa nhiều worker. Đây là giới hạn thiết kế local,

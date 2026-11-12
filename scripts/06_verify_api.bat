@@ -9,6 +9,6 @@ pause
 exit /b %RUN_CODE%
 
 :missing
-echo Copy these files INTO Bone_Xray_Local_Check next to the existing .venv folder.
+echo Python environment not found in BONESCOPE. Run scripts\01_setup.bat first.
 pause
 exit /b 1
