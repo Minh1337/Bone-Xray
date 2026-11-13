@@ -18,8 +18,6 @@ let conversationRevision = 0;
 let stoppedByUser = false;
 const stop = document.getElementById('stop-request');
 const exportButton = document.getElementById('export-chat');
-const sessionQuestions = document.getElementById('session-questions');
-const sessionEmpty = document.getElementById('session-empty');
 const transcript = [];
 const chatHistory = [];
 const savedConversations = document.getElementById('saved-conversations');
@@ -36,6 +34,8 @@ const imageContextNote = document.getElementById('image-context-note');
 const removeImageContext = document.getElementById('remove-image-context');
 const reattachImageContext = document.getElementById('reattach-image-context');
 const chatMode = document.getElementById('chat-mode');
+const attachImage = document.getElementById('attach-image');
+const modeHint = document.getElementById('mode-hint');
 let activeCase = null;
 const caseBanner = document.getElementById('active-case-banner');
 const caseDialog = document.getElementById('case-dialog');
@@ -120,7 +120,8 @@ function renderImageContext(key = currentImageContextKey()) {
     ? `${file.name} · ${(file.size / 1024 / 1024).toFixed(2)} MiB`
     : 'Lịch sử chỉ lưu văn bản, không lưu tệp ảnh.';
   imageContextNote.textContent = file
-    ? 'Ảnh sẽ được gửi lại cùng câu hỏi tiếp theo trong tab này; không lưu vào lịch sử.'
+    ? (chatMode.value === 'local' ? 'Ảnh được giữ trong tab. Chuyển sang chế độ AI để hỏi về ảnh.'
+      : 'Ảnh sẽ được gửi lại cùng câu hỏi tiếp theo trong tab này; không lưu vào lịch sử.')
     : 'Hãy đính kèm lại ảnh để tiếp tục hỏi về nội dung ảnh.';
   removeImageContext.hidden = !file;
   reattachImageContext.hidden = Boolean(file);
@@ -131,6 +132,10 @@ async function loadProviderInfo() {
     const response = await fetch('/api/config', { cache: 'no-store' });
     if (!response.ok) return;
     const config = await response.json();
+    if (!config.configured && !form.matches('[aria-busy="true"]') && chatMode.value === 'auto' && !input.value && !attachedImage && transcript.length === 0) {
+      chatMode.value = 'local';
+      updateChatMode();
+    }
     const fallbackAfter = Number(config.free_fallback_after_seconds) || 15;
     providerLabel = config.paid_fallback_model
       ? `OpenRouter · Free trước, Qwen trả phí nếu chờ ${fallbackAfter}s`
@@ -179,7 +184,6 @@ async function openSavedConversation(id) {
     clearAttachedImage();
     activeController?.abort(); activeController = null; activeCase = null; renderCaseBanner();
     messages.replaceChildren(); transcript.length = 0; chatHistory.length = 0;
-    sessionQuestions.replaceChildren(); sessionEmpty.hidden = true;
     if (!activeConversationId) conversationImageContexts.delete(currentImageContextKey());
     activeConversationId = id;
     conversationHadImageContext = data.messages.some(item => item.role === 'user' && /\[[^\]]*ảnh không được lưu\]/i.test(item.content));
@@ -190,7 +194,7 @@ async function openSavedConversation(id) {
         && /\[[^\]]*ảnh không được lưu\]/i.test(previous.content);
       const msg = bubble(item.role === 'user' ? 'user' : 'assistant');
       if (item.role === 'assistant') assistantLabel(msg, savedImageAnswer
-        ? 'Đã lưu trên máy · phân tích ảnh chưa kiểm chứng' : 'Đã lưu trên máy · bản nháp học tập');
+        ? 'Đã lưu trên máy · phân tích ảnh chưa kiểm chứng' : 'Đã lưu trên máy · hội thoại học tập');
       const sourceCards = (item.sources || []).map(renderSource);
       if (item.role === 'assistant') msg.append(renderAnswer(item.content, savedImageAnswer ? [] : sourceCards));
       else msg.append(element('p', '', item.content));
@@ -256,6 +260,7 @@ function setBusy(busy) {
   stop.hidden = !busy;
   input.disabled = busy;
   chatMode.disabled = busy;
+  attachImage.disabled = busy || chatMode.value === 'local';
   form.toggleAttribute('aria-busy', busy);
   if (busy) form.setAttribute('aria-busy', 'true');
 }
@@ -319,8 +324,6 @@ function resetChat(options = {}) {
   draftConversationContextKey = createDraftConversationContextKey();
   conversationHadImageContext = false;
   renderImageContext();
-  sessionQuestions.replaceChildren();
-  sessionEmpty.hidden = false;
   exportButton.disabled = true;
   setSidebar(false);
   input.value = '';
@@ -349,13 +352,6 @@ function updateCounter() {
 }
 
 input.addEventListener('input', () => { resizeInput(); updateCounter(); });
-messages.addEventListener('pointermove', event => {
-  const card = event.target.closest('.suggestion');
-  if (!card) return;
-  const rect = card.getBoundingClientRect();
-  card.style.setProperty('--mouse-x', `${(event.clientX - rect.left).toFixed(1)}px`);
-  card.style.setProperty('--mouse-y', `${(event.clientY - rect.top).toFixed(1)}px`);
-});
 
 messages.addEventListener('click', event => {
   const suggestion = event.target.closest('.suggestion');
@@ -365,6 +361,10 @@ messages.addEventListener('click', event => {
     return;
   }
   const text = suggestion.dataset.question;
+  if (suggestion.dataset.mode === 'local') {
+    chatMode.value = 'local';
+    updateChatMode();
+  }
   if (!text) return;
   input.value = text;
   resizeInput();
@@ -489,6 +489,17 @@ function renderResult(data) {
     announce('Chưa tìm được bằng chứng phù hợp.');
     return;
   }
+  if (data.basis === 'local_retrieval') {
+    assistantLabel(answer, 'Tra cứu trên máy');
+    answer.append(element('p', '', data.answer));
+    const sources = element('div', 'source-list');
+    sources.setAttribute('aria-label', 'Nguồn tham khảo');
+    sources.append(element('div', 'sources-heading', `ĐOẠN NGUỒN THAM KHẢO · ${data.passages.length}`));
+    sources.append(...data.passages.map(renderSource));
+    answer.append(sources);
+    announce(data.answer);
+    return;
+  }
   const isImageChat = data.status === 'image_chat';
   const isChat = data.status === 'conversation' || isImageChat;
   const isCaseExplain = data.status === 'case_explanation';
@@ -579,7 +590,7 @@ function renderResult(data) {
       : `Đã tìm thấy câu trả lời và ${data.passages.length} đoạn nguồn tham khảo. Câu trả lời AI chưa được kiểm chứng.`);
 }
 
-function showError(message, question, imageFile = null) {
+function showError(message, question, imageFile = null, mode = chatMode.value) {
   transcript.push({ role: 'BoneScope · Lỗi', text: message });
   const error = bubble('assistant', 'error-message');
   assistantLabel(error, 'Không thể hoàn tất yêu cầu');
@@ -590,7 +601,8 @@ function showError(message, question, imageFile = null) {
   retry.prepend(retry.lastChild);
   const retryRevision = conversationRevision;
   retry.addEventListener('click', () => {
-    if (retryRevision === conversationRevision) sendQuestion(question, imageFile);
+    if (retryRevision === conversationRevision && chatMode.value === mode) sendQuestion(question, imageFile);
+    else if (retryRevision === conversationRevision) announce('Chọn lại chế độ đã dùng để thử lại yêu cầu.');
   });
   error.append(retry);
   announce(message);
@@ -598,15 +610,16 @@ function showError(message, question, imageFile = null) {
 
 async function sendQuestion(question, newlyAttachedImage = null, imageContextKey = currentImageContextKey()) {
   if (submit.disabled) return;
-  if (newlyAttachedImage) conversationImageContexts.set(imageContextKey, newlyAttachedImage);
-  const imageFile = newlyAttachedImage || conversationImageContexts.get(imageContextKey) || null;
+  const mode = chatMode.value;
+  const localLookup = mode === 'local';
+  if (newlyAttachedImage && !localLookup) conversationImageContexts.set(imageContextKey, newlyAttachedImage);
+  const imageFile = localLookup ? null : newlyAttachedImage || conversationImageContexts.get(imageContextKey) || null;
   if (!question && !imageFile) return;
   if (imageFile) conversationHadImageContext = true;
   question = question || 'Hãy mô tả ảnh và những gì có thể quan sát được.';
   if (imageContextKey === currentImageContextKey()) renderImageContext(imageContextKey);
   stoppedByUser = false;
-  const history = boundedHistory(Boolean(imageFile));
-  const mode = chatMode.value;
+  const history = localLookup ? [] : boundedHistory(Boolean(imageFile));
   const revision = conversationRevision;
   if (messages.querySelector('.welcome-block')) messages.replaceChildren();
   const user = bubble('user');
@@ -616,20 +629,17 @@ async function sendQuestion(question, newlyAttachedImage = null, imageContextKey
     : `Đang tiếp tục dựa trên ảnh ${imageFile.name} đã gửi trong cuộc trò chuyện này`));
   transcript.push({ role: 'Bạn', text: question });
   exportButton.disabled = false;
-  sessionEmpty.hidden = true;
-  const shortcut = element('button', 'session-question', question);
-  shortcut.type = 'button'; shortcut.title = question;
-  shortcut.addEventListener('click', () => { setSidebar(false); user.scrollIntoView({ block: 'start', behavior: 'auto' }); });
-  sessionQuestions.append(shortcut);
   setBusy(true);
   const pending = bubble('assistant', 'pending-message');
-  assistantLabel(pending, mode === 'auto' ? 'Đang suy nghĩ và trả lời' : 'Đang tra cứu và soạn bản nháp');
+  assistantLabel(pending, localLookup ? 'Đang tra cứu trên máy' : mode === 'auto' ? 'Đang suy nghĩ và trả lời' : 'Đang tra cứu và soạn bản nháp');
   const title = element('div', 'pending-title');
   title.append(element('span', 'spinner'));
   const progressText = element('span', '', 'Đang xử lý câu hỏi…');
   title.append(progressText);
   pending.append(title);
-  pending.append(element('p', 'message-meta', mode === 'auto' ? `${providerLabel} đang đọc ngữ cảnh hội thoại. Câu hỏi về xương sẽ được tra cứu tài liệu.` : `${providerLabel} sẽ soạn bản nháp từ các đoạn tìm được. Lần tra cứu đầu có thể cần nạp mô hình tìm kiếm.`));
+  pending.append(element('p', 'message-meta', localLookup ? 'Lần đầu có thể cần nạp mô hình tìm kiếm.'
+    : mode === 'auto' ? `${providerLabel} đang đọc ngữ cảnh hội thoại. Câu hỏi về xương sẽ được tra cứu tài liệu.`
+      : `${providerLabel} sẽ soạn bản nháp từ các đoạn tìm được.`));
   announce('Đang xử lý câu hỏi và ngữ cảnh hội thoại.');
   scrollToLatest();
 
@@ -642,7 +652,7 @@ async function sendQuestion(question, newlyAttachedImage = null, imageContextKey
   // The query API allows 105s; leave time for its error/result to reach the UI.
   const timer = setTimeout(() => controller.abort(), imageFile ? 90000 : 110000);
   const payload = { question, history, mode };
-  if (activeCase?.case_id) payload.case_id = activeCase.case_id;
+  if (!localLookup && activeCase?.case_id) payload.case_id = activeCase.case_id;
   try {
     let response;
     if (imageFile) {
@@ -693,9 +703,10 @@ async function sendQuestion(question, newlyAttachedImage = null, imageContextKey
         assistantLabel(cancelled, 'Đã dừng chờ phản hồi');
         cancelled.append(element('p', 'message-meta', 'Bạn có thể gửi câu hỏi khác. Yêu cầu đã gửi có thể vẫn được máy chủ xử lý.'));
         announce('Đã dừng chờ phản hồi.');
-      } else showError(`Đã hết thời gian chờ ${imageFile ? 'phân tích ảnh' : 'tra cứu và tạo bản nháp'}. Hãy kiểm tra kết nối ${providerLabel} hoặc thử lại sau.`, question, imageFile);
+      } else showError(localLookup ? 'Tra cứu trên máy quá thời gian chờ. Hãy thử lại.'
+        : `Đã hết thời gian chờ ${imageFile ? 'phân tích ảnh' : 'tra cứu và tạo bản nháp'}. Hãy kiểm tra kết nối ${providerLabel} hoặc thử lại sau.`, question, imageFile, mode);
     } else {
-      showError(error.message || 'Đã xảy ra lỗi khi tra cứu.', question, imageFile);
+      showError(error.message || 'Đã xảy ra lỗi khi tra cứu.', question, imageFile, mode);
     }
   } finally {
     clearTimeout(timer);
@@ -724,6 +735,10 @@ function clearAttachedImage() {
 
 function tryAttachImageFile(file) {
   if (!file) return false;
+  if (chatMode.value === 'local') {
+    announce('Chuyển sang chế độ AI để đính kèm ảnh.');
+    return false;
+  }
   if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
     clearAttachedImage(); announce('Chỉ nhận ảnh JPEG, PNG hoặc WEBP.'); return false;
   }
@@ -735,7 +750,18 @@ function tryAttachImageFile(file) {
   return true;
 }
 
-document.getElementById('attach-image').addEventListener('click', () => imageInput.click());
+function updateChatMode() {
+  const localLookup = chatMode.value === 'local';
+  if (localLookup) clearAttachedImage();
+  attachImage.disabled = submit.disabled || localLookup;
+  modeHint.textContent = localLookup
+    ? 'Câu hỏi được tra cứu trên máy. Chuyển sang chế độ AI để gửi ảnh.'
+    : 'Bản học tập. Khi gửi ảnh trong chế độ AI, ảnh được chuyển tới nhà cung cấp đã cấu hình.';
+  renderImageContext();
+  reattachImageContext.disabled = localLookup;
+}
+chatMode.addEventListener('change', updateChatMode);
+attachImage.addEventListener('click', () => imageInput.click());
 document.getElementById('remove-image-attachment').addEventListener('click', clearAttachedImage);
 removeImageContext.addEventListener('click', () => {
   conversationImageContexts.delete(currentImageContextKey());
@@ -743,18 +769,7 @@ removeImageContext.addEventListener('click', () => {
   announce('Đã xóa ảnh khỏi ngữ cảnh cuộc trò chuyện hiện tại.');
 });
 reattachImageContext.addEventListener('click', () => imageInput.click());
-imageInput.addEventListener('change', () => {
-  const file = imageInput.files?.[0];
-  if (!file) return;
-  if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) {
-    clearAttachedImage(); announce('Chỉ nhận ảnh JPEG, PNG hoặc WEBP.'); return;
-  }
-  if (!file.size || file.size > 10 * 1024 * 1024) {
-    clearAttachedImage(); announce('Ảnh phải có nội dung và không vượt quá 10 MiB.'); return;
-  }
-  setAttachedImage(file);
-  announce('Đã đính kèm ảnh. Khi gửi, ảnh sẽ được chuyển tới nhà cung cấp AI để phân tích.');
-});
+imageInput.addEventListener('change', () => tryAttachImageFile(imageInput.files?.[0]));
 
 input.addEventListener('paste', event => {
   const items = event.clipboardData?.items;
@@ -976,7 +991,6 @@ function openCaseModal() {
 }
 
 document.getElementById('open-case-dialog').addEventListener('click', openCaseModal);
-document.getElementById('composer-case-button').addEventListener('click', openCaseModal);
 function closeCaseModal() {
   caseController?.abort();
   if (!caseBusy) resetCaseForm();
@@ -1136,6 +1150,10 @@ askAiAboutCaseImage.addEventListener('click', () => {
   if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type) || file.size > 10 * 1024 * 1024) {
     showCaseError('Luồng hỏi ảnh cần JPEG, PNG hoặc WEBP không quá 10 MiB.');
     return;
+  }
+  if (chatMode.value === 'local') {
+    chatMode.value = 'auto';
+    updateChatMode();
   }
   setAttachedImage(file);
   closeCaseModal();
@@ -1414,23 +1432,18 @@ caseForm.addEventListener('submit', async event => {
     userBubble.append(element('p', '', userMsg));
     transcript.push({ role: 'Bạn', text: userMsg });
     exportButton.disabled = false;
-    sessionEmpty.hidden = true;
-    const shortcut = element('button', 'session-question', userMsg);
-    shortcut.type = 'button';
-    shortcut.title = userMsg;
-    shortcut.addEventListener('click', () => { setSidebar(false); userBubble.scrollIntoView({ block: 'start', behavior: 'auto' }); });
-    sessionQuestions.append(shortcut);
 
     renderCaseSummaryBubble(caseData, file.name);
     scrollToLatest();
 
-    // Automatically request the grounded academic explanation for the new case.
+    const explainMode = chatMode.value === 'local' ? 'local' : 'documents';
     setBusy(true);
     const revision = conversationRevision;
     const pending = bubble('assistant', 'pending-message');
     assistantLabel(pending, 'Đang đối chiếu kho tài liệu cho nhãn dự đoán');
     const pendingRow = element('div', 'pending-title');
-    pendingRow.append(element('span', 'spinner'), element('span', '', 'Đang tra cứu nguồn và tạo giải thích học thuật…'));
+    pendingRow.append(element('span', 'spinner'), element('span', '', explainMode === 'local'
+      ? 'Đang tìm tài liệu trên máy…' : 'Đang tra cứu nguồn và tạo giải thích học thuật…'));
     pending.append(pendingRow);
     scrollToLatest();
 
@@ -1438,7 +1451,7 @@ caseForm.addEventListener('submit', async event => {
       activeController = caseController;
       stoppedByUser = false;
       caseTimer = setTimeout(() => caseController?.abort(), 90000);
-      const explainRes = await fetch(`/api/case/${encodeURIComponent(caseData.case_id)}/explain`, {
+      const explainRes = await fetch(`/api/case/${encodeURIComponent(caseData.case_id)}/explain?mode=${explainMode}`, {
         signal: caseController.signal,
         method: 'POST',
         cache: 'no-store',

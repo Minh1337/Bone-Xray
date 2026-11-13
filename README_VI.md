@@ -131,13 +131,14 @@ nhấp đúp `scripts\08_start_chatbot.bat`:
 
 Mở `http://127.0.0.1:8765`. Sao chép `.env.example` thành `.env` và điền
 `OPENROUTER_API_KEY` ở máy cá nhân; `.env` đã được Git bỏ qua, không commit key.
+Chọn **Tra cứu cục bộ** nếu chỉ muốn mở các đoạn nguồn hoặc trình diễn với chỉ mục đã dựng mà không cần API key. Chế độ này cũng dùng mẫu giải thích trên máy cho kết quả mô hình X-quang.
 Mặc định dùng OpenRouter Free Router và model ảnh miễn phí. Nếu model miễn phí
 bị giới hạn, trả lời chưa hoàn tất hoặc mất hơn 15 giây, ứng dụng có thể chuyển
 sang `qwen/qwen3.5-flash-02-23` tính phí theo token; nhãn phản hồi sẽ ghi rõ khi
 đã dùng Qwen. Xem [hướng dẫn cấu hình](docs/guides/OPENROUTER_CHATBOT_SETUP_VI.md).
 
 Demo hỗ trợ hội thoại đa chủ đề, ngữ cảnh gần đây, chế độ **Trò chuyện + tài
-liệu** và **Chỉ tra cứu tài liệu**, trích dẫn `[S1]`/`[S2]`, xuất Markdown,
+liệu**, **Hỏi AI theo tài liệu** và **Tra cứu cục bộ**, trích dẫn `[S1]`/`[S2]`, xuất Markdown,
 retry/stop, theme sáng/tối, đính kèm ảnh làm ngữ cảnh nhiều lượt trong tab hiện tại (nút Ảnh, dán `Ctrl+V` hoặc kéo–thả; bấm Bỏ ảnh để chuyển về chat văn bản/RAG), nạp nhanh ảnh BTXRD theo mã kèm tự khớp 22 metadata qua SHA-256 và tạo cuộc trò chuyện mới. Ảnh không lưu vào SQLite; mở lại hội thoại cần đính kèm ảnh lại. Lịch sử hội thoại văn bản được lưu cục bộ trong
 `data/chat_history.db` (không lưu byte ảnh hay dữ liệu ca bệnh). Không mở HTML bằng cách nhấp đúp; giao
 diện cần API FastAPI. Xem [hướng dẫn chatbot](docs/guides/README_CHATBOT_UI_VI.md)

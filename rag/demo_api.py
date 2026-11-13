@@ -49,7 +49,7 @@ class HistoryMessage(BaseModel):
 class Query(BaseModel):
     question: str = Field(min_length=1, max_length=1000)
     history: list[HistoryMessage] = Field(default_factory=list, max_length=12)
-    mode: Literal["auto", "documents"] = "documents"
+    mode: Literal["auto", "documents", "local"] = "documents"
     # Opaque server-issued ID; scores are looked up server-side, never sent by the client.
     case_id: str | None = Field(default=None, min_length=16, max_length=64)
 
@@ -344,7 +344,7 @@ def create_app(retrieve_fn=None, predictor_loader=None):
         return JSONResponse({"deleted": store.remove(case_id)}, headers=NO_STORE)
 
     @app.post("/api/case/{case_id}/explain")
-    async def explain(case_id: str, request: Request):
+    async def explain(case_id: str, request: Request, mode: Literal["local", "documents"] = "documents"):
         check_origin(request)
         record = active_case(case_id)
         base = {"status": "case_explanation", "case_id": case_id, "answer_ready": False}
@@ -360,6 +360,8 @@ def create_app(retrieve_fn=None, predictor_loader=None):
                                 headers=NO_STORE)
         fallback = {**base, "basis": "server_template", "lookup": status, "passages": passages,
                     "answer": cases.template_explanation(record, sources_found=True)}
+        if mode == "local":
+            return JSONResponse(fallback, headers=NO_STORE)
         try:
             settings = DraftSettings.from_env()
             answer = await cases.explain_case(record, passages, settings)
@@ -378,6 +380,13 @@ def create_app(retrieve_fn=None, predictor_loader=None):
         question = body.question.strip()
         if not question:
             raise HTTPException(status_code=422, detail="Question must be nonempty")
+        if body.mode == "local":
+            status, reason, passages = await retrieve_passages(question)
+            response = {"status": status, "reason": reason, "answer_ready": False,
+                        "basis": "local_retrieval", "passages": passages}
+            if passages:
+                response["answer"] = f"Tìm thấy {len(passages)} đoạn trong kho. Mở từng nguồn để đọc nội dung."
+            return JSONResponse(response, headers=NO_STORE)
         case = None
         if body.case_id is not None:
             case = cases.llm_context(active_case(body.case_id))

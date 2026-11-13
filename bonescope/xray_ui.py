@@ -20,6 +20,11 @@ app.router.lifespan_context = lifespan
 app.include_router(case_router)
 
 WEB = Path(__file__).resolve().parents[1] / 'xray_web'
+
+@app.get('/ui-assets/bonescope.svg', include_in_schema=False)
+def logo():
+    return FileResponse(WEB.parent / 'rag' / 'demo_web' / 'bonescope.svg', media_type='image/svg+xml')
+
 app.mount('/ui-assets', StaticFiles(directory=WEB), name='xray-ui-assets')
 
 @app.get('/', include_in_schema=False)

@@ -207,6 +207,19 @@ def test_explain_falls_back_to_template_with_sources_if_llm_fails(monkeypatch):
     assert body["answer_ready"] is False
 
 
+def test_local_case_explanation_returns_sources_without_calling_ai(monkeypatch):
+    loader, _ = make_fake_loader("osteochondroma")
+    monkeypatch.setattr("rag.demo_api.DraftSettings.from_env", lambda: pytest.fail("Local case must not configure AI"))
+    with TestClient(create_app(fake_retrieve, loader), base_url="http://127.0.0.1:8765") as client:
+        created = client.post("/api/case", data={"metadata": json.dumps(valid_meta())},
+                              files={"file": ("img.png", make_png_bytes(), "image/png")}).json()
+        result = client.post(f"/api/case/{created['case_id']}/explain?mode=local")
+    assert result.status_code == 200
+    assert result.json()["basis"] == "server_template"
+    assert len(result.json()["passages"]) == 1
+    assert result.json()["answer_ready"] is False
+
+
 def test_followup_query_uses_server_owned_case_and_rejects_client_score_injection(monkeypatch):
     loader, _ = make_fake_loader("simple bone cyst")
     captured = {}

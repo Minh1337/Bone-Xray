@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="vi">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BoneScope · Phân tích X-quang</title><link rel="stylesheet" href="/ui-assets/style.css?v=2"></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BoneScope · Phân tích X-quang</title><link rel="icon" type="image/svg+xml" href="/ui-assets/bonescope.svg"><link rel="stylesheet" href="/ui-assets/style.css?v=2"></head>
 <body>
-<header><a class="brand" href="/" aria-label="BoneScope trang chủ"><span class="brand-icon">B</span><span>BoneScope<small>KHÔNG GIAN NGHIÊN CỨU X-QUANG</small></span></a>
+<header><a class="brand" href="/" aria-label="BoneScope trang chủ"><img class="brand-icon" src="/ui-assets/bonescope.svg" width="43" height="43" alt=""><span>BoneScope<small>KHÔNG GIAN NGHIÊN CỨU X-QUANG</small></span></a>
 <nav class="main-nav"><a href="/" class="nav-link active">Phân tích</a><a href="/history" class="nav-link">Lịch sử</a><a href="/dashboard" class="nav-link">Dashboard</a></nav>
 <div class="connection"><span id="health" role="status">Đang kiểm tra kết nối…</span><button type="button" id="reconnect" class="quiet">Kiểm tra lại</button></div></header>
 <main>
-<section class="intro"><div><p class="eyebrow">PHÂN TÍCH ẢNH / BẢN THỬ NGHIỆM</p><h1>Từ ảnh chụp đến<br><em>kết quả phân loại.</em></h1><p>Tải ảnh, xác nhận thông tin và xem các lớp mà mô hình dự đoán.</p></div><div class="scope"><span class="scope-mark">01</span><p>Phân loại u xương<small>10 lớp · Ảnh và metadata</small></p></div></section>
+<section class="intro"><div><h1>Phân tích ảnh X-quang</h1><p>Chọn ảnh và điền metadata để xem điểm mô hình cho 10 lớp.</p></div></section>
 <div class="notice" role="note">Bản thử nghiệm học tập/nghiên cứu. Không dùng cho chẩn đoán, sàng lọc, phân loại cấp cứu hay quyết định điều trị. Điểm softmax (0–1) chưa hiệu chuẩn cho lâm sàng; không diễn giải là xác suất mắc bệnh.</div>
 <div class="workspace">
 <form id="analysis-form"><fieldset id="inputs">
@@ -31,6 +31,6 @@
 <div class="save-actions"><button type="button" id="save-case" class="primary full">💾 Lưu ca vào lịch sử</button><button type="button" id="download" class="secondary full">Tải kết quả JSON</button></div>
 <div id="save-message" class="save-message" hidden></div>
 </div>
-</section><div class="side-note"><h3>Thông tin cho bước hiện tại</h3><p>Ảnh được xử lý qua API trên máy bạn. Bạn có thể lưu ca vào SQLite để xem lại ở Lịch sử.</p><p>RAG hiện chỉ là pipeline retrieval thử nghiệm, chưa có chatbot trong giao diện và chưa dùng để trả lời y khoa.</p><p>Thay ảnh hoặc metadata sẽ xóa kết quả cũ để tránh nhầm ca. Tải JSON nếu cần giữ kết quả.</p></div></aside>
+</section><div class="side-note"><h3>Thông tin cho bước hiện tại</h3><p>Ảnh được xử lý qua API trên máy bạn. Bạn có thể lưu ca vào SQLite để xem lại ở Lịch sử.</p><p>Thay ảnh hoặc metadata sẽ xóa kết quả cũ để tránh nhầm ca. Tải JSON nếu cần giữ kết quả.</p></div></aside>
 </div><footer>BoneScope / Đồ án hệ thống hỗ trợ phân tích ảnh X-quang<span>Giao diện 0.2.0</span></footer>
 </main><script src="/ui-assets/app.js?v=3" defer></script></body></html>

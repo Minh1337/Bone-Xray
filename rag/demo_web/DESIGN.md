@@ -191,13 +191,13 @@ Answer typography is 14px with 1.85 line height. Safe rendering supports paragra
 
 The user selected multi-topic conversation with document lookup for bone questions. The composer now includes an Auto conversation/document mode selector and a strict document-only mode. General replies are labeled as model knowledge and have no fabricated source cards. Document replies retain their citations and provenance. Recent conversation context stays in tab memory and is cleared by New conversation. Updated previews and implementation details are linked from docs/guides/CHATBOT_CONVERSATION_VI.md.
 
-## Current Obsidian Research Studio · 2026-11-03
+## Current Research Studio · 2026-11-13
 
-This section supersedes earlier visual directions recorded above. The active implementation is `index.html` + `studio.css` + `graphite.css`; keep the newer Obsidian/Cyan/Teal direction when extending the page. `graphite.css` is a legacy asset name and does not describe the current palette.
+Use the slate and teal BoneScope mark from [bonescope.svg](bonescope.svg) for navigation and favicons. The mark combines a bone silhouette with four imaging frame corners. Both the Research Studio and X-ray Workbench use the same asset.
 
-The welcome page uses a centered prompt and a three-card bento composition: a prominent X-ray analysis entry on the left and two smaller document/conversation starters on the right. It also includes quick prompt chips, a source/local-processing note, ambient grid and two softly blurred cyan/teal lights. The X-ray art is decorative SVG with a restrained scan sweep; it does not represent an uploaded or analyzed image. The composer remains anchored beneath the conversation and expands to full width on narrow screens.
+The welcome screen places two actions below a short introduction. One opens the X-ray workflow and the other starts a local source lookup. The sidebar holds new chat, workspace navigation, saved conversations and help. Export and theme controls live in the top bar.
 
-Use local system fonts and inline SVG. Keep motion limited to short entry/hover transitions, subtle ambient movement and the scan sweep; use transforms and opacity, and honor `prefers-reduced-motion`. Ensure touch targets, keyboard focus, contrast, citation navigation, and no horizontal overflow on mobile. The composer and case flow must keep their existing accessible labels and functional selectors.
+Keep transitions brief and honor reduced motion. Stack the two welcome actions on narrow screens. The composer exposes three modes and disables image attachment during local lookup. An existing image stays in the current browser tab while local lookup is selected. The source list uses the same disclosure controls for local lookup and generated answers.
 
 Make data handling legible: image and 22 metadata fields are processed by the local classifier; the selected external language-model provider receives user text/context, retrieved source excerpts, and only Top-3 labels/scores plus a mapping note for an active image case. Saved chat history stores text and source references in local SQLite; images are not persisted there by default. Keep the educational-use and non-diagnostic notice visible. Never imply that the entire assistant or all conversation data is local, and do not introduce fabricated source counts or clinical claims.
 

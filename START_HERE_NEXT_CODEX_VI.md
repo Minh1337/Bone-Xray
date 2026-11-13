@@ -2,6 +2,8 @@
 
 ## Trạng thái hiện tại — 12/11/2026
 
+**Cập nhật 13/11:** Research Studio có logo chung với X-ray Workbench và bố cục chào với hai thao tác. Chế độ **Tra cứu cục bộ** đọc chỉ mục E5 và trả các đoạn nguồn ngay trên giao diện. Phần giải thích ca X-quang dùng mẫu trên máy khi chọn chế độ này. Xem [hướng dẫn Research Studio](docs/guides/README_CHATBOT_UI_VI.md).
+
 Báo cáo đồ án hiện hành: [Markdown](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) · [DOCX](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.docx). DOCX đã xuất và kiểm tra cấu trúc; chưa render trực quan vì môi trường thiếu LibreOffice.
 
 Checklist nghiệm thu demo: [PRODUCT_ACCEPTANCE_CHECKLIST_VI.md](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md); [record precheck 12/11](docs/reference/project_acceptance_precheck_20261112.json). Checklist này phục vụ nghiệm thu phần mềm học tập local; G1–G7 vẫn là các gate riêng.

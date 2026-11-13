@@ -47,6 +47,18 @@ def test_health_is_local_liveness_without_provider_or_model_calls():
     assert response.headers["cache-control"] == "no-store"
 
 
+def test_doctor_identifies_checkpoint_pointer(tmp_path):
+    model_dir = tmp_path / "model"
+    model_dir.mkdir()
+    for name in ("config.json", "metadata_processor.joblib", "val_transform.json"):
+        (model_dir / name).touch()
+    (model_dir / "best_model.pt").write_bytes(b"version https://git-lfs.github.com/spec/v1\n")
+    result = doctor.inspect_workspace(tmp_path, module_available=lambda _: True)
+    check = next(item for item in result["checks"] if item["name"] == "local_classifier")
+    assert check["status"] == "WARN"
+    assert "git lfs pull" in check["detail"]
+
+
 def test_foreign_occupied_port_is_preserved(monkeypatch, capsys):
     monkeypatch.setattr(runner, "inspect_workspace", lambda: {"status": "PASS", "checks": []})
     monkeypatch.setattr(runner, "existing_bonescope", lambda _: False)

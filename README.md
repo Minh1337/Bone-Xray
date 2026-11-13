@@ -23,7 +23,7 @@
 | Workspace | What it does |
 | --- | --- |
 | **X-ray Workbench** · port 8000 | Upload an authorized X-ray with 22 metadata fields. A local Swin model combines image and metadata features through cross-attention and returns ranked labels and softmax scores. |
-| **Research Studio** · port 8765 | Search a local collection of 22 sources and 794 text passages. With OpenRouter configured, ask follow-up questions, inspect cited passages, or discuss an attached image. SQLite keeps conversation text and sources on the machine. |
+| **Research Studio** · port 8765 | Browse 22 sources and 794 passages in the local lookup mode. Configure OpenRouter for generated answers and image chat. SQLite keeps conversation text and source references on the machine. |
 
 BoneScope is a local coursework prototype. The classifier is intended for educational experiments, and the chat interface is intended for exploring the reference collection. Use synthetic or authorized samples and keep patient data out of the demo.
 
@@ -59,7 +59,7 @@ Open [the X-ray Workbench](http://127.0.0.1:8000/) or its [API documentation](ht
 .\scripts\08_start_chatbot.bat
 ```
 
-Open [Research Studio](http://127.0.0.1:8765/). The first index build downloads the pinned multilingual E5 model. The corpus and its source registry are tracked in Git, while the embedding model and index are built locally. For a document lookup without an API key, run the retrieval command in a second terminal. See the [RAG guide](docs/guides/README_RAG_INDEX_VI.md) for audit and replay commands.
+Open [Research Studio](http://127.0.0.1:8765/) and select **Tra cứu cục bộ** for a source lookup without an API key. This mode also keeps explanations of local X-ray model outputs on the machine. The first index build downloads the pinned multilingual E5 model. The same lookup is available in the terminal. See the [RAG guide](docs/guides/README_RAG_INDEX_VI.md) for audit and replay commands.
 
 ```powershell
 .\.venv\Scripts\python.exe -m rag.retrieval "What is osteochondroma?" --top-k 5

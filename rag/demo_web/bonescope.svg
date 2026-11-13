@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>BoneScope</title>
+  <rect width="64" height="64" rx="15" fill="#11283a"/>
+  <path d="M25 13h-8a4 4 0 0 0-4 4v8m26-12h8a4 4 0 0 1 4 4v8M13 39v8a4 4 0 0 0 4 4h8m26-12v8a4 4 0 0 1-4 4h-8"
+        fill="none" stroke="#7ee3d5" stroke-width="3" stroke-linecap="round"/>
+  <path d="M25 35l10-10a5.2 5.2 0 1 1 7-6 5.2 5.2 0 1 1-2.5 9.5l-10 10a5.2 5.2 0 1 1-7 6 5.2 5.2 0 1 1 2.5-9.5Z"
+        fill="#f3fbff"/>
+</svg>

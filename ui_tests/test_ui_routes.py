@@ -20,6 +20,7 @@ class UIRouteTests(unittest.TestCase):
                 self.assertEqual(client.get('/dashboard').status_code, 200)
                 self.assertEqual(client.get('/ui-assets/app.js').status_code, 200)
                 self.assertEqual(client.get('/ui-assets/style.css').status_code, 200)
+                self.assertEqual(client.get('/ui-assets/bonescope.svg').headers['content-type'], 'image/svg+xml')
                 self.assertEqual(client.get('/health').json()['status'], 'ready')
                 self.assertEqual(client.get('/metadata-schema').status_code, 200)
                 self.assertEqual(client.get('/model/best_model.pt').status_code, 404)
@@ -46,13 +47,13 @@ class UIRouteTests(unittest.TestCase):
                 'class="btxrd-sample-chip"',
                 'data-btxrd-id="IMG000002"',
                 'data-btxrd-id="IMG000240"',
-                'class="welcome-ambient"',
-                'class="xray-scanline"',
-                'class="quick-prompts"',
+                'href="/assets/bonescope.svg"',
+                'value="local"',
+                'data-action="open-case"',
             ):
                 self.assertIn(required_hook, html)
 
-            for asset in ('/assets/style.css', '/assets/studio.css', '/assets/graphite.css', '/assets/app.js'):
+            for asset in ('/assets/style.css', '/assets/studio.css', '/assets/graphite.css', '/assets/app.js', '/assets/bonescope.svg'):
                 res = client.get(asset)
                 self.assertEqual(res.status_code, 200, asset)
                 self.assertTrue(len(res.text) > 100, asset)

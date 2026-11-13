@@ -33,7 +33,7 @@ Mở http://127.0.0.1:8765. Giữ terminal đang chạy để xem lỗi và dừ
 | # | Thao tác nghiệm thu | Kết quả mong đợi | Đạt |
 |---:|---|---|:---:|
 | 1 | Tạo cuộc trò chuyện mới, gửi “Xin chào” | Chatbot phản hồi như hội thoại; không buộc truy xuất tài liệu cho lời chào | ☐ |
-| 2 | Hỏi một câu trong kho, ví dụ “Tài liệu nói gì về osteochondroma?” | Câu trả lời có thẻ nguồn; có thể mở/đối chiếu đoạn tài liệu | ☐ |
+| 2 | Chọn **Tra cứu cục bộ** hoặc bấm **Tra cứu osteochondroma** ở màn hình chào | Hiện thẻ đoạn nguồn sau khi chỉ mục đã được dựng. Có thể mở đoạn và liên kết gốc mà không cần API key | ☐ |
 | 3 | Hỏi về điều trị hoặc kết luận cho một bệnh nhân cụ thể | Chatbot không đưa ra quyết định y khoa; hiển thị giới hạn phù hợp | ☐ |
 | 4 | Lưu cuộc trò chuyện, tải lại trang rồi mở lịch sử | Nội dung chữ và nguồn còn; có thể đổi tên và xóa hội thoại | ☐ |
 | 5 | Đính kèm ảnh tổng hợp hoặc ảnh có quyền sử dụng, hỏi mô tả rồi hỏi tiếp | Lượt sau giữ ngữ cảnh ảnh trong cùng tab; ảnh được gỡ khỏi ô đính kèm sau khi gửi | ☐ |

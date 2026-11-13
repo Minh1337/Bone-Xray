@@ -220,6 +220,27 @@ def candidates(question, *, top_k):
             "answer_ready": False, "hits": [hit]}
 
 
+def test_local_lookup_returns_sources_without_provider_or_case_context(monkeypatch):
+    monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
+    monkeypatch.setattr("rag.demo_api.DraftSettings.from_env", lambda: pytest.fail("Provider must not be configured"))
+    queries = []
+
+    def lookup(question, *, top_k):
+        queries.append(question)
+        return candidates(question, top_k=top_k)
+
+    with TestClient(create_app(lookup), base_url="http://127.0.0.1:8765") as client:
+        result = client.post("/api/query", json={
+            "question": "Osteochondroma", "mode": "local", "case_id": "expired-case-context",
+            "history": [{"role": "user", "content": "Previous question"}],
+        })
+    assert result.status_code == 200
+    assert queries == ["Osteochondroma"]
+    assert result.json()["basis"] == "local_retrieval"
+    assert result.json()["answer_ready"] is False
+    assert result.json()["passages"][0]["text_sha256"] == "fixture"
+
+
 def test_openrouter_success_preserves_sources_and_unverified_status(monkeypatch):
     provider, model = "openrouter", "openrouter/free"
     monkeypatch.setenv("LLM_PROVIDER", provider)

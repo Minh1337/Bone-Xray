@@ -12,6 +12,8 @@ import sqlite3
 
 ROOT = Path(__file__).resolve().parents[1]
 CORE_MODULES = ("fastapi", "uvicorn", "dotenv", "multipart", "httpx", "openai", "PIL", "numpy")
+CLASSIFIER_ASSETS = ("best_model.pt", "config.json", "metadata_processor.joblib", "val_transform.json")
+LFS_POINTER = b"version https://git-lfs.github.com/spec/v1"
 
 
 def inspect_workspace(root=ROOT, *, module_available=None):
@@ -65,10 +67,22 @@ def inspect_workspace(root=ROOT, *, module_available=None):
     embedding_ready = available("sentence_transformers") and (root / "rag/models/e5-small/modules.json").is_file()
     add("embedding", "PASS" if embedding_ready else "WARN", "Local embedding assets/dependency found" if embedding_ready
         else "Local embedding assets or sentence_transformers missing; document lookup unavailable")
-    classifier_ready = all(available(n) for n in ("torch", "timm", "joblib")) and all(
-        (root / "model" / name).is_file() for name in ("best_model.pt", "config.json", "metadata_processor.joblib"))
-    add("local_classifier", "PASS" if classifier_ready else "WARN", "Local classifier assets/dependencies found" if classifier_ready
-        else "Classifier assets/dependencies missing; text/vision chat can still run")
+    model_dir = root / "model"
+    if all((model_dir / name).is_file() for name in CLASSIFIER_ASSETS):
+        try:
+            with (model_dir / "best_model.pt").open("rb") as checkpoint:
+                pointer = checkpoint.read(len(LFS_POINTER)) == LFS_POINTER
+            if pointer:
+                add("local_classifier", "WARN", "Checkpoint is a Git LFS pointer. Run git lfs pull.")
+            elif all(available(name) for name in ("torch", "timm", "joblib")):
+                add("local_classifier", "PASS", "Local classifier assets/dependencies found")
+            else:
+                add("local_classifier", "WARN", "Classifier dependencies missing. Run scripts/01_setup.bat.")
+        except OSError:
+            add("local_classifier", "WARN", "Checkpoint could not be read. Check model/best_model.pt.")
+    else:
+        absent = [name for name in CLASSIFIER_ASSETS if not (model_dir / name).is_file()]
+        add("local_classifier", "WARN", "Missing classifier files: " + ", ".join(absent))
 
     db = root / "data/chat_history.db"
     if db.is_file():

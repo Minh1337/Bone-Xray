@@ -251,6 +251,12 @@ def test_browser_image_context_and_sqlite_lifecycle(offline_chatbot, tmp_path):
                 await page.wait("[...document.querySelectorAll('.saved-open')].some(n=>n.textContent==='Chat A đã đổi tên')")
                 await page.evaluate("[...document.querySelectorAll('.saved-row')].find(n=>n.querySelector('.saved-open').textContent==='Chat A đã đổi tên').querySelector('.saved-delete').click()")
                 await page.wait("document.querySelectorAll('.saved-open').length===1")
+                await page.open_chat("xin chào")
+                await page.evaluate("const mode=document.querySelector('#chat-mode');mode.value='local';mode.dispatchEvent(new Event('change'));")
+                await page.send("Tài liệu nói gì về osteochondroma?")
+                await page.wait("[...document.querySelectorAll('.source-card')].some(card=>card.textContent.includes('Nguồn giả lập offline'))")
+                assert await page.evaluate("document.querySelector('#attach-image').disabled")
+                assert len(image_calls) == 9
                 assert not page.errors, page.errors
 
         asyncio.run(exercise())
