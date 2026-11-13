@@ -179,8 +179,14 @@ def test_browser_image_context_and_sqlite_lifecycle(offline_chatbot, tmp_path):
                                     "const dt=new DataTransfer();dt.items.add(new File([bytes],'smoke-image.png',{type:'image/png'}));"
                                     "const n=document.querySelector('#image-input');n.files=dt.files;n.dispatchEvent(new Event('change'));}")
                 assert await page.evaluate("!document.querySelector('#image-attachment').hidden")
+                await page.wait("document.querySelector('#attachment-preview').naturalWidth === 64")
                 await page.send("Lỗi ảnh tạm thời")
                 await page.wait("!!document.querySelector('.error-message')")
+                await page.wait("document.querySelector('#messages .message-image img').naturalWidth === 64")
+                await page.click('#messages .message-image')
+                await page.wait("document.querySelector('#image-viewer').open && document.querySelector('#viewed-image').naturalWidth === 64")
+                await page.click('#close-image-viewer')
+                assert await page.evaluate("!document.querySelector('#image-viewer').open")
                 await page.send("Mô tả ảnh A")
                 await page.wait("document.querySelectorAll('.saved-open').length===1")
                 assert await page.evaluate("document.querySelector('#image-attachment').hidden && document.querySelector('#image-input').files.length===0")
@@ -211,6 +217,9 @@ def test_browser_image_context_and_sqlite_lifecycle(offline_chatbot, tmp_path):
                 assert len(image_calls) == 8
                 await page.open_chat("Mô tả ảnh A")
                 assert await page.evaluate("document.querySelector('#image-context-name').textContent.includes('smoke-image.png')")
+                await page.wait("document.querySelector('#messages .message-image img')?.naturalWidth === 64")
+                assert await page.evaluate("document.querySelectorAll('#messages .message-image').length === 1")
+                assert await page.evaluate("document.querySelector('.message-image').closest('.user').querySelector('p').textContent === 'Lỗi ảnh tạm thời'")
                 await page.send("Hỏi tiếp ảnh A sau khi đổi chat")
                 assert len(image_calls) == 9 and image_calls[-1]["raw"] == raw
 
@@ -237,6 +246,8 @@ def test_browser_image_context_and_sqlite_lifecycle(offline_chatbot, tmp_path):
                 await page.call("Page.reload")
                 await page.wait("document.querySelectorAll('.saved-open').length===2")
                 await page.open_chat("Mô tả ảnh A")
+                assert await page.evaluate("document.querySelectorAll('#messages .message-image').length === 0")
+                assert await page.evaluate("[...document.querySelectorAll('#messages .user p')].some(p => p.textContent === 'Ảnh không còn trong phiên này.')")
                 assert await page.evaluate("!document.querySelector('#reattach-image-context').hidden")
                 assert await page.evaluate("document.querySelector('#remove-image-context').hidden")
                 assert await page.evaluate("document.querySelectorAll('.source-card').length===8")
@@ -257,6 +268,17 @@ def test_browser_image_context_and_sqlite_lifecycle(offline_chatbot, tmp_path):
                 await page.wait("[...document.querySelectorAll('.source-card')].some(card=>card.textContent.includes('Nguồn giả lập offline'))")
                 assert await page.evaluate("document.querySelector('#attach-image').disabled")
                 assert len(image_calls) == 9
+                await page.click("#clear-chat")
+                await page.evaluate("document.querySelector('#chat-mode').value='auto';document.querySelector('#chat-mode').dispatchEvent(new Event('change'));")
+                await page.evaluate("{const bytes=Uint8Array.from(atob('"+encoded+"'),c=>c.charCodeAt(0));"
+                                    "const dt=new DataTransfer();dt.items.add(new File([bytes],'smoke-image.png',{type:'image/png'}));"
+                                    "const n=document.querySelector('#image-input');n.files=dt.files;n.dispatchEvent(new Event('change'));}")
+                await page.send("")
+                await page.wait("document.querySelector('#messages .message-image img')?.naturalWidth === 64")
+                assert await page.evaluate("document.querySelector('#messages .user p') === null")
+                await page.wait("[...document.querySelectorAll('.saved-open')].some(n=>n.textContent==='Ảnh đính kèm')")
+                await page.evaluate("[...document.querySelectorAll('.saved-row')].find(n=>n.querySelector('.saved-open').textContent==='Ảnh đính kèm').querySelector('.saved-delete').click()")
+                await page.wait("document.querySelectorAll('.saved-open').length===1")
                 assert not page.errors, page.errors
 
         asyncio.run(exercise())

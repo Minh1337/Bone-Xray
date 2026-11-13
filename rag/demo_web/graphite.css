@@ -716,51 +716,41 @@ body {
 }
 
 .image-attachment {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
+  display: block;
+  position: relative;
+  width: fit-content;
   margin: 0 0 12px;
-  padding: 10px 14px;
-  border: 1px solid color-mix(in srgb, var(--primary), transparent 60%);
-  border-radius: 14px;
-  background: linear-gradient(135deg, color-mix(in srgb, var(--primary), var(--surface-container-low) 90%), var(--surface-container-low));
-  font-size: 12px;
-  animation: stage-fade-up 240ms var(--ease) both;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: var(--surface-container-low);
 }
 
-.image-attachment-name {
-  color: var(--on-surface);
-  font-weight: 650;
-  overflow-wrap: anywhere;
+#attachment-preview {
+  display: block;
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  border-radius: 11px;
 }
 
-#remove-image-attachment,
-#clear-image-attachment {
-  margin-left: auto;
-  min-height: 26px;
-  padding: 3px 10px;
+#remove-image-attachment, #close-image-viewer {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 32px;
+  height: 32px;
+  padding: 5px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: var(--surface-white);
-  color: var(--on-surface-variant);
-  font-size: 11px;
-  font-weight: 600;
-  transition: border-color 160ms var(--ease), color 160ms var(--ease), background-color 160ms var(--ease);
+  color: var(--on-surface);
 }
 
-#remove-image-attachment:hover,
-#clear-image-attachment:hover {
+#remove-image-attachment:hover {
   border-color: var(--error);
   color: var(--error);
   background: var(--error-container);
-}
-
-.image-attachment small {
-  flex-basis: 100%;
-  color: var(--secondary);
-  font-size: 10.5px;
-  line-height: 1.45;
 }
 
 .image-context-banner {
@@ -903,6 +893,39 @@ kbd {
   box-shadow: var(--shadow-sm);
   transform-origin: bottom right;
 }
+
+.message-image {
+  display: block;
+  align-self: flex-end;
+  max-width: 100%;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface);
+  cursor: zoom-in;
+}
+
+.message-image img {
+  display: block;
+  max-width: min(360px, 100%);
+  max-height: min(320px, 48vh);
+  object-fit: contain;
+}
+
+.image-viewer {
+  position: fixed;
+  width: max-content;
+  max-width: 94vw;
+  max-height: 94vh;
+  padding: 42px 10px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface-white);
+}
+
+.image-viewer::backdrop { background: rgb(0 0 0 / 75%); }
+.image-viewer img { display: block; max-width: min(1100px, 88vw); max-height: 80vh; object-fit: contain; }
 
 .assistant-avatar {
   width: 28px;

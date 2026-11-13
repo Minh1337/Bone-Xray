@@ -56,15 +56,20 @@ def get_conversation(cid):
         conv = db.execute("SELECT id,title,created_at,updated_at FROM conversations WHERE id=?", (cid,)).fetchone()
         if conv is None:
             return None
-        messages = db.execute("SELECT role,content,sources_json,created_at FROM messages WHERE conversation_id=? ORDER BY id", (cid,)).fetchall()
+        messages = db.execute("SELECT id,role,content,sources_json,created_at FROM messages WHERE conversation_id=? ORDER BY id", (cid,)).fetchall()
     result = dict(conv)
-    result["messages"] = [{"role": m["role"], "content": m["content"],
+    result["messages"] = [{"id": m["id"], "role": m["role"], "content": m["content"],
                             "sources": json.loads(m["sources_json"]), "created_at": m["created_at"]}
                            for m in messages]
     return result
 
 
 def save_turn(cid, question, answer, sources=()):
+    conversation_id, _ = save_turn_with_message_id(cid, question, answer, sources)
+    return conversation_id
+
+
+def save_turn_with_message_id(cid, question, answer, sources=()):
     question = question.strip()
     answer = answer.strip()
     timestamp = now()
@@ -84,16 +89,17 @@ def save_turn(cid, question, answer, sources=()):
             # the client is not included in the conversation's sidebar title.
             first_paragraph = question.replace("\r\n", "\n").split("\n\n", 1)[0]
             title = " ".join(first_paragraph.split())[:72] or "Cuộc trò chuyện mới"
+            if title == "[Đã gửi kèm ảnh ngữ cảnh; ảnh không được lưu]":
+                title = "Ảnh đính kèm"
             db.execute("INSERT INTO conversations VALUES(?,?,?,?)", (cid, title, timestamp, timestamp))
         count = db.execute("SELECT COUNT(*) FROM messages WHERE conversation_id=?", (cid,)).fetchone()[0]
         if count + 2 > MAX_MESSAGES_PER_CONVERSATION:
             raise OverflowError("Conversation has reached the message limit")
-        db.executemany("INSERT INTO messages(conversation_id,role,content,sources_json,created_at) VALUES(?,?,?,?,?)", [
-            (cid, "user", question[:3000], "[]", timestamp),
-            (cid, "assistant", answer[:12000], json.dumps(safe_sources, ensure_ascii=False), timestamp),
-        ])
+        insert = "INSERT INTO messages(conversation_id,role,content,sources_json,created_at) VALUES(?,?,?,?,?)"
+        message_id = db.execute(insert, (cid, "user", question[:3000], "[]", timestamp)).lastrowid
+        db.execute(insert, (cid, "assistant", answer[:12000], json.dumps(safe_sources, ensure_ascii=False), timestamp))
         db.execute("UPDATE conversations SET updated_at=? WHERE id=?", (timestamp, cid))
-    return cid
+    return cid, message_id
 
 
 def rename_conversation(cid, title):

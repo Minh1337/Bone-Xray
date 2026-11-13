@@ -12,6 +12,8 @@ Nút **Phân tích X-quang** chạy bộ Swin cục bộ. Khi chọn ảnh, hệ
 
 Nếu không muốn tìm ảnh bằng Explorer, mở **Phân tích X-quang**, nhập mã như `IMG000001` vào ô **Nạp ảnh BTXRD có sẵn theo mã** rồi bấm **Nạp ảnh** (hoặc bấm trực tiếp một nút **Mẫu nhanh** như `IMG000002 · osteosarcoma`, `IMG000240 · osteochondroma`, `IMG000234 · giant cell tumor`, `IMG000236 · simple bone cyst`, `IMG000001 · other mt`, `IMG001868 · no-tumor`). Mã nằm trong cột `image_id` của `data/external_datasets/BTXRD/reference/manifest.csv`; ảnh gốc nằm trong `data/external_datasets/BTXRD/reference/source/BTXRD/images/`. Giao diện tải ảnh từ máy chủ local và đối chiếu hash để tự điền 22 metadata. Ảnh có cùng byte nhưng metadata mâu thuẫn trong manifest sẽ bị chặn, không tự điền. Bước này không cần API key hoặc Groq; bước **Chạy mô hình & giải thích** dùng mẫu giải thích trên máy khi chọn **Tra cứu cục bộ**, hoặc có thể gọi nhà cung cấp AI ở chế độ hỏi đáp.
 
+Ảnh chờ gửi có hình xem trước trong ô soạn. Sau khi gửi, bấm ảnh trong tin nhắn để xem lớn. Khi chuyển sang cuộc trò chuyện khác rồi quay lại trong cùng tab, ảnh đã gửi vẫn có thể hiện đúng ở tin nhắn tương ứng. Sau khi tải lại trang, lịch sử giữ phần chữ và nguồn đã lưu.
+
 ## Lịch sử hội thoại trên máy
 
 Các lượt hoàn tất tự lưu trong `data/chat_history.db` bằng SQLite. Mục **Lịch sử hội thoại** ở thanh bên cho phép mở lại, đổi tên và xóa hội thoại. Bản ghi gồm văn bản hỏi đáp và đoạn nguồn. Khi mở lại một lượt hỏi ảnh, hãy đính kèm lại tệp nếu cần hỏi tiếp về ảnh đó.

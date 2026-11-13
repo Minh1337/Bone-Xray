@@ -110,6 +110,7 @@ def test_http_history_endpoints_persist_across_requests_and_delete_cascade(monke
 
         opened = client.get(f"/api/conversations/{conversation_id}")
         assert opened.status_code == 200
+        assert opened.json()["messages"][0]["id"] == saved.json()["message_id"]
         assert opened.json()["messages"][1]["sources"] == [{
             "source_id": "s1", "title": "Source", "text": "Passage",
         }]

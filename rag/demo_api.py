@@ -256,13 +256,13 @@ def create_app(retrieve_fn=None, predictor_loader=None):
         if not question or not answer:
             raise HTTPException(422, "Câu hỏi và câu trả lời không được để trống.")
         try:
-            cid = chat_history.save_turn(body.conversation_id, question, answer, body.sources)
+            cid, message_id = chat_history.save_turn_with_message_id(body.conversation_id, question, answer, body.sources)
         except LookupError:
             raise HTTPException(409, "Cuộc trò chuyện đã bị xóa. Tạo cuộc trò chuyện mới để lưu lượt này.") from None
         except OverflowError:
             raise HTTPException(409, "Lịch sử đã đạt giới hạn lưu trữ. Hãy tạo cuộc trò chuyện mới "
                                 "hoặc tự xóa những hội thoại không cần giữ.") from None
-        return JSONResponse({"conversation_id": cid}, headers=NO_STORE)
+        return JSONResponse({"conversation_id": cid, "message_id": message_id}, headers=NO_STORE)
 
     @app.patch("/api/conversations/{conversation_id}")
     def rename_chat_history(conversation_id: str, body: RenameConversation, request: Request):
