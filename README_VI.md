@@ -155,6 +155,8 @@ và [hướng dẫn hội thoại](docs/guides/CHATBOT_CONVERSATION_VI.md).
 
 Ngày 12/11, bộ regression trong sandbox đạt **213 bài và 227 subtests**, với một bài Chrome bị bỏ qua. Bài Chrome chạy riêng ngoài sandbox đạt **1/1** với ảnh tổng hợp, SQLite tạm và AI giả lập. Xem [checklist nghiệm thu](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md), [bản ghi kiểm chứng](docs/reference/project_verification_20261112.json), [audit RAG](docs/reference/stage11_integrity_audit_20261110_final.json) và [replay RAG](docs/reference/stage11_replay_20261110_final.json).
 
+**Cập nhật 13/11:** mã hiện tại đạt **216 passed, 1 skipped, 227 subtests passed**; browser smoke chạy riêng đạt **1/1**, RAG audit và replay đều đạt. Xem [record mới](docs/reference/project_report_verification_20261113.json) và [báo cáo đồ án hiện hành](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md).
+
 Để chạy riêng các kiểm tra chatbot/API:
 
 ```powershell
@@ -173,10 +175,10 @@ Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
 
 - [README tổng quan](README.md)
 - [Trạng thái dự án](docs/PROJECT_STATUS_VI.md)
-- [Báo cáo tổng kết đồ án — 12/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md)
+- [Báo cáo tổng kết đồ án — 13/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md)
 - [Checklist nghiệm thu demo học tập](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md)
 - [Record precheck nghiệm thu 12/11/2026](docs/reference/project_acceptance_precheck_20261112.json)
-- [Báo cáo tổng kết đồ án — DOCX 12/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.docx) (đã xuất, chưa render kiểm tra trực quan)
+- [Báo cáo tổng kết đồ án — DOCX 13/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.docx) (đã kiểm tra trực quan bản xuất chín trang)
 - [Báo cáo tổng hợp Giai đoạn 11 — hồ sơ lịch sử và gate](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md)
 - [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
 - [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)

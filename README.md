@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="README_VI.md">Hướng dẫn tiếng Việt</a> ·
-  <a href="docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md">Coursework report</a> ·
+  <a href="docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md">Coursework report</a> ·
   <a href="docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md">Demo checklist</a>
 </p>
 
@@ -76,9 +76,11 @@ The report compares the same checkpoint on **250 BTXRD images**, with 25 images 
 | Image + metadata | 77.6% (194/250) | 94.0% (235/250) | 0.776 |
 | Image + zeroed metadata vector | 48.0% (120/250) | 72.0% (180/250) | 0.439 |
 
-These results describe an **in-source experiment**. The checkpoint was trained on BTXRD, and the original split cannot be reconstructed from the available records. The [coursework report](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) explains the sampling, class results, and limits. See the [evaluation record](docs/reference/stage11_xray_in_source_evaluation_20261103.json) for the saved results.
+These results describe an **in-source experiment**. The checkpoint was trained on BTXRD, and the original split cannot be reconstructed from the available records. The [coursework report](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md) explains the sampling, class results, and limits. See the [evaluation record](docs/reference/stage11_xray_in_source_evaluation_20261103.json) for the saved results.
 
 The November 12 verification recorded **3/3 local reference cases** for API parity and **16/16 matching RAG replays**. The regression suite passed 213 tests with one browser test skipped in the sandbox. That browser test passed in a separate run using an isolated database, synthetic images, and mocked AI. See the [verification record](docs/reference/project_verification_20261112.json) and the [demo checklist](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md).
+
+The November 13 report review reran the suite on the current code: **216 passed, 1 skipped, 227 subtests passed**. The isolated Chrome smoke test passed separately; RAG audit and replay passed again. See the [report verification record](docs/reference/project_report_verification_20261113.json) and the [Word report](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.docx).
 
 ## Data flow and research status
 

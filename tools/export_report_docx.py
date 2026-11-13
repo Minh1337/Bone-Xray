@@ -24,10 +24,10 @@ ALERT_LABEL = {
     "WARNING": "Cảnh báo", "CAUTION": "Thận trọng",
 }
 
-NAVY = "18324B"
-TEAL = "147D8C"
-INK = "263445"
-MUTED = "64748B"
+NAVY = "263445"
+TEAL = "126B76"
+INK = "1F2933"
+MUTED = "59636D"
 PALE = "EEF5F7"
 ROW_ALT = "F4F7FA"
 
@@ -73,6 +73,21 @@ def shade_cell(cell, fill: str) -> None:
         shading = OxmlElement("w:shd")
         properties.append(shading)
     shading.set(qn("w:fill"), fill)
+
+
+def border_cell(cell) -> None:
+    properties = cell._tc.get_or_add_tcPr()
+    borders = properties.find(qn("w:tcBorders"))
+    if borders is None:
+        borders = OxmlElement("w:tcBorders")
+        properties.append(borders)
+    for side in ("top", "left", "bottom", "right"):
+        edge = borders.find(qn(f"w:{side}"))
+        if edge is None:
+            edge = OxmlElement(f"w:{side}")
+            borders.append(edge)
+        for key, value in (("val", "single"), ("sz", "4"), ("color", "D9D9D9")):
+            edge.set(qn(f"w:{key}"), value)
 
 
 def style_callout(paragraph, fill: str) -> None:
@@ -158,16 +173,22 @@ def style_document(doc: Document) -> None:
     title._element.rPr.rFonts.set(qn("w:hAnsi"), "Arial")
     title.font.size = Pt(26)
     title.font.bold = True
-    title.font.color.rgb = RGBColor.from_string(NAVY)
+    title.font.color.rgb = RGBColor(0, 0, 0)
     title.paragraph_format.space_before = Pt(12)
     title.paragraph_format.space_after = Pt(9)
     title.paragraph_format.keep_with_next = True
     title.paragraph_format.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    title_properties = title._element.get_or_add_pPr()
+    title_borders = OxmlElement("w:pBdr")
+    title_bottom = OxmlElement("w:bottom")
+    title_bottom.set(qn("w:val"), "nil")
+    title_borders.append(title_bottom)
+    title_properties.append(title_borders)
 
-    for style_name, size, color, before, after in (
-        ("Heading 1", 16, NAVY, 16, 7),
-        ("Heading 2", 12.5, TEAL, 11, 5),
-        ("Heading 3", 11, NAVY, 8, 3),
+    for style_name, size, before, after in (
+        ("Heading 1", 16, 16, 7),
+        ("Heading 2", 12.5, 11, 5),
+        ("Heading 3", 11, 8, 3),
     ):
         style = doc.styles[style_name]
         style.font.name = "Arial"
@@ -175,18 +196,18 @@ def style_document(doc: Document) -> None:
         style._element.rPr.rFonts.set(qn("w:hAnsi"), "Arial")
         style.font.size = Pt(size)
         style.font.bold = True
-        style.font.color.rgb = RGBColor.from_string(color)
+        style.font.color.rgb = RGBColor(0, 0, 0)
         style.paragraph_format.space_before = Pt(before)
         style.paragraph_format.space_after = Pt(after)
         style.paragraph_format.keep_with_next = True
 
     header = section.header.paragraphs[0]
     header.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    set_run_font(header.add_run("BONESCOPE  |  BÁO CÁO HỌC TẬP"), size=8, color=MUTED, bold=True)
+    set_run_font(header.add_run("BONESCOPE  |  BÁO CÁO HỌC TẬP"), size=8, color="000000", bold=True)
 
     footer = section.footer.paragraphs[0]
     footer.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    set_run_font(footer.add_run("BoneScope  ·  Trang "), size=8, color=MUTED)
+    set_run_font(footer.add_run("BoneScope  ·  Trang "), size=8, color="000000")
     add_page_number(footer)
 
     doc.core_properties.title = "Báo cáo tổng kết đồ án BoneScope"
@@ -229,6 +250,10 @@ def convert(markdown: str) -> Document:
     while i < len(lines):
         line = lines[i].rstrip()
         if not line.strip():
+            i += 1
+            continue
+        if line.strip() == "<!-- pagebreak -->":
+            doc.add_page_break()
             i += 1
             continue
         if line.startswith("```"):
@@ -284,7 +309,7 @@ def convert(markdown: str) -> Document:
                 rows.append(split_row(lines[i]))
                 i += 1
             table = doc.add_table(rows=1 + len(rows), cols=len(header))
-            table.style = "Light Shading Accent 1"
+            table.style = "Table Grid"
             table.autofit = True
             for r, cells in enumerate([header] + rows):
                 prevent_row_split(table.rows[r])
@@ -292,6 +317,7 @@ def convert(markdown: str) -> Document:
                     cell = table.cell(r, c)
                     cell.text = ""
                     set_cell_margins(cell)
+                    border_cell(cell)
                     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
                     if r == 0:
                         shade_cell(cell, NAVY)
@@ -300,25 +326,31 @@ def convert(markdown: str) -> Document:
                     add_inline(cell.paragraphs[0], cells[c] if c < len(cells) else "")
                     for run in cell.paragraphs[0].runs:
                         if r == 0:
-                            set_run_font(run, size=8.2, color="FFFFFF", bold=True)
+                            set_run_font(run, size=8.8, color="FFFFFF", bold=True)
                         else:
-                            set_run_font(run, size=8.2, color=INK)
+                            set_run_font(run, size=8.8, color=INK)
                     cell.paragraphs[0].paragraph_format.space_after = Pt(1)
             repeat_header(table.rows[0])
             doc.add_paragraph()
             continue
         bullet = re.match(r"^(\s*)[-*]\s+(.*)$", line)
-        number = re.match(r"^(\s*)\d+\.\s+(.*)$", line)
+        number = re.match(r"^(\s*)(\d+)\.\s+(.*)$", line)
         if bullet or number:
-            match = bullet or number
-            para = doc.add_paragraph(style="List Bullet" if bullet else "List Number")
-            add_inline(para, match.group(2))
+            if bullet:
+                para = doc.add_paragraph(style="List Bullet")
+                add_inline(para, bullet.group(2))
+            else:
+                para = doc.add_paragraph()
+                para.paragraph_format.left_indent = Pt(22)
+                para.paragraph_format.first_line_indent = Pt(-18)
+                para.add_run(f"{number.group(2)}. ")
+                add_inline(para, number.group(3))
             para.paragraph_format.space_after = Pt(3)
             i += 1
             continue
         para_lines = [line.strip()]
         i += 1
-        while i < len(lines) and lines[i].strip() and not re.match(r"^(#|>|\||```|\s*[-*]\s|\s*\d+\.\s)", lines[i]):
+        while i < len(lines) and lines[i].strip() and lines[i].strip() != "<!-- pagebreak -->" and not re.match(r"^(#|>|\||```|\s*[-*]\s|\s*\d+\.\s)", lines[i]):
             para_lines.append(lines[i].strip())
             i += 1
         add_inline(doc.add_paragraph(), " ".join(para_lines))

@@ -2,9 +2,9 @@
 
 ## Trạng thái hiện tại — 12/11/2026
 
-**Cập nhật 13/11:** Research Studio có logo chung với X-ray Workbench và bố cục chào với hai thao tác. Chế độ **Tra cứu cục bộ** đọc chỉ mục E5 và trả các đoạn nguồn ngay trên giao diện. Phần giải thích ca X-quang dùng mẫu trên máy khi chọn chế độ này. Xem [hướng dẫn Research Studio](docs/guides/README_CHATBOT_UI_VI.md).
+**Cập nhật 13/11:** Research Studio có logo chung với X-ray Workbench, tra cứu cục bộ bằng E5 và ảnh xem trước/hiển thị trực tiếp trong tin nhắn. Phần giải thích ca X-quang dùng mẫu trên máy khi chọn chế độ local. Xem [hướng dẫn Research Studio](docs/guides/README_CHATBOT_UI_VI.md).
 
-Báo cáo đồ án hiện hành: [Markdown](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.md) · [DOCX](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261112_VI.docx). DOCX đã xuất và kiểm tra cấu trúc; chưa render trực quan vì môi trường thiếu LibreOffice.
+Báo cáo đồ án hiện hành: [Markdown](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md) · [DOCX](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.docx). Bản Word được xuất PDF bằng Microsoft Word và xem trực quan chín trang; renderer chuẩn không có LibreOffice trên máy này. [Record kiểm tra 13/11](docs/reference/project_report_verification_20261113.json) ghi **216 passed, 1 skipped, 227 subtests passed**, browser smoke riêng **1/1**, audit RAG PASS, replay **16/16**, chatbot doctor **13/13**, register PASS. Không gọi provider thật. G1–G7 vẫn OPEN, `answer_ready=false`.
 
 Checklist nghiệm thu demo: [PRODUCT_ACCEPTANCE_CHECKLIST_VI.md](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md); [record precheck 12/11](docs/reference/project_acceptance_precheck_20261112.json). Checklist này phục vụ nghiệm thu phần mềm học tập local; G1–G7 vẫn là các gate riêng.
 

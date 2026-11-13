@@ -18,6 +18,9 @@ def test_convert_handles_headings_tables_lists_alerts_and_code():
         "python -m pytest",
         "```",
         "Plain \\$1 text.",
+        "<!-- pagebreak -->",
+        "## References",
+        "1. reference one",
     ])
     doc = convert(markdown)
     text = "\n".join(p.text for p in doc.paragraphs)
@@ -25,6 +28,8 @@ def test_convert_handles_headings_tables_lists_alerts_and_code():
     assert "Quan trọng: Keep answer_ready=false." in text
     assert "python -m pytest" in text
     assert "Plain $1 text." in text
+    assert "1. step" in text and "1. reference one" in text
+    assert 'w:type="page"' in doc._element.xml
     assert len(doc.tables) == 1
     assert doc.tables[0].cell(1, 0).text == "x"
     assert doc.tables[0].cell(1, 1).text == "link"

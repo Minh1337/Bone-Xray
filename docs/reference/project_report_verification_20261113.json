@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-11-13",
+  "scope": "coursework_report_technical_recheck",
+  "code_commit": "ac3ac770133ca6cb9758bb450d37c4cdc7531d40",
+  "checks": {
+    "regression": {
+      "command": ".venv/Scripts/python.exe -m pytest api_tests rag/tests tests ui_tests -q",
+      "passed": 216,
+      "failed": 0,
+      "skipped": 1,
+      "subtests_passed": 227,
+      "warning": "Starlette anyio BlockingPortal deprecation",
+      "browser_test_skipped_in_sandbox": true
+    },
+    "browser_smoke_separate": {
+      "command": ".venv/Scripts/python.exe -m pytest ui_tests/test_chatbot_browser.py -q -rs",
+      "passed": 1,
+      "failed": 0,
+      "scope": "Chrome with temporary SQLite and synthetic image, mocked AI and retrieval"
+    },
+    "rag_audit": {
+      "status": "PASS",
+      "record": "project_report_rag_audit_20261113.json",
+      "sources": 22,
+      "chunks": 794,
+      "missing_source_cache": 0,
+      "evaluation_sets_checked": 10
+    },
+    "rag_replay": {
+      "status": "PASS",
+      "record": "project_report_rag_replay_20261113.json",
+      "reports_checked": 16,
+      "preflight_mismatches": 0
+    },
+    "chatbot_doctor": {
+      "command": ".venv/Scripts/python.exe -m tools.chatbot_doctor",
+      "passed": 13,
+      "failed": 0,
+      "provider_key_value_recorded": false
+    },
+    "stage11_registers": {
+      "command": ".venv/Scripts/python.exe -m tools.verify_stage11_registers",
+      "status": "PASS",
+      "references_checked": 24,
+      "cohort_rows": 15,
+      "gate_closed": 0
+    },
+    "report_export": {
+      "exporter_tests_passed": 2,
+      "docx_pages": 9,
+      "visual_pages_reviewed": 9,
+      "conversion": "Microsoft Word COM PDF export followed by Poppler page PNG review",
+      "packaged_renderer": "Unavailable on this Windows runtime because LibreOffice soffice.exe is absent",
+      "report": "../reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.docx"
+    },
+    "markdown_links": {
+      "files_checked": 6,
+      "local_targets_checked": 205,
+      "broken": 0
+    },
+    "api_local_parity": {
+      "status": "NOT_RERUN",
+      "historical_record": "project_verification_20261112.json",
+      "historical_cases_passed": 3
+    }
+  },
+  "research_status": {
+    "answer_ready": false,
+    "acceptance_gates_open": 7,
+    "independent_validation_claimed": false
+  }
+}
