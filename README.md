@@ -11,6 +11,7 @@
 <p align="center">
   <a href="README_VI.md">Hướng dẫn tiếng Việt</a> ·
   <a href="docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md">Coursework report</a> ·
+  <a href="docs/reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.md">Skills and project timeline</a> ·
   <a href="docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md">Demo checklist</a>
 </p>
 

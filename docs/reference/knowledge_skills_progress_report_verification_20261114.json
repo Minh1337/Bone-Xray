@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "date_local": "2026-11-14",
+  "scope": "knowledge_skills_and_progress_report",
+  "source_code_baseline": "82cd17d2b21df2b21049e6a4f93edbf63dd298a2",
+  "artifacts": {
+    "markdown": {
+      "path": "../reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.md",
+      "sha256": "f69bdeb086f0f5905b6d7e1f3458c275d0c4e2072ff60e44444f910ea1164149"
+    },
+    "docx": {
+      "path": "../reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.docx",
+      "sha256": "c88dcd4a2e234a2d6eb8198efcc975ca26ad1c73dfb976b137779a6274085c81",
+      "pages": 10,
+      "tables": 7,
+      "visual_pages_inspected": 10,
+      "conversion": "Microsoft Word COM PDF export followed by Poppler PNG inspection",
+      "packaged_renderer": "Unavailable on this Windows environment because LibreOffice soffice.exe is absent"
+    }
+  },
+  "checks": {
+    "report_local_links": {
+      "checked": 17,
+      "missing": 0
+    },
+    "final_changed_markdown_and_html_links": {
+      "files_checked": 5,
+      "checked": 200,
+      "missing": 0
+    },
+    "exporter_tests": {
+      "command": ".venv/Scripts/python.exe -m pytest tests/test_export_report_docx.py -q",
+      "passed": 2,
+      "failed": 0
+    },
+    "git_diff_check": "PASS",
+    "application_regression": "NOT_RERUN_FOR_DOCUMENTATION_ONLY_CHANGE",
+    "historical_application_record": "project_report_verification_20261113.json",
+    "provider_calls": 0
+  },
+  "research_status": {
+    "answer_ready": false,
+    "acceptance_gates_open": 7,
+    "independent_validation_claimed": false
+  }
+}

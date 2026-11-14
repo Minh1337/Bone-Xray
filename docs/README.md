@@ -18,6 +18,9 @@ BoneScope hiện là nguyên mẫu nghiên cứu giáo dục chạy cục bộ, 
 | [Trạng thái dự án](PROJECT_STATUS_VI.md) | Điểm bàn giao, thay đổi gần đây, kiểm thử và thứ tự phát triển tiếp |
 | [Báo cáo tổng kết đồ án 13/11/2026](reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.md) | Kiến trúc, dữ liệu, phương pháp, kết quả ảnh/RAG, chatbot, kiểm chứng và giới hạn |
 | [Báo cáo tổng kết đồ án DOCX 13/11/2026](reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.docx) | Bản Word chín trang, đã xem trực quan sau khi xuất PDF bằng Word |
+| [Báo cáo kiến thức kỹ năng và tiến độ 14/11/2026](reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.md) | Giải thích công nghệ dùng ở từng phần, kỹ năng thực hiện và bảng mốc hoàn thành từ lúc khởi tạo |
+| [Bản Word báo cáo kiến thức kỹ năng và tiến độ](reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.docx) | Bản DOCX của báo cáo bổ trợ để trình bày với giảng viên |
+| [Record kiểm tra báo cáo kiến thức kỹ năng 14/11/2026](reference/knowledge_skills_progress_report_verification_20261114.json) | Hash hai bản báo cáo, kết quả kiểm tra liên kết, bài test bộ xuất và 10 trang Word đã xem |
 | [Checklist nghiệm thu demo học tập](reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md) | Các luồng cần trình diễn, kết quả đã có và biên bản để người hướng dẫn ghi quyết định |
 | [Record precheck nghiệm thu 12/11/2026](reference/project_acceptance_precheck_20261112.json) | Regression, chatbot doctor, browser smoke, DOCX và giới hạn môi trường |
 | [Tiếp tục giai đoạn 11](STAGE11_HANDOFF_VI.md) | Điểm dừng, ca trượt, kết quả cuối và lệnh tái lập cho AI tiếp quản |

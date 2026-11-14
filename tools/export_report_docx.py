@@ -210,8 +210,8 @@ def style_document(doc: Document) -> None:
     set_run_font(footer.add_run("BoneScope  ·  Trang "), size=8, color="000000")
     add_page_number(footer)
 
-    doc.core_properties.title = "Báo cáo tổng kết đồ án BoneScope"
-    doc.core_properties.subject = "Nguyên mẫu học tập phân loại X-quang, RAG và chatbot"
+    doc.core_properties.title = "Báo cáo BoneScope"
+    doc.core_properties.subject = "Tài liệu đồ án BoneScope"
     doc.core_properties.author = "BoneScope"
 
 
@@ -246,6 +246,9 @@ def convert(markdown: str) -> Document:
     doc = Document()
     style_document(doc)
     lines = markdown.splitlines()
+    first_title = next((line[2:].strip() for line in lines if line.startswith("# ")), None)
+    if first_title:
+        doc.core_properties.title = first_title
     i = 0
     while i < len(lines):
         line = lines[i].rstrip()

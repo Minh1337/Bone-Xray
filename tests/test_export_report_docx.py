@@ -43,3 +43,4 @@ def test_export_writes_readable_docx(tmp_path):
     target = tmp_path / "r.docx"
     assert main([str(source), str(target)]) == 0
     assert "Báo cáo" in Document(target).paragraphs[0].text
+    assert Document(target).core_properties.title == "Báo cáo"

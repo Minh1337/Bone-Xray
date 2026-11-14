@@ -1,5 +1,7 @@
 # Bàn giao BoneScope cho phiên Codex tiếp theo
 
+**Báo cáo bổ trợ 14/11/2026:** [kiến thức kỹ năng và bảng tiến độ từ khi khởi tạo](docs/reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.md) · [bản Word 10 trang](docs/reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.docx) · [record kiểm tra](docs/reference/knowledge_skills_progress_report_verification_20261114.json). Báo cáo mô tả đúng phạm vi nguyên mẫu local; 7 gate G1–G7 vẫn OPEN, `answer_ready=false`.
+
 ## Trạng thái hiện tại — 12/11/2026
 
 **Cập nhật 13/11:** Research Studio có logo chung với X-ray Workbench, tra cứu cục bộ bằng E5 và ảnh xem trước/hiển thị trực tiếp trong tin nhắn. Phần giải thích ca X-quang dùng mẫu trên máy khi chọn chế độ local. Xem [hướng dẫn Research Studio](docs/guides/README_CHATBOT_UI_VI.md).

@@ -179,6 +179,7 @@ Giai đoạn 11 chưa nghiệm thu độc lập và `answer_ready=false`.
 - [Checklist nghiệm thu demo học tập](docs/reports/PRODUCT_ACCEPTANCE_CHECKLIST_VI.md)
 - [Record precheck nghiệm thu 12/11/2026](docs/reference/project_acceptance_precheck_20261112.json)
 - [Báo cáo tổng kết đồ án — DOCX 13/11/2026](docs/reports/BAO_CAO_TONG_KET_DO_AN_BONESCOPE_20261113_VI.docx) (đã kiểm tra trực quan bản xuất chín trang)
+- [Báo cáo kiến thức kỹ năng và tiến độ — 14/11/2026](docs/reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.md) ([bản Word](docs/reports/BAO_CAO_KIEN_THUC_KY_NANG_VA_TIEN_DO_BONESCOPE_20261114_VI.docx))
 - [Báo cáo tổng hợp Giai đoạn 11 — hồ sơ lịch sử và gate](docs/reports/BAO_CAO_GIAI_DOAN_11_2026-10-29.md)
 - [Lộ trình thực hiện](docs/LO_TRINH_THUC_HIEN_DU_AN_AI.md)
 - [Hướng dẫn corpus RAG](docs/guides/README_RAG_CORPUS_VI.md)
